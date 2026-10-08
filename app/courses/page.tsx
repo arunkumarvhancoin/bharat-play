@@ -205,7 +205,7 @@ export default function CoursesPage() {
                 { id: '04', title: 'EXPERIMENT' },
                 { id: '05', title: 'REFLECT' },
                 { id: '06', title: 'APPLY' },
-              ].map((step, idx) => (
+              ].map((step) => (
                 <div key={step.id} className="flex flex-col items-center text-center group">
                   <div className="font-mono text-xs font-bold text-brand-gray mb-6">{step.id}</div>
                   <div className="w-8 h-8 rounded-full bg-brand-navy border-2 border-brand-orange flex items-center justify-center mb-8 group-hover:scale-125 transition-transform duration-300">
@@ -415,7 +415,7 @@ export default function CoursesPage() {
           </h2>
           
           <div className="flex flex-col border-t border-gray-800">
-            {FAQS.map((faq) => (
+            {FAQS.map((faq, idx) => (
               <div key={idx} className="border-b border-gray-800 overflow-hidden">
                 <button 
                   onClick={() => setOpenFaq(openFaq === idx ? null : idx)}

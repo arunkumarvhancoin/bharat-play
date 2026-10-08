@@ -300,7 +300,7 @@ export default function AboutPage() {
                 { id: '04', title: 'PLAY', desc: 'Put people into the experience.' },
                 { id: '05', title: 'REFLECT', desc: 'Make sense of what happened.' },
                 { id: '06', title: 'ACT', desc: 'Turn insights into meaningful action.' },
-              ].map((step, idx) => (
+              ].map((step) => (
                 <div key={step.id} className="flex gap-8 md:gap-16 items-start group">
                   <div className="w-6 h-6 md:w-10 md:h-10 rounded-full bg-brand-navy border-2 border-brand-orange flex items-center justify-center shrink-0 mt-1 md:mt-2 group-hover:scale-125 transition-transform duration-300">
                     <div className="w-2 h-2 md:w-3 md:h-3 bg-brand-orange rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
