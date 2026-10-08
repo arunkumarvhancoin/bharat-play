@@ -34,10 +34,37 @@ export default function WhatWePlayWith() {
   const activeTopic = TOPICS[activeIndex];
 
   return (
-    <section ref={containerRef} className="relative h-[600vh] bg-brand-offwhite" id="topics">
+    <section ref={containerRef} className="relative md:h-[600vh] bg-brand-offwhite" id="topics">
       
-      {/* Sticky Viewport Container */}
-      <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
+      {/* MOBILE LAYOUT (Stacked Cards, No Scroll Spy) */}
+      <div className="md:hidden py-24 px-4 w-full">
+        <h2 className="font-display text-4xl tracking-tighter text-brand-navy uppercase mb-12 font-bold pb-6 border-b border-gray-200">
+          WHAT DO WE PLAY WITH.
+        </h2>
+        <div className="flex flex-col gap-12">
+          {TOPICS.map((topic) => (
+            <div key={topic.id} className="flex flex-col gap-6">
+              <div className="flex items-center gap-4">
+                <div className={clsx("w-4 h-4 rounded-full", topic.dot)} />
+                <h3 className={clsx("font-display text-4xl font-bold uppercase tracking-tighter", topic.color)}>
+                  {topic.title}
+                </h3>
+              </div>
+              <div className="bg-white rounded-sm shadow-xl border border-gray-100 p-8 relative overflow-hidden">
+                <p className="text-xl font-medium text-brand-gray leading-relaxed relative z-10">
+                  {topic.desc}
+                </p>
+                <div className="absolute -bottom-8 -right-4 font-display text-[120px] font-bold text-gray-50 leading-none select-none pointer-events-none z-0">
+                  {topic.title.substring(0, 2)}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* DESKTOP LAYOUT (Sticky Viewport Container) */}
+      <div className="hidden md:flex sticky top-0 h-screen w-full flex-col justify-center overflow-hidden">
         <div className="max-w-[1400px] mx-auto w-full px-4 md:px-6">
           
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tighter text-brand-navy uppercase mb-16 font-bold pb-6 border-b border-gray-200">
