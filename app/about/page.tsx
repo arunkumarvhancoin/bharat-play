@@ -3,8 +3,7 @@
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState } from "react";
-import clsx from "clsx";
+import { useRef } from "react";
 
 export default function AboutPage() {
   const workRef = useRef(null);

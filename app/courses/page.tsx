@@ -415,7 +415,7 @@ export default function CoursesPage() {
           </h2>
           
           <div className="flex flex-col border-t border-gray-800">
-            {FAQS.map((faq, idx) => (
+            {FAQS.map((faq) => (
               <div key={idx} className="border-b border-gray-800 overflow-hidden">
                 <button 
                   onClick={() => setOpenFaq(openFaq === idx ? null : idx)}

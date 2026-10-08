@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import clsx from "clsx";
+/* eslint-disable @next/next/no-img-element */
 
 const IMPACT_STORIES = [
   {
@@ -78,7 +78,7 @@ export default function SocialImpact() {
             />
 
             <div className="flex flex-col gap-24">
-              {IMPACT_STORIES.map((story, idx) => (
+              {IMPACT_STORIES.map((story) => (
                 <div key={story.id} className="flex flex-col md:flex-row gap-8 md:gap-12 group">
                   
                   {/* Number & Image */}

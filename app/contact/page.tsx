@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 import { motion } from "framer-motion";
 
