@@ -74,11 +74,11 @@ export default function WorkInTheWorld() {
             >
               <div>
                 <h4 className="font-mono text-xs font-bold tracking-widest uppercase text-brand-gray mb-2">THE CONCEPT</h4>
-                <p className="text-lg font-medium text-brand-navy leading-relaxed">A serious board game involving roleplays that allows experiencing how multiple actors are involved in managing urban operations.</p>
+                <p className="text-xl md:text-2xl font-medium text-brand-navy leading-relaxed">A serious board game involving roleplays that allows experiencing how multiple actors are involved in managing urban operations.</p>
               </div>
               <div>
                 <h4 className="font-mono text-xs font-bold tracking-widest uppercase text-brand-gray mb-2">THE CONTEXT</h4>
-                <p className="text-lg font-medium text-brand-navy leading-relaxed">Using Pune metropolis as an example to inspire participatory governance actions required to transform the quality of urban living.</p>
+                <p className="text-xl md:text-2xl font-medium text-brand-navy leading-relaxed">Using Pune metropolis as an example to inspire participatory governance actions required to transform the quality of urban living.</p>
               </div>
             </motion.div>
 
@@ -114,11 +114,11 @@ export default function WorkInTheWorld() {
             >
               <div>
                 <h4 className="font-mono text-xs font-bold tracking-widest uppercase text-brand-gray mb-2">THE CONCEPT</h4>
-                <p className="text-lg font-medium text-brand-navy leading-relaxed">A simulation game that uncovers potential cyber-physical hazards in a smart building environment.</p>
+                <p className="text-xl md:text-2xl font-medium text-brand-navy leading-relaxed">A simulation game that uncovers potential cyber-physical hazards in a smart building environment.</p>
               </div>
               <div>
                 <h4 className="font-mono text-xs font-bold tracking-widest uppercase text-brand-gray mb-2">THE CONTEXT</h4>
-                <p className="text-lg font-medium text-brand-navy leading-relaxed">Players collaboratively respond to attack scenarios, discovering how malicious cyber attacks compromise physical systems like HVAC and fire protection.</p>
+                <p className="text-xl md:text-2xl font-medium text-brand-navy leading-relaxed">Players collaboratively respond to attack scenarios, discovering how malicious cyber attacks compromise physical systems like HVAC and fire protection.</p>
               </div>
             </motion.div>
 
@@ -179,11 +179,11 @@ export default function WorkInTheWorld() {
             >
               <div>
                 <h4 className="font-mono text-xs font-bold tracking-widest uppercase text-brand-gray mb-2">THE CONCEPT</h4>
-                <p className="text-lg font-medium text-brand-navy leading-relaxed">A facilitated boardgame taking players experientially through the life of an urban planner.</p>
+                <p className="text-xl md:text-2xl font-medium text-brand-navy leading-relaxed">A facilitated boardgame taking players experientially through the life of an urban planner.</p>
               </div>
               <div>
                 <h4 className="font-mono text-xs font-bold tracking-widest uppercase text-brand-gray mb-2">THE CONTEXT</h4>
-                <p className="text-lg font-medium text-brand-navy leading-relaxed">Honing strategic farsights and educating players about urbanization, urban agglomeration, and decision-making that shapes future cities.</p>
+                <p className="text-xl md:text-2xl font-medium text-brand-navy leading-relaxed">Honing strategic farsights and educating players about urbanization, urban agglomeration, and decision-making that shapes future cities.</p>
               </div>
             </motion.div>
 

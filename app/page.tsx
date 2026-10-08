@@ -8,6 +8,7 @@ import Stories from "./components/Stories";
 import AboutKudos from "./components/AboutKudos";
 import FinalCTA from "./components/FinalCTA";
 import WhatWePlayWith from "./components/WhatWePlayWith";
+import CoursesSection from "./components/CoursesSection";
 
 export default function Home() {
   return (
@@ -21,6 +22,9 @@ export default function Home() {
 
       {/* 04 — WHAT WE PLAY WITH */}
       <WhatWePlayWith />
+      
+      {/* 04.5 — COURSES */}
+      <CoursesSection />
       
       {/* 05 — FEATURED WORK */}
       <WorkInTheWorld />

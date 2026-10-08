@@ -24,8 +24,8 @@ export default function AboutKudos() {
           <div className="lg:col-span-7 relative">
             <div className="sticky top-32 flex flex-col gap-16">
               <div>
-                <h2 className="font-mono text-[10px] tracking-widest text-brand-gray uppercase mb-12 font-bold">
-                  ABOUT BHARAT PLAY
+                <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tighter text-brand-navy uppercase mb-12 font-bold pb-6 border-b border-gray-200">
+                  ABOUT US.
                 </h2>
                 
                 <motion.h3 
@@ -66,19 +66,19 @@ export default function AboutKudos() {
             </div>
 
             <div className="flex flex-col gap-8">
-              <p className="text-2xl font-medium leading-tight text-brand-navy">
-                We use purposeful play to explore complex problems, build understanding and imagine better futures.
+              <p className="text-3xl font-bold leading-tight text-brand-navy">
+                We build serious games and interactive simulations to help people solve complex, real-world problems.
               </p>
               
-              <p className="text-lg text-brand-gray font-medium leading-relaxed">
-                By merging systems-thinking, design & innovation management, engineering, policy, environmental & social sciences, we build tools that shape the transition pathways of future cities in the global south.
+              <p className="text-xl text-brand-gray font-medium leading-relaxed">
+                Instead of just talking about the future, we let you play it. By combining game design with urban planning, policy, and engineering, we create hands-on experiences that let citizens, students, and leaders test ideas before they become reality.
               </p>
 
-              <div className="pl-6 border-l border-gray-300 mt-4">
-                <p className="italic font-serif text-xl mb-4 text-gray-500 leading-snug">
+              <div className="pl-6 border-l-4 border-brand-orange mt-4">
+                <p className="italic font-serif text-2xl mb-4 text-gray-600 leading-snug">
                   &quot;Create games for change which will not only solve local problems but also address global issues.&quot;
                 </p>
-                <footer className="font-mono text-[10px] font-bold tracking-widest uppercase text-brand-navy">
+                <footer className="font-mono text-sm font-bold tracking-widest uppercase text-brand-navy">
                   — Prime Minister Narendra Modi
                 </footer>
               </div>

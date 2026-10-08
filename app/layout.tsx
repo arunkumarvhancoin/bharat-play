@@ -1,18 +1,24 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
+import { Outfit, DM_Sans, DM_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SmoothScroll from "./components/SmoothScroll";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const dmSans = DM_Sans({
+  variable: "--font-dmsans",
   subsets: ["latin"],
+});
+
+const dmMono = DM_Mono({
+  variable: "--font-dmmono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -22,7 +28,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} antialiased`}>
+    <html lang="en" className={`${outfit.variable} ${dmSans.variable} ${dmMono.variable} antialiased`}>
       <body className="flex flex-col font-sans bg-white text-brand-navy selection:bg-brand-green selection:text-white">
         <SmoothScroll>
           <Navbar />

@@ -66,12 +66,28 @@ export default function FeaturedEventHero() {
   };
 
   return (
-    <section className="pt-32 pb-16 px-4 md:px-6 bg-white border-b border-gray-200 overflow-hidden relative" id="events">
+    <section className="h-[100dvh] w-full relative overflow-hidden bg-brand-navy flex flex-col" id="events">
       
-      {/* Background Marquee */}
-      <div className="absolute top-24 left-0 w-full overflow-hidden opacity-5 pointer-events-none whitespace-nowrap z-0">
+      {/* Background Image Carousel */}
+      <AnimatePresence mode="wait">
         <motion.div 
-          className="font-display text-[100px] md:text-[200px] font-bold uppercase tracking-tighter text-brand-navy"
+          key={event.id}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.5, ease: "easeInOut" }}
+          className="absolute inset-0 z-0"
+        >
+          <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${event.image}')` }}></div>
+          {/* Gradient Overlay for text legibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Background Marquee */}
+      <div className="absolute top-24 md:top-32 left-0 w-full overflow-hidden opacity-[0.03] pointer-events-none whitespace-nowrap z-0">
+        <motion.div 
+          className="font-display text-[100px] md:text-[200px] font-bold uppercase tracking-tighter text-white"
           variants={marqueeVariants}
           animate="animate"
         >
@@ -79,9 +95,10 @@ export default function FeaturedEventHero() {
         </motion.div>
       </div>
 
-      <div className="max-w-[1400px] mx-auto w-full relative z-10">
+      {/* Content Overlay */}
+      <div className="relative z-10 max-w-[1400px] mx-auto w-full h-full flex flex-col justify-end px-4 md:px-6 pb-12 md:pb-16 pt-32">
         
-        <h1 className="font-mono text-sm tracking-widest text-brand-gray uppercase mb-12">
+        <h1 className="font-mono text-xs tracking-widest text-white/50 uppercase mb-auto">
           WHAT&apos;S PLAYING
         </h1>
         
@@ -95,19 +112,18 @@ export default function FeaturedEventHero() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] }}
-                className="overflow-hidden"
               >
-                <h2 className="font-display text-4xl md:text-6xl lg:text-9xl font-bold uppercase tracking-tighter text-brand-navy leading-[0.85] mb-6 text-balance">
+                <h2 className="font-display text-5xl md:text-7xl lg:text-9xl font-bold uppercase tracking-tighter text-white leading-[0.9] mb-4 text-balance">
                   {event.title}
                 </h2>
-                <p className="text-xl md:text-2xl text-brand-gray font-medium max-w-lg leading-tight">
+                <p className="text-lg md:text-2xl text-white/80 font-medium max-w-lg leading-relaxed">
                   {event.subtitle}
                 </p>
               </motion.div>
             </AnimatePresence>
           </div>
 
-          <div className="md:col-span-4 flex flex-col items-start md:items-end justify-end border-l border-gray-200 pl-4 md:border-none md:pl-0">
+          <div className="md:col-span-4 flex flex-col items-start md:items-end justify-end pt-8 md:pt-0">
             <AnimatePresence mode="wait">
               <motion.div
                 key={event.id}
@@ -115,15 +131,15 @@ export default function FeaturedEventHero() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.5 }}
-                className="flex flex-col font-mono text-sm font-bold tracking-widest uppercase text-brand-navy mb-8 text-left md:text-right gap-1"
+                className="flex flex-col font-mono text-base md:text-xl font-bold tracking-widest uppercase text-white mb-8 text-left md:text-right gap-2"
               >
                 <span className="text-brand-orange">{event.date}</span>
-                <span>{event.location}</span>
-                <span>{event.category}</span>
+                <span className="text-white/70">{event.location}</span>
+                <span className="text-white/70">{event.category}</span>
               </motion.div>
             </AnimatePresence>
             
-            <Link href="/events" className="inline-flex items-center gap-3 text-brand-navy font-bold text-xs uppercase tracking-widest hover:text-brand-orange transition-colors group">
+            <Link href="/events" className="inline-flex items-center gap-3 text-white font-bold text-sm md:text-base uppercase tracking-widest hover:text-brand-orange transition-colors group">
               EXPLORE EVENT
               <motion.div whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 400 }}>
                 <ArrowRight className="w-4 h-4" />
@@ -133,48 +149,34 @@ export default function FeaturedEventHero() {
 
         </div>
 
-        {/* Large Editorial Image with Carousel Controls (No Scroll Effects) */}
-        <div className="w-full aspect-[4/3] md:aspect-[21/9] bg-brand-navy mt-12 relative overflow-hidden rounded-sm group">
-          <AnimatePresence mode="wait">
-            <motion.div 
-              key={event.id}
-              initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
-              className="absolute inset-0"
-            >
-              <div className="absolute inset-0 bg-cover bg-center opacity-80" style={{ backgroundImage: `url('${event.image}')` }}></div>
-            </motion.div>
-          </AnimatePresence>
-          
-          <div className="absolute bottom-0 left-0 right-0 p-6 flex justify-between items-end z-10 bg-gradient-to-t from-black/60 to-transparent">
-            {/* Pagination Line Indicators */}
-            <div className="flex gap-2">
-              {FEATURED_EVENTS.map((_, i) => (
-                <button 
-                  key={i} 
-                  onClick={() => setActiveIndex(i)}
-                  className={`h-1 transition-all duration-300 ${i === activeIndex ? "w-16 bg-white" : "w-6 bg-white/30 hover:bg-white/50"}`}
-                />
-              ))}
-            </div>
+        {/* Carousel Controls */}
+        <div className="mt-12 md:mt-16 flex justify-between items-center border-t border-white/20 pt-6">
+          <div className="flex gap-2">
+            {FEATURED_EVENTS.map((_, i) => (
+              <button 
+                key={i} 
+                onClick={() => setActiveIndex(i)}
+                className={`h-1 rounded-full transition-all duration-300 ${i === activeIndex ? "w-16 bg-brand-orange" : "w-6 bg-white/30 hover:bg-white/50"}`}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
+          </div>
 
-            {/* Arrows */}
-            <div className="flex gap-2">
-              <button 
-                onClick={() => setActiveIndex((prev) => (prev === 0 ? FEATURED_EVENTS.length - 1 : prev - 1))}
-                className="w-12 h-12 bg-black/20 border border-white/20 flex items-center justify-center hover:bg-black/50 transition-colors text-white"
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-              <button 
-                onClick={() => setActiveIndex((prev) => (prev + 1) % FEATURED_EVENTS.length)}
-                className="w-12 h-12 bg-black/20 border border-white/20 flex items-center justify-center hover:bg-black/50 transition-colors text-white"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
-            </div>
+          <div className="flex gap-2">
+            <button 
+              onClick={() => setActiveIndex((prev) => (prev === 0 ? FEATURED_EVENTS.length - 1 : prev - 1))}
+              className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 hover:border-white transition-colors text-white"
+              aria-label="Previous slide"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button 
+              onClick={() => setActiveIndex((prev) => (prev + 1) % FEATURED_EVENTS.length)}
+              className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 hover:border-white transition-colors text-white"
+              aria-label="Next slide"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
           </div>
         </div>
 
