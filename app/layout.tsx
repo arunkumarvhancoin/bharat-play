@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${outfit.variable} ${dmSans.variable} ${dmMono.variable} antialiased`}>
-      <body className="flex flex-col font-sans bg-white text-brand-navy selection:bg-brand-green selection:text-white overflow-x-hidden w-full">
+      <body className="flex flex-col font-sans bg-white text-brand-navy selection:bg-brand-green selection:text-white w-full">
         <SmoothScroll>
           <Navbar />
           <main className="flex-1">{children}</main>

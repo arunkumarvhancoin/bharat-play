@@ -34,7 +34,7 @@ export default function WhatWePlayWith() {
   const activeTopic = TOPICS[activeIndex];
 
   return (
-    <section ref={containerRef} className="relative md:h-[115vh] bg-brand-offwhite" id="topics">
+    <section ref={containerRef} className="relative md:h-[250vh] bg-brand-offwhite" id="topics">
       
       {/* MOBILE LAYOUT (Stacked Cards, No Scroll Spy) */}
       <div className="md:hidden py-24 px-4 w-full">

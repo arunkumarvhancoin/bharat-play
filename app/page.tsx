@@ -22,6 +22,12 @@ export default function Home() {
 
       {/* 04 — WHAT WE PLAY WITH */}
       <WhatWePlayWith />
+
+      {/* 04.1 - SEE IT IN ACTION (Stories) */}
+      <Stories />
+      
+      {/* 04.2 — SOCIAL IMPACT */}
+      <ImpactNumbers />
       
       {/* 04.5 — COURSES */}
       <CoursesSection />
@@ -29,17 +35,11 @@ export default function Home() {
       {/* 05 — FEATURED WORK */}
       <WorkInTheWorld />
       
-      {/* 06 — IMPACT / NUMBERS */}
-      <ImpactNumbers />
-      
       {/* 07 — TRUSTED BY / COLLABORATORS */}
       <TrustedBy />
       
       {/* 08 — VOICES / TESTIMONIALS */}
       <Voices />
-      
-      {/* 10 — STORIES / VIDEO */}
-      <Stories />
       
       {/* 13 — FINAL CTA */}
       <FinalCTA />
