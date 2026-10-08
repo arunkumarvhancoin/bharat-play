@@ -24,6 +24,10 @@ const dmMono = DM_Mono({
 export const metadata: Metadata = {
   title: "Bharat Play | Serious Games & Experiential Learning",
   description: "Bharat Play uses purposeful play, serious games and experiential design to help people understand complex systems and imagine better futures.",
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
