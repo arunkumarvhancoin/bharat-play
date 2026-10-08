@@ -17,8 +17,9 @@ export default function Footer() {
               <Link href="/" className="block mb-8">
                 <img src="/logo.png" alt="Bharat Play" className="h-24 md:h-32 w-auto object-contain" />
               </Link>
-              <p className="text-gray-500 font-medium max-w-sm text-lg leading-relaxed mb-12">
-                A 21st century urban innovation studio shaping the transition pathways of future cities in the global-south.
+              <p className="text-gray-500 font-medium max-w-sm text-lg leading-relaxed mb-12 ml-4">
+                Life is a Game. Play it !<br/>
+                Planet is our Home. Save it !
               </p>
             </div>
             

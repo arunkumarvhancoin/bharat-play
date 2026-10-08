@@ -30,7 +30,7 @@ const COURSES = [
 
 export default function CoursesSection() {
   return (
-    <section className="py-32 px-4 md:px-6 bg-white border-b border-gray-200" id="courses">
+    <section className="pb-16 pt-8 md:pb-20 md:pt-12 px-4 md:px-6 bg-white border-b border-gray-200 relative z-10 -mt-8" id="courses">
       <div className="max-w-[1400px] mx-auto w-full">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div>
