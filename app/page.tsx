@@ -1,10 +1,10 @@
 import FeaturedEventHero from "./components/FeaturedEventHero";
 import UpcomingEvents from "./components/UpcomingEvents";
-import ImpactNumbers from "./components/ImpactNumbers";
 import TrustedBy from "./components/TrustedBy";
 import Voices from "./components/Voices";
 import WorkInTheWorld from "./components/WorkInTheWorld";
 import Stories from "./components/Stories";
+import SocialImpact from "./components/SocialImpact";
 import AboutKudos from "./components/AboutKudos";
 import FinalCTA from "./components/FinalCTA";
 import WhatWePlayWith from "./components/WhatWePlayWith";
@@ -27,7 +27,7 @@ export default function Home() {
       <Stories />
       
       {/* 04.2 — SOCIAL IMPACT */}
-      <ImpactNumbers />
+      <SocialImpact />
       
       {/* 04.5 — COURSES */}
       <CoursesSection />
