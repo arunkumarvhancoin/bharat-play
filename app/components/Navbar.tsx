@@ -47,7 +47,7 @@ export default function Navbar() {
           </nav>
           
           <div className="flex items-center gap-4">
-            <Link href="#join" className="hidden md:inline-flex items-center justify-center text-brand-navy text-xs font-bold uppercase tracking-widest hover:text-brand-green transition-colors">
+            <Link href="/contact" className="hidden md:inline-flex items-center justify-center text-brand-navy text-xs font-bold uppercase tracking-widest hover:text-brand-green transition-colors">
               JOIN THE PLAY &rarr;
             </Link>
             <button 
@@ -87,7 +87,7 @@ export default function Navbar() {
               })}
             </nav>
             <div className="mt-auto pb-12">
-              <Link href="#join" onClick={() => setIsOpen(false)} className="inline-flex items-center justify-center text-brand-green text-sm font-mono font-bold uppercase tracking-widest w-full border-t border-gray-200 pt-8">
+              <Link href="/contact" onClick={() => setIsOpen(false)} className="inline-flex items-center justify-center text-brand-green text-sm font-mono font-bold uppercase tracking-widest w-full border-t border-gray-200 pt-8">
                 JOIN THE PLAY &rarr;
               </Link>
             </div>
