@@ -11,6 +11,7 @@ const TESTIMONIAL_VIDEOS = [
     title: "SNU Youth Reflection on City Runners",
     caption: "Student & youth participants share their takeaways on civic agency and city-level problem solving.",
     src: "/testimonials/SNU Youth Reflection on City Runners.mp4",
+    poster: "/testimonials/posters/SNU Youth Reflection on City Runners.jpg",
     tag: "STUDENT VOICES",
     location: "Shiv Nadar University",
   },
@@ -19,6 +20,7 @@ const TESTIMONIAL_VIDEOS = [
     title: "SNU Exhibition & Facilitation Showcase",
     caption: "Highlights from the interactive classroom simulation and systems thinking gameplay showcase.",
     src: "/testimonials/SNU Exhibition 23 Sep.mp4",
+    poster: "/testimonials/posters/SNU Exhibition 23 Sep.jpg",
     tag: "EXHIBITION & LAB",
     location: "Campus Exhibition Hall",
   },
@@ -27,6 +29,7 @@ const TESTIMONIAL_VIDEOS = [
     title: "Field Gameplay & Debrief Session",
     caption: "Live tabletop dynamics, multi-role negotiation, and post-game participant reflections.",
     src: "/testimonials/video_20260926_131453.mp4",
+    poster: "/testimonials/posters/video_20260926_131453.jpg",
     tag: "LIVE GAMEPLAY",
     location: "Chennai Playtest Lab",
   },
@@ -35,6 +38,7 @@ const TESTIMONIAL_VIDEOS = [
     title: "Tabletop Roleplay & Coalition Formation",
     caption: "Participants navigating cross-ward budgets, trade-offs, and emergency monsoon deluges.",
     src: "/testimonials/video_20261003_130427.mp4",
+    poster: "/testimonials/posters/video_20261003_130427.jpg",
     tag: "ROLEPLAY & CONSENSUS",
     location: "Civic Innovation Hub",
   },
@@ -43,6 +47,7 @@ const TESTIMONIAL_VIDEOS = [
     title: "Prof. Shiva Kumar @ FLAME University",
     caption: "Faculty reflection on experiential pedagogy, student participation, and systems-level learning.",
     src: "/testimonials/ProfShiva Kumar @FLAMEUniversity.mp4",
+    poster: "/testimonials/posters/ProfShiva Kumar @FLAMEUniversity.jpg",
     tag: "FACULTY PERSPECTIVE",
     location: "FLAME University, Pune",
   },
@@ -51,6 +56,7 @@ const TESTIMONIAL_VIDEOS = [
     title: "Prof. Kiran @ IIT BHU",
     caption: "Academic perspective on game-based simulation for engineering, complex systems, and civic problem-solving.",
     src: "/testimonials/Prof.Kiran IIT BHU.mp4",
+    poster: "/testimonials/posters/Prof.Kiran IIT BHU.jpg",
     tag: "ACADEMIC LEADER",
     location: "IIT (BHU) Varanasi",
   },
@@ -59,6 +65,7 @@ const TESTIMONIAL_VIDEOS = [
     title: "Divyaansh Chhipa @ GIPE",
     caption: "Economics and public policy student reflections on municipal trade-offs, fiscal constraints, and coalition building.",
     src: "/testimonials/Divyaansh Chhipa @GIPE.mp4",
+    poster: "/testimonials/posters/Divyaansh Chhipa @GIPE.jpg",
     tag: "STUDENT REFLECTION",
     location: "Gokhale Institute (GIPE), Pune",
   },
@@ -67,6 +74,7 @@ const TESTIMONIAL_VIDEOS = [
     title: "Bageshree @ ReEarth",
     caption: "Practitioner reflection on ecological awareness, environmental policy simulations, and youth climate agency.",
     src: "/testimonials/Bageshree@ReEarth.mp4",
+    poster: "/testimonials/posters/Bageshree@ReEarth.jpg",
     tag: "CLIMATE & RESILIENCE",
     location: "ReEarth Collective",
   }
@@ -182,12 +190,13 @@ export default function TestimonialsPage() {
               transition={{ duration: 0.5, delay: idx * 0.05 }}
               className="break-inside-avoid mb-8 bg-white border border-gray-200 rounded-sm overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
             >
-              {/* Video Player — Native aspect ratio, unclipped */}
+              {/* Video Player — Native aspect ratio, unclipped with fast-loading poster */}
               <div className="relative w-full bg-black/95 overflow-hidden">
                 <video
                   src={vid.src}
+                  poster={vid.poster}
                   controls
-                  preload="metadata"
+                  preload="none"
                   playsInline
                   className="w-full h-auto block"
                 />

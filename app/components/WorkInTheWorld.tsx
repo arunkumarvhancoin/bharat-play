@@ -48,7 +48,7 @@ export default function WorkInTheWorld() {
           >
             <motion.div 
               className="absolute -top-[15%] -bottom-[15%] left-0 right-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-[3000ms] ease-out will-change-transform" 
-              style={{ y: y1, backgroundImage: "url('/cr1.jpg')" }}
+              style={{ y: y1, backgroundImage: "url('/cr1.webp')" }}
             />
           </motion.div>
 

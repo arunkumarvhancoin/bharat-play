@@ -33,7 +33,7 @@ const FEATURED_EVENTS = [
     title: "CITY RUNNERS",
     subtitle: "A GAME ABOUT THE CITY WE WANT",
     category: "URBAN FUTURES",
-    image: "/cr.png",
+    image: "/cr.webp",
     color: "bg-brand-orange"
   }
 ];

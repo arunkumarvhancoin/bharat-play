@@ -61,7 +61,7 @@ export default function AboutKudos() {
             <div className="w-full aspect-[3/4] bg-gray-200 relative overflow-hidden rounded-sm group">
               <motion.div 
                 className="absolute -top-[15%] -bottom-[15%] left-0 right-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-[2000ms] ease-out"
-                style={{ y: imgY, backgroundImage: "url('/about.jpg')" }}
+                style={{ y: imgY, backgroundImage: "url('/about.webp')" }}
               />
             </div>
 

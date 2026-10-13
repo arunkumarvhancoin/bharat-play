@@ -26,7 +26,7 @@ export default function Navbar() {
       <header className="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-[1400px] mx-auto px-4 md:px-6 h-20 md:h-24 flex items-center justify-between">
           <Link href="/" className="z-50 relative flex items-center">
-            <img src="/logo.png" alt="Bharat Play" className="h-12 md:h-16 w-auto object-contain" />
+            <img src="/logo.png" alt="Bharat Play" className="h-12 md:h-16 w-auto object-contain" decoding="async" fetchPriority="high" />
           </Link>
           
           <nav className="hidden md:flex items-center gap-8 text-xs font-semibold tracking-widest uppercase">

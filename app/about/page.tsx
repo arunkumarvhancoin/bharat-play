@@ -85,7 +85,7 @@ export default function AboutPage() {
           >
             <div 
               className="absolute inset-0 bg-cover bg-center" 
-              style={{ backgroundImage: "url('/about1.jpeg')" }}
+              style={{ backgroundImage: "url('/about1.webp')" }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-transparent to-transparent" />
             <div className="absolute bottom-6 left-6 right-6 flex flex-col md:flex-row md:items-end justify-between gap-4 text-white">
@@ -583,8 +583,10 @@ export default function AboutPage() {
               <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center mb-8">
                 <div className="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border-2 border-brand-orange shadow-md shrink-0 bg-brand-navy relative flex items-center justify-center">
                   <img 
-                    src="/founder.png" 
+                    src="/founder.webp" 
                     alt="Dr. Balaji Kalluri, PhD" 
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-center scale-[1.32] transition-transform duration-300"
                   />
                 </div>

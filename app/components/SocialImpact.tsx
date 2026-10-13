@@ -7,7 +7,7 @@ const IMPACT_STORIES = [
   {
     id: "01",
     title: "CITY RUNNER",
-    image: "/cr2.jpg",
+    image: "/cr2.webp",
     experience: "A participatory board game exploring cities as interconnected systems and how multiple actors manage urban operations.",
     outcome: "Participants experienced urban challenges from multiple perspectives, creating a deeper understanding of participatory governance and how citizens can actively shape their cities.",
     stats: [
@@ -105,6 +105,8 @@ export default function SocialImpact() {
                       <img 
                         src={story.image} 
                         alt={story.title}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-105"
                       />
                     </motion.div>

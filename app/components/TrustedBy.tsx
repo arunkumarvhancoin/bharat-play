@@ -48,6 +48,8 @@ export default function TrustedBy() {
                     <img 
                       src={partner.logo} 
                       alt={`${partner.name} logo`}
+                      loading="lazy"
+                      decoding="async"
                       className="w-12 h-12 md:w-16 md:h-16 object-contain"
                     />
                   </div>

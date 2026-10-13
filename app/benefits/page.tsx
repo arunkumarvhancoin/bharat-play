@@ -287,8 +287,10 @@ export default function BenefitsPage() {
               <div className="relative aspect-square w-full max-w-[440px] rounded-sm overflow-hidden border border-white/20 shadow-2xl group">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img 
-                  src="/cr.png" 
+                  src="/cr.webp" 
                   alt="City Runners Board Game Box & Artifact" 
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-transparent to-transparent opacity-80" />
