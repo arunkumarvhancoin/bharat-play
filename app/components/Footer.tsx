@@ -16,7 +16,7 @@ export default function Footer() {
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
               <Link href="/" className="block mb-8">
-                <img src="/logo.png" alt="Bharat Play" className="h-24 md:h-32 w-auto object-contain" loading="lazy" decoding="async" />
+                <img src="/logo.png" alt="Bharat Play" className="h-24 md:h-32 w-auto object-contain" />
               </Link>
               <p className="text-gray-500 font-medium max-w-sm text-lg leading-relaxed mb-12 ml-4">
                 Life is a Game. Play it !<br/>
