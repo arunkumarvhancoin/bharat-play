@@ -36,29 +36,53 @@ export default function Footer() {
             <div className="flex flex-col gap-5">
               <h3 className="font-mono text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-4">SITEMAP</h3>
               <Link href="/events" className="text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm">Events</Link>
-              <Link href="/courses" className="text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm">Courses</Link>
-              <Link href="/projects" className="text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm">Projects</Link>
+              <Link href="/benefits" className="text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm">Benefits</Link>
+              <Link href="/testimonials" className="text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm">Testimonials</Link>
               <Link href="/about" className="text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm">About Us</Link>
             </div>
             
             <div className="flex flex-col gap-5">
               <h3 className="font-mono text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-4">EXPERIENCE</h3>
-              <Link href="/projects" className="text-brand-navy font-semibold hover:text-brand-green transition-colors text-sm">City Runner</Link>
-              <Link href="/projects" className="text-brand-navy font-semibold hover:text-brand-green transition-colors text-sm">Cascade</Link>
-              <Link href="/projects" className="text-brand-navy font-semibold hover:text-brand-green transition-colors text-sm">Prospera</Link>
+              <Link href="/benefits" className="text-brand-navy font-semibold hover:text-brand-green transition-colors text-sm">City Runner</Link>
+              {/* <Link href="/projects" className="text-brand-navy font-semibold hover:text-brand-green transition-colors text-sm">Cascade</Link> */}
+              {/* <Link href="/projects" className="text-brand-navy font-semibold hover:text-brand-green transition-colors text-sm">Prospera</Link> */}
             </div>
             
             <div className="flex flex-col gap-5">
               <h3 className="font-mono text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-4">SOCIAL</h3>
-              <a href="#" className="inline-flex items-center gap-2 text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm group">
+              <a 
+                href="https://wa.me/916381531026" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-flex items-center gap-2 text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm group"
+              >
+                WhatsApp
+                <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </a>
+              <a 
+                href="https://www.instagram.com/bharat_play?utm_source=qr&stkn=MWRqaW9oZXZiMzhxNw%3D%3D" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-flex items-center gap-2 text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm group"
+              >
                 Instagram
                 <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
-              <a href="#" className="inline-flex items-center gap-2 text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm group">
+              <a 
+                href="https://in.linkedin.com/company/bharat-play" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-flex items-center gap-2 text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm group"
+              >
                 LinkedIn
                 <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
-              <a href="#" className="inline-flex items-center gap-2 text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm group">
+              <a 
+                href="https://www.youtube.com/playlist?list=PLNriavw_JQZo" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-flex items-center gap-2 text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm group"
+              >
                 YouTube
                 <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>

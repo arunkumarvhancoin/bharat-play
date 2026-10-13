@@ -46,8 +46,8 @@ export default function CoursesSection() {
               LEARN TO <span className="text-brand-orange">PLAY.</span>
             </motion.h3>
           </div>
-          <Link href="/courses" className="inline-flex items-center gap-3 text-brand-navy font-bold text-xs uppercase tracking-widest hover:text-brand-orange transition-colors group">
-            VIEW ALL COURSES
+          <Link href="/benefits" className="inline-flex items-center gap-3 text-brand-navy font-bold text-xs uppercase tracking-widest hover:text-brand-orange transition-colors group">
+            EXPLORE ALL BENEFITS
             <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
@@ -69,8 +69,8 @@ export default function CoursesSection() {
               <p className="text-brand-gray text-lg font-medium mb-12 flex-1">
                 {course.desc}
               </p>
-              <Link href={`/courses`} className="inline-flex items-center gap-3 text-brand-navy font-bold text-xs uppercase tracking-widest hover:text-brand-orange transition-colors">
-                EXPLORE COURSE
+              <Link href="/benefits" className="inline-flex items-center gap-3 text-brand-navy font-bold text-xs uppercase tracking-widest hover:text-brand-orange transition-colors">
+                LEARN MORE
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </motion.div>

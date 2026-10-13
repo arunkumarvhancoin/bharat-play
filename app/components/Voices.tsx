@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 const QUOTES = [
   {
@@ -42,10 +43,13 @@ export default function Voices() {
         
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-4 items-start">
           
-          <div className="md:col-span-3">
-            <h2 className="font-mono text-sm tracking-widest text-brand-gray uppercase">
+          <div className="md:col-span-3 flex flex-col justify-between">
+            <h2 className="font-mono text-sm tracking-widest text-brand-gray uppercase mb-4">
               VOICES FROM THE PLAYGROUND
             </h2>
+            <Link href="/testimonials" className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-brand-navy hover:text-brand-orange transition-colors">
+              READ ALL TESTIMONIALS &rarr;
+            </Link>
           </div>
 
           <div className="md:col-span-9 min-h-[400px] flex flex-col justify-center relative">

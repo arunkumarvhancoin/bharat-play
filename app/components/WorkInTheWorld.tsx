@@ -15,8 +15,6 @@ export default function WorkInTheWorld() {
   });
   
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, 100]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, -80]);
 
   return (
     <section ref={containerRef} className="py-40 px-4 md:px-6 bg-brand-offwhite border-b border-gray-200">
@@ -40,7 +38,7 @@ export default function WorkInTheWorld() {
         </div>
 
         {/* Project 01 */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 mb-56 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 mb-12 md:mb-16 items-start">
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -50,7 +48,7 @@ export default function WorkInTheWorld() {
           >
             <motion.div 
               className="absolute -top-[15%] -bottom-[15%] left-0 right-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-[3000ms] ease-out will-change-transform" 
-              style={{ y: y1, backgroundImage: "url('https://images.unsplash.com/photo-1739368732843-800f36a9b7d0?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
+              style={{ y: y1, backgroundImage: "url('/cr1.jpg')" }}
             />
           </motion.div>
 
@@ -82,7 +80,7 @@ export default function WorkInTheWorld() {
               </div>
             </motion.div>
 
-            <Link href="/projects" className="inline-flex items-center gap-3 text-brand-navy font-bold text-xs uppercase tracking-widest hover:text-brand-orange transition-colors group">
+            <Link href="/benefits" className="inline-flex items-center gap-3 text-brand-navy font-bold text-xs uppercase tracking-widest hover:text-brand-orange transition-colors group">
               VIEW CASE STUDY
               <motion.div whileHover={{ x: 5 }} transition={{ type: "spring" }}>
                 <ArrowRight className="w-4 h-4" />
@@ -91,7 +89,8 @@ export default function WorkInTheWorld() {
           </div>
         </div>
 
-        {/* Project 02 */}
+        {/* Project 02 (Cascade) and Project 03 (Prospera) - Temporarily commented out */}
+        {/*
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 mb-56 items-start">
           
           <div className="md:col-span-4 flex flex-col justify-start order-2 md:order-1 md:pr-12">
@@ -144,7 +143,6 @@ export default function WorkInTheWorld() {
           </motion.div>
         </div>
 
-        {/* Project 03 */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-start">
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
@@ -195,6 +193,7 @@ export default function WorkInTheWorld() {
             </Link>
           </div>
         </div>
+        */}
 
       </div>
     </section>

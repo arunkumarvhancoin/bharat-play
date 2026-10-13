@@ -1,5 +1,4 @@
 import FeaturedEventHero from "./components/FeaturedEventHero";
-import UpcomingEvents from "./components/UpcomingEvents";
 import TrustedBy from "./components/TrustedBy";
 import Voices from "./components/Voices";
 import WorkInTheWorld from "./components/WorkInTheWorld";
@@ -13,9 +12,9 @@ import CoursesSection from "./components/CoursesSection";
 export default function Home() {
   return (
     <>
-      {/* 01 — EVENTS */}
+      {/* 01 — HERO */}
       <FeaturedEventHero />
-      <UpcomingEvents />
+      {/* <UpcomingEvents /> */}
       
       {/* 03 — ONE VIEW */}
       <AboutKudos />

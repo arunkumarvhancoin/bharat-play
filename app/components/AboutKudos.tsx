@@ -61,7 +61,7 @@ export default function AboutKudos() {
             <div className="w-full aspect-[3/4] bg-gray-200 relative overflow-hidden rounded-sm group">
               <motion.div 
                 className="absolute -top-[15%] -bottom-[15%] left-0 right-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-[2000ms] ease-out"
-                style={{ y: imgY, backgroundImage: "url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop')" }}
+                style={{ y: imgY, backgroundImage: "url('/about.jpg')" }}
               />
             </div>
 

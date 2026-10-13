@@ -43,15 +43,6 @@ export default function FinalCTA() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-4 items-center">
           
           <div className="md:col-span-3">
-            <motion.h2 
-              initial={{ opacity: 0, rotate: -90 }}
-              whileInView={{ opacity: 1, rotate: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, type: "spring" }}
-              className="font-mono text-sm tracking-widest text-brand-green uppercase transform origin-left"
-            >
-              FINAL EVENT CTA
-            </motion.h2>
           </div>
 
           <div className="md:col-span-9 flex flex-col items-start">

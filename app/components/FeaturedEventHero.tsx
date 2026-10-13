@@ -6,6 +6,7 @@ import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const FEATURED_EVENTS = [
+  /*
   {
     id: "cascade",
     title: "CASCADE",
@@ -26,14 +27,13 @@ const FEATURED_EVENTS = [
     image: "https://images.unsplash.com/photo-1789289779061-2fb536bbe64f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fHw%3D",
     color: "bg-brand-navy"
   },
+  */
   {
     id: "city-runners",
     title: "CITY RUNNERS",
     subtitle: "A GAME ABOUT THE CITY WE WANT",
-    date: "18 OCT",
-    location: "CHENNAI",
     category: "URBAN FUTURES",
-    image: "https://images.unsplash.com/photo-1739368732843-800f36a9b7d0?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "/cr.png",
     color: "bg-brand-orange"
   }
 ];
@@ -66,7 +66,7 @@ export default function FeaturedEventHero() {
   };
 
   return (
-    <section className="h-[100dvh] w-full relative overflow-hidden bg-brand-navy flex flex-col" id="events">
+    <section className="h-[100dvh] w-full relative overflow-hidden bg-brand-navy flex flex-col" id="hero">
       
       {/* Background Image Carousel */}
       <AnimatePresence mode="wait">
@@ -80,7 +80,7 @@ export default function FeaturedEventHero() {
         >
           <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${event.image}')` }}></div>
           {/* Gradient Overlay for text legibility */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20"></div>
         </motion.div>
       </AnimatePresence>
 
@@ -91,15 +91,15 @@ export default function FeaturedEventHero() {
           variants={marqueeVariants}
           animate="animate"
         >
-          WHAT&apos;S PLAYING WHAT&apos;S PLAYING WHAT&apos;S PLAYING WHAT&apos;S PLAYING
+          CITY RUNNERS CITY RUNNERS CITY RUNNERS CITY RUNNERS
         </motion.div>
       </div>
 
       {/* Content Overlay */}
       <div className="relative z-10 max-w-[1400px] mx-auto w-full h-full flex flex-col justify-end px-4 md:px-6 pb-12 md:pb-16 pt-32">
         
-        <h1 className="font-mono text-xs tracking-widest text-white/50 uppercase mb-auto">
-          WHAT&apos;S PLAYING
+        <h1 className="font-mono text-xs tracking-widest text-white/70 uppercase mb-auto">
+          FEATURED SERIOUS GAME
         </h1>
         
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-4 items-end">
@@ -124,23 +124,8 @@ export default function FeaturedEventHero() {
           </div>
 
           <div className="md:col-span-4 flex flex-col items-start md:items-end justify-end pt-8 md:pt-0">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={event.id}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.5 }}
-                className="flex flex-col font-mono text-base md:text-xl font-bold tracking-widest uppercase text-white mb-8 text-left md:text-right gap-2"
-              >
-                <span className="text-brand-orange">{event.date}</span>
-                <span className="text-white/70">{event.location}</span>
-                <span className="text-white/70">{event.category}</span>
-              </motion.div>
-            </AnimatePresence>
-            
-            <Link href="/events" className="inline-flex items-center gap-3 text-white font-bold text-sm md:text-base uppercase tracking-widest hover:text-brand-orange transition-colors group">
-              EXPLORE EVENT
+            <Link href="/benefits" className="inline-flex items-center gap-3 bg-brand-orange text-white px-8 py-5 rounded-sm font-mono text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-white hover:text-brand-navy transition-colors group shadow-lg">
+              EXPLORE THE GAME
               <motion.div whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 400 }}>
                 <ArrowRight className="w-4 h-4" />
               </motion.div>
@@ -150,35 +135,37 @@ export default function FeaturedEventHero() {
         </div>
 
         {/* Carousel Controls */}
-        <div className="mt-12 md:mt-16 flex justify-between items-center border-t border-white/20 pt-6">
-          <div className="flex gap-2">
-            {FEATURED_EVENTS.map((_, i) => (
-              <button 
-                key={i} 
-                onClick={() => setActiveIndex(i)}
-                className={`h-1 rounded-full transition-all duration-300 ${i === activeIndex ? "w-16 bg-brand-orange" : "w-6 bg-white/30 hover:bg-white/50"}`}
-                aria-label={`Go to slide ${i + 1}`}
-              />
-            ))}
-          </div>
+        {FEATURED_EVENTS.length > 1 && (
+          <div className="mt-12 md:mt-16 flex justify-between items-center border-t border-white/20 pt-6">
+            <div className="flex gap-2">
+              {FEATURED_EVENTS.map((_, i) => (
+                <button 
+                  key={i} 
+                  onClick={() => setActiveIndex(i)}
+                  className={`h-1 rounded-full transition-all duration-300 ${i === activeIndex ? "w-16 bg-brand-orange" : "w-6 bg-white/30 hover:bg-white/50"}`}
+                  aria-label={`Go to slide ${i + 1}`}
+                />
+              ))}
+            </div>
 
-          <div className="flex gap-2">
-            <button 
-              onClick={() => setActiveIndex((prev) => (prev === 0 ? FEATURED_EVENTS.length - 1 : prev - 1))}
-              className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 hover:border-white transition-colors text-white"
-              aria-label="Previous slide"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button 
-              onClick={() => setActiveIndex((prev) => (prev + 1) % FEATURED_EVENTS.length)}
-              className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 hover:border-white transition-colors text-white"
-              aria-label="Next slide"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
+            <div className="flex gap-2">
+              <button 
+                onClick={() => setActiveIndex((prev) => (prev === 0 ? FEATURED_EVENTS.length - 1 : prev - 1))}
+                className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 hover:border-white transition-colors text-white"
+                aria-label="Previous slide"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button 
+                onClick={() => setActiveIndex((prev) => (prev + 1) % FEATURED_EVENTS.length)}
+                className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 hover:border-white transition-colors text-white"
+                aria-label="Next slide"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
           </div>
-        </div>
+        )}
 
       </div>
     </section>

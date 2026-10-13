@@ -43,8 +43,10 @@ export default function UpcomingEvents() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
               >
-                <Link 
-                  href={event.link}
+                <a 
+                  href={`https://wa.me/916381531026?text=Hi%20Bharat%20Play%2C%20I%20would%20like%20to%20register%20for%20the%20${encodeURIComponent(event.title)}%20session.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group flex flex-col md:flex-row md:items-center py-6 md:py-8 border-b border-gray-200 hover:bg-brand-offwhite transition-colors duration-300 px-4 -mx-4 md:px-6 md:-mx-6 rounded-sm relative block"
                 >
                   <div className="font-mono text-sm tracking-widest font-bold text-brand-gray w-full md:w-32 mb-4 md:mb-0 group-hover:text-brand-navy transition-colors">
@@ -64,7 +66,7 @@ export default function UpcomingEvents() {
                       <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                     </div>
                   </div>
-                </Link>
+                </a>
               </motion.div>
             ))}
             

@@ -7,7 +7,7 @@ const IMPACT_STORIES = [
   {
     id: "01",
     title: "CITY RUNNER",
-    image: "https://images.unsplash.com/photo-1739368732843-800f36a9b7d0?q=80&w=1170&auto=format&fit=crop",
+    image: "/cr2.jpg",
     experience: "A participatory board game exploring cities as interconnected systems and how multiple actors manage urban operations.",
     outcome: "Participants experienced urban challenges from multiple perspectives, creating a deeper understanding of participatory governance and how citizens can actively shape their cities.",
     stats: [
@@ -15,6 +15,7 @@ const IMPACT_STORIES = [
       { label: "EVENTS HOSTED", value: "50+" },
     ]
   },
+  /*
   {
     id: "02",
     title: "CASCADE",
@@ -35,6 +36,7 @@ const IMPACT_STORIES = [
       { label: "COLLABORATORS", value: "15+" }
     ]
   }
+  */
 ];
 
 export default function SocialImpact() {
