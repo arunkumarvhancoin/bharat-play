@@ -146,7 +146,7 @@ export default function TestimonialsPage() {
               initial={{ opacity: 0, y: 40 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1], delay: 0.1 }}
-              className="font-display text-6xl md:text-8xl lg:text-9xl font-bold uppercase tracking-tighter text-brand-navy leading-[0.85] mb-8"
+              className="font-display text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold uppercase tracking-tighter text-brand-navy leading-[0.85] mb-8"
             >
               VOICES FROM THE <br/> <span className="text-brand-green">PLAYGROUND.</span>
             </motion.h1>
@@ -172,7 +172,7 @@ export default function TestimonialsPage() {
             <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange block mb-2">
               FIELD RECORDINGS & VIDEO REFLECTIONS
             </span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold uppercase tracking-tight text-brand-navy">
+            <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tight text-brand-navy">
               HEAR DIRECTLY FROM PLAYERS
             </h2>
           </div>
@@ -203,7 +203,7 @@ export default function TestimonialsPage() {
               </div>
 
               {/* Video Meta Info */}
-              <div className="p-6 md:p-8 flex flex-col justify-between flex-1">
+              <div className="p-5 sm:p-6 md:p-8 flex flex-col justify-between flex-1">
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">
                     <span className="font-mono text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded bg-brand-offwhite text-brand-navy border border-gray-200">
@@ -263,7 +263,7 @@ export default function TestimonialsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className={`relative bg-white border border-gray-200 rounded-sm p-8 md:p-10 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group overflow-hidden ${colSpan} ${borderAccent}`}
+                className={`relative bg-white border border-gray-200 rounded-sm p-6 sm:p-8 md:p-10 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group overflow-hidden ${colSpan} ${borderAccent}`}
               >
                 {/* Decorative Quote Icon Watermark */}
                 <div className="absolute top-4 right-6 opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none">
@@ -314,15 +314,15 @@ export default function TestimonialsPage() {
           <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-green mb-4 block">
             EXPERIENCE IT YOURSELF
           </span>
-          <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter text-brand-navy leading-[0.9] mb-12">
+          <h2 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter text-brand-navy leading-[0.9] mb-8 sm:mb-12">
             JOIN THE NEXT <br/> <span className="text-brand-orange">PLAYTEST SESSION.</span>
           </h2>
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
-            <Link href="/events" className="inline-flex items-center gap-3 bg-brand-navy text-white px-8 py-5 rounded-sm font-mono text-xs font-bold uppercase tracking-widest hover:bg-brand-orange transition-colors">
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 w-full sm:w-auto">
+            <Link href="/events" className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-brand-navy text-white px-8 py-4 sm:py-5 rounded-sm font-mono text-xs font-bold uppercase tracking-widest hover:bg-brand-orange transition-colors">
               VIEW UPCOMING EVENTS <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link href="/benefits" className="inline-flex items-center gap-3 border border-brand-navy text-brand-navy px-8 py-5 rounded-sm font-mono text-xs font-bold uppercase tracking-widest hover:bg-brand-navy hover:text-white transition-colors">
-              READ SYSTEMIC BENEFITS <ArrowRight className="w-4 h-4" />
+            <Link href="/programs" className="w-full sm:w-auto inline-flex items-center justify-center gap-3 border border-brand-navy text-brand-navy px-8 py-4 sm:py-5 rounded-sm font-mono text-xs font-bold uppercase tracking-widest hover:bg-brand-navy hover:text-white transition-colors">
+              EXPLORE ALL PROGRAMS <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>

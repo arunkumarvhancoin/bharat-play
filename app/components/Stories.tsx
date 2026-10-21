@@ -47,7 +47,7 @@ export default function Stories() {
   const imgScale = useTransform(scrollYProgress, [0, 1], [1.15, 1]);
 
   return (
-    <section ref={containerRef} className="py-32 px-4 md:px-6 bg-brand-navy border-b border-gray-800 relative z-10 -mt-[25vh]" id="stories">
+    <section ref={containerRef} className="py-16 md:py-32 px-4 md:px-6 bg-brand-navy border-b border-gray-800 relative z-10 mt-0 md:-mt-[25vh]" id="stories">
       <div className="max-w-[1400px] mx-auto w-full">
         
         {/* Section Header */}

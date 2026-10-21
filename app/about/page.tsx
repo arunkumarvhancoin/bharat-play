@@ -7,7 +7,8 @@ import {
   MapPin, 
   Compass, 
   Quote, 
-  CheckCircle2
+  CheckCircle2,
+  ExternalLink
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -32,7 +33,7 @@ export default function AboutPage() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1], delay: 0.1 }}
-                className="font-display text-6xl md:text-8xl lg:text-9xl font-bold uppercase tracking-tighter text-brand-navy leading-[0.88] text-balance mb-8"
+                className="font-display text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold uppercase tracking-tighter text-brand-navy leading-[0.88] text-balance mb-8"
               >
                 WE PLAY TO <br className="hidden md:block"/>
                 <span className="text-brand-orange">UNDERSTAND</span> <br/>
@@ -106,7 +107,7 @@ export default function AboutPage() {
       </section>
 
       {/* 02. FROM KUDOS → BHARAT PLAY (AUTHENTIC EVOLUTION) */}
-      <section className="px-4 md:px-6 py-32 bg-white border-y border-gray-200">
+      <section className="px-4 md:px-6 py-16 md:py-32 bg-white border-y border-gray-200">
         <div className="max-w-[1400px] mx-auto w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
             
@@ -114,7 +115,7 @@ export default function AboutPage() {
               <span className="font-mono text-xs md:text-sm font-bold uppercase tracking-widest text-brand-orange block mb-3">
                 THE GENESIS & JOURNEY
               </span>
-              <h2 className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tight text-brand-navy leading-[0.95] mb-6">
+              <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-bold uppercase tracking-tight text-brand-navy leading-[0.95] mb-6">
                 FROM KUDOS <br/>
                 <span className="text-brand-green">TO BHARAT PLAY</span>
               </h2>
@@ -614,6 +615,25 @@ export default function AboutPage() {
                   Through KUDOS at FLAME University and now Bharat Play Innovations, he has pioneered the use of tabletop simulation and purposeful play as serious pedagogical instruments for public agency and institutional capacity.
                 </p>
               </div>
+
+              <div className="mt-8 pt-6 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
+                <a 
+                  href="https://www.linkedin.com/in/dr-balaji-kalluri-phd-a95a4931/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-[#0A66C2] text-white px-5 py-2.5 rounded-sm font-mono text-xs font-bold uppercase tracking-wider hover:bg-[#004182] transition-colors shadow-sm group"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                  </svg>
+                  <span>CONNECT ON LINKEDIN</span>
+                  <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                </a>
+
+                <span className="font-mono text-xs text-brand-gray font-semibold">
+                  LEAD SYSTEMS ARCHITECT
+                </span>
+              </div>
             </div>
 
             {/* Core Collective & Collaborators Note */}
@@ -817,35 +837,35 @@ export default function AboutPage() {
             OUR CLOSING PHILOSOPHY
           </span>
 
-          <h2 className="font-display text-5xl md:text-7xl lg:text-9xl font-bold uppercase tracking-tighter text-white leading-[0.88] mb-12 text-balance">
+          <h2 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-9xl font-bold uppercase tracking-tighter text-white leading-[0.88] mb-8 sm:mb-12 text-balance">
             THE WORLD IS COMPLEX. <br/>
             <span className="text-brand-orange">LET&apos;S PLAY</span> WITH IT.
           </h2>
 
-          <p className="text-xl md:text-2xl font-medium text-gray-300 max-w-2xl mx-auto leading-relaxed mb-8">
+          <p className="text-lg sm:text-xl md:text-2xl font-medium text-gray-300 max-w-2xl mx-auto leading-relaxed mb-8">
             Complex problems don&apos;t always need more complexity. Sometimes they need a different way of seeing.
           </p>
 
-          <div className="font-mono text-sm md:text-base font-bold text-brand-green uppercase tracking-widest mb-16">
+          <div className="font-mono text-xs sm:text-sm md:text-base font-bold text-brand-green uppercase tracking-widest mb-12 sm:mb-16">
             PLAY DIFFERENTLY. THINK BOLDLY. CREATE THE FUTURE.
           </div>
           
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 w-full sm:w-auto">
             <Link 
-              href="/courses" 
-              className="inline-flex items-center gap-3 bg-brand-orange text-white px-8 py-5 rounded-sm font-mono text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-white hover:text-brand-navy transition-colors"
+              href="/programs" 
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-brand-orange text-white px-8 py-4 sm:py-5 rounded-sm font-mono text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-white hover:text-brand-navy transition-colors"
             >
               EXPLORE OUR PROGRAMMES <ArrowRight className="w-4 h-4" />
             </Link>
             <Link 
               href="/contact" 
-              className="inline-flex items-center gap-3 bg-white/10 border border-white/20 text-white px-8 py-5 rounded-sm font-mono text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-white hover:text-brand-navy transition-colors"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white/10 border border-white/20 text-white px-8 py-4 sm:py-5 rounded-sm font-mono text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-white hover:text-brand-navy transition-colors"
             >
               VISIT EXPERIENCE CENTER <ArrowRight className="w-4 h-4" />
             </Link>
             <Link 
               href="/testimonials" 
-              className="inline-flex items-center gap-3 border border-white/20 text-white px-8 py-5 rounded-sm font-mono text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-brand-green hover:text-brand-navy hover:border-brand-green transition-colors"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 border border-white/20 text-white px-8 py-4 sm:py-5 rounded-sm font-mono text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-brand-green hover:text-brand-navy hover:border-brand-green transition-colors"
             >
               WATCH FIELD STORIES <ArrowRight className="w-4 h-4" />
             </Link>

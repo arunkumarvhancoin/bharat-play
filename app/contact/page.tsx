@@ -94,7 +94,7 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1], delay: 0.1 }}
-              className="font-display text-6xl md:text-8xl lg:text-9xl font-bold uppercase tracking-tighter text-brand-navy leading-[0.85]"
+              className="font-display text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold uppercase tracking-tighter text-brand-navy leading-[0.85]"
             >
               LET&apos;S GET IN <br/>
               <span className="text-brand-orange">TOUCH.</span>
@@ -106,7 +106,7 @@ export default function ContactPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="text-xl md:text-2xl font-medium leading-relaxed max-w-sm text-brand-gray"
+              className="text-lg sm:text-xl md:text-2xl font-medium leading-relaxed max-w-sm text-brand-gray"
             >
               Whether you want to collaborate, visit our Experience Center, or simply explore the power of purposeful play.
             </motion.p>
@@ -120,7 +120,7 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="lg:col-span-7 bg-white p-8 md:p-12 lg:p-14 border border-gray-200 rounded-sm shadow-sm"
+            className="lg:col-span-7 bg-white p-5 sm:p-8 md:p-12 lg:p-14 border border-gray-200 rounded-sm shadow-sm"
           >
             <div className="mb-10 pb-6 border-b border-gray-100">
               <span className="font-mono text-xs font-bold tracking-widest text-brand-orange uppercase block mb-1">

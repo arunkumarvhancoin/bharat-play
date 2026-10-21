@@ -1,10 +1,8 @@
 import FeaturedEventHero from "./components/FeaturedEventHero";
 import TrustedBy from "./components/TrustedBy";
-import Voices from "./components/Voices";
-import WorkInTheWorld from "./components/WorkInTheWorld";
 import Stories from "./components/Stories";
-import SocialImpact from "./components/SocialImpact";
 import AboutKudos from "./components/AboutKudos";
+import ProgramsShowcase from "./components/ProgramsShowcase";
 import FinalCTA from "./components/FinalCTA";
 import WhatWePlayWith from "./components/WhatWePlayWith";
 import CoursesSection from "./components/CoursesSection";
@@ -16,8 +14,11 @@ export default function Home() {
       <FeaturedEventHero />
       {/* <UpcomingEvents /> */}
       
-      {/* 03 — ONE VIEW */}
+      {/* 03 — ONE VIEW (ABOUT) */}
       <AboutKudos />
+
+      {/* 03.5 — OUR PROGRAMS (COMPACT SHOWCASE) */}
+      <ProgramsShowcase />
 
       {/* 04 — WHAT WE PLAY WITH */}
       <WhatWePlayWith />
@@ -25,20 +26,11 @@ export default function Home() {
       {/* 04.1 - SEE IT IN ACTION (Stories) */}
       <Stories />
       
-      {/* 04.2 — SOCIAL IMPACT */}
-      <SocialImpact />
-      
       {/* 04.5 — COURSES */}
       <CoursesSection />
       
-      {/* 05 — FEATURED WORK */}
-      <WorkInTheWorld />
-      
       {/* 07 — TRUSTED BY / COLLABORATORS */}
       <TrustedBy />
-      
-      {/* 08 — VOICES / TESTIMONIALS */}
-      <Voices />
       
       {/* 13 — FINAL CTA */}
       <FinalCTA />

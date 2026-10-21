@@ -17,7 +17,7 @@ export default function FinalCTA() {
 
   return (
     <section 
-      className="py-32 px-4 md:px-6 bg-brand-navy text-white relative overflow-hidden group" 
+      className="py-16 md:py-32 px-4 md:px-6 bg-brand-navy text-white relative overflow-hidden group" 
       id="join"
       onMouseMove={handleMouseMove}
     >
@@ -27,10 +27,10 @@ export default function FinalCTA() {
         style={{
           background: useMotionTemplate`
             radial-gradient(
-              650px circle at ${mouseX}px ${mouseY}px,
-              rgba(11, 218, 81, 0.15),
-              transparent 80%
-            )
+               650px circle at ${mouseX}px ${mouseY}px,
+               rgba(11, 218, 81, 0.15),
+               transparent 80%
+             )
           `,
         }}
       />
@@ -52,7 +52,7 @@ export default function FinalCTA() {
                 whileInView={{ y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
-                className="font-display text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter mb-12 leading-[0.9]"
+                className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter mb-8 sm:mb-12 leading-[0.9]"
               >
                 WHAT WILL YOU <br /> 
                 <span className="text-brand-orange">PLAY NEXT?</span>
@@ -64,14 +64,14 @@ export default function FinalCTA() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto"
             >
-              <Link href="/events" className="inline-flex items-center justify-center gap-3 bg-brand-green text-white px-8 py-5 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-brand-navy transition-all duration-300 group shadow-[0_0_40px_rgba(11,218,81,0.3)] hover:shadow-[0_0_60px_rgba(255,255,255,0.5)]">
+              <Link href="/events" className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-brand-green text-white px-8 py-4 sm:py-5 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-brand-navy transition-all duration-300 group shadow-[0_0_40px_rgba(11,218,81,0.3)] hover:shadow-[0_0_60px_rgba(255,255,255,0.5)]">
                 UPCOMING EVENTS
                 <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
               </Link>
               
-              <Link href="/about" className="inline-flex items-center justify-center gap-3 border border-gray-600 text-white px-8 py-5 text-xs font-bold uppercase tracking-widest hover:border-white transition-colors group">
+              <Link href="/about" className="w-full sm:w-auto inline-flex items-center justify-center gap-3 border border-gray-600 text-white px-8 py-4 sm:py-5 text-xs font-bold uppercase tracking-widest hover:border-white transition-colors group">
                 WORK WITH US
                 <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
               </Link>

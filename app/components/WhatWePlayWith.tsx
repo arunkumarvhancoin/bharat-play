@@ -37,24 +37,24 @@ export default function WhatWePlayWith() {
     <section ref={containerRef} className="relative md:h-[250vh] bg-brand-offwhite" id="topics">
       
       {/* MOBILE LAYOUT (Stacked Cards, No Scroll Spy) */}
-      <div className="md:hidden py-24 px-4 w-full">
-        <h2 className="font-display text-4xl tracking-tighter text-brand-navy uppercase mb-12 font-bold pb-6 border-b border-gray-200">
+      <div className="md:hidden py-16 px-4 w-full">
+        <h2 className="font-display text-3xl tracking-tighter text-brand-navy uppercase mb-8 font-bold pb-4 border-b border-gray-200">
           WHAT DO WE PLAY WITH.
         </h2>
-        <div className="flex flex-col gap-12">
+        <div className="flex flex-col gap-8">
           {TOPICS.map((topic) => (
-            <div key={topic.id} className="flex flex-col gap-6">
-              <div className="flex items-center gap-4">
-                <div className={clsx("w-4 h-4 rounded-full", topic.dot)} />
-                <h3 className={clsx("font-display text-4xl font-bold uppercase tracking-tighter", topic.color)}>
+            <div key={topic.id} className="flex flex-col gap-3">
+              <div className="flex items-center gap-3">
+                <div className={clsx("w-3.5 h-3.5 rounded-full", topic.dot)} />
+                <h3 className={clsx("font-display text-3xl font-bold uppercase tracking-tighter", topic.color)}>
                   {topic.title}
                 </h3>
               </div>
-              <div className="bg-white rounded-sm shadow-xl border border-gray-100 p-8 relative overflow-hidden">
-                <p className="text-xl font-medium text-brand-gray leading-relaxed relative z-10">
+              <div className="bg-white rounded-sm shadow-md border border-gray-100 p-6 relative overflow-hidden">
+                <p className="text-base font-medium text-brand-gray leading-relaxed relative z-10">
                   {topic.desc}
                 </p>
-                <div className="absolute -bottom-8 -right-4 font-display text-[120px] font-bold text-gray-50 leading-none select-none pointer-events-none z-0">
+                <div className="absolute -bottom-6 -right-3 font-display text-[90px] font-bold text-gray-50 leading-none select-none pointer-events-none z-0">
                   {topic.title.substring(0, 2)}
                 </div>
               </div>

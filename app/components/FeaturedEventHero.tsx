@@ -113,18 +113,18 @@ export default function FeaturedEventHero() {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] }}
               >
-                <h2 className="font-display text-5xl md:text-7xl lg:text-9xl font-bold uppercase tracking-tighter text-white leading-[0.9] mb-4 text-balance">
+                <h2 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-9xl font-bold uppercase tracking-tighter text-white leading-[0.9] mb-4 text-balance">
                   {event.title}
                 </h2>
-                <p className="text-lg md:text-2xl text-white/80 font-medium max-w-lg leading-relaxed">
+                <p className="text-base sm:text-lg md:text-2xl text-white/80 font-medium max-w-lg leading-relaxed">
                   {event.subtitle}
                 </p>
               </motion.div>
             </AnimatePresence>
           </div>
 
-          <div className="md:col-span-4 flex flex-col items-start md:items-end justify-end pt-8 md:pt-0">
-            <Link href="/benefits" className="inline-flex items-center gap-3 bg-brand-orange text-white px-8 py-5 rounded-sm font-mono text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-white hover:text-brand-navy transition-colors group shadow-lg">
+          <div className="md:col-span-4 flex flex-col items-stretch sm:items-start md:items-end justify-end pt-4 md:pt-0 w-full">
+            <Link href="/games/city-runners" className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-brand-orange text-white px-8 py-5 rounded-sm font-mono text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-white hover:text-brand-navy transition-colors group shadow-lg">
               EXPLORE THE GAME
               <motion.div whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 400 }}>
                 <ArrowRight className="w-4 h-4" />

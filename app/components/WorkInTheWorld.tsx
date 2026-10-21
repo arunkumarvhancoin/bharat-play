@@ -17,11 +17,11 @@ export default function WorkInTheWorld() {
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
   return (
-    <section ref={containerRef} className="py-40 px-4 md:px-6 bg-brand-offwhite border-b border-gray-200">
+    <section ref={containerRef} className="py-16 md:py-40 px-4 md:px-6 bg-brand-offwhite border-b border-gray-200">
       <div className="max-w-[1400px] mx-auto w-full">
         
-        <div className="flex flex-col gap-8 mb-40">
-          <h2 className="font-mono text-sm tracking-widest text-brand-gray uppercase border-b border-gray-200 pb-2">
+        <div className="flex flex-col gap-6 md:gap-8 mb-16 md:mb-40">
+          <h2 className="font-mono text-xs sm:text-sm tracking-widest text-brand-gray uppercase border-b border-gray-200 pb-2">
             WORK IN THE WORLD
           </h2>
           <div className="overflow-hidden">
@@ -30,7 +30,7 @@ export default function WorkInTheWorld() {
               whileInView={{ y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
-              className="font-display text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter text-brand-navy leading-[0.9]"
+              className="font-display text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter text-brand-navy leading-[0.9]"
             >
               BLURRING BOUNDARIES. <br/> SHAPING FUTURES.
             </motion.h2>
@@ -58,7 +58,7 @@ export default function WorkInTheWorld() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="font-display text-5xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tighter text-brand-navy mb-12 leading-[0.85]"
+              className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tighter text-brand-navy mb-6 sm:mb-12 leading-[0.85]"
             >
               CITY <br/> RUNNER
             </motion.h3>
@@ -68,19 +68,19 @@ export default function WorkInTheWorld() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-col gap-8 mb-12"
+              className="flex flex-col gap-6 sm:gap-8 mb-8 sm:mb-12"
             >
               <div>
-                <h4 className="font-mono text-xs font-bold tracking-widest uppercase text-brand-gray mb-2">THE CONCEPT</h4>
-                <p className="text-xl md:text-2xl font-medium text-brand-navy leading-relaxed">A serious board game involving roleplays that allows experiencing how multiple actors are involved in managing urban operations.</p>
+                <h4 className="font-mono text-xs font-bold tracking-widest uppercase text-brand-gray mb-1.5">THE CONCEPT</h4>
+                <p className="text-base sm:text-xl md:text-2xl font-medium text-brand-navy leading-relaxed">A serious board game involving roleplays that allows experiencing how multiple actors are involved in managing urban operations.</p>
               </div>
               <div>
-                <h4 className="font-mono text-xs font-bold tracking-widest uppercase text-brand-gray mb-2">THE CONTEXT</h4>
-                <p className="text-xl md:text-2xl font-medium text-brand-navy leading-relaxed">Using Pune metropolis as an example to inspire participatory governance actions required to transform the quality of urban living.</p>
+                <h4 className="font-mono text-xs font-bold tracking-widest uppercase text-brand-gray mb-1.5">THE CONTEXT</h4>
+                <p className="text-base sm:text-xl md:text-2xl font-medium text-brand-navy leading-relaxed">Using Pune metropolis as an example to inspire participatory governance actions required to transform the quality of urban living.</p>
               </div>
             </motion.div>
 
-            <Link href="/benefits" className="inline-flex items-center gap-3 text-brand-navy font-bold text-xs uppercase tracking-widest hover:text-brand-orange transition-colors group">
+            <Link href="/games/city-runners" className="inline-flex items-center gap-3 text-brand-navy font-bold text-xs uppercase tracking-widest hover:text-brand-orange transition-colors group">
               VIEW CASE STUDY
               <motion.div whileHover={{ x: 5 }} transition={{ type: "spring" }}>
                 <ArrowRight className="w-4 h-4" />

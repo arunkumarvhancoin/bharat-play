@@ -15,7 +15,7 @@ export default function AboutKudos() {
   const imgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
 
   return (
-    <section ref={containerRef} className="py-40 px-4 md:px-8 bg-brand-offwhite text-brand-navy">
+    <section ref={containerRef} className="py-16 md:py-40 px-4 md:px-8 bg-brand-offwhite text-brand-navy">
       <div className="max-w-[1400px] mx-auto w-full">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
@@ -24,7 +24,7 @@ export default function AboutKudos() {
           <div className="lg:col-span-7 relative">
             <div className="sticky top-32 flex flex-col gap-16">
               <div>
-                <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tighter text-brand-navy uppercase mb-12 font-bold pb-6 border-b border-gray-200">
+                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tighter text-brand-navy uppercase mb-8 sm:mb-12 font-bold pb-4 sm:pb-6 border-b border-gray-200">
                   ABOUT US.
                 </h2>
                 
@@ -33,7 +33,7 @@ export default function AboutKudos() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
-                  className="font-display text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter leading-[0.85] text-brand-navy max-w-2xl"
+                  className="font-display text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter leading-[0.9] text-brand-navy max-w-2xl"
                 >
                   A 21ST CENTURY <span className="text-brand-orange">INNOVATION</span> STUDIO FOR A COMPLICATED WORLD.
                 </motion.h3>
@@ -66,19 +66,19 @@ export default function AboutKudos() {
             </div>
 
             <div className="flex flex-col gap-8">
-              <p className="text-3xl font-bold leading-tight text-brand-navy">
+              <p className="text-xl sm:text-2xl md:text-3xl font-bold leading-tight text-brand-navy">
                 We build serious games and interactive simulations to help people solve complex, real-world problems.
               </p>
               
-              <p className="text-xl text-brand-gray font-medium leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-brand-gray font-medium leading-relaxed">
                 Instead of just talking about the future, we let you play it. By combining game design with urban planning, policy, and engineering, we create hands-on experiences that let citizens, students, and leaders test ideas before they become reality.
               </p>
 
               <div className="pl-6 border-l-4 border-brand-orange mt-4">
-                <p className="italic font-serif text-2xl mb-4 text-gray-600 leading-snug">
+                <p className="italic font-serif text-lg sm:text-xl md:text-2xl mb-4 text-gray-600 leading-snug">
                   &quot;Create games for change which will not only solve local problems but also address global issues.&quot;
                 </p>
-                <footer className="font-mono text-sm font-bold tracking-widest uppercase text-brand-navy">
+                <footer className="font-mono text-xs sm:text-sm font-bold tracking-widest uppercase text-brand-navy">
                   — Prime Minister Narendra Modi
                 </footer>
               </div>

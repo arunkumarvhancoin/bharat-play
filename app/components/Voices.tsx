@@ -38,7 +38,7 @@ export default function Voices() {
   }, []);
 
   return (
-    <section className="py-40 px-4 md:px-6 bg-white border-b border-gray-200 overflow-hidden relative">
+    <section className="py-16 md:py-40 px-4 md:px-6 bg-white border-b border-gray-200 overflow-hidden relative">
       <div className="max-w-[1400px] mx-auto w-full">
         
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-4 items-start">
@@ -52,7 +52,7 @@ export default function Voices() {
             </Link>
           </div>
 
-          <div className="md:col-span-9 min-h-[400px] flex flex-col justify-center relative">
+          <div className="md:col-span-9 min-h-[260px] md:min-h-[400px] flex flex-col justify-center relative">
             <AnimatePresence mode="wait">
               <motion.div
                 key={index}
@@ -62,10 +62,10 @@ export default function Voices() {
                 transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
                 className="w-full"
               >
-                <p className="font-display text-5xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tighter text-brand-navy leading-[1.05] mb-16 text-balance h-auto min-h-[200px] flex items-center">
+                <p className="font-display text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tighter text-brand-navy leading-[1.05] mb-8 sm:mb-16 text-balance h-auto min-h-[100px] sm:min-h-[180px] flex items-center">
                   &quot;{QUOTES[index].quote}&quot;
                 </p>
-                <div className="font-mono text-sm font-bold tracking-widest uppercase text-brand-navy flex flex-col gap-1">
+                <div className="font-mono text-xs sm:text-sm font-bold tracking-widest uppercase text-brand-navy flex flex-col gap-1">
                   <span className="text-brand-orange">{QUOTES[index].name}</span>
                   <span className="text-brand-gray">{QUOTES[index].role}</span>
                 </div>
@@ -73,9 +73,9 @@ export default function Voices() {
             </AnimatePresence>
 
             {/* Animated Progress Pagination */}
-            <div className="absolute right-0 bottom-0 flex gap-4 hidden md:flex">
+            <div className="flex gap-3 sm:gap-4 mt-6 md:mt-0 md:absolute md:right-0 md:bottom-0">
               {QUOTES.map((_, i) => (
-                <div key={i} className="relative w-12 h-1 bg-gray-200 rounded-full overflow-hidden cursor-pointer" onClick={() => setIndex(i)}>
+                <div key={i} className="relative w-8 sm:w-12 h-1 bg-gray-200 rounded-full overflow-hidden cursor-pointer" onClick={() => setIndex(i)}>
                   {i === index && (
                     <motion.div
                       initial={{ width: "0%" }}
