@@ -8,7 +8,6 @@ import clsx from "clsx";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { GAMES } from "../data/games";
-import { PROGRAMS } from "../data/programs";
 
 interface DropdownItem {
   name: string;
@@ -31,17 +30,21 @@ const NAV_LINKS: NavLinkConfig[] = [
     href: "/games", 
     hasDropdown: true,
     dropdownKey: "games",
-    dropdownItems: GAMES.map((g) => ({ name: g.name, href: `/games/${g.id}` }))
+    dropdownItems: GAMES.map((g) => ({ name: g.id === "bibo" ? "BiBo" : g.name, href: `/games/${g.id}` }))
   },
   { 
     label: "Programs", 
     href: "/programs", 
     hasDropdown: true,
     dropdownKey: "programs",
-    dropdownItems: PROGRAMS.map((p) => ({ name: p.name, href: `/programs/${p.slug}` }))
+    dropdownItems: [
+      { name: "Game Session", href: "/programs/game-sessions" },
+      { name: "Play Workshops", href: "/programs/play-workshops" },
+      { name: "Play Exhibition", href: "/programs/play-exhibition" },
+      { name: "Courses", href: "/programs/courses" },
+    ]
   },
   { label: "Events", href: "/events" },
-  { label: "Benefits", href: "/benefits" },
   { label: "Testimonials", href: "/testimonials" },
   { label: "Contact", href: "/contact" },
 ];

@@ -72,6 +72,13 @@ export interface GameItem {
   outcomes: GameOutcome[];
   audiences: GameAudience[];
   fieldDeployments: string[];
+  marketContext?: string;
+  learningObjectives?: string[];
+  targetAudience?: {
+    primary: string;
+    secondary: string;
+  };
+  validation?: string;
 }
 
 export const GAMES: GameItem[] = [
@@ -237,46 +244,52 @@ export const GAMES: GameItem[] = [
     id: "prospera",
     gameNumber: 4,
     displayNumber: "02",
-    name: "Prospera",
-    subtitle: "SPATIAL INTELLIGENCE & HUMAN SETTLEMENTS SIMULATION",
-    theme: "Architecture and Urban Planning, Future of Cities and Human Settlements, Systems-thinking, Geography and Spatial Intelligence",
+    name: "PROSPERA",
+    subtitle: "IMAGINE A CITY. SHAPE ITS FUTURE.",
+    theme: "Architecture & Urban Planning · Future of Cities & Human Settlements · Systems Thinking · Geography & Spatial Intelligence",
     themes: [
-      "Architecture & Planning",
-      "Future of Cities",
-      "Systems-thinking",
-      "Geography & Spatial Intelligence",
-      "Ecological Thresholds"
+      "Architecture & Urban Planning",
+      "Future of Cities & Human Settlements",
+      "Systems Thinking",
+      "Geography & Spatial Intelligence"
     ],
     difficulty: "Low",
     age: "10+",
-    format: "Tabletop Spatial Simulation / Planning Board Game",
+    format: "Board game",
     players: {
       min: 4,
       max: 10,
-      label: "4 – 10"
+      label: "4–10"
     },
     duration: {
       playHours: 1,
       reflectionHours: 1,
-      label: "1 (play) + 1 (reflection) hrs",
-      badge: "1h play + 1h debrief"
+      label: "1 hour gameplay + 1 hour reflection",
+      badge: "1h play + 1h reflection"
     },
-    approxDuration: "Approx. 2 hours",
-    tagline: "Spatial intelligence and architecture game exploring future human settlements and balanced growth.",
-    shortDescription: "An intuitive territorial simulation where players plan resilient human settlements within non-negotiable ecological limits.",
+    approxDuration: "1 hour gameplay + 1 hour reflection",
+    tagline: "Imagine a city. Shape its future.",
+    shortDescription: "PROSPERA is a collaborative urban-planning game where players come together to imagine and build the city of the future.",
     academicOrigin: "Developed under the Urban eXperiential Learning (UrbanXL) suite by Dr. Balaji Kalluri. Deployed internationally in the Environmental Leadership curriculum at the University of Cambridge, United Kingdom.",
     institutionalBadge: "Deployed at University of Cambridge, UK",
     leadArchitect: "Dr. Balaji Kalluri, PhD (UrbanXL Suite)",
-    description: "Prospera invites players to envision and plan sustainable human settlements. Players navigate territorial geography, zoning demands, ecological boundaries, and demographic expansion, cultivating spatial reasoning and systemic awareness for the cities of tomorrow.",
-    keyLearning: "Spatial thinking, urban layout dynamics, and balancing rapid population expansion with environmental preservation.",
+    description: "PROSPERA is a collaborative urban-planning game where players come together to imagine and build the city of the future.\n\nThrough gameplay, participants explore how architecture, geography, infrastructure and human settlements come together to form a functioning city. Every decision affects the wider system, encouraging players to think spatially, recognise connections and understand the consequences of planning choices.\n\nPROSPERA turns the complexity of cities into an accessible, hands-on experience — helping players develop systems thinking, spatial intelligence and a deeper understanding of how the places we live in take shape.",
+    keyLearning: "Spatial thinking, systems recognition, and understanding the consequences of planning choices on the wider urban system.",
     bestFor: [
       "Secondary & High School Science and Geography Students",
       "Foundational Architecture & Planning Foundations",
       "Youth Environmental & Sustainability Programs",
       "Introductory Systems-Thinking Workshops"
     ],
-    image: "",
-    gallery: [],
+    image: "/games/prospera_board.jpg",
+    gallery: [
+      {
+        src: "/games/prospera_board.jpg",
+        caption: "Prospera spatial intelligence simulation board depicting Pune Metropolitan topography, land zoning, and urban settlements.",
+        alt: "Prospera Simulation Board - Pune Metropolitan Map",
+        aspect: "landscape"
+      }
+    ],
     premise: {
       challenge: "Human settlements need space, water, and resources to thrive.",
       tension: "Rapid population expansion constantly encroaches upon fragile ecological biomes.",
@@ -374,46 +387,55 @@ export const GAMES: GameItem[] = [
     id: "bibo",
     gameNumber: 5,
     displayNumber: "03",
-    name: "BiBo",
-    subtitle: "BUILDING-IN-A-BOX · SUSTAINABLE REAL ESTATE & AEC SIMULATION",
-    theme: "Architecture, Real Estate, Green Buildings, Construction Management, Engineering, Risk and Innovation Management, Net-zero Buildings",
+    name: "BiBo — Building-in-a-Box",
+    subtitle: "A SERIOUS GAME FOR RETHINKING HOW WE DESIGN, BUILD AND MANAGE THE BUILDINGS OF TOMORROW.",
+    theme: "Architecture · Real Estate · Green Buildings · Construction Management · Engineering · Risk & Innovation Management · Net-Zero Buildings",
     themes: [
-      "Architecture & Real Estate",
-      "Green Buildings (LEED / GRIHA)",
+      "Architecture",
+      "Real Estate",
+      "Green Buildings",
       "Construction Management",
-      "Engineering & Embodied Carbon",
-      "Net-Zero Built Environments"
+      "Engineering",
+      "Risk & Innovation Management",
+      "Net-Zero Buildings"
     ],
     difficulty: "Low to Medium",
     age: "15+",
-    format: "Educational Board Game / Sustainable Building Lab",
+    format: "Board game + cards",
     players: {
       min: 4,
       max: 10,
-      label: "4 – 10"
+      label: "4–10"
     },
     duration: {
       playHours: 1,
       reflectionHours: 1,
-      label: "1 (play) + 1 (reflection) hrs",
-      badge: "1h play + 1h debrief"
+      label: "1 hour gameplay + 1 hour reflection",
+      badge: "1h play + 1h reflection"
     },
-    approxDuration: "Approx. 2 hours",
-    tagline: "Green building and construction management simulation advancing net-zero architecture and real estate innovation.",
-    shortDescription: "A hands-on AEC simulation balancing embodied carbon, capital costs, and green certifications in property development.",
+    approxDuration: "1 hour gameplay + 1 hour reflection",
+    tagline: "A serious game for rethinking how we design, build and manage the buildings of tomorrow.",
+    shortDescription: "BiBo gamifies the lifecycle of the built environment — from architectural design and engineering to construction and facilities management.",
     academicOrigin: "Awarded official Copyright by the Government of India to Dr. Balaji Kalluri. Featured in published peer-reviewed building science research (MDPI) and academic studies on net-zero energy design with researchers Priya Vishnu, Pandarasamy Arjunan, and Jay Dhariwal.",
     institutionalBadge: "Government of India Copyright · Published in MDPI",
     leadArchitect: "Dr. Balaji Kalluri & Research Collaborators",
-    description: "BiBo (Building-in-a-Box) immerses participants into the complexities of modern property development and sustainable engineering. Participants act as project leads balancing capital expenditure, material selection, embodied carbon, energy efficiency benchmarks, and execution deadlines to deliver resilient, net-zero structures.",
-    keyLearning: "Lifecycle carbon accounting, green building certification economics, and cross-functional engineering decision-making.",
+    description: "BiBo gamifies the lifecycle of the built environment — from architectural design and engineering to construction and facilities management. Players navigate real-world challenges around urbanisation, climate action, technology, risk and energy transition, while exploring the decisions and trade-offs that shape future buildings.\n\nThrough role-play, collaboration and reflection, BiBo encourages participants to think beyond conventional practices, experiment with alternative solutions and explore pathways towards more resilient, inclusive and net-zero buildings.",
+    keyLearning: "Lifecycle of the built environment, trade-offs shaping future buildings, and pathways towards resilient, net-zero buildings.",
     bestFor: [
       "Civil Engineering & Architecture Colleges",
       "Real Estate Developers & Built Environment Executives",
       "Corporate Sustainability, ESG & Facilities Teams",
       "Construction Project Managers & MEP Consultants"
     ],
-    image: "",
-    gallery: [],
+    image: "/games/bibo.webp",
+    gallery: [
+      {
+        src: "/games/bibo.webp",
+        caption: "BiBo (Building-in-a-Box) educational green building and sustainable construction lab components.",
+        alt: "BiBo Game Lab",
+        aspect: "square"
+      }
+    ],
     premise: {
       challenge: "The built environment accounts for nearly 40% of global carbon emissions.",
       tension: "Green building upgrades cost money upfront, while conventional methods lock in long-term emissions.",
@@ -512,135 +534,141 @@ export const GAMES: GameItem[] = [
     gameNumber: 6,
     displayNumber: "04",
     name: "CASCADE",
-    subtitle: "CYBER-PHYSICAL SAFETY & SMART BUILDING RESILIENCE SIMULATION",
-    theme: "High-performance Architecture, Smart Buildings, Real Estate, Cyber Security, Risk and Innovation Management, Business Continuity",
+    subtitle: "TURN-BASED STRATEGY TABLETOP COOPERATIVE GAME",
+    theme: "Smart Buildings · Cyber-Physical Risks · Internet-of-Things (IoT) · Facilities Management · AEC Sector",
     themes: [
-      "High-Performance Architecture",
-      "Smart Buildings & IoT",
-      "Cyber-Physical Hazards",
-      "Critical Facility Security",
-      "Business Continuity"
+      "Smart Buildings",
+      "Cyber-Physical Risks",
+      "IoT Networks",
+      "Facilities Management",
+      "AEC Sector Risk"
     ],
     difficulty: "Medium",
     age: "15+",
-    format: "Tabletop Cyber-Physical Incident Simulation",
+    format: "Board game + cards",
     players: {
       min: 4,
-      max: 8,
-      label: "4 – 8"
+      max: 5,
+      label: "4–5"
     },
     duration: {
       playHours: 1,
       reflectionHours: 1,
-      label: "1 (play) + 1 (reflection) hrs",
-      badge: "1h play + 1h debrief"
+      label: "1 hour gameplay + 1 hour reflection",
+      badge: "1h play + 1h reflection"
     },
-    approxDuration: "Approx. 2 hours",
-    tagline: "Smart building resilience game dissecting cascading infrastructure failures and cyber-physical continuity.",
-    shortDescription: "A high-stakes command simulation where digital BMS breaches trigger cascading physical infrastructure failures.",
+    approxDuration: "1 hour gameplay + 1 hour reflection",
+    tagline: "A turn-based strategy tabletop, cooperative game simulating attacks and defences on a contemporary ‘smart’ building.",
+    shortDescription: "Cascade is a turn-based strategy tabletop, cooperative game. Played ideally among 4-5 players, where players simulate attacks and defences on a contemporary ‘smart’ building.",
     academicOrigin: "Directly grounded in Dr. Balaji Kalluri's cyber-physical systems research conducted in collaboration with the Technical University of Denmark (DTU / DTU RiskLab) and the Danish Institute of Fire and Security Technology (DBI), published in the ASCE-ASME Journal of Risk and Uncertainty in Engineering Systems.",
-    institutionalBadge: "Research Collab: DTU Denmark & DBI Fire/Security Lab",
-    leadArchitect: "Dr. Balaji Kalluri, PhD (DTU / DBI Collaboration)",
-    description: "CASCADE explores what happens when modern intelligent building systems face interconnected operational failures, power grid disruptions, and cyber threats. Teams must coordinate real-time defense, incident response, and business continuity protocols before small glitches cascade into systemic crises.",
-    keyLearning: "Cascading failure mitigation, cyber-physical threat assessment, and mission-critical incident command.",
-    bestFor: [
-      "Corporate Facilities & Information Security (CISO) Teams",
-      "Smart City Infrastructure & Building Automation Engineers",
-      "Hospital & Airport Operations Management",
-      "Executive Risk, Audit & Business Continuity Committees"
+    institutionalBadge: "Validated with experts from Smart Buildings, Cybersecurity, IT & Network Infrastructure",
+    leadArchitect: "Dr. Balaji Kalluri, PhD",
+    marketContext: "The global smart building market is projected to grow to $548.5 Billion by 2032. 4 out of 10 smart, intelligent, and interconnected buildings are at risk of cyberattacks due to increasing intergration of digital technologies for improved facilities management. However, awareness of these risks remains limited within the Architecture, Engineering, and Construction (AEC) sector.",
+    description: "Cascade is a turn-based strategy tabletop, cooperative game. Played ideally among 4-5 players, where players simulate attacks and defences on a contemporary ‘smart’ building.\n\nThe game board represents 10 building systems & services typical to smart buildings which are interconnected through Internet-of-Things network. During the game, one player acts as the attacker, attempting to compromise interconnected building systems & services. All other players act as defenders, collaborating to protect the building. The attacker sequentially launches attacks on systems (guided by the cards), which may cascade to the connected systems if the threshold for any crosses 2. The defenders must collaboratively use limited resources and strategies to intercept an attack by responding with defences that overpower the damage from an Attack card.",
+    keyLearning: "The players will identify cyber-physical risks in interconnected systems comprising smart buildings, understand the need for collaboration between stakeholders to mitigate cascading hazards & systemic failures, and recall key cybersecurity strategies required to protect buildings, facilities, businesses and people.",
+    learningObjectives: [
+      "The players will identify cyber-physical risks in interconnected systems comprising smart buildings.",
+      "The players understand need for collaboration between stakeholders to mitigate cascading hazards & systemic failures.",
+      "The players shall recall key cybersecurity strategies required to protect buildings, facilities, businesses and people."
     ],
-    image: "",
-    gallery: [],
+    targetAudience: {
+      primary: "Professionals of smart buildings & facilities such as Cybersecurity professionals, Building operators, MEP consultants, System Integrators, Facilities Manager and Building Occupants.",
+      secondary: "Educators, trainers and aspiring building professionals."
+    },
+    validation: "* The game was validated with experts from the Smart Buildings, Cybersecurity, IT and Network Infrastructure, and received critical acclaim to advance the building industry globally.",
+    bestFor: [
+      "Cybersecurity Professionals & Building Operators",
+      "MEP Consultants & System Integrators",
+      "Facilities Managers & Building Occupants",
+      "Educators, Trainers & Aspiring Building Professionals"
+    ],
+    image: "/games/cascade.webp",
+    gallery: [
+      {
+        src: "/games/cascade.webp",
+        caption: "CASCADE game board representing 10 building systems & services interconnected through IoT network.",
+        alt: "CASCADE Game Components & Board",
+        aspect: "landscape"
+      }
+    ],
     premise: {
-      challenge: "Smart buildings connect physical life-safety systems directly to digital networks.",
-      tension: "Isolating a digital breach by shutting systems down can trigger immediate physical life-safety emergencies.",
-      experience: "Incident command teams coordinate under ticking clocks to stop cascading failures across power, cooling, and security."
+      challenge: "4 out of 10 smart, intelligent, and interconnected buildings are at risk of cyberattacks due to increasing integration of digital technologies.",
+      tension: "Attacks on one system may cascade to connected systems if the threshold crosses 2.",
+      experience: "Defenders collaboratively use limited resources and strategies to overpower Attack cards and protect the building."
     },
     mechanics: [
       {
         number: "01",
-        title: "CYBER-PHYSICAL NODE TOPOLOGY",
-        description: "Mapping physical building zones (substations, elevators, fire dampers) to their underlying IP networks.",
-        tag: "System Mapping"
+        title: "10 INTERCONNECTED BUILDING SYSTEMS",
+        description: "The game board represents 10 building systems & services typical to smart buildings which are interconnected through Internet-of-Things network.",
+        tag: "System Model"
       },
       {
         number: "02",
-        title: "CASCADING FAILURE CLOCK",
-        description: "A ticking timer mechanism where uncontained initial faults cascade exponentially into adjacent systems.",
-        tag: "Fault Propagation"
+        title: "ATTACKER VS DEFENDERS",
+        description: "During the game, one player acts as the attacker, attempting to compromise interconnected building systems & services. All other players act as defenders, collaborating to protect the building.",
+        tag: "Turn-based Roles"
       },
       {
         number: "03",
-        title: "ASYMMETRIC COMMAND ROLES",
-        description: "Distinct roles for Facility Manager, CISO, Safety Officer, and Operations Lead with differing information access.",
-        tag: "Incident Command"
+        title: "SEQUENTIAL ATTACKS & CASCADING THRESHOLD",
+        description: "The attacker sequentially launches attacks on systems (guided by the cards), which may cascade to the connected systems if the threshold for any crosses 2.",
+        tag: "Cascade Rule"
       },
       {
         number: "04",
-        title: "CONTAINMENT VS CONTINUITY",
-        description: "High-stakes trade-offs between pulling systems offline to halt breaches vs keeping operations active.",
-        tag: "Critical Triage"
+        title: "COLLABORATIVE RESOURCE DEFENCE",
+        description: "The defenders must collaboratively use limited resources and strategies to intercept an attack by responding with defences that overpower the damage from an Attack card.",
+        tag: "Cooperative Triage"
       }
     ],
     scenarios: [
       {
         number: "01",
-        title: "BMS RANSOMWARE DURING AMBIENT HEATWAVE",
-        description: "Responding to malicious firmware hijacking of cooling towers and access control in an occupied high-rise.",
-        crisisLevel: "Life-Safety Threat"
+        title: "SEQUENTIAL ATTACK INTERCEPTION",
+        description: "Collaborating with limited defensive resources to overpower incoming attack cards targeting facility systems.",
+        crisisLevel: "Direct Threat"
       },
       {
         number: "02",
-        title: "GRID TRANSIENT & AUXILIARY OVERLOAD",
-        description: "Preventing transformer trip and cascading blackout across critical laboratory research facilities.",
-        crisisLevel: "Grid Cascade"
+        title: "THRESHOLD 2 CASCADE BREACH",
+        description: "Preventing damage on any interconnected system from crossing threshold 2 to stop cascading failures across connected services.",
+        crisisLevel: "System Cascade"
       },
       {
         number: "03",
-        title: "FIRE DAMPER & VENTILATION TELEMETRY ANOMALY",
-        description: "Overriding automated smoke evacuation protocols when sensor network telemetry becomes erratic.",
-        crisisLevel: "Systemic Desynchronization"
+        title: "STAKEHOLDER RESILIENCE COMMAND",
+        description: "Coordinating response between operators, facilities managers, and cybersecurity specialists under attack.",
+        crisisLevel: "Collaborative Command"
       }
     ],
     outcomes: [
       {
-        title: "SEE SYSTEMS",
-        description: "Understand how software flaws manifest as physical hazards in modern smart buildings."
+        title: "IDENTIFY CYBER-PHYSICAL RISKS",
+        description: "The players will identify cyber-physical risks in interconnected systems comprising smart buildings."
       },
       {
-        title: "EXPERIENCE TRADE-OFFS",
-        description: "Decide whether to isolate compromised networks or keep building utilities functioning."
+        title: "STAKEHOLDER COLLABORATION",
+        description: "The players understand need for collaboration between stakeholders to mitigate cascading hazards & systemic failures."
       },
       {
-        title: "THINK COLLABORATIVELY",
-        description: "Bridge the communication barrier between IT cybersecurity teams and physical facility engineers."
-      },
-      {
-        title: "MAKE DECISIONS",
-        description: "Master rapid crisis triage and containment before localized failures trigger systemic shutdowns."
+        title: "RECALL CYBERSECURITY STRATEGIES",
+        description: "The players shall recall key cybersecurity strategies required to protect buildings, facilities, businesses and people."
       }
     ],
     audiences: [
       {
-        title: "FACILITIES & IT SECURITY TEAMS",
-        description: "Building managers and CISOs establishing joint cyber-physical incident response protocols."
+        title: "PRIMARY AUDIENCE",
+        description: "Professionals of smart buildings & facilities such as Cybersecurity professionals, Building operators, MEP consultants, System Integrators, Facilities Manager and Building Occupants."
       },
       {
-        title: "SMART CITY INFRASTRUCTURE ENGINEERS",
-        description: "Engineers designing IoT-enabled building automation and urban microgrids."
-      },
-      {
-        title: "CRITICAL FACILITY DIRECTORS",
-        description: "Operations managers in hospitals, airports, data centers, and corporate headquarters."
-      },
-      {
-        title: "EXECUTIVE RISK COMMITTEES",
-        description: "Board members and risk executives auditing business continuity and physical vulnerability."
+        title: "SECONDARY AUDIENCE",
+        description: "Educators, trainers and aspiring building professionals."
       }
     ],
     fieldDeployments: [
+      "Validated with experts from Smart Buildings, Cybersecurity, IT and Network Infrastructure",
       "DTU RiskLab / DBI Fire & Security Framework Workshops",
-      "Smart City Facilities Management Leadership Forums",
       "Bharat Play Critical Infrastructure Simulation Lab"
     ]
   },
@@ -686,8 +714,15 @@ export const GAMES: GameItem[] = [
       "Public Policy Think Tanks & Regulatory Officers",
       "Operations & Digital Transformation Directors"
     ],
-    image: "",
-    gallery: [],
+    image: "/games/riskscape.webp",
+    gallery: [
+      {
+        src: "/games/riskscape.webp",
+        caption: "RiskScape 84-card strategic system, tracking sheet, and multi-layered critical infrastructure defense.",
+        alt: "RiskScape Game Components & Cards",
+        aspect: "landscape"
+      }
+    ],
     premise: {
       challenge: "Essential infrastructure must modernize without disrupting everyday public operations.",
       tension: "Pushing rapid digital upgrades introduces operational fragility and public backlash.",

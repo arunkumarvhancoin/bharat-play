@@ -18,46 +18,48 @@ export default function AboutKudos() {
     <section ref={containerRef} className="py-16 md:py-40 px-4 md:px-8 bg-brand-offwhite text-brand-navy">
       <div className="max-w-[1400px] mx-auto w-full">
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 relative">
           
-          {/* Left Column: Massive Typography */}
-          <div className="lg:col-span-7 relative">
-            <div className="sticky top-32 flex flex-col gap-16">
-              <div>
-                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tighter text-brand-navy uppercase mb-8 sm:mb-12 font-bold pb-4 sm:pb-6 border-b border-gray-200">
-                  ABOUT US.
-                </h2>
-                
-                <motion.h3 
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
-                  className="font-display text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter leading-[0.9] text-brand-navy max-w-2xl"
-                >
-                  A 21ST CENTURY <span className="text-brand-orange">INNOVATION</span> STUDIO FOR A COMPLICATED WORLD.
-                </motion.h3>
-              </div>
+          {/* Left Column: Massive Typography (Sticky across the entire about section scroll) */}
+          <div className="lg:col-span-7 lg:sticky lg:top-32 self-start flex flex-col gap-12 lg:gap-16 z-10">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange mb-3 block">
+                ABOUT BHARAT PLAY
+              </span>
 
-              <motion.div 
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4, duration: 1 }}
-                className="hidden lg:block"
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tighter text-brand-navy uppercase mb-8 sm:mb-12 font-bold pb-4 sm:pb-6 border-b border-gray-200">
+                ABOUT US.
+              </h2>
+              
+              <motion.h3 
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
+                className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tighter leading-[0.95] text-brand-navy max-w-2xl"
               >
-                <Link href="/about" className="inline-flex items-center gap-3 text-brand-navy font-bold text-[10px] uppercase tracking-widest hover:text-brand-orange transition-colors group">
-                  READ OUR FULL PHILOSOPHY
-                  <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                </Link>
-              </motion.div>
+                WE TURN REAL-WORLD PROBLEMS INTO <span className="text-brand-orange">GAMES</span> YOU ACTUALLY WANT TO PLAY.
+              </motion.h3>
             </div>
+
+            <motion.div 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4, duration: 1 }}
+              className="hidden lg:block"
+            >
+              <Link href="/about" className="inline-flex items-center gap-3 text-brand-navy font-bold text-xs uppercase tracking-widest hover:text-brand-orange transition-colors group">
+                READ OUR FULL PHILOSOPHY
+                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </Link>
+            </motion.div>
           </div>
 
           {/* Right Column: Image and Context */}
-          <div className="lg:col-span-4 lg:col-start-9 flex flex-col gap-12">
+          <div className="lg:col-span-5 lg:col-start-8 flex flex-col gap-12 pb-16">
             
-            {/* Dynamic Parallax Image */}
+            {/* Dynamic Parallax Image (Original aspect ratio [3/4] restored) */}
             <div className="w-full aspect-[3/4] bg-gray-200 relative overflow-hidden rounded-sm group">
               <motion.div 
                 className="absolute -top-[15%] -bottom-[15%] left-0 right-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-[2000ms] ease-out"
@@ -67,15 +69,15 @@ export default function AboutKudos() {
 
             <div className="flex flex-col gap-8">
               <p className="text-xl sm:text-2xl md:text-3xl font-bold leading-tight text-brand-navy">
-                We build serious games and interactive simulations to help people solve complex, real-world problems.
+                We create hands-on games and simulations that make solving big, real-world challenges genuinely fun and engaging.
               </p>
               
               <p className="text-base sm:text-lg md:text-xl text-brand-gray font-medium leading-relaxed">
                 Instead of just talking about the future, we let you play it. By combining game design with urban planning, policy, and engineering, we create hands-on experiences that let citizens, students, and leaders test ideas before they become reality.
               </p>
 
-              <div className="pl-6 border-l-4 border-brand-orange mt-4">
-                <p className="italic font-serif text-lg sm:text-xl md:text-2xl mb-4 text-gray-600 leading-snug">
+              <div className="pl-4 sm:pl-6 border-l-4 border-brand-orange mt-2 sm:mt-4">
+                <p className="italic font-serif text-base sm:text-xl md:text-2xl mb-3 sm:mb-4 text-gray-600 leading-snug">
                   &quot;Create games for change which will not only solve local problems but also address global issues.&quot;
                 </p>
                 <footer className="font-mono text-xs sm:text-sm font-bold tracking-widest uppercase text-brand-navy">
@@ -85,8 +87,8 @@ export default function AboutKudos() {
             </div>
 
             {/* Mobile Link */}
-            <div className="block lg:hidden mt-8">
-              <Link href="/about" className="inline-flex items-center gap-3 text-brand-navy font-bold text-[10px] uppercase tracking-widest hover:text-brand-orange transition-colors group">
+            <div className="block lg:hidden mt-6">
+              <Link href="/about" className="inline-flex items-center gap-2.5 text-brand-navy font-bold text-xs uppercase tracking-widest hover:text-brand-orange transition-colors group py-2">
                 READ OUR FULL PHILOSOPHY
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </Link>

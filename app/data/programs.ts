@@ -37,7 +37,10 @@ export interface ProgramConductedSession {
   image: string;
   galleryImages?: string[];
   videoSrc?: string;
+  youtubeUrl?: string;
+  youtubeEmbedUrl?: string;
   linkedinUrl?: string;
+  culturalStory?: string;
   contextChallenge?: string;
   simulationDeployed?: string;
   keyInsights?: string[];
@@ -91,13 +94,13 @@ export const PROGRAMS: ProgramItem[] = [
     id: "game-sessions",
     programNumber: 1,
     displayNumber: "01",
-    name: "Game Sessions",
+    name: "Game Session",
     slug: "game-sessions",
-    subtitle: "FACILITATED TABLETOP SIMULATIONS FOR TEAMS & COHORTS",
-    tag: "FACILITATED GAMEPLAY",
-    tagline: "Experience complex systems through direct, high-stakes tabletop play.",
-    shortDescription: "High-intensity tabletop simulation sessions powered by Bharat Play's serious game suite (City Runners, Prospera, BiBo, CASCADE, RiskScape), guided by certified game masters.",
-    description: "Our Game Sessions bring groups together around the physical tabletop to experience the visceral reality of complex systems. Rather than passively listening to lectures or slide decks, participants are thrust into multi-stakeholder roles—balancing municipal budgets, responding to sudden climate deluges, managing supply chain shocks, and negotiating under scarce resources. Every session is facilitated by certified Bharat Play Game Masters and concludes with a structured cognitive debrief.",
+    subtitle: "CASUAL BOARD GAME PLAY SESSIONS FOR ALL AGES & GENERATIONS",
+    tag: "CASUAL & PURPOSEFUL PLAY",
+    tagline: "Casual board game sessions for all ages, exploring purposeful play and complex systems.",
+    shortDescription: "Casual board game play sessions for all ages and generations (1 to 3 hours). Similar to typical board game cafe play, but differing in the purposeful systems nature of the games.",
+    description: "Gameplay Sessions are casual board game play sessions for all ages and generations. Typically lasting anywhere between 1 hour to 3 hours, they are similar to typical board game cafe play, but differ in the purposeful, systems-driven nature of games they all engage with.",
     format: "Tabletop Simulation + Facilitated Debrief",
     duration: {
       label: "2 – 3.5 Hours",
@@ -251,11 +254,11 @@ export const PROGRAMS: ProgramItem[] = [
     displayNumber: "02",
     name: "Play Workshops",
     slug: "play-workshops",
-    subtitle: "DEEP-DIVE PARTICIPATORY WORKSHOPS & SYSTEMS INTERVENTIONS",
-    tag: "IMMERSIVE WORKSHOP",
-    tagline: "Collaborative design labs that blend serious play with actionable policy innovation.",
-    shortDescription: "Half-day and full-day participatory workshops blending serious tabletop simulation with systems mapping, causal loop diagrams, and speculative policy prototyping.",
-    description: "Play Workshops are intensive, multi-hour co-creation labs designed for organizations grappling with wicked problems. Moving beyond traditional hackathons or committee brainstorming, we deploy purpose-built simulation sandboxes where participants stress-test hypotheses, prototype civic policies, and stress-test strategic roadmaps. Led by Dr. Balaji Kalluri and interdisciplinary systems architects, these workshops turn abstract complexity into tangible, testable scenarios.",
+    subtitle: "SERIOUS BOARD GAME SESSIONS · GAME AS TOOL, PLAY AS PROCESS",
+    tag: "TARGETED COHORT WORKSHOPS",
+    tagline: "Serious board game sessions curated for targeted audiences to deliver predefined goals.",
+    shortDescription: "Serious board game play sessions curated for targeted cohorts to deliver predefined outcomes using GAME as a TOOL and PLAY as a PROCESS.",
+    description: "Gameplay Workshops are serious board game play sessions curated for targeted audiences (e.g. Vocational/Industrial Trainers, Alumni members, Teachers, Learners, Public Administrators, Researchers) to deliver predefined goals and objectives for the session. It is different from any other workshop by using GAME as a TOOL, and PLAY as a PROCESS.",
     format: "Half-Day (4h) or Full-Day (7h) Intensive Lab",
     duration: {
       label: "4 to 7 Hours",
@@ -405,21 +408,24 @@ export const PROGRAMS: ProgramItem[] = [
       {
         id: "resilience-starts-at-home",
         number: "02",
-        title: "UN DISASTER RISK REDUCTION: RESILIENCE STARTS AT HOME",
-        subtitle: "Family Disaster Preparedness, Master of Disasters (MoD) & Countermapping Chennai",
+        title: "NAVRATRI / VIJAYADASAMI: RESILIENCE STARTS AT HOME",
+        subtitle: "Inter-generational Gameplay Workshop | Navratri / Vijayadasami 2026 · Chrompet, Chennai",
         date: "20 OCT 2026",
         venue: "Inner Companion Sanctuary, Chrompet, Chennai",
         partner: "Inner Companion Alternative Learning & Research Foundation, ASSIST & Chennai Resilience Centre",
         format: "Participatory Family Play Workshop & Community Countermapping",
         participants: "Families, Children (Age 8+) & Neighborhood Volunteers",
-        description: "Marking solidarity with the UN International Day for Disaster Risk Reduction on the auspicious occasion of Vijayadasami, Bharat Play curated an immersive family play workshop in Chrompet, Chennai. Grounded in the cultural theme of Maa Shailaputri (inner resilience), the workshop deployed the Master of Disasters (MoD) board game followed by a guided countermapping activity connecting gameplay intuition with Chennai's real flood, heatwave, and drought topography.",
+        description: "Marking solidarity with the UN International Day for Disaster Risk Reduction on the auspicious occasion of Vijayadasami / Navratri, Bharat Play curated an immersive family play workshop in Chrompet, Chennai. Grounded in the cultural theme of Maa Shailaputri (inner resilience), the workshop deployed the Master of Disasters (MoD) board game followed by a guided countermapping activity connecting gameplay intuition with Chennai's real flood, heatwave, and drought topography.",
         takeaway: "Resilience starts at home: true disaster preparedness begins at the family dining table, validated through playful community countermapping.",
-        tag: "DISASTER RESILIENCE",
+        tag: "NAVRATRI WORKSHOP",
         image: "/events_media/linkedin/resilience_at_home.jpg",
         galleryImages: [
           "/events_media/linkedin/resilience_at_home.jpg"
         ],
+        youtubeUrl: "https://www.youtube.com/watch?v=wSgVKx3J54w",
+        youtubeEmbedUrl: "https://www.youtube.com/embed/wSgVKx3J54w",
         linkedinUrl: "https://lnkd.in/p/gM6Vv_Bc",
+        culturalStory: "On Vijayadashami, we celebrate Durga's nine superpowers. The very first is Shailaputri — her name means daughter of the mountain. 🏔️ When storms come, a mountain doesn't move. It stands steady, and when the rain passes, it is still there.\n\nShe holds a lotus 🪷, a flower that grows right out of floodwater and rises above it.\n\nThat is what resilience means: staying steady when trouble comes, and bouncing back after. And just like Shailaputri is where the nine powers begin, resilience begins at home — with your own family.\n\nSo let's find our mountain-strength together, by playing! 🎲",
         contextChallenge: "Making disaster preparedness actionable and anxiety-free for urban families living in Chennai's high-risk flood and drought basins, moving beyond government alerts into household resilience routines.",
         simulationDeployed: "Master of Disasters (MoD) serious simulation coupled with physical spatial counter-mapping worksheets where parents and children jointly plotted micro-level flood inundation points, neighborhood water assets, and decentralized community emergency hubs.",
         keyInsights: [
@@ -432,6 +438,73 @@ export const PROGRAMS: ProgramItem[] = [
           role: "Community Coordinator & Facilitator, ASSIST / Inner Companion",
           quote: "The workshop nurtured the ability to unlock the power of resilience within us. Blending Master of Disasters with Chennai's lived risk landscape made preparedness a shared family habit rather than a government circular."
         }
+      },
+      {
+        id: "quest-alliance-vocational-trainers-bibo",
+        number: "03",
+        title: "GREEN SKILLS & VOCATIONAL TRAINER CAPACITY: BiBo WORKSHOP",
+        subtitle: "BiBo Serious Game Capacity Development Training for Vocational Trainers · Chennai",
+        date: "APR 2026",
+        venue: "Quest Alliance Center, Chennai",
+        partner: "Quest Alliance (Gujarat) & City Atlas",
+        format: "Vocational Trainer Capacity Development & Serious Game Workshop",
+        participants: "Vocational Trainers, Grassroots Educators & Skilling Leaders",
+        description: "Co-developed, curated, and facilitated by Bharat Play Innovations in partnership with Quest Alliance (Gujarat) using the BiBo Board Game in Chennai. Educating and inspiring vocational trainers who train youth entering retail, hospitality, BPO/ITES, and wellness sectors to make green skills, climate change, and environmental impact comprehensible, actionable, and aspirational within planetary boundaries.",
+        takeaway: "Using GAME as a TOOL and PLAY as a PROCESS to translate green skills and planetary boundaries into tangible career pathways for vocational trainers and grassroots youth.",
+        tag: "VOCATIONAL TRAINING",
+        image: "/events_media/linkedin/bibo_workshop_1.jpg",
+        galleryImages: [
+          "/events_media/linkedin/bibo_workshop_1.jpg",
+          "/events_media/linkedin/bibo_workshop_2.jpg",
+          "/events_media/linkedin/bibo_workshop_4.jpg",
+          "/events_media/linkedin/bibo_workshop_5.jpg"
+        ],
+        linkedinUrl: "https://lnkd.in/p/gd2GD9Gx",
+        contextChallenge: "Making #Green and #EnvironmentalImpact comprehensible and practicable for grassroots vocational learners and trainers, transforming complex climate concepts into dignified green career advancement.",
+        simulationDeployed: "BiBo (Building-in-a-Box) serious board game and green skills experiential capacity canvas.",
+        keyInsights: [
+          "Fostered vocational trainers with an experiential understanding of #GREEN in the Anthropocene through BiBo tabletop simulation.",
+          "Built aptitude for #GreenSkills and #GreenCareer pathways in retail, hospitality, ITES, and services.",
+          "Demonstrated how play-based pedagogy catalyzes paradigm shifts in mindset and behavior within planetary boundaries."
+        ],
+        testimonialQuote: {
+          speaker: "Dr. Balaji Kalluri, PhD",
+          role: "Founder & Instructional Designer, Bharat Play Innovations",
+          quote: "Making green concepts comprehensible, easily digestible, and seeding inspiration to practise them regularly—not only to meet career aspirations, but to reduce environmental impact—is what makes serious play so powerful."
+        }
+      },
+      {
+        id: "teen-vikas-singapore-workshop",
+        number: "04",
+        title: "SCIENCE MEETS SPIRITUALITY: TEEN VIKAS DISASTER RESILIENCE WORKSHOP",
+        subtitle: "Preparing Singaporean Youth as Global Environmental Leaders & Disaster Resilient Pioneers",
+        date: "28 FEB 2026",
+        venue: "Sri Sathya Sai Vedic Society, Singapore",
+        partner: "Sri Sathya Sai Vedic Society Singapore & Teen Vikas Educare",
+        format: "Play-Based Spiritual & Systems Workshop on Disaster Resilience",
+        participants: "Singaporean Youth, Teen Vikas Scholars, Gurus & Community Educators",
+        description: "Delivered for Teen Vikas—a voluntary educare program for Singaporean youth by Sri Sathya Sai Vedic Society Singapore. Dr. Balaji Kalluri reframed youth empowerment into a play-based workshop blending Bhagwan Sri Sathya Sai Baba's divine principles and values with scientific disaster resilience. The workshop prepared youth to become ambitious global environmental leaders by honing their critical observations and developing the right mindset to contribute to a disaster-resilient world through sadhana and spiritual awakening.",
+        takeaway: "Preparing youth to become ambitious global environmental leaders by blending divine spiritual values with critical observations and disaster resilience science.",
+        tag: "TEEN VIKAS SINGAPORE",
+        image: "/events_media/linkedin/singapore_workshop_1.jpg",
+        galleryImages: [
+          "/events_media/linkedin/singapore_workshop_1.jpg",
+          "/events_media/linkedin/singapore_workshop_2.jpg",
+          "/events_media/linkedin/singapore_workshop_3.jpg"
+        ],
+        linkedinUrl: "https://lnkd.in/p/gutcsFJZ",
+        contextChallenge: "Preparing next-generation urban youth to confront existential planetary crises, climate anxiety, and disaster vulnerabilities with spiritual grounding, critical thinking, and proactive collective action.",
+        simulationDeployed: "Interactive disaster resilience tabletop simulations, critical observation drills, and spiritual sadhana values frameworks aligned with NDMA, UNDRR, and CDRI benchmarks.",
+        keyInsights: [
+          "Honed critical observation skills among Singaporean youth to analyze systemic and climate vulnerabilities without fear or helplessness.",
+          "Connected spiritual sadhana and inner values directly to community disaster preparedness and collective action.",
+          "Collaborated with regional leadership including co-guru Ramoo Thiruppathi (RT) and drew upon frameworks aligned with National Disaster Management Authority (NDMA), UNDRR, and Coalition for Disaster Resilient Infrastructure (CDRI)."
+        ],
+        testimonialQuote: {
+          speaker: "Dr. Balaji Kalluri, PhD",
+          role: "Guru & Systems Facilitator, Bharat Play Innovations",
+          quote: "This is my first attempt at preparing youth to become ambitious global environmental leaders by honing their critical observations and developing the right mindset to contribute to a disaster-resilient world through rigorous sadhana guided by spiritual awakening from deep within."
+        }
       }
     ]
   },
@@ -441,11 +514,11 @@ export const PROGRAMS: ProgramItem[] = [
     displayNumber: "03",
     name: "Play Exhibition",
     slug: "play-exhibition",
-    subtitle: "INTERACTIVE PUBLIC INSTALLATIONS & CULTURAL PAVILIONS",
+    subtitle: "CURATED EXHIBITS SPARKING CURIOSITY ACROSS ALL AUDIENCES",
     tag: "PUBLIC EXHIBITION",
-    tagline: "Transform public spaces and institutions into living, playable urban ecosystems.",
-    shortDescription: "Immersive walk-through exhibitions and interactive pavilions featuring life-sized game boards, playable civic artifacts, and participatory spatial displays.",
-    description: "Play Exhibitions transform galleries, university atriums, design festivals, and municipal summits into dynamic public arenas of purposeful play. Featuring scaled-up interactive game boards, tactile civic data installations, playable spatial models, and guided walkthroughs, the exhibition invites citizens, families, students, and professionals to directly experience the mechanics of sustainable cities. It democratizes complex urban planning and climate science into an unforgettable cultural encounter.",
+    tagline: "See games through a different lens and engage in purposeful gameplays in public and civic spaces.",
+    shortDescription: "Curated exhibits using unique creative games to spark curiosity across all audiences to see games through a new lens and engage in purposeful gameplays in large halls, campuses, corporate offices, and museums.",
+    description: "Game Exhibitions are similar to any other art, craft, book, or toy exhibitions. However, our exhibitions are curated differently using our unique collection of creative games to spark curiosity among all audiences (learned or commons) to see GAMES through a different lens, and intrigue them to ENGAGE IN PURPOSEFUL GAMEPLAYS. Typically, our exhibits are conducted in large enclosed halls in educational institutions, housing societies, corporate offices, science parks, museums, and public events.",
     format: "Multi-Day Pop-up or Semi-Permanent Installation",
     duration: {
       label: "1 to 7+ Days",
@@ -593,6 +666,76 @@ export const PROGRAMS: ProgramItem[] = [
           role: "Founder & Managing Director, Bharat Play Innovations",
           quote: "We pioneer in shaping the future of learning and skill development through our uniquely crafted inter-and-multi disciplinary playful games, and experiential programs for all ages and all segments."
         }
+      },
+      {
+        id: "bavdhan-pune-summer-games-exhibition",
+        number: "02",
+        title: "SUMMER EXPERIENTIAL GAMES EXHIBITION: BAVDHAN, PUNE",
+        subtitle: "Curated Summer Experiential Games Showcase for Parents, Teachers & Children",
+        date: "19 APR 2026",
+        venue: "Residential Society Amphitheatre, Bavdhan, Pune",
+        partner: "Play2ProgressIndia & Bharat Play Innovations",
+        format: "Free Community Experiential Games Exhibition & Interactive Walkthrough",
+        participants: "Parents, Teachers, Children, Youth & Society Residents",
+        description: "A unique summer experiential games exhibition curated by Dr. Balaji Kalluri for parents, teachers, and children in Bavdhan, Pune. Co-facilitated by Abhijoy Banerjee and Saharsh Kanchan, this open experiential showcase created a welcoming space for families to experience tabletop learning firsthand, fostering screen-free intergenerational bonding, critical thinking, and civic problem-solving.",
+        takeaway: "Empowering children and inspiring families to move beyond screens through purposeful, joy-filled tabletop play that builds 21st-century citizenship.",
+        tag: "BAVDHAN EXHIBITION",
+        image: "/events_media/linkedin/bavdhan_flyer_1.jpg",
+        galleryImages: [
+          "/events_media/linkedin/bavdhan_flyer_1.jpg",
+          "/events_media/linkedin/pune_exhibition_1.jpg",
+          "/events_media/linkedin/pune_exhibition_2.jpg",
+          "/events_media/linkedin/pune_exhibition_3.jpg",
+          "/events_media/linkedin/pune_exhibition_4.jpg"
+        ],
+        linkedinUrl: "https://lnkd.in/p/gMYN-CfX",
+        contextChallenge: "Breaking digital screen addiction among children during summer vacations and helping parents and educators discover how games can be tools for character building, systems empathy, and creative problem-solving.",
+        simulationDeployed: "Interactive walk-through of foundational civic and ecological tabletop simulations: City Runner, EnergeticPlay, Master of Disaster, BiBo, Prospera, CybFlash, and student-designed serious games.",
+        keyInsights: [
+          "Curated specifically for parents, teachers, and children in Bavdhan, Pune by Dr. Balaji Kalluri with co-facilitators Abhijoy Banerjee and Saharsh Kanchan.",
+          "Provided parents with tangible alternatives to smartphone entertainment, proving that physical tabletop games foster deeper attention spans and collaboration.",
+          "Community feedback highlighted the transformative potential of neighborhood-level game exhibitions for social cohesion and civic education."
+        ],
+        testimonialQuote: {
+          speaker: "Dr. Balaji Kalluri, PhD",
+          role: "Curator, Host & Play Evangelist",
+          quote: "I'm writing to extend a warm invitation to a unique summer experiential games exhibition curated for parents, teachers, and children. Looking forward to seeing as many of you with your little ones to experience the power of purposeful play."
+        }
+      },
+      {
+        id: "pune-housing-society-game-exhibition",
+        number: "03",
+        title: "PLAY GAMES TO LEARN, SKILL, AND CHANGE",
+        subtitle: "Curated Public Community Game Exhibition on Good Play, Purposeful Play & Civic Futures",
+        date: "19 APR 2026",
+        venue: "Housing Society Community Hall & Amphitheatre, Pune",
+        partner: "Play2ProgressIndia & KUDOS (Kalluri's Urban Design & Open Innovation Studio)",
+        format: "Curated Public Game Exhibition & Guided Tabletop Walk-Through",
+        participants: "Parents, Children, Youth, Teachers, Volunteers & Community Residents",
+        description: "Curated by Dr. Balaji Kalluri and Abhijoy Banerjee on the theme of 'play games to learn, skill, and change' in an enclosed housing society hall in Pune. Featuring guided walkthroughs of popular tabletop games including EnergeticPlay, Master of Disaster, City Runner, Prospera, BiBo, CybFlash, CASCADE, Green Day, Climate Fresk, and student-designed simulations from FLAME University. The exhibition challenged social norms around gaming, educating parents and teachers about #GoodPlay, fostering #PurposefulPlay, and building a community of #GoodGamers and #ResponsibleCitizens.",
+        takeaway: "Challenging social norms around games to shape 21st-century problem-solving, empathy, and responsible citizenship through purposeful play.",
+        tag: "COMMUNITY EXHIBITION",
+        image: "/events_media/linkedin/pune_exhibition_1.jpg",
+        galleryImages: [
+          "/events_media/linkedin/pune_exhibition_1.jpg",
+          "/events_media/linkedin/pune_exhibition_2.jpg",
+          "/events_media/linkedin/pune_exhibition_3.jpg",
+          "/events_media/linkedin/pune_exhibition_4.jpg",
+          "/events_media/linkedin/pune_exhibition_5.jpg"
+        ],
+        linkedinUrl: "https://lnkd.in/p/gNqGd_F6",
+        contextChallenge: "Challenging the social norm and changing public perception (especially among parents and teachers) about playing games, educating about #GoodPlay, and moving beyond narrow career fears to raise #GoodCitizens.",
+        simulationDeployed: "Guided walk-through of popular tabletop games: EnergeticPlay, Master of Disaster, City Runner, Prospera, BiBo, CybFlash, CASCADE, Green Day, Climate Fresk, and creative simulations designed by FLAME University students.",
+        keyInsights: [
+          "Posed 5 self-reflective questions to parents, children, and teachers about gaming perceptions, societal fears for 2047, and educational adequacy.",
+          "Demonstrated how serious play empowers children with grit, compassion, and ambition to solve wicked 21st-century urban and ecological challenges.",
+          "Overwhelming consensus from parents that engaging children in purposeful play co-creates a better future for both child and society."
+        ],
+        testimonialQuote: {
+          speaker: "Dr. Balaji Kalluri & Abhijoy Banerjee",
+          role: "Curators, Play2ProgressIndia & KUDOS",
+          quote: "The open, free walkthrough exhibition not only aroused curiosity among children to play, but opened parents' minds to think beyond careers—understanding their role in raising a good citizen by engaging in purposeful play."
+        }
       }
     ]
   },
@@ -602,88 +745,80 @@ export const PROGRAMS: ProgramItem[] = [
     displayNumber: "04",
     name: "Courses",
     slug: "courses",
-    subtitle: "FLAME UNIVERSITY & NUS SPOTLIGHTED TEACHING COURSES",
-    tag: "ACADEMY & UNIVERSITY COURSES",
-    tagline: "FLAME University & NUS Spotlighted Courses: Disasters – Natural & Man-Made (ENVS102) and Energy, Environment & Economics.",
-    shortDescription: "University and experiential courses taught by Dr. Balaji Kalluri: Disasters – Natural & Man-Made (ENVS102) and Energy, Environment & Economics (NUS Spotlight).",
-    description: "Academic and experiential courses taught and conducted by Dr. Balaji Kalluri, PhD. Drawing from his university teaching at FLAME University and his work spotlighted by the National University of Singapore (NUS 'Game Changers: Innovating Education for a Sustainable Future'), these courses utilize serious games and spatial simulations to educate future leaders across environmental systems and disaster management.",
-    format: "University Semester Studios + Experiential Tabletop Labs",
+    subtitle: "ACADEMIC & COHORT PLAY-BASED LEARNING PROGRAMS",
+    tag: "STRUCTURED COHORT COURSES",
+    tagline: "Academic semester studios and focused cohort courses facilitating play-based systems learning.",
+    shortDescription: "Structured play-based academic and cohort courses: ENVS102 (Disasters-Natural & Man-Made on 25th April, Sat) and CSIT122 (Introduction to Internet-of-Things on 23rd April, Thur).",
+    description: "Courses are structured academic and cohort learning programs that facilitate play-based systems learning. Our curriculum deploys hands-on tabletop simulations, experiential labs, and systems modeling to explore complex real-world dilemmas. Currently offering two specialized courses: ENVS102 : Disasters-Natural & Man-Made (on 25th April, Sat) and CSIT122 : Introduction to Internet-of-Things (on 23rd April, Thur).",
+    format: "Experiential Studios & Tabletop Systems Labs",
     duration: {
-      label: "Semester & Studio Formats",
-      badge: "UNIVERSITY & CERTIFICATE",
-      details: "Full semester university studios (FLAME University) and focused experiential masterclasses"
+      label: "Course Cohorts",
+      badge: "ACADEMIC & COHORT",
+      details: "Focused cohort studios: ENVS102 (25th April, Sat) & CSIT122 (23rd April, Thur)"
     },
     cohortSize: {
       min: 15,
       max: 45,
       label: "15 – 45 Learners / Cohort"
     },
-    targetAudience: "Undergraduate & postgraduate students, higher ed faculty, environmental leaders",
+    targetAudience: "Undergraduate & postgraduate students, higher-ed faculty, tech innovators, aspiring civil servants, and civic leaders",
     focusAreas: [
-      "Natural & Man-Made Disaster Simulations (ENVS102)",
-      "Energy, Environment & Economic Trade-Offs (NUS Spotlight)",
-      "Serious Game Prototyping & Student-Created Simulations"
+      "ENVS102 : Disasters-Natural & Man-Made (on 25th April, Sat)",
+      "CSIT122 : Introduction to Internet-of-Things (on 23rd April, Thur)"
     ],
     keyHighlights: [
       "Taught directly by Dr. Balaji Kalluri, PhD (FLAME University faculty & Cambridge / DTU RiskLab alumnus)",
-      "Experiential approach: students learn complex dilemmas by playing, testing, and designing their own games",
-      "Documented in NUS Spotlight as preparing future environmental leaders through purposeful play"
+      "Experiential, screen-free tabletop methodology: learn complex systemic dilemmas by playing and testing physical simulations",
+      "Rigorous academic curriculum benchmarked against accredited university standards"
     ],
     image: "",
     leadFacilitator: "Dr. Balaji Kalluri, PhD (Systems Engineer & Urban Innovator)",
-    institutionalBacking: "Accredited FLAME University curriculum, published in ASCE-ASME & spotlighted by NUS AlumNet.",
-    ctaText: "INQUIRE ABOUT COURSES",
-    whatsappMessage: "Hi Bharat Play! I would like to learn more about the courses taught by Dr. Balaji Kalluri (ENVS102, Energy & Environment).",
+    institutionalBacking: "Accredited FLAME University curriculum & academic pedagogy.",
+    ctaText: "ENROLL / INQUIRE ABOUT COURSES",
+    whatsappMessage: "Hi Bharat Play! I would like to enroll/inquire about the upcoming courses: ENVS102 Disasters (on 25th April, Sat) and CSIT122 IoT (on 23rd April, Thur).",
     modules: [
       {
         number: "01",
-        title: "Disasters – Natural & Man-Made (ENVS102)",
-        duration: "Semester Studio / 14 Weeks",
-        tag: "FLAME UNIVERSITY",
-        description: "One of his premier FLAME University courses. Students learn about natural and man-made hazards through serious games, risk simulations, and experiential activities, culminating in student teams creating and playtesting their own serious disaster simulations."
+        title: "ENVS102 : Disasters-Natural & Man-Made",
+        duration: "25th April, Sat",
+        tag: "ENVS102 · SATURDAY",
+        description: "An intensive play-based studio exploring natural and anthropogenic hazards, emergency budget trade-offs, cascading infrastructure failures, and community disaster preparedness through serious games and tabletop crisis simulations."
       },
       {
         number: "02",
-        title: "Energy, Environment & Economics",
-        duration: "Experiential Lab / 8 Weeks",
-        tag: "NUS SPOTLIGHT",
-        description: "Taught using game-based and experiential learning methods to prepare future environmental leaders. Students explore grid dispatch, carbon economics, and environmental trade-offs through purposeful play, as documented by NUS Alumni Spotlight."
-      },
-      {
-        number: "03",
-        title: "Serious Game Prototyping & Capstone Facilitation",
-        duration: "Weeks 11–14",
-        tag: "CAPSTONE STUDIO",
-        description: "Students translate systemic insights into physical tabletop mechanics, conduct rigorous playtesting rounds, and showcase original game prototypes to academic and practitioner juries."
+        title: "CSIT122 : Introduction to Internet-of-Things",
+        duration: "23rd April, Thur",
+        tag: "CSIT122 · THURSDAY",
+        description: "A foundational hands-on course introducing the Internet-of-Things (IoT), sensor networks, edge intelligence, and connected urban infrastructure through playful systems modeling, smart city hardware-software interfaces, and cyber-physical security simulations."
       }
     ],
     outcomes: [
       {
         title: "Experiential Systems Mastery",
-        description: "Move beyond dry textbook theory to grasp non-linear trade-offs in disaster response and energy transition."
+        description: "Move beyond dry textbook theory to grasp non-linear trade-offs in disaster mitigation and connected IoT infrastructure."
       },
       {
-        title: "Student-Created Serious Games",
-        description: "Every cohort designs, balances, and prototypes functional tabletop simulations modeling real-world systemic dilemmas."
+        title: "Student-Created Serious Games & Prototypes",
+        description: "Learners design, balance, and test physical tabletop models representing real-world systemic trade-offs."
       }
     ],
     audiences: [
       {
         title: "Undergraduate & Graduate Scholars",
-        description: "Students in environmental studies, public policy, computer science, economics, and design."
+        description: "Students in environmental studies, public policy, computer science, information technology, and design."
       },
       {
         title: "Higher Education Faculty & Educators",
         description: "Professors seeking to convert lecture-heavy curriculum into experiential, game-based learning studios."
       },
       {
-        title: "Sustainability Leaders",
-        description: "Professionals looking to apply serious simulations to clean energy transitions and environmental stewardship."
+        title: "Civic & Technology Leaders",
+        description: "Professionals looking to apply serious simulations to smart city infrastructure and disaster risk reduction."
       }
     ],
     deliverables: [
       {
-        title: "Complete Course Readers & Case Studies",
+        title: "Complete Course Syllabus & Case Readers",
         description: "Curated research papers, FLAME University syllabus materials, and simulation design templates."
       },
       {
@@ -691,46 +826,46 @@ export const PROGRAMS: ProgramItem[] = [
         description: "Tabletop boards, risk markers, resource tokens, and custom print-and-play simulation decks."
       },
       {
-        title: "Academic Credential & Verified Portfolio",
+        title: "Academic Credential & Systems Thinking Certificate",
         description: "Documentation of completed coursework, playable game prototypes, and systems debrief design."
       }
     ],
     faqs: [
       {
-        question: "Where are these courses conducted?",
-        answer: "Dr. Balaji Kalluri teaches ENVS102 as part of the academic curriculum at FLAME University in Pune, alongside guest workshops and masterclasses with university and institutional partners."
+        question: "Where and when are these courses conducted?",
+        answer: "ENVS102 (Disasters-Natural & Man-Made) takes place on 25th April, Sat. CSIT122 (Introduction to Internet-of-Things) takes place on 23rd April, Thur. Sessions are held in dedicated experiential studio environments with physical tabletop simulations."
       },
       {
-        question: "How does the game-based learning methodology work in the classroom?",
-        answer: "Rather than memorizing definitions from slides, students role-play city commissioners, utility heads, or disaster response units on tactile boards. In the final phase, students design their own games to prove mastery of the underlying science."
+        question: "Who can enroll in ENVS102 and CSIT122?",
+        answer: "Both courses are open to university students, higher education scholars, corporate practitioners, urban professionals, and civic enthusiasts looking to build practical systems thinking and technical literacy through purposeful play."
       },
       {
-        question: "Can these courses be adapted for other universities or executive cohorts?",
-        answer: "Yes, Bharat Play adapts these proven academic syllabi into intensive multi-day masterclasses and faculty development programs."
+        question: "Can these courses be adapted for custom university cohorts or corporate teams?",
+        answer: "Yes. In addition to our scheduled public cohorts on April 23rd and April 25th, Bharat Play customizes and delivers both courses directly on campus or at institutional training facilities."
       }
     ],
     conductedSessions: [
       {
         id: "disasters-natural-man-made-envs102",
         number: "01",
-        title: "DISASTERS – NATURAL & MAN-MADE (ENVS102)",
-        subtitle: "FLAME University Undergrad Studio · Serious Games, Risk Simulations & Game Design Capstone",
-        date: "ACADEMIC SEMESTER COURSE",
-        venue: "FLAME University Campus, Pune",
-        partner: "FLAME University Department of Environmental Studies",
-        format: "Full-Semester University Course & Experiential Play Lab",
-        participants: "Undergraduate Students across Liberal Arts, Sciences & Economics",
-        description: "Disasters – Natural & Man-Made (ENVS102) is Dr. Balaji Kalluri's foundational university course at FLAME University. His pedagogical approach immerses students into learning about complex natural hazards and anthropogenic emergencies through serious games, physical tabletop simulations, and experiential activities—culminating in student teams prototyping and playtesting their own serious disaster games.",
+        title: "ENVS102 : DISASTERS-NATURAL & MAN-MADE",
+        subtitle: "Play-Based Hazard Mitigation & Disaster Risk Governance Studio",
+        date: "25th April, Sat",
+        venue: "FLAME University Campus & Bharat Play Learning Centers",
+        partner: "Department of Environmental Studies & Bharat Play Innovations",
+        format: "Experiential Studio & Tabletop Hazard Simulation",
+        participants: "Undergraduate & Graduate Scholars, Civic Leaders & Aspiring Civil Servants",
+        description: "Disasters-Natural & Man-Made (ENVS102) is Dr. Balaji Kalluri's premier course exploring natural and anthropogenic hazards through serious games, risk simulations, and experiential activities. Scheduled on 25th April (Sat), the course immerses learners in emergency budget trade-offs, warning dissemination latencies, cascading infrastructural failures, and community disaster response without relying on dry textbook slides.",
         takeaway: "Students don't just memorize hazard definitions—they experience the panic, delayed response, and resource trade-offs of disasters by designing and playtesting simulations.",
-        tag: "FLAME ENVS102",
+        tag: "ENVS102 · 25 APR SAT",
         image: "",
         galleryImages: [],
         contextChallenge: "Moving disaster education beyond passive textbook case studies into visceral decision-making environments where students feel the cascade of infrastructural and human failure.",
-        simulationDeployed: "Master of Disasters (MoD) and hazard mitigation sandboxes, leading into a semester-long capstone where student pods create original serious games on flood, drought, and industrial risk response.",
+        simulationDeployed: "Master of Disasters (MoD), RiskScape crisis scenarios, and hazard mitigation sandboxes.",
         keyInsights: [
-          "100% of enrolled students successfully conceived, balanced, and physically prototyped original serious disaster board games.",
-          "Students reported a profound shift from abstract climate anxiety to proactive systemic risk awareness.",
-          "Institutional peer reviews highlighted the game-design capstone as a benchmark for interdisciplinary experiential pedagogy."
+          "Visceral trade-off comprehension: balance emergency shelter budgets against floodwall reinforcement in real time.",
+          "Cross-functional communication under extreme crisis latency and incomplete information.",
+          "Prototyping community-first disaster response playbooks."
         ],
         testimonialQuote: {
           speaker: "Course Alum",
@@ -739,32 +874,31 @@ export const PROGRAMS: ProgramItem[] = [
         }
       },
       {
-        id: "energy-environment-economics-nus",
+        id: "intro-to-iot-csit122",
         number: "02",
-        title: "ENERGY, ENVIRONMENT & ECONOMICS: PREPARING ENVIRONMENTAL LEADERS",
-        subtitle: "Game-Based Pedagogy for Future Environmental Leaders · NUS Alumni Spotlight",
-        date: "CONTINUING ACADEMIC & EXECUTIVE",
-        venue: "National University of Singapore (NUS) AlumNet & Environmental Networks",
-        partner: "NUS Spotlight: Game Changers — Innovating Education for a Sustainable Future",
-        format: "Experiential Game-Based Learning & Environmental Pedagogy",
-        participants: "Future Environmental Leaders, Sustainability Scholars & Educators",
-        description: "Dr. Balaji Kalluri has taught energy and environment subjects using cutting-edge game-based and experiential learning methods. Spotlighted in NUS AlumNet ('Game Changers: Innovating Education for a Sustainable Future'), his broader teaching work deploys games to prepare future environmental leaders to tackle the climate crisis with visceral comprehension of energy grids, clean energy transitions, and market economics.",
-        takeaway: "Preparing future environmental leaders requires purposeful play that bridges abstract thermodynamics, economics, and ecological survival into tangible decisions.",
-        tag: "NUS SPOTLIGHT",
+        title: "CSIT122 : INTRODUCTION TO INTERNET-OF-THINGS",
+        subtitle: "Connected Systems, Sensor Networks & Smart Infrastructure Lab",
+        date: "23rd April, Thur",
+        venue: "Bharat Play Technology & Innovation Lab",
+        partner: "Computer Science & Information Technology Faculty",
+        format: "Interactive Playful Systems Lab & Cyber-Physical Prototyping",
+        participants: "Engineering Students, Tech Enthusiasts & Urban Systems Innovators",
+        description: "Introduction to Internet-of-Things (CSIT122) explores networked sensors, telemetry protocols, edge compute, and smart infrastructure through playful systems modeling. Scheduled on 23rd April (Thur), learners explore how physical devices interface with digital networks, experiencing feedback loops, device telemetry, and cyber-physical security through tactile simulation.",
+        takeaway: "Understand how smart cities, telemetry streams, and interconnected sensors actually function together—and how to diagnose systemic failures before they occur.",
+        tag: "CSIT122 · 23 APR THUR",
         image: "",
         galleryImages: [],
-        linkedinUrl: "https://nus.edu.sg/alumnet/thealumnus/story/people/spotlight/game-changers-innovating-education-for-a-sustainable-future?utm_source=chatgpt.com",
-        contextChallenge: "Bridging the gap between high-level macroeconomic energy policies and grassroots ecological realities without losing learners in dry spreadsheets.",
-        simulationDeployed: "Multi-tiered energy dispatch and decarbonization tabletop simulations where students balance power reliability, industrial growth, consumer costs, and emission caps.",
+        contextChallenge: "Demystifying complex IoT architectures, latency issues, and cyber-physical vulnerabilities without getting bogged down in opaque digital abstraction.",
+        simulationDeployed: "CASCADE cyber-physical defense simulation and IoT sensor telemetry tabletop sandbox.",
         keyInsights: [
-          "Featured in NUS AlumNet Spotlight as an innovative educator pioneering purposeful play for environmental leadership.",
-          "Demonstrated that students grasp complex tariff structures and grid latencies 3x faster through simulation than conventional lecture slides.",
-          "Created enduring learning artifacts that students take forward into corporate sustainability and public policy careers."
+          "Hardware-software interconnectivity: grasping sensor latency, packet integrity, and mesh architectures playfully.",
+          "Smart urban infrastructure: deploying IoT for traffic, flood monitoring, and clean energy microgrids.",
+          "Cyber-physical security: experiencing vulnerability mitigation and failure cascading in interconnected systems."
         ],
         testimonialQuote: {
-          speaker: "NUS AlumNet Spotlight",
-          role: "Feature: Innovating Education for a Sustainable Future",
-          quote: "Dr. Balaji Kalluri uses game-based learning to demystify complex environmental problems, preparing the next generation of leaders to navigate the delicate balance between energy, environment, and economics."
+          speaker: "Dr. Balaji Kalluri",
+          role: "Lead Facilitator & Systems Engineer",
+          quote: "In CSIT122, we peel back the complexity of IoT devices. Students discover that the hardest part of connected systems isn't just the code—it's managing latency, power constraints, and cascading security vulnerabilities in the physical world."
         }
       }
     ]

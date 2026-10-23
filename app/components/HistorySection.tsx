@@ -1,8 +1,8 @@
 export default function HistorySection() {
   return (
-    <section className="py-32 px-6 bg-stone-900 text-stone-50 border-t border-stone-800">
+    <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-stone-900 text-stone-50 border-t border-stone-800">
       <div className="max-w-[1000px] mx-auto text-center">
-        <h2 className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tighter mb-16 text-stone-400">
+        <h2 className="font-display text-3xl sm:text-4xl md:text-6xl font-bold uppercase tracking-tighter mb-10 sm:mb-16 text-stone-400">
           It Started With Cities.
         </h2>
         

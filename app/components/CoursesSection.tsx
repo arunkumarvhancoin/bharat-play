@@ -6,25 +6,24 @@ import { motion } from "framer-motion";
 
 const COURSES = [
   {
-    id: "systems-thinking",
-    title: "SYSTEMS THINKING 101",
-    desc: "Learn to map complex urban ecosystems and understand non-linear dynamics.",
-    color: "text-brand-green",
-    border: "border-brand-green"
-  },
-  {
-    id: "game-design",
-    title: "SERIOUS GAME DESIGN",
-    desc: "Master the mechanics of designing board games for public policy and civic engagement.",
+    id: "envs102",
+    code: "ENVS102",
+    date: "25th April, Sat",
+    title: "ENVS102 : DISASTERS-NATURAL & MAN-MADE",
+    desc: "An intensive play-based studio exploring natural and anthropogenic hazards, emergency budget trade-offs, and disaster preparedness through serious games.",
     color: "text-brand-orange",
-    border: "border-brand-orange"
+    border: "border-brand-orange",
+    href: "/programs/courses"
   },
   {
-    id: "future-cities",
-    title: "FUTURE CITIES",
-    desc: "Explore speculative design and foresight methodologies for urban planning.",
-    color: "text-brand-navy",
-    border: "border-brand-navy"
+    id: "csit122",
+    code: "CSIT122",
+    date: "23rd April, Thur",
+    title: "CSIT122 : INTRODUCTION TO INTERNET-OF-THINGS",
+    desc: "A foundational hands-on course introducing sensor networks, edge intelligence, connected urban infrastructure, and cyber-physical security simulations.",
+    color: "text-brand-green",
+    border: "border-brand-green",
+    href: "/programs/courses"
   }
 ];
 
@@ -52,7 +51,7 @@ export default function CoursesSection() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {COURSES.map((course, idx) => (
             <motion.div
               key={course.id}
@@ -62,15 +61,20 @@ export default function CoursesSection() {
               transition={{ delay: idx * 0.1, duration: 0.6 }}
               className="flex flex-col border border-gray-200 p-6 sm:p-8 hover:shadow-xl transition-shadow bg-brand-offwhite rounded-sm group"
             >
-              <div className={`w-12 h-1 mb-6 sm:mb-8 ${course.border} border-t-4`} />
+              <div className="flex items-center justify-between mb-4">
+                <div className={`w-12 h-1 ${course.border} border-t-4`} />
+                <span className="font-mono text-xs font-bold text-brand-navy bg-white px-2 py-0.5 rounded-xs border border-gray-200">
+                  📅 {course.date}
+                </span>
+              </div>
               <h4 className={`font-display text-2xl sm:text-3xl font-bold uppercase tracking-tighter mb-3 sm:mb-4 ${course.color}`}>
                 {course.title}
               </h4>
               <p className="text-brand-gray text-base sm:text-lg font-medium mb-8 sm:mb-12 flex-1">
                 {course.desc}
               </p>
-              <Link href="/programs" className="inline-flex items-center gap-3 text-brand-navy font-bold text-xs uppercase tracking-widest hover:text-brand-orange transition-colors">
-                LEARN MORE
+              <Link href={course.href} className="inline-flex items-center gap-3 text-brand-navy font-bold text-xs uppercase tracking-widest hover:text-brand-orange transition-colors">
+                COURSE DETAILS & ENROLL
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </motion.div>

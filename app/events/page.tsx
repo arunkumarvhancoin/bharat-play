@@ -1,53 +1,35 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Calendar, Clock, Sparkles, MapPin, History, Award } from "lucide-react";
+import { ArrowLeft, ArrowRight, Calendar, Clock, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import EventsCalendar from "../components/EventsCalendar";
 
 const PAST_EVENTS = [
   {
     id: "saturdays-serious-social-games",
     number: "01",
-    tag: "PUBLIC GAMEPLAY SERIES",
-    title: "SATURDAYS4SERIOUSSOCIALGAMES",
-    subtitle: "Play. Connect. Think differently.",
-    desc: "Saturdays4SeriousSocialGames is Bharat Play's public gameplay series that brings people together to explore real-world challenges through purposeful play. Rather than treating games as just entertainment, the sessions use gameplay to encourage conversation, curiosity, systems thinking and responsible citizenship. The series has explored themes connected to livable cities, urban resilience and disaster preparedness, giving participants an opportunity to experience complex issues together, discuss different perspectives and think about the communities and cities they are part of.",
-    format: "Public gameplay series",
-    venue: "Bharat Play Innovation cum Experience Center, Kolathur, Chennai",
-    focus: "Purposeful Play · Social Learning · Urban Challenges",
-    date: "PUBLIC SERIES",
-    time: "WEEKLY SESSIONS",
-    takeaway: "Transforming complex urban resilience and disaster preparedness into communal conversations and systems thinking.",
+    title: "Saturdays 4 Serious Social Games",
+    desc: "Weekly public tabletop sessions exploring urban livability, civic systems, and disaster preparedness.",
+    venue: "Kolathur, Chennai",
+    date: "Weekly Series",
   },
   {
     id: "resilient-cities-disaster",
     number: "02",
-    tag: "DISASTER PREPAREDNESS",
-    title: "RESILIENT CITIES / DISASTER PREPAREDNESS",
-    subtitle: "Understanding resilient cities through play.",
-    desc: "As part of Saturdays4SeriousSocialGames, this session brought participants together to explore disaster preparedness and urban resilience through purposeful gameplay. The experience looked at how disaster risk, preparedness and the way cities are planned are connected to everyday urban life. The session encouraged participants to think beyond disasters as isolated events and consider how livability, resilience, preparedness and responsible citizenship come together when building better cities. It was held on 12 September 2026 at the Bharat Play Experience Center in Chennai.",
-    format: "Saturdays4SeriousSocialGames Session",
-    venue: "Bharat Play Experience Center, Kolathur, Chennai",
-    focus: "Resilience · Disaster Preparedness · Livable Cities",
-    date: "12 SEP 2026",
-    time: "5:30–7:30 PM",
-    takeaway: "Connecting disaster risk, municipal preparedness and everyday urban life through hands-on simulation.",
+    title: "Resilient Cities & Disaster Prep",
+    desc: "Hands-on simulation connecting disaster risk, municipal planning, and everyday civic choices.",
+    venue: "Experience Center, Chennai",
+    date: "12 Sep 2026",
   },
   {
     id: "city-runners-bitsaa",
     number: "03",
-    tag: "INTERGENERATIONAL GATHERING",
-    title: "CITY RUNNERS × BITSAA CHENNAI",
-    subtitle: "Cities. Systems. People.",
-    desc: "Bharat Play brought City Runners to an intergenerational gathering with BITSAA Chennai around Gandhi Jayanti. The experience brought together parents, young people and alumni to explore the complexity of cities through collaborative gameplay. Through City Runners, participants were encouraged to look at cities as interconnected systems, consider different perspectives and understand how individual decisions can connect to larger urban challenges. The experience created space for intergenerational learning, civic awareness, systems thinking and collective conversation — all through play.",
-    format: "City Runners Play Experience",
-    venue: "BITSAA Chennai Community Gathering",
-    partner: "BITSAA Chennai",
-    focus: "Systems Thinking · Civic Awareness · Intergenerational Learning",
-    date: "03 OCT 2026",
-    time: "GANDHI JAYANTI GATHERING",
-    takeaway: "Intergenerational civic learning enabling parents, youth and alumni to negotiate real-world urban complexity together.",
-  }
+    title: "City Runners × BITSAA Chennai",
+    desc: "Intergenerational play session bringing alumni, parents, and youth together to explore city trade-offs.",
+    venue: "BITSAA, Chennai",
+    date: "03 Oct 2026",
+  },
 ];
 
 export default function EventsPage() {
@@ -164,7 +146,7 @@ export default function EventsPage() {
                   <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                 </a>
                 <Link 
-                  href="/benefits" 
+                  href="/games/city-runners" 
                   className="inline-flex items-center gap-3 border border-white/30 text-white px-8 py-5 rounded-sm font-mono text-xs font-bold uppercase tracking-widest hover:bg-white/10 transition-colors"
                 >
                   EXPLORE GAMEPLAY MECHANICS
@@ -201,145 +183,59 @@ export default function EventsPage() {
         </div>
       </section>
 
-      {/* SECTION: OTHER EVENTS DONE BY BHARAT PLAY (NO IMAGES, ARCHITECTURAL DOSSIER LAYOUT) */}
-      <section className="bg-white py-32 px-4 md:px-6 border-y border-gray-200">
-        <div className="max-w-[1400px] mx-auto w-full">
+      {/* INTERACTIVE EVENTS CALENDAR: CLICK DATE TO INSPECT SESSIONS */}
+      <EventsCalendar />
+
+      {/* SECTION: OTHER EVENTS DONE BY BHARAT PLAY (COMPACT, SHORT CONTENT, FIRST 3 ONLY) */}
+      <section className="bg-white py-12 sm:py-16 px-4 md:px-6 border-y border-gray-200">
+        <div className="max-w-[1200px] mx-auto w-full">
           
-          {/* Section Header */}
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-20 pb-12 border-b border-gray-200 gap-8">
-            <div className="max-w-2xl">
-              <span className="font-mono text-xs md:text-sm font-bold uppercase tracking-widest text-brand-orange mb-3 flex items-center gap-2">
-                <History className="w-4 h-4 text-brand-orange" /> FIELD ARCHIVE & COMPLETED ENGAGEMENTS
+          {/* Section Header: Compact & Direct */}
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-brand-navy/20 gap-4">
+            <div>
+              <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-brand-orange mb-1 block">
+                FIELD ARCHIVE · 03 RECENT SESSIONS
               </span>
-              <h3 className="font-display text-5xl md:text-7xl font-bold tracking-tighter text-brand-navy uppercase leading-[0.9]">
-                OTHER EVENTS DONE <br/> <span className="text-brand-green">BY BHARAT PLAY.</span>
+              <h3 className="font-display text-2xl sm:text-3xl font-black tracking-tight text-brand-navy uppercase">
+                OTHER EVENTS DONE <span className="text-brand-green">BY BHARAT PLAY.</span>
               </h3>
             </div>
-            <p className="max-w-md text-brand-gray text-base md:text-lg font-medium leading-relaxed">
-              A curated public record of our facilitated gameplay series, resilience sessions, and community partnerships across Chennai.
+            <p className="text-xs sm:text-sm text-brand-gray font-mono uppercase tracking-wider">
+              Recent facilitated gameplay sessions & community labs
             </p>
           </div>
 
-          {/* Chronological Architectural Ledger */}
-          <div className="divide-y divide-gray-200">
-            {PAST_EVENTS.map((event, idx) => (
-              <motion.article
+          {/* 3 Compact Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {PAST_EVENTS.map((event) => (
+              <div
                 key={event.id}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.08 }}
-                className="py-16 md:py-20 first:pt-0 last:pb-0 group"
+                className="bg-[#faf8f5] border border-brand-navy/20 hover:border-brand-navy p-5 rounded-xs flex flex-col justify-between transition-all duration-200 hover:shadow-md group"
               >
-                {/* Top Meta Bar */}
-                <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
-                  <div className="flex items-center gap-3">
-                    <span className="font-mono text-2xl md:text-3xl font-bold text-brand-orange">
+                <div>
+                  <div className="flex items-center justify-between pb-3 mb-3 border-b border-brand-navy/10">
+                    <span className="font-mono text-xl font-black text-brand-orange">
                       {event.number}
                     </span>
-                    <span className="font-mono text-xs font-bold uppercase tracking-widest px-3 py-1 rounded bg-brand-navy text-white">
-                      {event.tag}
+                    <span className="font-mono text-[11px] font-bold uppercase text-brand-gray">
+                      {event.date}
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-brand-gray">
-                    <span className="text-brand-orange">{event.date}</span>
-                    <span>·</span>
-                    <span>{event.time}</span>
-                  </div>
+
+                  <h4 className="font-display text-base sm:text-lg font-bold uppercase tracking-tight text-brand-navy mb-2 group-hover:text-brand-orange transition-colors">
+                    {event.title}
+                  </h4>
+
+                  <p className="text-xs sm:text-sm text-brand-navy/80 font-normal leading-relaxed">
+                    {event.desc}
+                  </p>
                 </div>
 
-                {/* Content Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
-                  
-                  {/* Left Column: Subtitle, Title & Narrative Description (lg:col-span-7) */}
-                  <div className="lg:col-span-7 flex flex-col">
-                    <span className="font-mono text-xs md:text-sm font-bold uppercase tracking-wider text-brand-green mb-2 block">
-                      {event.subtitle}
-                    </span>
-                    <h4 className="font-display text-3xl md:text-5xl font-bold uppercase tracking-tight text-brand-navy mb-6 leading-[1.05] group-hover:text-brand-orange transition-colors">
-                      {event.title}
-                    </h4>
-                    <p className="text-base md:text-lg text-brand-navy/85 font-medium leading-relaxed">
-                      {event.desc}
-                    </p>
-                  </div>
-
-                  {/* Right Column: Structured Metadata Card & Takeaway (lg:col-span-5) */}
-                  <div className="lg:col-span-5 flex flex-col gap-5">
-                    
-                    {/* Metadata Card */}
-                    <div className="bg-brand-offwhite border border-gray-200 p-6 md:p-7 rounded-sm space-y-4">
-                      
-                      <div className="flex items-start gap-3 pb-3.5 border-b border-gray-200">
-                        <MapPin className="w-4 h-4 text-brand-orange shrink-0 mt-0.5" />
-                        <div>
-                          <span className="font-mono text-[10px] uppercase font-bold tracking-widest text-brand-gray block">
-                            VENUE
-                          </span>
-                          <span className="font-semibold text-brand-navy text-sm block mt-0.5">
-                            {event.venue}
-                          </span>
-                        </div>
-                      </div>
-
-                      <div className="flex items-start gap-3 pb-3.5 border-b border-gray-200">
-                        <Sparkles className="w-4 h-4 text-brand-green shrink-0 mt-0.5" />
-                        <div>
-                          <span className="font-mono text-[10px] uppercase font-bold tracking-widest text-brand-gray block">
-                            FORMAT
-                          </span>
-                          <span className="font-semibold text-brand-navy text-sm block mt-0.5">
-                            {event.format}
-                          </span>
-                        </div>
-                      </div>
-
-                      {event.partner && (
-                        <div className="flex items-start gap-3 pb-3.5 border-b border-gray-200">
-                          <Award className="w-4 h-4 text-brand-orange shrink-0 mt-0.5" />
-                          <div>
-                            <span className="font-mono text-[10px] uppercase font-bold tracking-widest text-brand-gray block">
-                              COMMUNITY PARTNER
-                            </span>
-                            <span className="font-semibold text-brand-navy text-sm block mt-0.5">
-                              {event.partner}
-                            </span>
-                          </div>
-                        </div>
-                      )}
-
-                      <div>
-                        <span className="font-mono text-[10px] uppercase font-bold tracking-widest text-brand-gray block mb-2">
-                          FOCUS THEMES
-                        </span>
-                        <div className="flex flex-wrap gap-1.5">
-                          {event.focus.split("·").map((f, fIdx) => (
-                            <span 
-                              key={fIdx} 
-                              className="font-mono text-xs font-semibold bg-white border border-gray-200 text-brand-navy px-2.5 py-1 rounded-sm"
-                            >
-                              {f.trim()}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                    </div>
-
-                    {/* Key Outcome / Takeaway Banner */}
-                    <div className="border-l-4 border-brand-orange bg-white p-5 rounded-r border border-l-brand-orange border-gray-200 shadow-sm">
-                      <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-brand-orange block mb-1">
-                        KEY CIVIC OUTCOME
-                      </span>
-                      <p className="font-display text-base md:text-lg font-bold uppercase tracking-tight text-brand-navy">
-                        {event.takeaway}
-                      </p>
-                    </div>
-
-                  </div>
-
+                <div className="pt-3 mt-4 border-t border-brand-navy/10 flex items-center gap-1.5 text-[11px] font-mono text-brand-gray truncate">
+                  <span>📍</span>
+                  <span className="truncate">{event.venue}</span>
                 </div>
-              </motion.article>
+              </div>
             ))}
           </div>
 

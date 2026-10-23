@@ -2,14 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { 
-  ArrowRight, 
-  ChevronDown, 
-  Award,
-  ExternalLink 
-} from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { GameItem } from "../../data/games";
 
 interface GameExperienceClientProps {
@@ -18,19 +11,13 @@ interface GameExperienceClientProps {
 }
 
 export default function GameExperienceClient({ game, otherGames }: GameExperienceClientProps) {
-  const [isDossierOpen, setIsDossierOpen] = useState(false);
-
   return (
-    <article className="min-h-screen bg-brand-offwhite text-brand-navy pt-24 md:pt-32 pb-32 selection:bg-brand-orange selection:text-white">
+    <article className="min-h-screen bg-brand-offwhite text-brand-navy pt-28 pb-24 selection:bg-brand-orange selection:text-white">
       
-      {/* ============================================================== */}
-      {/* 01. EDITORIAL HERO — MAKE THE GAME THE HERO                   */}
-      {/* ============================================================== */}
-      <section className="px-4 md:px-8 max-w-[1440px] mx-auto pt-6 pb-16 md:pb-24 border-b border-gray-200">
-        
-        {/* Breadcrumb & Institutional Strip */}
-        <div className="flex flex-wrap items-center justify-between gap-4 mb-10 pb-4 border-b border-gray-200/60 font-mono text-xs uppercase tracking-widest text-brand-gray">
-          <div className="flex items-center gap-2">
+      {/* BREADCRUMB */}
+      <div className="max-w-[1100px] mx-auto w-full px-4 md:px-6 mb-8">
+        <div className="flex items-center justify-between flex-wrap gap-2 sm:gap-4 font-mono text-xs uppercase tracking-widest text-brand-gray pb-4 border-b border-gray-200">
+          <div className="flex items-center gap-2 flex-wrap">
             <Link href="/" className="hover:text-brand-orange transition-colors">HOME</Link>
             <span className="text-gray-300">/</span>
             <Link href="/games" className="hover:text-brand-orange transition-colors">GAMES</Link>
@@ -38,792 +25,346 @@ export default function GameExperienceClient({ game, otherGames }: GameExperienc
             <span className="text-brand-orange font-bold">{game.name}</span>
           </div>
 
-          <div className="flex items-center gap-3">
-            <span className="px-2.5 py-0.5 rounded-xs bg-brand-navy text-white text-[10px] font-bold">
-              GAME {game.displayNumber}
-            </span>
-            <span className="text-brand-orange text-[10px] font-bold hidden sm:inline flex items-center gap-1">
-              <Award className="w-3 h-3" /> {game.institutionalBadge}
-            </span>
-          </div>
+          <span className="px-2.5 py-1 rounded-xs bg-brand-navy text-white font-bold">
+            GAME #{game.displayNumber}
+          </span>
         </div>
+      </div>
 
-        {/* 12-Column Editorial Hero Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+      {/* HERO: SMALL CONTENT, NORMAL FONT SIZE */}
+      <section className="max-w-[1100px] mx-auto w-full px-4 md:px-6 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Left: Large Typography & Narrative Premise (lg:col-span-6) */}
-          <div className="lg:col-span-6 flex flex-col justify-between">
-            <div>
-              <motion.span 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="font-mono text-xs md:text-sm font-bold uppercase tracking-widest text-brand-orange block mb-3"
-              >
-                {game.subtitle}
-              </motion.span>
+          <div className="lg:col-span-7 space-y-4">
+            <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange block">
+              {game.subtitle}
+            </span>
 
-              <motion.h1 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.1 }}
-                className="font-display text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold uppercase tracking-tighter text-brand-navy leading-[0.85] mb-6 text-balance"
-              >
-                {game.name}
-              </motion.h1>
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold uppercase tracking-tight text-brand-navy leading-none">
+              {game.name}
+            </h1>
 
-              <motion.p 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 0.2 }}
-                className="text-xl sm:text-2xl md:text-3xl font-medium text-brand-gray leading-snug max-w-xl mb-8"
-              >
-                {game.shortDescription}
-              </motion.p>
+            {/* TAGLINE */}
+            {game.tagline && (
+              <p className="text-lg sm:text-xl text-brand-navy font-bold leading-relaxed">
+                {game.tagline}
+              </p>
+            )}
+
+            {/* THEMES */}
+            {game.themes && game.themes.length > 0 && (
+              <div className="flex flex-wrap gap-1.5 pt-1">
+                {game.themes.map((theme, i) => (
+                  <span
+                    key={i}
+                    className="font-mono text-[11px] font-semibold uppercase tracking-wider bg-brand-navy/5 text-brand-navy px-2.5 py-1 rounded-xs border border-gray-200"
+                  >
+                    {theme}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {/* READABLE SPECS */}
+            <div className="flex flex-wrap items-center gap-4 py-3 border-y border-gray-200 text-sm font-mono font-bold text-brand-navy">
+              <span>👥 {game.players.label} Players</span>
+              <span>·</span>
+              <span className="text-brand-orange">⏱️ {game.duration.label}</span>
+              <span>·</span>
+              <span className="text-brand-green">🎯 Age {game.age}</span>
+              <span>·</span>
+              <span>⚡ {game.difficulty === "Low to Medium" ? "Low–Medium" : game.difficulty}</span>
+              {game.format && (
+                <>
+                  <span>·</span>
+                  <span className="text-brand-gray">🎲 {game.format}</span>
+                </>
+              )}
             </div>
 
-            {/* Quick Action Group */}
-            <motion.div 
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-col sm:flex-row sm:items-center gap-4 pt-4 border-t border-gray-200"
-            >
+            {/* ACTIONS */}
+            <div className="pt-2 flex flex-wrap items-center gap-4">
               <a
-                href={`https://wa.me/916381531026?text=${encodeURIComponent(`Hi Bharat Play, I would like to request a session for ${game.name}.`)}`}
+                href={`https://wa.me/916381531026?text=${encodeURIComponent(`Hi Bharat Play, I would like to book a session for ${game.name}.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-brand-navy text-white px-7 py-4 rounded-xs font-mono text-xs font-bold uppercase tracking-widest hover:bg-brand-orange transition-colors shadow-sm group"
+                className="inline-flex items-center gap-2 bg-brand-navy text-white hover:bg-brand-orange px-6 py-3 rounded-xs font-mono text-xs font-bold uppercase tracking-wider transition-colors shadow-xs"
               >
-                REQUEST A {game.name.toUpperCase()} SESSION
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <span>BOOK A SESSION</span>
+                <ArrowRight className="w-4 h-4" />
               </a>
 
               <a
-                href="#gameplay"
-                className="inline-flex items-center justify-center gap-2 text-brand-navy hover:text-brand-orange font-mono text-xs font-bold uppercase tracking-widest py-3 sm:py-4 transition-colors"
+                href="#what-you-do"
+                className="font-mono text-xs font-bold uppercase text-brand-navy hover:text-brand-orange transition-colors"
               >
-                HOW IT PLAYS ↓
+                DETAILS & LEARNING ↓
               </a>
-            </motion.div>
+            </div>
           </div>
 
-          {/* Right: Immersive Game Visual or Architectural Specification Card (lg:col-span-6) */}
-          <div className="lg:col-span-6">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative aspect-[4/3] w-full bg-brand-navy rounded-xs overflow-hidden border border-gray-300 shadow-xl group flex flex-col justify-between p-6 md:p-8"
-            >
+          {/* VISUAL */}
+          <div className="lg:col-span-5">
+            <div className="relative aspect-[4/3] w-full bg-brand-navy rounded-xs overflow-hidden border border-gray-200 shadow-md">
               {game.image ? (
-                <>
-                  <img 
-                    src={game.image} 
-                    alt={`${game.name} — Real Game Board & Tabletop Components`}
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 ease-out" 
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/85 via-transparent to-transparent opacity-80" />
-                  <div className="absolute bottom-4 left-4 right-4 text-white flex items-end justify-between">
-                    <div>
-                      <span className="font-mono text-[10px] uppercase font-bold tracking-widest text-brand-orange block mb-0.5">
-                        AUTHENTIC GAMEPLAY PHOTOGRAPHY
-                      </span>
-                      <p className="font-display text-sm md:text-base font-bold uppercase tracking-tight">
-                        {game.name} Tabletop Board & Simulation Artifacts
-                      </p>
-                    </div>
-                    <span className="font-mono text-[10px] uppercase text-white/70 hidden sm:inline">
-                      BHARAT PLAY LAB
-                    </span>
-                  </div>
-                </>
+                <img 
+                  src={game.image} 
+                  alt={game.name} 
+                  className="w-full h-full object-cover" 
+                />
               ) : (
-                <div className="h-full flex flex-col justify-between relative z-10 text-white">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs uppercase font-bold px-3 py-1 bg-brand-orange text-white rounded-xs tracking-wider">
-                      {game.institutionalBadge || "BHARAT PLAY SIMULATION"}
-                    </span>
-                    <span className="font-mono text-xs text-white/60 uppercase">
-                      #{game.displayNumber}
-                    </span>
-                  </div>
-                  <div className="my-auto py-6">
-                    <span className="font-mono text-xs uppercase font-bold text-brand-orange tracking-widest block mb-2">
-                      SIMULATION ARCHITECTURE
-                    </span>
-                    <h3 className="font-display text-2xl md:text-4xl font-bold uppercase tracking-tight text-white mb-3">
-                      {game.name}
-                    </h3>
-                    <p className="font-display text-sm md:text-base text-white/80 leading-relaxed max-w-md">
-                      {game.tagline}
-                    </p>
-                  </div>
-                  <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-white/70">
-                    <span>{game.players.label} PLAYERS</span>
-                    <span>{game.approxDuration}</span>
-                  </div>
+                <div className="w-full h-full p-6 flex flex-col justify-between text-white">
+                  <span className="font-mono text-xs text-brand-orange font-bold uppercase">TABLETOP SIMULATION</span>
+                  <p className="font-display text-2xl font-bold uppercase">{game.name}</p>
                 </div>
               )}
-            </motion.div>
-          </div>
-
-        </div>
-
-      </section>
-
-      {/* ============================================================== */}
-      {/* 02. COMPACT SWISS DATA INFORMATION BAR                         */}
-      {/* ============================================================== */}
-      <section className="px-4 md:px-8 max-w-[1440px] mx-auto border-b border-gray-200 bg-white">
-        <div className="grid grid-cols-2 md:grid-cols-5 divide-y md:divide-y-0 md:divide-x divide-gray-200">
-          
-          <div className="py-4 md:py-6 px-4 first:pl-0">
-            <span className="font-mono text-[10px] uppercase tracking-widest text-brand-gray font-bold block mb-1">
-              DIFFICULTY
-            </span>
-            <span className="font-display text-base md:text-lg font-bold text-brand-navy uppercase block">
-              {game.difficulty}
-            </span>
-          </div>
-
-          <div className="py-4 md:py-6 px-4">
-            <span className="font-mono text-[10px] uppercase tracking-widest text-brand-gray font-bold block mb-1">
-              PLAYERS
-            </span>
-            <span className="font-display text-base md:text-lg font-bold text-brand-navy uppercase block">
-              {game.players.min}–{game.players.max}
-            </span>
-          </div>
-
-          <div className="py-4 md:py-6 px-4">
-            <span className="font-mono text-[10px] uppercase tracking-widest text-brand-gray font-bold block mb-1">
-              DURATION
-            </span>
-            <span className="font-display text-base md:text-lg font-bold text-brand-navy uppercase block">
-              {game.approxDuration}
-            </span>
-          </div>
-
-          <div className="py-4 md:py-6 px-4">
-            <span className="font-mono text-[10px] uppercase tracking-widest text-brand-gray font-bold block mb-1">
-              FORMAT
-            </span>
-            <span className="font-display text-base md:text-lg font-bold text-brand-navy uppercase block">
-              {game.format.split("/")[0].trim()}
-            </span>
-          </div>
-
-          <div className="py-4 md:py-6 px-4 last:pr-0 col-span-2 md:col-span-1 border-t md:border-t-0">
-            <span className="font-mono text-[10px] uppercase tracking-widest text-brand-gray font-bold block mb-1">
-              AUDIENCE
-            </span>
-            <span className="font-display text-base md:text-lg font-bold text-brand-navy uppercase block">
-              Civic / Institutional / Educational
-            </span>
+            </div>
           </div>
 
         </div>
       </section>
 
-      {/* ============================================================== */}
-      {/* 03. WHY CITY RUNNERS? — THE REAL-WORLD PROBLEM                 */}
-      {/* ============================================================== */}
-      <section className="px-4 md:px-8 max-w-[1440px] mx-auto py-20 md:py-28 border-b border-gray-200">
-        
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          
-          <div className="lg:col-span-4">
+      {/* MARKET CONTEXT / CHALLENGE CALLOUT IF AVAILABLE */}
+      {game.marketContext && (
+        <section className="max-w-[1100px] mx-auto w-full px-4 md:px-6 mb-12">
+          <div className="bg-amber-50/80 border-l-4 border-brand-orange p-6 sm:p-7 rounded-r-xs shadow-xs">
             <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange block mb-2">
-              WHY {game.name.toUpperCase()}?
+              INDUSTRY CONTEXT & AEC RISK
             </span>
-            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold uppercase tracking-tighter text-brand-navy leading-[0.9]">
-              THE REAL-WORLD PROBLEM.
-            </h2>
-          </div>
-
-          <div className="lg:col-span-8 space-y-8">
-            <p className="text-xl sm:text-2xl text-brand-navy font-medium leading-relaxed max-w-3xl">
-              {game.name} immerses players into the high-stakes, interdependent world of Indian municipal governance. Players experience contrasting civic personas, institutional constraints, municipal decision-making and competing priorities.
-            </p>
-
-            {/* Tripartite Swiss Structure: The Challenge / Tension / Experience */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-gray-200">
-              
-              <div className="space-y-2">
-                <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-navy block">
-                  01 · THE CHALLENGE
-                </span>
-                <p className="font-display text-xl font-bold text-brand-navy uppercase">
-                  {game.premise.challenge}
-                </p>
-                <p className="text-xs text-brand-gray font-medium leading-relaxed">
-                  Every decision touches municipal finances, physical networks, transit corridors, and citizen well-being.
-                </p>
-              </div>
-
-              <div className="space-y-2">
-                <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange block">
-                  02 · THE TENSION
-                </span>
-                <p className="font-display text-xl font-bold text-brand-navy uppercase">
-                  {game.premise.tension}
-                </p>
-                <p className="text-xs text-brand-gray font-medium leading-relaxed">
-                  Ward representatives, municipal engineers, and activist citizens possess conflicting mandates and scarce budgets.
-                </p>
-              </div>
-
-              <div className="space-y-2">
-                <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-green block">
-                  03 · THE EXPERIENCE
-                </span>
-                <p className="font-display text-xl font-bold text-brand-navy uppercase">
-                  {game.premise.experience}
-                </p>
-                <p className="text-xs text-brand-gray font-medium leading-relaxed">
-                  Real-time negotiation where players must deal with the tangible consequences of their collective choices.
-                </p>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-      {/* ============================================================== */}
-      {/* 04. GAME EXPERIENCE — HOW THE GAME PLAYS                       */}
-      {/* ============================================================== */}
-      <section id="gameplay" className="px-4 md:px-8 max-w-[1440px] mx-auto py-20 md:py-28 border-b border-gray-200 bg-white">
-        
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-8 border-b border-gray-200">
-          <div>
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange block mb-2">
-              GAMEPLAY ARCHITECTURE
-            </span>
-            <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-bold uppercase tracking-tighter text-brand-navy leading-[0.9]">
-              HOW THE GAME PLAYS.
-            </h2>
-          </div>
-          <p className="font-mono text-xs uppercase tracking-widest text-brand-gray max-w-sm">
-            FOUR AUTHENTIC INTERACTION MECHANICS DESIGNED BY DR. BALAJI KALLURI
-          </p>
-        </div>
-
-        {/* 2x2 Swiss Editorial Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-          {game.mechanics.map((mech) => (
-            <div 
-              key={mech.number}
-              className="p-5 sm:p-8 md:p-10 border border-gray-200 bg-brand-offwhite rounded-xs flex flex-col justify-between min-h-[220px] group hover:border-brand-navy transition-colors relative overflow-hidden"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="font-mono text-2xl font-bold text-brand-orange">
-                    {mech.number}
-                  </span>
-                  <span className="font-mono text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-xs bg-white border border-gray-200 text-brand-navy">
-                    {mech.tag}
-                  </span>
-                </div>
-
-                <h3 className="font-display text-2xl md:text-3xl font-bold uppercase tracking-tight text-brand-navy mb-3 group-hover:text-brand-orange transition-colors">
-                  {mech.title}
-                </h3>
-
-                <p className="text-base text-brand-navy/85 font-medium leading-relaxed">
-                  {mech.description}
-                </p>
-              </div>
-
-              <div className="pt-6 mt-6 border-t border-gray-200/80 flex items-center justify-between font-mono text-[11px] text-brand-gray">
-                <span>SYSTEMIC MECHANIC #{mech.number}</span>
-                <span className="text-brand-navy font-bold">TACTICAL TURNS</span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-      </section>
-
-      {/* ============================================================== */}
-      {/* 05. SHOW THE ACTUAL GAME — THE GAME IN ACTION GALLERY          */}
-      {/* ============================================================== */}
-      {(game.gallery && game.gallery.length > 0) && (
-        <section className="px-4 md:px-8 max-w-[1440px] mx-auto py-20 md:py-28 border-b border-gray-200">
-          
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-8 border-b border-gray-200">
-            <div>
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange block mb-2">
-                AUTHENTIC TABLETOP ARTIFACTS & WORKSHOPS
-              </span>
-              <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-bold uppercase tracking-tighter text-brand-navy leading-[0.9]">
-                THE GAME IN ACTION.
-              </h2>
-            </div>
-            <p className="text-sm md:text-base text-brand-gray font-medium max-w-md">
-              {game.id === "city-runners" 
-                ? "Documented tabletop playtests, intergenerational community gatherings, and academic labs across India."
-                : `Documented field engagements and workshop artifacts for ${game.name}.`}
+            <p className="text-sm sm:text-base text-brand-navy font-medium leading-relaxed">
+              {game.marketContext}
             </p>
           </div>
-
-          {game.id === "city-runners" ? (
-            /* Swiss Asymmetric Editorial Photo Grid for City Runners */
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-              
-              {/* Main Large Shot: cr.webp (md:col-span-12 lg:col-span-6) */}
-              <div className="md:col-span-12 lg:col-span-6 bg-white border border-gray-200 p-2 rounded-xs shadow-sm">
-                <div className="relative aspect-[16/10] overflow-hidden bg-gray-100 group">
-                  <img 
-                    src="/cr.webp" 
-                    alt="City Runners Board and Card Deck" 
-                    className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <span className="absolute bottom-3 left-3 bg-brand-navy/90 text-white font-mono text-[10px] uppercase font-bold px-2 py-1">
-                    BOARD & LEDGER ARCHITECTURE
-                  </span>
-                </div>
-                <p className="font-mono text-[11px] text-brand-gray pt-2 px-1">
-                  Interactive ward boards, budget decks, and public infrastructure tokens.
-                </p>
-              </div>
-
-              {/* Participant Deliberation Shot: cr1.webp (md:col-span-6 lg:col-span-3) */}
-              <div className="md:col-span-6 lg:col-span-3 bg-white border border-gray-200 p-2 rounded-xs shadow-sm flex flex-col justify-between">
-                <div className="relative aspect-[4/3] overflow-hidden bg-gray-100 group">
-                  <img 
-                    src="/cr1.webp" 
-                    alt="Tabletop Deliberation Session" 
-                    className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700"
-                  />
-                  <span className="absolute bottom-3 left-3 bg-brand-navy/90 text-white font-mono text-[10px] uppercase font-bold px-2 py-1">
-                    COALITION BARGAINING
-                  </span>
-                </div>
-                <p className="font-mono text-[11px] text-brand-gray pt-2 px-1">
-                  Teams negotiating cross-ward funding and municipal policy trade-offs.
-                </p>
-              </div>
-
-              {/* Close-up Tokens: cr2.webp (md:col-span-6 lg:col-span-3) */}
-              <div className="md:col-span-6 lg:col-span-3 bg-white border border-gray-200 p-2 rounded-xs shadow-sm flex flex-col justify-between">
-                <div className="relative aspect-[4/3] overflow-hidden bg-gray-100 group">
-                  <img 
-                    src="/cr2.webp" 
-                    alt="Close-up board pieces and tokens" 
-                    className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700"
-                  />
-                  <span className="absolute bottom-3 left-3 bg-brand-navy/90 text-white font-mono text-[10px] uppercase font-bold px-2 py-1">
-                    TACTICAL PIECES & TILES
-                  </span>
-                </div>
-                <p className="font-mono text-[11px] text-brand-gray pt-2 px-1">
-                  Physical tokens tracking municipal capex, drains, and civic happiness.
-                </p>
-              </div>
-
-            </div>
-          ) : (
-            /* Dedicated Authentic Gallery for Other Games (e.g. BiBo) */
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {game.gallery.map((item, gIdx) => (
-                <div key={gIdx} className="bg-white border border-gray-200 p-3 rounded-xs shadow-sm">
-                  <div className="relative aspect-video overflow-hidden bg-gray-100 group">
-                    <img 
-                      src={item.src} 
-                      alt={item.alt} 
-                      className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700"
-                    />
-                  </div>
-                  <p className="font-mono text-xs text-brand-gray pt-3 px-1">
-                    {item.caption}
-                  </p>
-                </div>
-              ))}
-            </div>
-          )}
-
         </section>
       )}
 
-      {/* ============================================================== */}
-      {/* 06. SCENARIOS / DILEMMAS — THINGS GET COMPLICATED              */}
-      {/* ============================================================== */}
-      <section className="px-4 md:px-8 max-w-[1440px] mx-auto py-20 md:py-28 border-b border-gray-200 bg-white">
-        
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-8 border-b border-gray-200">
-          <div>
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange block mb-2">
-              CRISIS EVENTS & SIMULATION DILEMMAS
-            </span>
-            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold uppercase tracking-tighter text-brand-navy leading-[0.9]">
-              THINGS GET COMPLICATED.
-            </h2>
+      {/* FULL AUTHENTIC DESCRIPTION */}
+      <section className="max-w-[1100px] mx-auto w-full px-4 md:px-6 mb-12">
+        <div className="bg-white border border-gray-200 rounded-sm p-6 sm:p-8 shadow-xs">
+          <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-green block mb-2">
+            OVERVIEW
+          </span>
+          <h2 className="font-display text-2xl sm:text-3xl font-bold uppercase text-brand-navy mb-4">
+            ABOUT {game.name}
+          </h2>
+          <div className="space-y-4 text-sm sm:text-base text-brand-navy/90 font-medium leading-relaxed">
+            {game.description.split("\n\n").map((para, idx) => (
+              <p key={idx}>{para}</p>
+            ))}
           </div>
-          <p className="font-mono text-xs uppercase tracking-widest text-brand-gray max-w-sm">
-            REAL-WORLD EMERGENCIES DRAWN FROM INDIAN MUNICIPALITIES
-          </p>
         </div>
-
-        {/* 3 Editorial Story Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {game.scenarios.map((scen) => (
-            <div 
-              key={scen.number}
-              className="p-8 border border-gray-200 bg-brand-offwhite rounded-xs flex flex-col justify-between relative group hover:border-brand-orange transition-colors"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="font-mono text-xs font-bold uppercase tracking-widest px-2.5 py-1 bg-brand-navy text-white rounded-xs">
-                    SCENARIO {scen.number}
-                  </span>
-                  <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-brand-orange">
-                    {scen.crisisLevel}
-                  </span>
-                </div>
-
-                <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-brand-navy mb-4 leading-snug group-hover:text-brand-orange transition-colors">
-                  {scen.title}
-                </h3>
-
-                <p className="text-sm text-brand-navy/85 font-medium leading-relaxed">
-                  {scen.description}
-                </p>
-              </div>
-
-              <div className="pt-6 mt-6 border-t border-gray-200 font-mono text-[10px] uppercase font-bold text-brand-gray flex items-center justify-between">
-                <span>IN-GAME DILEMMA</span>
-                <span className="text-brand-orange">TACTICAL CRISIS →</span>
-              </div>
-            </div>
-          ))}
-        </div>
-
       </section>
 
-      {/* ============================================================== */}
-      {/* 07. WHAT PLAYERS TAKE AWAY                                     */}
-      {/* ============================================================== */}
-      <section className="px-4 md:px-8 max-w-[1440px] mx-auto py-20 md:py-28 border-b border-gray-200">
-        
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-8 border-b border-gray-200">
-          <div>
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange block mb-2">
-              PEDAGOGICAL OUTCOMES
-            </span>
-            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold uppercase tracking-tighter text-brand-navy leading-[0.9]">
-              WHAT PLAYERS TAKE AWAY.
-            </h2>
-          </div>
-          <p className="font-mono text-xs uppercase tracking-widest text-brand-gray">
-            FOUR CORE CAPACITIES DEVELOPED THROUGH PURPOSEFUL PLAY
-          </p>
-        </div>
-
-        {/* 4 Swiss Horizontal Treatment with Thin Rules */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {game.outcomes.map((out, idx) => (
-            <div key={idx} className="border-t-2 border-brand-navy pt-6 space-y-3">
-              <span className="font-mono text-xs font-bold text-brand-orange block">
-                0{idx + 1}
-              </span>
-              <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-brand-navy">
-                {out.title}
-              </h3>
-              <p className="text-sm text-brand-gray font-medium leading-relaxed">
-                {out.description}
-              </p>
-            </div>
-          ))}
-        </div>
-
-      </section>
-
-      {/* ============================================================== */}
-      {/* 08. WHO PLAYS CITY RUNNERS? (WHO IS IT FOR?)                  */}
-      {/* ============================================================== */}
-      <section className="px-4 md:px-8 max-w-[1440px] mx-auto py-20 md:py-28 border-b border-gray-200 bg-white">
-        
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-8 border-b border-gray-200">
-          <div>
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange block mb-2">
-              TARGET AUDIENCES
-            </span>
-            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold uppercase tracking-tighter text-brand-navy leading-[0.9]">
-              WHO PLAYS {game.name.toUpperCase()}?
-            </h2>
-          </div>
-          <p className="font-mono text-xs uppercase tracking-widest text-brand-gray">
-            CROSS-SECTORAL APPLICATIONS
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {game.audiences.map((aud, idx) => (
-            <div key={idx} className="p-6 border border-gray-200 bg-brand-offwhite rounded-xs space-y-3">
-              <div className="w-8 h-8 rounded-full bg-brand-navy text-white flex items-center justify-center font-mono text-xs font-bold">
-                0{idx + 1}
-              </div>
-              <h3 className="font-display text-lg font-bold uppercase text-brand-navy leading-tight">
-                {aud.title}
-              </h3>
-              <p className="text-xs md:text-sm text-brand-gray font-medium leading-relaxed">
-                {aud.description}
-              </p>
-            </div>
-          ))}
-        </div>
-
-      </section>
-
-      {/* ============================================================== */}
-      {/* 09. FACILITATED EXPERIENCE — MORE THAN A BOARD GAME            */}
-      {/* ============================================================== */}
-      <section className="px-4 md:px-8 max-w-[1440px] mx-auto py-20 md:py-28 border-b border-gray-200">
-        
-        <div className="bg-brand-navy text-white p-8 md:p-14 lg:p-16 rounded-xs relative overflow-hidden">
+      {/* WHAT YOU DO & WHAT YOU LEARN: DYNAMIC AUTHENTIC DATA */}
+      <section id="what-you-do" className="max-w-[1100px] mx-auto w-full px-4 md:px-6 mb-12 scroll-mt-28">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           
-          <div className="max-w-3xl mb-12">
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange block mb-3">
-              ALL-INCLUSIVE LAB INTERVENTION
+          {/* What You Do / Gameplay Mechanics */}
+          <div className="bg-white border border-gray-200 rounded-sm p-6 sm:p-7 shadow-xs">
+            <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange block mb-2">
+              GAMEPLAY
             </span>
-            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold uppercase tracking-tighter leading-[0.9] mb-6">
-              MORE THAN A BOARD GAME.
+            <h2 className="font-display text-2xl font-bold uppercase text-brand-navy mb-4">
+              WHAT YOU DO
             </h2>
-            <p className="text-lg md:text-xl text-white/85 font-medium leading-relaxed">
-              {game.name} can be delivered as a facilitated learning experience, with gameplay, reflection and debriefing designed around the needs of the participating group.
-            </p>
+
+            <ul className="space-y-4 text-sm sm:text-base text-brand-navy/85 font-medium">
+              {game.mechanics && game.mechanics.length > 0 ? (
+                game.mechanics.map((mech, i) => (
+                  <li key={i} className="flex items-start gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-brand-green shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="text-brand-navy block uppercase text-xs font-mono tracking-wider">{mech.title}</strong>
+                      <span>{mech.description}</span>
+                    </div>
+                  </li>
+                ))
+              ) : (
+                <li className="flex items-start gap-2.5">
+                  <CheckCircle2 className="w-5 h-5 text-brand-green shrink-0 mt-0.5" />
+                  <span>{game.shortDescription}</span>
+                </li>
+              )}
+            </ul>
           </div>
 
-          {/* Process Flow: PLAY -> REFLECT -> DISCUSS -> CONNECT */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-white/15">
-            
-            <div className="space-y-2">
-              <span className="font-mono text-xs font-bold text-brand-orange block">STAGE 01</span>
-              <h3 className="font-display text-2xl md:text-3xl font-bold uppercase tracking-tight">PLAY</h3>
-              <p className="text-xs text-white/70 leading-relaxed">
-                Fast-paced tabletop decision-making with authentic institutional constraints.
-              </p>
-            </div>
+          {/* What You Learn / Learning Objectives */}
+          <div className="bg-white border border-gray-200 rounded-sm p-6 sm:p-7 shadow-xs">
+            <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-green block mb-2">
+              LEARNING OBJECTIVES
+            </span>
+            <h2 className="font-display text-2xl font-bold uppercase text-brand-navy mb-4">
+              WHY PLAY & WHAT YOU LEARN
+            </h2>
 
-            <div className="space-y-2">
-              <span className="font-mono text-xs font-bold text-brand-green block">STAGE 02</span>
-              <h3 className="font-display text-2xl md:text-3xl font-bold uppercase tracking-tight">REFLECT</h3>
-              <p className="text-xs text-white/70 leading-relaxed">
-                Individual and team reflection on trade-offs made under crisis conditions.
-              </p>
-            </div>
-
-            <div className="space-y-2">
-              <span className="font-mono text-xs font-bold text-brand-orange block">STAGE 03</span>
-              <h3 className="font-display text-2xl md:text-3xl font-bold uppercase tracking-tight">DISCUSS</h3>
-              <p className="text-xs text-white/70 leading-relaxed">
-                Guided group dialogue connecting gameplay dynamics to real city policy.
-              </p>
-            </div>
-
-            <div className="space-y-2">
-              <span className="font-mono text-xs font-bold text-brand-green block">STAGE 04</span>
-              <h3 className="font-display text-2xl md:text-3xl font-bold uppercase tracking-tight">CONNECT</h3>
-              <p className="text-xs text-white/70 leading-relaxed">
-                Translate systems awareness into concrete civic and institutional action.
-              </p>
-            </div>
-
+            <ul className="space-y-4 text-sm sm:text-base text-brand-navy/85 font-medium">
+              {game.learningObjectives && game.learningObjectives.length > 0 ? (
+                game.learningObjectives.map((obj, i) => (
+                  <li key={i} className="flex items-start gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-brand-orange shrink-0 mt-0.5" />
+                    <span>{obj}</span>
+                  </li>
+                ))
+              ) : game.outcomes && game.outcomes.length > 0 ? (
+                game.outcomes.map((out, i) => (
+                  <li key={i} className="flex items-start gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-brand-orange shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="text-brand-navy block uppercase text-xs font-mono tracking-wider">{out.title}</strong>
+                      <span>{out.description}</span>
+                    </div>
+                  </li>
+                ))
+              ) : (
+                <li className="flex items-start gap-2.5">
+                  <CheckCircle2 className="w-5 h-5 text-brand-orange shrink-0 mt-0.5" />
+                  <span>{game.keyLearning}</span>
+                </li>
+              )}
+            </ul>
           </div>
 
         </div>
-
       </section>
 
-      {/* ============================================================== */}
-      {/* 10. COMPACT EXPANDABLE GAME DOSSIER                            */}
-      {/* ============================================================== */}
-      <section className="px-4 md:px-8 max-w-[1440px] mx-auto py-12 border-b border-gray-200 bg-white">
-        
-        <div className="border border-gray-200 rounded-xs overflow-hidden">
-          
-          <button
-            type="button"
-            onClick={() => setIsDossierOpen(!isDossierOpen)}
-            className="w-full p-6 bg-brand-offwhite flex items-center justify-between text-left hover:bg-gray-100 transition-colors"
-          >
-            <div>
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange block mb-1">
-                TECHNICAL SPECIFICATIONS & ARCHIVES
-              </span>
-              <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-brand-navy">
-                {game.name.toUpperCase()} DOSSIER
-              </h3>
-            </div>
-            
-            <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-brand-navy">
-              <span>{isDossierOpen ? "COLLAPSE SPECIFICATIONS" : "VIEW FULL TECHNICAL SPECIFICATIONS"}</span>
-              <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isDossierOpen ? "rotate-180" : ""}`} />
-            </div>
-          </button>
+      {/* TARGET AUDIENCE & VALIDATION (IF AVAILABLE) */}
+      {(game.targetAudience || game.validation) && (
+        <section className="max-w-[1100px] mx-auto w-full px-4 md:px-6 mb-12">
+          <div className="bg-white border border-gray-200 rounded-sm p-6 sm:p-7 shadow-xs space-y-4">
+            <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange block">
+              TARGET AUDIENCE & VALIDATION
+            </span>
 
-          <AnimatePresence>
-            {isDossierOpen && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.3 }}
-                className="p-8 border-t border-gray-200 bg-white space-y-6"
-              >
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-sm">
-                  <div>
-                    <span className="font-mono text-[10px] uppercase font-bold text-brand-gray block mb-1">LEAD ARCHITECT</span>
-                    <a 
-                      href="https://www.linkedin.com/in/dr-balaji-kalluri-phd-a95a4931/" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="font-semibold text-brand-navy hover:text-brand-orange transition-colors inline-flex items-center gap-1 group"
-                    >
-                      <span>{game.leadArchitect}</span>
-                      <ExternalLink className="w-3 h-3 text-brand-gray group-hover:text-brand-orange transition-colors" />
-                    </a>
-                  </div>
-                  <div>
-                    <span className="font-mono text-[10px] uppercase font-bold text-brand-gray block mb-1">FORMAT & DEPLOYMENT</span>
-                    <span className="font-semibold text-brand-navy">{game.format}</span>
-                  </div>
-                  <div>
-                    <span className="font-mono text-[10px] uppercase font-bold text-brand-gray block mb-1">RECOMMENDED AGE</span>
-                    <span className="font-semibold text-brand-navy">{game.age}</span>
-                  </div>
-                  <div>
-                    <span className="font-mono text-[10px] uppercase font-bold text-brand-gray block mb-1">FACILITATION LAB</span>
-                    <span className="font-semibold text-brand-navy">Certified Game Master + Workbook Toolkits</span>
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-gray-100">
-                  <span className="font-mono text-[10px] uppercase font-bold text-brand-gray block mb-1.5">RESEARCH ORIGIN & ACADEMIC LINEAGE</span>
-                  <p className="text-xs text-brand-navy/85 leading-relaxed font-medium">
-                    {game.academicOrigin}
+            {game.targetAudience && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                <div className="p-4 bg-brand-offwhite rounded-xs border border-gray-200">
+                  <span className="font-mono text-xs font-bold text-brand-navy uppercase block mb-1">
+                    PRIMARY AUDIENCE
+                  </span>
+                  <p className="text-xs sm:text-sm text-brand-navy/85 font-medium leading-relaxed">
+                    {game.targetAudience.primary}
                   </p>
                 </div>
-              </motion.div>
+
+                <div className="p-4 bg-brand-offwhite rounded-xs border border-gray-200">
+                  <span className="font-mono text-xs font-bold text-brand-navy uppercase block mb-1">
+                    SECONDARY AUDIENCE
+                  </span>
+                  <p className="text-xs sm:text-sm text-brand-navy/85 font-medium leading-relaxed">
+                    {game.targetAudience.secondary}
+                  </p>
+                </div>
+              </div>
             )}
-          </AnimatePresence>
 
+            {game.validation && (
+              <p className="font-mono text-xs text-brand-gray font-semibold italic pt-2 border-t border-gray-100">
+                {game.validation}
+              </p>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* SESSION FLOW (SHORT & CLEAN) */}
+      <section className="max-w-[1100px] mx-auto w-full px-4 md:px-6 mb-12">
+        <div className="bg-brand-navy text-white rounded-sm p-6 sm:p-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-white/10">
+            <div>
+              <span className="font-mono text-xs font-bold uppercase text-brand-orange block">FACILITATED WORKSHOP</span>
+              <h3 className="font-display text-2xl font-bold uppercase">HOW A SESSION RUNS</h3>
+            </div>
+            <span className="font-mono text-xs text-white/70">Pan-India On-Site Facilitation</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="p-4 bg-white/5 rounded-xs border border-white/10">
+              <span className="font-mono text-xs text-brand-orange font-bold block">STEP 1 · 15 MIN</span>
+              <h4 className="font-display text-lg font-bold uppercase mt-1">ORIENTATION</h4>
+              <p className="text-xs sm:text-sm text-white/80 mt-1">Rules walk-through and team role assignments.</p>
+            </div>
+            <div className="p-4 bg-white/5 rounded-xs border border-white/10">
+              <span className="font-mono text-xs text-brand-green font-bold block">STEP 2 · 1–2 HRS</span>
+              <h4 className="font-display text-lg font-bold uppercase mt-1">ACTIVE GAMEPLAY</h4>
+              <p className="text-xs sm:text-sm text-white/80 mt-1">High-stakes simulation turns, crises, and negotiations.</p>
+            </div>
+            <div className="p-4 bg-white/5 rounded-xs border border-white/10">
+              <span className="font-mono text-xs text-brand-orange font-bold block">STEP 3 · 45 MIN</span>
+              <h4 className="font-display text-lg font-bold uppercase mt-1">GUIDED DEBRIEF</h4>
+              <p className="text-xs sm:text-sm text-white/80 mt-1">Connecting game dynamics to real-world policy and work.</p>
+            </div>
+          </div>
         </div>
-
       </section>
 
-      {/* ============================================================== */}
-      {/* 11. EXPLORE THE BHARAT PLAY GAME LIBRARY                       */}
-      {/* ============================================================== */}
-      <section className="px-4 md:px-8 max-w-[1440px] mx-auto py-20 md:py-28 border-b border-gray-200">
-        
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-8 border-b border-gray-200">
+      {/* OTHER GAMES SELECTOR */}
+      <section className="max-w-[1100px] mx-auto w-full px-4 md:px-6 pt-12 pb-8 border-t border-gray-200 mt-16">
+        <div className="mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-2 pb-4 border-b border-gray-200">
           <div>
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange block mb-2">
-              CATALOGUE OF PURPOSEFUL PLAY
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-brand-orange block mb-1">
+              DISCOVER MORE SIMULATIONS
             </span>
-            <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-bold uppercase tracking-tighter text-brand-navy leading-[0.9]">
-              EXPLORE THE GAME LIBRARY.
-            </h2>
+            <h3 className="font-display text-2xl sm:text-3xl font-bold uppercase text-brand-navy">
+              EXPLORE OTHER GAMES
+            </h3>
           </div>
-          <p className="text-base text-brand-gray font-medium max-w-md">
-            {game.name} is one of many purposeful games developed and used by Bharat Play.
-          </p>
+          <Link 
+            href="/games" 
+            className="font-mono text-xs text-brand-navy hover:text-brand-orange font-bold uppercase tracking-wider inline-flex items-center gap-1.5 transition-colors group"
+          >
+            <span>VIEW ALL 5 GAMES</span>
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
 
-        {/* 4 Cards for Other Games */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {otherGames.map((og) => (
             <Link
               key={og.id}
               href={`/games/${og.id}`}
-              className="group bg-white border border-gray-200 p-6 rounded-xs hover:border-brand-orange transition-all shadow-xs hover:shadow-md flex flex-col justify-between"
+              className="bg-white border border-gray-200 hover:border-brand-navy p-5 rounded-xs transition-all shadow-xs hover:shadow-md group flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center justify-between mb-3">
-                  <span className="font-mono text-xs font-bold text-brand-orange">
-                    #{og.displayNumber}
-                  </span>
-                  <span className="font-mono text-[10px] uppercase font-bold px-2 py-0.5 rounded-xs bg-gray-100 text-brand-navy">
+                {/* Thumbnail */}
+                {og.image && (
+                  <div className="relative aspect-[16/10] w-full bg-brand-navy/5 rounded-xs overflow-hidden mb-3.5 border border-gray-100">
+                    <img
+                      src={og.image}
+                      alt={og.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                )}
+
+                {/* Number & Difficulty */}
+                <div className="flex items-center justify-between text-xs font-mono font-bold mb-1.5">
+                  <span className="text-brand-orange">GAME #{og.displayNumber}</span>
+                  <span className="px-1.5 py-0.5 rounded-xs bg-gray-100 text-brand-navy text-[10px]">
                     {og.difficulty}
                   </span>
                 </div>
 
-                <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-brand-navy group-hover:text-brand-orange transition-colors mb-2">
+                {/* Name */}
+                <h4 className="font-display text-lg font-bold uppercase text-brand-navy group-hover:text-brand-orange transition-colors leading-tight">
                   {og.name}
-                </h3>
+                </h4>
 
-                <p className="text-xs text-brand-gray font-medium line-clamp-3 mb-6 leading-relaxed">
+                {/* Short Description */}
+                <p className="text-xs text-brand-gray font-medium line-clamp-2 mt-2 leading-relaxed">
                   {og.shortDescription}
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-gray-100 flex items-center justify-between font-mono text-xs">
-                <span className="text-gray-500">{og.players.label} PLAYERS</span>
-                <span className="text-brand-orange font-bold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                  EXPLORE →
+              {/* Specs & Link */}
+              <div className="pt-3 mt-4 border-t border-gray-100 flex items-center justify-between font-mono text-[11px] text-brand-navy font-semibold">
+                <span className="text-brand-gray">⏱️ {og.approxDuration || "1–2 Hours"}</span>
+                <span className="text-brand-orange inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform font-bold">
+                  <span>VIEW</span>
+                  <ArrowRight className="w-3 h-3" />
                 </span>
               </div>
             </Link>
           ))}
-        </div>
-
-      </section>
-
-      {/* ============================================================== */}
-      {/* 12. CALL TO ACTION — WANT TO PLAY?                             */}
-      {/* ============================================================== */}
-      <section className="px-4 md:px-8 max-w-[1440px] mx-auto py-24 md:py-32">
-        <div className="text-center max-w-4xl mx-auto space-y-8">
-          
-          <span className="font-mono text-xs md:text-sm font-bold uppercase tracking-widest text-brand-orange block">
-            EXPERIENTIAL SESSIONS & TABLETOP LABS
-          </span>
-
-          <h2 className="font-display text-4xl sm:text-6xl md:text-8xl font-bold uppercase tracking-tighter text-brand-navy leading-[0.88]">
-            WANT TO PLAY?
-          </h2>
-
-          <div className="py-2">
-            <span className="font-mono text-xs uppercase tracking-widest text-brand-gray block mb-3">
-              BRING {game.name.toUpperCase()} TO YOUR:
-            </span>
-            <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-4 font-mono text-sm md:text-base font-bold text-brand-navy">
-              <span className="px-3 py-1 bg-white border border-gray-200 rounded-xs">CLASSROOM</span>
-              <span className="text-brand-orange">·</span>
-              <span className="px-3 py-1 bg-white border border-gray-200 rounded-xs">TEAM</span>
-              <span className="text-brand-orange">·</span>
-              <span className="px-3 py-1 bg-white border border-gray-200 rounded-xs">INSTITUTION</span>
-              <span className="text-brand-orange">·</span>
-              <span className="px-3 py-1 bg-white border border-gray-200 rounded-xs">COMMUNITY</span>
-            </div>
-          </div>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-            <a
-              href={`https://wa.me/916381531026?text=${encodeURIComponent(`Hi Bharat Play, I would like to request a session for ${game.name}.`)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#25D366] text-white hover:bg-[#20ba59] px-8 py-5 rounded-xs font-mono text-xs font-bold uppercase tracking-widest transition-all shadow-md group"
-            >
-              <span>REQUEST A {game.name.toUpperCase()} SESSION</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-
-            <Link
-              href="/games"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white border border-gray-300 text-brand-navy hover:border-brand-navy px-8 py-5 rounded-xs font-mono text-xs font-bold uppercase tracking-widest transition-colors"
-            >
-              EXPLORE ALL GAMES →
-            </Link>
-          </div>
-
         </div>
       </section>
 

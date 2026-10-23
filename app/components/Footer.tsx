@@ -6,19 +6,19 @@ import { ArrowUpRight } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-white text-brand-navy pt-16 md:pt-40 pb-12 px-4 md:px-8 border-t border-gray-200">
+    <footer className="bg-white text-brand-navy pt-12 sm:pt-20 md:pt-40 pb-10 sm:pb-12 px-4 md:px-8 border-t border-gray-200">
       <div className="max-w-[1400px] mx-auto w-full">
         
         {/* Top Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-16 md:mb-40">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 mb-12 sm:mb-20 md:mb-40">
           
           {/* Brand */}
           <div className="lg:col-span-4 flex flex-col justify-between">
             <div>
-              <Link href="/" className="block mb-8">
-                <img src="/logo.png" alt="Bharat Play" className="h-24 md:h-32 w-auto object-contain" />
+              <Link href="/" className="block mb-6 sm:mb-8">
+                <img src="/logo.png" alt="Bharat Play" className="h-16 sm:h-24 md:h-32 w-auto object-contain" />
               </Link>
-              <p className="text-gray-500 font-medium max-w-sm text-lg leading-relaxed mb-12 ml-4">
+              <p className="text-gray-500 font-medium max-w-sm text-base sm:text-lg leading-relaxed mb-8 sm:mb-12 ml-0 sm:ml-4">
                 Life is a Game. Play it !<br/>
                 Planet is our Home. Save it !
               </p>
@@ -38,7 +38,6 @@ export default function Footer() {
               <Link href="/games" className="text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm">Games</Link>
               <Link href="/programs" className="text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm">Programs</Link>
               <Link href="/events" className="text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm">Events</Link>
-              <Link href="/benefits" className="text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm">Benefits</Link>
               <Link href="/testimonials" className="text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm">Testimonials</Link>
               <Link href="/about" className="text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm">About Us</Link>
             </div>

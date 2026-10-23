@@ -2,780 +2,511 @@
 "use client";
 
 import Link from "next/link";
-import { 
-  ArrowLeft, 
-  ArrowRight, 
-  Clock, 
-  Users, 
-  CheckCircle2, 
-  Award, 
-  ExternalLink,
-  Layers,
-  PackageCheck,
-  History,
-  MapPin
-} from "lucide-react";
-import { useState } from "react";
-import { motion } from "framer-motion";
 import { ProgramItem } from "../../data/programs";
-import { GAMES } from "../../data/games";
+
+interface CatalogueDetail {
+  label: string;
+  value: string;
+}
+
+interface CatalogueItem {
+  id: string;
+  images: string[];
+  category: string;
+  title: string;
+  subtitle?: string;
+  description: string;
+  details: CatalogueDetail[];
+}
 
 interface ProgramExperienceClientProps {
   program: ProgramItem;
-  otherPrograms: ProgramItem[];
+  otherPrograms?: ProgramItem[];
 }
 
-export default function ProgramExperienceClient({ program, otherPrograms }: ProgramExperienceClientProps) {
-  const [selectedMedia, setSelectedMedia] = useState<Record<string, string>>({});
+export default function ProgramExperienceClient({ program }: ProgramExperienceClientProps) {
+  const slug = program.slug;
+
+  let pageTitle = "GAME SESSIONS";
+  let introLine =
+    "Casual board game play sessions for all ages and generations, exploring purposeful play and complex systems.";
+  let items: CatalogueItem[] = [];
+
+  // =========================================================================
+  // 1. GAME SESSIONS
+  // =========================================================================
+  if (slug === "game-sessions") {
+    pageTitle = "GAME SESSIONS";
+    introLine =
+      "Casual board game play sessions for all ages and generations, exploring purposeful play, municipal governance, and complex systems.";
+    items = [
+      {
+        id: "city-runners",
+        images: ["/cr.webp"],
+        category: "GAME SESSION",
+        title: "CITY RUNNERS",
+        subtitle: "THE FLAGSHIP INDIAN URBAN GOVERNANCE BOARD GAME",
+        description:
+          "A participatory urban governance simulation where players navigate municipal budgets, civic trade-offs and public welfare across interdependent wards.",
+        details: [
+          { label: "THEME", value: "Urban Livability, Quality of Life, Participatory Governance" },
+          { label: "DIFFICULTY", value: "Medium to High" },
+          { label: "AGE", value: "12+" },
+          { label: "PLAYERS", value: "6 – 12" },
+          { label: "DURATION", value: "2 (play) + 1 (reflection) hrs" },
+          { label: "FORMAT", value: "Board Game / Urban Governance Simulation" },
+        ],
+      },
+      {
+        id: "prospera",
+        images: ["/games/prospera_board.jpg"],
+        category: "GAME SESSION",
+        title: "PROSPERA",
+        subtitle: "IMAGINE A CITY. SHAPE ITS FUTURE.",
+        description:
+          "A collaborative urban-planning game where players come together to imagine and build the city of the future. Through gameplay, participants explore how architecture, geography, and human settlements come together to form a functioning city.",
+        details: [
+          { label: "THEME", value: "Architecture & Urban Planning, Future of Cities, Systems Thinking" },
+          { label: "DIFFICULTY", value: "Low" },
+          { label: "AGE", value: "10+" },
+          { label: "PLAYERS", value: "4–10" },
+          { label: "DURATION", value: "1 hour gameplay + 1 hour reflection" },
+          { label: "FORMAT", value: "Board game" },
+        ],
+      },
+      {
+        id: "bibo",
+        images: ["/games/bibo.webp"],
+        category: "GAME SESSION",
+        title: "BiBo — BUILDING-IN-A-BOX",
+        subtitle: "RETHINKING HOW WE DESIGN, BUILD AND MANAGE FUTURE BUILDINGS",
+        description:
+          "BiBo gamifies the lifecycle of the built environment — from architectural design and engineering to construction and facilities management, exploring trade-offs shaping future buildings.",
+        details: [
+          { label: "THEME", value: "Architecture, Real Estate, Green Buildings, Net-Zero Buildings" },
+          { label: "DIFFICULTY", value: "Low to Medium" },
+          { label: "AGE", value: "15+" },
+          { label: "PLAYERS", value: "4–10" },
+          { label: "DURATION", value: "1 hour gameplay + 1 hour reflection" },
+          { label: "FORMAT", value: "Board game + cards" },
+        ],
+      },
+      {
+        id: "cascade",
+        images: ["/games/cascade.webp"],
+        category: "GAME SESSION",
+        title: "CASCADE",
+        subtitle: "TURN-BASED STRATEGY TABLETOP COOPERATIVE GAME",
+        description:
+          "A turn-based strategy tabletop, cooperative game. Played ideally among 4-5 players, where players simulate attacks and defences on a contemporary ‘smart’ building across an interconnected IoT network.",
+        details: [
+          { label: "THEME", value: "Smart Buildings, Cyber-Physical Risks, IoT Networks, Facilities Management" },
+          { label: "DIFFICULTY", value: "Medium" },
+          { label: "AGE", value: "15+" },
+          { label: "PLAYERS", value: "4–5" },
+          { label: "DURATION", value: "1 hour gameplay + 1 hour reflection" },
+          { label: "FORMAT", value: "Board game + cards" },
+        ],
+      },
+      {
+        id: "riskscape",
+        images: ["/games/riskscape.webp"],
+        category: "GAME SESSION",
+        title: "RiskScape",
+        subtitle: "CRITICAL INFRASTRUCTURE & ORGANIZATIONAL FRAGILITY SIMULATION",
+        description:
+          "A compact, intensive strategic simulation modeling institutional fragility during disruptive digital modernization. Designed for focused leadership groups stress-testing adaptive strategies under regulatory, technical, and operational shocks.",
+        details: [
+          { label: "THEME", value: "Critical Infrastructure, Organizational Risk, Digital Transformation" },
+          { label: "DIFFICULTY", value: "Medium to High" },
+          { label: "AGE", value: "15+" },
+          { label: "PLAYERS", value: "2 – 4" },
+          { label: "DURATION", value: "1 (play) + 1 (reflection) hrs" },
+          { label: "FORMAT", value: "Executive Command Tabletop" },
+        ],
+      },
+    ];
+  }
+
+  // =========================================================================
+  // 2. PLAY WORKSHOPS
+  // =========================================================================
+  else if (slug === "play-workshops") {
+    pageTitle = "PLAY WORKSHOPS";
+    introLine =
+      "Serious board game play sessions curated for targeted cohorts to deliver predefined outcomes using game as a tool and play as a process.";
+    items = [
+      {
+        id: "quest-alliance-vocational-trainers-bibo",
+        images: [
+          "/events_media/linkedin/bibo_workshop_1.jpg",
+          "/events_media/linkedin/bibo_workshop_2.jpg",
+          "/events_media/linkedin/bibo_workshop_4.jpg",
+          "/events_media/linkedin/bibo_workshop_5.jpg",
+        ],
+        category: "PLAY WORKSHOP",
+        title: "GREEN SKILLS & VOCATIONAL TRAINER CAPACITY",
+        subtitle: "BiBo SERIOUS GAME CAPACITY DEVELOPMENT TRAINING",
+        description:
+          "Co-developed, curated, and facilitated by Bharat Play Innovations in partnership with Quest Alliance (Gujarat) using the BiBo Board Game in Chennai. Educating and inspiring vocational trainers who train youth entering retail, hospitality, BPO/ITES, and wellness sectors to make green skills, climate change, and environmental impact comprehensible, actionable, and aspirational.",
+        details: [
+          { label: "DATE", value: "APR 2026" },
+          { label: "VENUE", value: "Quest Alliance Center, Chennai" },
+          { label: "PARTNER", value: "Quest Alliance (Gujarat) & City Atlas" },
+          { label: "FORMAT", value: "Vocational Trainer Capacity Development & Serious Game Workshop" },
+          { label: "PARTICIPANTS", value: "Vocational Trainers, Grassroots Educators & Skilling Leaders" },
+          { label: "TAKEAWAY", value: "Using GAME as a TOOL and PLAY as a PROCESS to translate green skills into tangible career pathways." },
+        ],
+      },
+      {
+        id: "teen-vikas-singapore-workshop",
+        images: [
+          "/events_media/linkedin/singapore_workshop_1.jpg",
+          "/events_media/linkedin/singapore_workshop_2.jpg",
+          "/events_media/linkedin/singapore_workshop_3.jpg",
+        ],
+        category: "PLAY WORKSHOP",
+        title: "SCIENCE MEETS SPIRITUALITY",
+        subtitle: "TEEN VIKAS DISASTER RESILIENCE WORKSHOP · SINGAPORE",
+        description:
+          "Delivered for Teen Vikas in Singapore, Dr. Balaji Kalluri reframed youth empowerment into a play-based workshop blending spiritual principles with scientific disaster resilience, preparing youth to become ambitious global environmental leaders by honing their critical observations and sadhana.",
+        details: [
+          { label: "DATE", value: "28 FEB 2026" },
+          { label: "VENUE", value: "Sri Sathya Sai Vedic Society, Singapore" },
+          { label: "PARTNER", value: "Sri Sathya Sai Vedic Society Singapore & Teen Vikas Educare" },
+          { label: "FORMAT", value: "Play-Based Spiritual & Systems Workshop on Disaster Resilience" },
+          { label: "PARTICIPANTS", value: "Singaporean Youth, Teen Vikas Scholars, Gurus & Community Educators" },
+          { label: "TAKEAWAY", value: "Preparing youth to become ambitious global environmental leaders by blending divine values with disaster resilience science." },
+        ],
+      },
+      {
+        id: "resilience-starts-at-home",
+        images: ["/events_media/linkedin/resilience_at_home.jpg"],
+        category: "PLAY WORKSHOP",
+        title: "RESILIENCE STARTS AT HOME",
+        subtitle: "INTER-GENERATIONAL GAMEPLAY WORKSHOP | NAVRATRI / VIJAYADASAMI 2026",
+        description:
+          "Marking solidarity with the UN International Day for Disaster Risk Reduction on Vijayadasami / Navratri, this family play workshop deployed the Master of Disasters (MoD) board game followed by guided community countermapping connecting gameplay intuition with Chennai's real flood, heatwave, and drought topography.",
+        details: [
+          { label: "DATE", value: "20 OCT 2026" },
+          { label: "VENUE", value: "Inner Companion Sanctuary, Chrompet, Chennai" },
+          { label: "PARTNER", value: "Inner Companion Foundation, ASSIST & Chennai Resilience Centre" },
+          { label: "FORMAT", value: "Participatory Family Play Workshop & Community Countermapping" },
+          { label: "PARTICIPANTS", value: "Families, Children (Age 8+) & Neighborhood Volunteers" },
+          { label: "TAKEAWAY", value: "True disaster preparedness begins at the family dining table, validated through community countermapping." },
+        ],
+      },
+    ];
+  }
+
+  // =========================================================================
+  // 3. PLAY EXHIBITION
+  // =========================================================================
+  else if (slug === "play-exhibition") {
+    pageTitle = "PLAY EXHIBITION";
+    introLine =
+      "Curated exhibits using unique creative games to spark curiosity across all audiences to see games through a new lens and engage in purposeful gameplays in large halls, campuses, corporate offices, and museums.";
+    items = [
+      {
+        id: "bavdhan-pune-summer-games-exhibition",
+        images: [
+          "/events_media/linkedin/bavdhan_flyer_1.jpg",
+          "/events_media/linkedin/pune_exhibition_2.jpg",
+          "/events_media/linkedin/pune_exhibition_3.jpg",
+        ],
+        category: "PLAY EXHIBITION",
+        title: "SUMMER EXPERIENTIAL GAMES EXHIBITION: BAVDHAN, PUNE",
+        subtitle: "CURATED SUMMER GAMES SHOWCASE FOR PARENTS, TEACHERS & CHILDREN",
+        description:
+          "A unique summer experiential games exhibition curated by Dr. Balaji Kalluri for parents, teachers, and children in Bavdhan, Pune. Co-facilitated by Abhijoy Banerjee and Saharsh Kanchan, this open experiential showcase created a welcoming space for families to experience tabletop learning firsthand, fostering screen-free intergenerational bonding, critical thinking, and civic problem-solving.",
+        details: [
+          { label: "DATE", value: "19 APR 2026" },
+          { label: "VENUE", value: "Residential Society Amphitheatre, Bavdhan, Pune" },
+          { label: "PARTNER", value: "Play2ProgressIndia & Bharat Play Innovations" },
+          { label: "FORMAT", value: "Free Community Experiential Games Exhibition & Interactive Walkthrough" },
+          { label: "PARTICIPANTS", value: "Parents, Teachers, Children, Youth & Society Residents" },
+          { label: "SIMULATION", value: "City Runner, EnergeticPlay, Master of Disaster, BiBo, Prospera, CybFlash" },
+          { label: "TAKEAWAY", value: "Empowering children and inspiring families to move beyond screens through purposeful, joy-filled tabletop play that builds 21st-century citizenship." },
+        ],
+      },
+      {
+        id: "pune-housing-society-game-exhibition",
+        images: [
+          "/events_media/linkedin/pune_exhibition_1.jpg",
+          "/events_media/linkedin/pune_exhibition_4.jpg",
+          "/events_media/linkedin/pune_exhibition_5.jpg",
+        ],
+        category: "PLAY EXHIBITION",
+        title: "PLAY GAMES TO LEARN, SKILL, AND CHANGE",
+        subtitle: "PUBLIC COMMUNITY GAME EXHIBITION · PUNE",
+        description:
+          "Curated by Dr. Balaji Kalluri and Abhijoy Banerjee on the theme of 'play games to learn, skill, and change' in an enclosed housing society hall in Pune. Featuring guided walkthroughs of popular tabletop games including EnergeticPlay, Master of Disaster, City Runner, Prospera, BiBo, CybFlash, CASCADE, Green Day, Climate Fresk, and student-designed simulations from FLAME University, challenging social norms around gaming and educating about purposeful play.",
+        details: [
+          { label: "DATE", value: "19 APR 2026" },
+          { label: "VENUE", value: "Housing Society Community Hall & Amphitheatre, Pune" },
+          { label: "PARTNER", value: "Play2ProgressIndia & KUDOS" },
+          { label: "FORMAT", value: "Curated Public Game Exhibition & Guided Tabletop Walk-Through" },
+          { label: "PARTICIPANTS", value: "Parents, Children, Youth, Teachers, Volunteers & Community Residents" },
+          { label: "SIMULATION", value: "EnergeticPlay, Master of Disaster, City Runner, Prospera, BiBo, CybFlash, CASCADE, Green Day, Climate Fresk" },
+          { label: "TAKEAWAY", value: "Challenging social norms around games to shape 21st-century problem-solving, empathy, and responsible citizenship through purposeful play." },
+        ],
+      },
+    ];
+  }
+
+  // =========================================================================
+  // 4. COURSES
+  // =========================================================================
+  else if (slug === "courses") {
+    pageTitle = "COURSES";
+    introLine =
+      "Academic semester studios and focused cohort courses facilitating play-based systems learning through tactile simulations and interactive labs.";
+    items = [
+      {
+        id: "envs102",
+        images: [],
+        category: "ACADEMIC STUDIO",
+        title: "ENVS102 : DISASTERS-NATURAL & MAN-MADE",
+        subtitle: "DEPARTMENT OF ENVIRONMENTAL STUDIES · FLAME UNIVERSITY",
+        description:
+          "An intensive play-based studio exploring natural and anthropogenic hazards, emergency budget trade-offs, and disaster preparedness through serious games and tabletop crisis simulations.",
+        details: [
+          { label: "SCHEDULE", value: "25th April, Sat" },
+          { label: "INSTITUTION", value: "Department of Environmental Studies, FLAME University" },
+          { label: "FORMAT", value: "Experiential Studio & Tabletop Hazard Simulation" },
+          { label: "AUDIENCE", value: "Undergraduate Scholars, Civic Leaders & Aspiring Civil Servants" },
+          { label: "SIMULATION", value: "Master of Disasters (MoD) & tabletop crisis sandboxes" },
+          { label: "TAKEAWAY", value: "Students experience the panic, delayed response, and resource trade-offs of disasters by designing and playtesting simulations." },
+        ],
+      },
+      {
+        id: "csit122",
+        images: [],
+        category: "ACADEMIC STUDIO",
+        title: "CSIT122 : INTRODUCTION TO INTERNET-OF-THINGS",
+        subtitle: "COMPUTER SCIENCE & INFORMATION TECHNOLOGY FACULTY",
+        description:
+          "A hands-on systems course exploring networked sensors, telemetry protocols, edge compute, and connected infrastructure through playful systems modeling and cyber-physical security simulations.",
+        details: [
+          { label: "SCHEDULE", value: "23rd April, Thur" },
+          { label: "INSTITUTION", value: "Computer Science & Information Technology Faculty" },
+          { label: "FORMAT", value: "Interactive Playful Systems Lab & Prototyping" },
+          { label: "AUDIENCE", value: "Engineering Students, Tech Enthusiasts & Systems Innovators" },
+          { label: "SIMULATION", value: "CASCADE cyber-physical defense simulation and IoT telemetry sandboxes" },
+          { label: "TAKEAWAY", value: "Understand how smart cities, telemetry streams, and interconnected sensors function together and how to diagnose systemic failures before they occur." },
+        ],
+      },
+    ];
+  }
 
   return (
-    <main className="min-h-screen bg-brand-offwhite text-brand-navy pt-28 pb-32 selection:bg-brand-orange selection:text-white">
-      
-      {/* 01. TOP BREADCRUMB */}
-      <div className="max-w-[1400px] mx-auto w-full px-4 md:px-6 pt-4 mb-8">
-        <Link 
-          href="/programs" 
-          className="inline-flex items-center gap-2 text-brand-orange font-mono text-xs uppercase tracking-widest hover:text-brand-navy transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" /> BACK TO ALL PROGRAMS
-        </Link>
-      </div>
-
-      {/* 02. HERO SECTION */}
-      <section className="max-w-[1400px] mx-auto w-full px-4 md:px-6 mb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
-          <div className="lg:col-span-8">
-            <motion.div 
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex flex-wrap items-center gap-3 mb-6"
-            >
-              <span className="font-mono text-xs font-bold uppercase tracking-widest px-3 py-1 bg-brand-navy text-white rounded-sm">
-                PROGRAM #{program.displayNumber}
-              </span>
-              <span className="font-mono text-xs font-bold uppercase tracking-widest px-3 py-1 bg-brand-orange text-white rounded-xs">
-                {program.tag}
-              </span>
-              <span className="font-mono text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-sm bg-emerald-50 text-emerald-700 border border-emerald-200">
-                {program.duration.badge}
-              </span>
-            </motion.div>
-
-            <motion.h1 
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter text-brand-navy mb-6 leading-[0.9]"
-            >
-              {program.name}
-            </motion.h1>
-
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="font-mono text-xs md:text-sm font-bold text-brand-orange uppercase tracking-wider mb-6"
-            >
-              {program.subtitle}
-            </motion.p>
-
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="text-xl md:text-2xl text-brand-navy/85 font-medium max-w-3xl leading-relaxed"
-            >
-              {program.description}
-            </motion.p>
+    <main className="min-h-screen bg-[#faf8f5] text-brand-navy pt-28 sm:pt-36 pb-32 sm:pb-40 selection:bg-brand-orange selection:text-white">
+      <div className="max-w-[1440px] mx-auto w-full px-5 sm:px-8 lg:px-14">
+        
+        {/* ============================================================ */}
+        {/* BREADCRUMB & SWISS TITLE HEADER                              */}
+        {/* ============================================================ */}
+        <header className="mb-16 sm:mb-24 pb-10 sm:pb-14 border-b-2 border-brand-navy/20">
+          {/* Subtle Top Navigation Breadcrumb */}
+          <div className="font-mono text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-brand-gray mb-4 sm:mb-6 flex items-center gap-2.5 flex-wrap">
+            <Link href="/" className="hover:text-brand-orange transition-colors">
+              HOME
+            </Link>
+            <span className="text-gray-300">/</span>
+            <Link href="/programs" className="hover:text-brand-orange transition-colors">
+              PROGRAMS
+            </Link>
+            <span className="text-gray-300">/</span>
+            <span className="text-brand-orange">{pageTitle}</span>
           </div>
 
-          {/* Right Column: Hero Visual & At a Glance Specs */}
-          <div className="lg:col-span-4 space-y-6">
-            <div className="w-full aspect-[4/3] bg-brand-navy rounded-sm overflow-hidden relative shadow-lg border border-gray-200">
-              {program.image ? (
-                <>
-                  <img 
-                    src={program.image} 
-                    alt={program.name}
-                    className="w-full h-full object-cover object-center"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/80 via-transparent to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4 text-white">
-                    <span className="font-mono text-[10px] uppercase font-bold text-brand-orange tracking-widest block mb-1">
-                      BHARAT PLAY INTERVENTIONS
-                    </span>
-                    <p className="font-display text-lg font-bold uppercase leading-tight">
-                      {program.tagline}
-                    </p>
-                  </div>
-                </>
-              ) : (
-                <div className="w-full h-full p-6 md:p-8 flex flex-col justify-between bg-gradient-to-br from-brand-navy via-brand-navy/95 to-brand-navy/90 text-white relative">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded bg-white/10 text-brand-orange border border-white/10">
-                      {program.tag}
-                    </span>
-                    <span className="font-mono text-xs uppercase font-bold text-white/60">
-                      #{program.displayNumber}
-                    </span>
-                  </div>
-                  <div>
-                    <span className="font-mono text-[10px] uppercase font-bold text-brand-orange tracking-widest block mb-1">
-                      BHARAT PLAY INTERVENTIONS
-                    </span>
-                    <p className="font-display text-xl md:text-2xl font-bold uppercase leading-tight text-white mb-2">
-                      {program.name}
-                    </p>
-                    <p className="font-mono text-xs text-white/70 line-clamp-2">
-                      {program.tagline}
-                    </p>
-                  </div>
-                </div>
-              )}
-            </div>
+          {/* Large Swiss Page Title */}
+          <h1 className="font-display text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tight text-brand-navy leading-[0.92] mb-5 sm:mb-7">
+            {pageTitle}
+          </h1>
 
-            <div className="bg-white border border-gray-200 p-6 rounded-sm shadow-sm space-y-4 text-xs font-medium">
-              <h3 className="font-mono text-[11px] font-bold uppercase tracking-widest text-brand-gray pb-2 border-b border-gray-100">
-                SPECIFICATIONS AT A GLANCE
-              </h3>
-              
-              <div className="flex justify-between items-center py-1">
-                <span className="font-mono text-gray-500 uppercase">FORMAT</span>
-                <span className="font-semibold text-brand-navy text-right">{program.format}</span>
-              </div>
-              <div className="flex justify-between items-center py-1 border-t border-gray-100">
-                <span className="font-mono text-gray-500 uppercase">DURATION</span>
-                <span className="font-bold text-brand-orange text-right">{program.duration.label}</span>
-              </div>
-              <div className="flex justify-between items-center py-1 border-t border-gray-100">
-                <span className="font-mono text-gray-500 uppercase">CAPACITY</span>
-                <span className="font-bold text-brand-green text-right">{program.cohortSize.label}</span>
-              </div>
-              <div className="flex justify-between items-start py-1 border-t border-gray-100">
-                <span className="font-mono text-gray-500 uppercase shrink-0 pt-0.5">LEAD</span>
-                <span className="font-semibold text-brand-navy text-right">{program.leadFacilitator}</span>
-              </div>
-            </div>
-          </div>
+          {/* Large Bold Introductory Statement */}
+          {introLine && (
+            <p className="text-xl sm:text-2xl md:text-3xl font-medium text-brand-navy/80 max-w-4xl leading-relaxed">
+              {introLine}
+            </p>
+          )}
+        </header>
 
-        </div>
-      </section>
+        {/* ============================================================ */}
+        {/* MAIN BODY: PAIRED IMAGE & CONTENT SHOWCASE (FULL WIDTH)      */}
+        {/* ============================================================ */}
+        <div className="w-full">
+          <section aria-label={`${pageTitle} Collection`} className="space-y-24 sm:space-y-36">
+            {items.map((item) => {
+              const hasImages = item.images && item.images.length > 0;
 
-      {/* 02.5. AVAILABLE PLAY SESSIONS (FOR GAME SESSIONS) */}
-      {program.id === "game-sessions" && (
-        <section className="max-w-[1400px] mx-auto w-full px-4 md:px-6 mb-24">
-          <div className="bg-white border border-gray-200 rounded-sm p-5 sm:p-8 md:p-14 shadow-xl">
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 pb-8 border-b border-gray-200 gap-6">
-              <div>
-                <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange mb-2 flex items-center gap-2">
-                  <Layers className="w-4 h-4 text-brand-orange" /> BHARAT PLAY SIMULATION SUITE
-                </span>
-                <h2 className="font-display text-3xl md:text-5xl font-bold uppercase tracking-tight text-brand-navy">
-                  AVAILABLE GAME SESSIONS.
-                </h2>
-              </div>
-              <p className="max-w-md text-brand-gray text-sm md:text-base font-medium leading-relaxed">
-                Choose from our 5 tabletop simulations for your team or cohort. Each game session is paired with a certified game master and cognitive debrief.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {GAMES.map((game) => (
-                <div 
-                  key={game.id}
-                  className="bg-brand-offwhite border border-gray-200 rounded-sm overflow-hidden flex flex-col justify-between hover:border-brand-navy transition-all group shadow-sm hover:shadow-md"
-                >
-                  <div>
-                    {/* Visual */}
-                    <div className="relative aspect-video w-full bg-brand-navy overflow-hidden">
-                      {game.image ? (
-                        <>
-                          <img 
-                            src={game.image} 
-                            alt={`${game.name} Play`}
-                            loading="lazy"
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/80 via-transparent to-transparent" />
-                        </>
-                      ) : (
-                        <div className="w-full h-full p-5 flex flex-col justify-between bg-gradient-to-br from-brand-navy via-brand-navy/95 to-brand-navy/90 text-white relative">
-                          <div className="flex items-center justify-between">
-                            <span className="font-mono text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-white/10 text-white">
-                              #{game.displayNumber}
-                            </span>
-                            <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-brand-orange">
-                              {game.difficulty}
-                            </span>
-                          </div>
-                          <div>
-                            <span className="font-mono text-[10px] uppercase font-bold text-brand-orange block mb-0.5">
-                              {game.theme}
-                            </span>
-                            <p className="font-display text-lg font-bold uppercase tracking-tight text-white">
-                              {game.name} Play
-                            </p>
-                          </div>
-                        </div>
-                      )}
-                      <div className="absolute top-3 left-3 pointer-events-none">
-                        <span className="font-mono text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-brand-navy text-white">
-                          #{game.displayNumber}
-                        </span>
-                      </div>
-                      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between pointer-events-none">
-                        <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-brand-orange">
-                          {game.format.split("/")[0].trim()}
-                        </span>
-                        <span className="font-mono text-[10px] font-bold text-white/90">
-                          {game.players.label} PLAYERS
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-6 space-y-4">
-                      <div>
-                        <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-brand-navy group-hover:text-brand-orange transition-colors mb-1">
-                          {game.name} Play
-                        </h3>
-                        <p className="font-mono text-xs font-bold uppercase tracking-wide text-brand-green">
-                          {game.subtitle}
-                        </p>
-                      </div>
-
-                      <p className="text-sm text-brand-navy/85 font-medium leading-relaxed line-clamp-3">
-                        {game.shortDescription}
-                      </p>
-
-                      <div className="pt-3 border-t border-gray-200 flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
-                        <span className="text-brand-gray flex items-center gap-1.5">
-                          <Clock className="w-3.5 h-3.5 text-brand-orange" />
-                          <span>{game.duration.label}</span>
-                        </span>
-                        <span className="text-brand-navy font-bold">
-                          AGE {game.age}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Actions */}
-                  <div className="p-6 pt-0 space-y-2">
-                    <a
-                      href={`https://wa.me/916381531026?text=${encodeURIComponent(`Hi Bharat Play! I would like to book or inquire about a ${game.name} Play session for our organization.`)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-2 bg-brand-navy text-white hover:bg-brand-orange px-4 py-3 rounded-sm font-mono text-xs font-bold uppercase tracking-widest transition-colors shadow-sm group/btn"
-                    >
-                      <span>BOOK {game.name.toUpperCase()} PLAY</span>
-                      <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
-                    </a>
-
-                    <Link
-                      href={`/games/${game.id}`}
-                      className="w-full inline-flex items-center justify-center gap-2 border border-gray-300 text-brand-navy hover:bg-white px-4 py-2.5 rounded-sm font-mono text-[11px] font-bold uppercase tracking-wider transition-colors"
-                    >
-                      <span>EXPLORE GAME RULES & DOSSIER</span>
-                      <ExternalLink className="w-3 h-3 text-brand-gray" />
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* 03. CONDUCTED SESSIONS & FIELD ARCHIVE (AUTHENTIC DEPLOYMENTS & LINKEDIN) */}
-      {program.conductedSessions && program.conductedSessions.length > 0 && (
-        <section id="conducted-archive" className="max-w-[1400px] mx-auto w-full px-4 md:px-6 mb-24 scroll-mt-28">
-          <div className="bg-white border border-gray-200 rounded-sm p-5 sm:p-8 md:p-14 shadow-xl">
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 pb-8 border-b border-gray-200 gap-6">
-              <div>
-                <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange mb-2 flex items-center gap-2">
-                  <History className="w-4 h-4 text-brand-orange" /> FIELD ARCHIVE & COMPLETED ENGAGEMENTS
-                </span>
-                <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tight text-brand-navy">
-                  CONDUCTED {program.name.toUpperCase()}.
-                </h2>
-              </div>
-              <p className="max-w-md text-brand-gray text-sm md:text-base font-medium leading-relaxed">
-                A verified public record of facilitated gameplay, university labs, and institutional workshops deployed in the field.
-              </p>
-            </div>
-
-            <div className="space-y-20">
-              {program.conductedSessions.map((session) => {
-                const currentImg = selectedMedia[session.id] || session.image;
-                const allPhotos = (session.galleryImages && session.galleryImages.length > 0 
-                  ? session.galleryImages 
-                  : [session.image]).filter(Boolean);
+              // SPECIAL AUTHENTIC COURSE LAYOUT (NO IMAGES OR VISUAL PLACEHOLDERS)
+              if (!hasImages) {
+                const scheduleDetail = item.details.find((d) => d.label === "SCHEDULE");
 
                 return (
-                  <article 
-                    key={session.id}
-                    id={session.id}
-                    className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start pb-20 border-b border-gray-200 last:border-b-0 last:pb-0 group scroll-mt-36"
+                  <article
+                    key={item.id}
+                    id={item.id}
+                    className="pt-2 sm:pt-4 pb-16 sm:pb-24 border-b-2 border-brand-navy/15 last:border-b-0 scroll-mt-32"
                   >
-                    {/* Visual / Video Column (lg:col-span-5) */}
-                    <div className="lg:col-span-5 space-y-4">
-                      <div className="rounded-sm overflow-hidden border border-gray-200 shadow-md bg-brand-navy relative">
-                        {session.videoSrc && currentImg === session.image ? (
-                          <div className="relative aspect-video w-full bg-brand-navy">
-                            <video 
-                              controls 
-                              poster={session.image}
-                              preload="metadata"
-                              className="w-full h-full object-cover"
-                            >
-                              <source src={session.videoSrc} type="video/mp4" />
-                              Your browser does not support the video tag.
-                            </video>
-                          </div>
-                        ) : currentImg ? (
-                          <div className="relative aspect-video w-full bg-brand-navy overflow-hidden">
-                            <img 
-                              src={currentImg} 
-                              alt={session.title} 
-                              loading="lazy"
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/80 via-transparent to-transparent" />
-                            <div className="absolute bottom-3 left-4 right-4">
-                              <span className="font-mono text-[10px] uppercase font-bold text-brand-orange tracking-widest">
-                                {session.format}
-                              </span>
-                            </div>
-                          </div>
-                        ) : (
-                          <div className="aspect-video w-full p-6 flex flex-col justify-between bg-gradient-to-br from-brand-navy via-brand-navy/95 to-brand-navy/90 text-white relative">
-                            <div className="flex items-center justify-between">
-                              <span className="font-mono text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded bg-white/10 text-brand-orange border border-white/10">
-                                {session.tag}
-                              </span>
-                              <span className="font-mono text-[10px] uppercase font-bold text-white/60">
-                                #{session.number}
-                              </span>
-                            </div>
-                            <div>
-                              <span className="font-mono text-[10px] uppercase font-bold text-brand-orange block mb-1">
-                                {session.format}
-                              </span>
-                              <p className="font-display text-lg font-bold uppercase tracking-tight text-white leading-tight">
-                                {session.title}
-                              </p>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Photo Gallery Thumbnails (Authentic Pictures) */}
-                      {allPhotos.length > 1 && (
-                        <div>
-                          <span className="font-mono text-[10px] uppercase font-bold text-brand-gray block mb-2 tracking-wider">
-                            SESSION PHOTO GALLERY ({allPhotos.length} PICTURES)
+                    <div className="max-w-5xl space-y-6">
+                      {scheduleDetail && (
+                        <div className="inline-block">
+                          <span className="font-mono text-xs sm:text-sm font-bold tracking-wider text-brand-navy bg-white px-3 py-1.5 border-2 border-brand-navy rounded-xs shadow-xs">
+                            📅 {scheduleDetail.value}
                           </span>
-                          <div className="flex items-center gap-2 overflow-x-auto pb-1">
-                            {allPhotos.map((imgUrl, pIdx) => (
-                              <button
-                                key={pIdx}
-                                type="button"
-                                onClick={() => setSelectedMedia((prev) => ({ ...prev, [session.id]: imgUrl }))}
-                                className={`relative w-20 aspect-video rounded-xs overflow-hidden border-2 transition-all shrink-0 ${
-                                  currentImg === imgUrl 
-                                    ? "border-brand-orange shadow-sm scale-102" 
-                                    : "border-gray-200 opacity-70 hover:opacity-100"
-                                }`}
-                              >
-                                <img 
-                                  src={imgUrl} 
-                                  alt={`Photo ${pIdx + 1}`} 
-                                  className="w-full h-full object-cover" 
-                                />
-                              </button>
-                            ))}
-                          </div>
                         </div>
                       )}
-                    </div>
 
-                    {/* Content Column (lg:col-span-7) */}
-                    <div className="lg:col-span-7 space-y-5">
-                      <div className="flex flex-wrap items-center justify-between gap-3">
-                        <div className="flex items-center gap-2.5">
-                          <span className="font-mono text-xl font-bold text-brand-orange">
-                            #{session.number}
-                          </span>
-                          <span className="font-mono text-xs font-bold uppercase tracking-widest px-2.5 py-0.5 rounded bg-brand-navy text-white">
-                            {session.tag}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2 font-mono text-xs font-bold text-brand-gray">
-                          <span className="text-brand-orange">{session.date}</span>
-                        </div>
-                      </div>
+                      {/* Large Course Title */}
+                      <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-brand-navy leading-[0.98]">
+                        {item.title}
+                      </h2>
 
-                      <div>
-                        <h3 className="font-display text-2xl md:text-3xl font-bold uppercase tracking-tight text-brand-navy mb-1 group-hover:text-brand-orange transition-colors">
-                          {session.title}
-                        </h3>
-                        <p className="font-mono text-xs font-bold uppercase tracking-wide text-brand-green">
-                          {session.subtitle}
+                        {/* Department / Subtitle */}
+                        {item.subtitle && (
+                          <p className="font-mono text-xs sm:text-sm md:text-base font-bold tracking-wider text-brand-gray uppercase">
+                            {item.subtitle}
+                          </p>
+                        )}
+
+                        {/* Concise Authentic Course Summary */}
+                        <p className="text-xl sm:text-2xl text-brand-navy/90 font-normal leading-relaxed font-sans pt-1">
+                          {item.description}
                         </p>
-                      </div>
 
-                      <div className="flex flex-wrap gap-4 text-xs font-mono font-medium text-brand-gray pt-1">
-                        <span className="flex items-center gap-1.5">
-                          <MapPin className="w-3.5 h-3.5 text-brand-orange" />
-                          <span className="text-brand-navy font-semibold">{session.venue}</span>
-                        </span>
-                        {session.partner && (
-                          <span className="flex items-center gap-1.5">
-                            <Award className="w-3.5 h-3.5 text-brand-green" />
-                            <span>{session.partner}</span>
-                          </span>
-                        )}
-                        <span className="flex items-center gap-1.5">
-                          <Users className="w-3.5 h-3.5 text-brand-navy" />
-                          <span>{session.participants}</span>
-                        </span>
-                      </div>
-
-                      <p className="text-brand-navy/90 text-sm md:text-base font-medium leading-relaxed">
-                        {session.description}
-                      </p>
-
-                      {/* Context & Operational Challenge */}
-                      {session.contextChallenge && (
-                        <div className="p-4 bg-brand-offwhite border border-gray-200 rounded-sm space-y-1">
-                          <span className="font-mono text-[10px] uppercase font-bold text-brand-orange block tracking-wider">
-                            THE CONTEXT & OPERATIONAL CHALLENGE
-                          </span>
-                          <p className="text-xs md:text-sm text-brand-navy font-medium leading-relaxed">
-                            {session.contextChallenge}
-                          </p>
-                        </div>
-                      )}
-
-                      {/* Simulation Deployed */}
-                      {session.simulationDeployed && (
-                        <div className="p-4 bg-white border border-gray-200 rounded-sm space-y-1 shadow-2xs">
-                          <span className="font-mono text-[10px] uppercase font-bold text-brand-navy block tracking-wider">
-                            SIMULATION SANDBOX & SCENARIOS DEPLOYED
-                          </span>
-                          <p className="text-xs md:text-sm text-brand-gray font-medium leading-relaxed">
-                            {session.simulationDeployed}
-                          </p>
-                        </div>
-                      )}
-
-                      {/* Verified Field Findings */}
-                      {session.keyInsights && session.keyInsights.length > 0 && (
-                        <div className="space-y-2 pt-2">
-                          <span className="font-mono text-[10px] uppercase font-bold text-brand-green tracking-wider block">
-                            KEY DISCOVERIES & FIELD FINDINGS
-                          </span>
-                          <div className="space-y-2">
-                            {session.keyInsights.map((insight, iIdx) => (
-                              <div key={iIdx} className="flex items-start gap-2.5 text-xs md:text-sm text-brand-navy/85">
-                                <CheckCircle2 className="w-4 h-4 text-brand-green shrink-0 mt-0.5" />
-                                <span>{insight}</span>
+                        {/* Key-Value Course Details */}
+                        {item.details && item.details.length > 0 && (
+                          <div className="mt-8 border-t-2 border-brand-navy/20 divide-y divide-brand-navy/10">
+                            {item.details.map((detail, dIdx) => (
+                              <div
+                                key={dIdx}
+                                className="py-3.5 sm:py-4.5 grid grid-cols-1 sm:grid-cols-12 gap-1.5 sm:gap-4 items-baseline"
+                              >
+                                <span className="sm:col-span-4 font-mono text-xs sm:text-sm font-bold uppercase tracking-[0.15em] text-brand-orange">
+                                  {detail.label}
+                                </span>
+                                <span className="sm:col-span-8 text-base sm:text-lg md:text-xl font-bold text-brand-navy leading-snug">
+                                  {detail.value}
+                                </span>
                               </div>
                             ))}
                           </div>
-                        </div>
-                      )}
+                        )}
+                      </div>
+                    </article>
+                  );
+                }
 
-                      {/* Civic Takeaway Quote */}
-                      <div className="border-l-4 border-brand-orange bg-brand-offwhite p-4 rounded-r-xs">
-                        <span className="font-mono text-[10px] uppercase font-bold text-brand-orange block mb-0.5">
-                          KEY CIVIC & PEDAGOGICAL TAKEAWAY
-                        </span>
-                        <p className="font-display text-sm md:text-base font-bold text-brand-navy uppercase">
-                          &ldquo;{session.takeaway}&rdquo;
-                        </p>
+                const hasMultipleImages = item.images.length > 1;
+                const primaryImage = item.images[0];
+                const secondaryImages = item.images.slice(1);
+
+                return (
+                  <article
+                    key={item.id}
+                    id={item.id}
+                    className="pt-2 sm:pt-4 pb-20 sm:pb-28 border-b-2 border-brand-navy/15 last:border-b-0 scroll-mt-32"
+                  >
+                    <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 xl:gap-12 items-start">
+                      
+                      {/* LEFT SUB-COLUMN: IMAGES (ACTUAL SIZE, ZERO PADDING, FULLY RENDERED) */}
+                      <div className="xl:col-span-7 space-y-4">
+                        {/* Primary Image: unpadded, uses its full natural proportions */}
+                        <div className="w-full overflow-hidden bg-brand-navy/[0.02]">
+                          <img
+                            src={primaryImage}
+                            alt={`${item.title} - Main Capture`}
+                            loading="lazy"
+                            className="w-full h-auto max-h-[720px] object-contain rounded-xs shadow-xs block"
+                          />
+                        </div>
+
+                        {/* Companion Images: clean unpadded grid only if multiple images */}
+                        {hasMultipleImages && (
+                          <>
+                            <div
+                              className={`grid gap-3 sm:gap-4 ${
+                                secondaryImages.length === 1
+                                  ? "grid-cols-1"
+                                  : secondaryImages.length === 2
+                                  ? "grid-cols-1 sm:grid-cols-2"
+                                  : "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3"
+                              }`}
+                            >
+                              {secondaryImages.map((imgSrc, imgIdx) => (
+                                <div
+                                  key={imgIdx}
+                                  className="w-full overflow-hidden bg-brand-navy/[0.02]"
+                                >
+                                  <img
+                                    src={imgSrc}
+                                    alt={`${item.title} - Archival View 0${imgIdx + 2}`}
+                                    loading="lazy"
+                                    className="w-full h-auto max-h-[360px] object-contain rounded-xs shadow-xs block hover:scale-[1.01] transition-transform duration-300"
+                                  />
+                                </div>
+                              ))}
+                            </div>
+
+                            {/* Archival count caption */}
+                            <div className="pt-1.5 flex items-center justify-between text-xs font-mono font-semibold tracking-wider text-brand-gray border-t border-brand-navy/10">
+                              <span>ARCHIVAL CAPTURES ({item.images.length} IMAGES)</span>
+                              <span>100% UNEDITED AUTHENTIC DOCUMENTATION</span>
+                            </div>
+                          </>
+                        )}
                       </div>
 
-                      {/* Participant / Faculty Voice Quote */}
-                      {session.testimonialQuote && (
-                        <div className="p-4 bg-brand-navy text-white rounded-sm space-y-2 shadow-sm">
-                          <p className="font-display text-sm md:text-base font-bold italic leading-snug">
-                            &ldquo;{session.testimonialQuote.quote}&rdquo;
-                          </p>
-                          <div className="flex flex-wrap items-center justify-between text-[11px] font-mono text-white/70 pt-2 border-t border-white/10 gap-2">
-                            <span className="font-bold text-brand-orange">{session.testimonialQuote.speaker}</span>
-                            <span>{session.testimonialQuote.role}</span>
-                          </div>
-                        </div>
-                      )}
+                      {/* RIGHT SUB-COLUMN: TEXT PLACED DIRECTLY ALONGSIDE THE IMAGES */}
+                      <div className="xl:col-span-5 flex flex-col justify-start">
+                        {/* Massive Bold Title */}
+                        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-black uppercase tracking-tight text-brand-navy leading-[0.95] mb-3 sm:mb-4">
+                          {item.title}
+                        </h2>
 
-                      {/* Direct Inquire / Book CTA & LinkedIn Event */}
-                      <div className="pt-2 flex flex-wrap items-center gap-3">
-                        <a 
-                          href={`https://wa.me/916381531026?text=${encodeURIComponent(`Hi Bharat Play! I would like to inquire about hosting a session similar to ${session.title} for our organization.`)}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-navy text-white hover:bg-brand-orange px-5 py-3 rounded-sm font-mono text-xs font-bold uppercase tracking-wider transition-colors shadow-sm group/btn"
-                        >
-                          <span>INQUIRE ABOUT THIS FORMAT</span>
-                          <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
-                        </a>
+                        {/* Subtitle */}
+                        {item.subtitle && (
+                          <p className="font-mono text-xs sm:text-sm md:text-base font-bold tracking-wider text-brand-gray uppercase mb-5 sm:mb-6">
+                            {item.subtitle}
+                          </p>
+                        )}
+
+                        {/* Big Readable Description */}
+                        <p className="text-lg sm:text-xl md:text-2xl text-brand-navy/90 font-normal leading-relaxed font-sans mb-8 sm:mb-10">
+                          {item.description}
+                        </p>
+
+                        {/* Swiss Key-Value Details */}
+                        {item.details && item.details.length > 0 && (
+                          <div className="border-t-2 border-brand-navy/20 divide-y divide-brand-navy/10">
+                            {item.details.map((detail, dIdx) => (
+                              <div
+                                key={dIdx}
+                                className="py-3.5 sm:py-4.5 grid grid-cols-1 sm:grid-cols-12 gap-1.5 sm:gap-4 items-baseline"
+                              >
+                                <span className="sm:col-span-4 font-mono text-xs sm:text-sm font-bold uppercase tracking-[0.15em] text-brand-orange">
+                                  {detail.label}
+                                </span>
+                                <span className="sm:col-span-8 text-base sm:text-lg md:text-xl font-bold text-brand-navy leading-snug">
+                                  {detail.value}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </div>
 
                     </div>
                   </article>
                 );
               })}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* 04. PROGRAM MODULES & TIMELINE */}
-      <section className="max-w-[1400px] mx-auto w-full px-4 md:px-6 mb-24">
-        <div className="bg-white border border-gray-200 rounded-sm p-5 sm:p-8 md:p-14 shadow-xl">
-          <div className="max-w-3xl mb-12">
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange mb-3 block">
-              CURRICULUM ARCHITECTURE
-            </span>
-            <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tight text-brand-navy mb-4">
-              HOW {program.name.toUpperCase()} UNFOLDS.
-            </h2>
-            <p className="text-brand-gray text-base md:text-lg font-medium leading-relaxed">
-              Every phase is engineered with pedagogical intention, transitioning from system immersion to cognitive synthesis and organizational application.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {program.modules.map((mod) => (
-              <div 
-                key={mod.number}
-                className="p-5 sm:p-8 border border-gray-200 bg-brand-offwhite rounded-xs flex flex-col justify-between hover:border-brand-navy transition-colors group"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="font-mono text-3xl font-bold text-brand-orange">
-                      {mod.number}
-                    </span>
-                    <span className="font-mono text-xs uppercase font-bold px-2.5 py-1 rounded-xs bg-white border border-gray-200 text-brand-navy shadow-2xs">
-                      {mod.tag}
-                    </span>
-                  </div>
-                  <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-brand-navy group-hover:text-brand-orange transition-colors mb-3">
-                    {mod.title}
-                  </h3>
-                  <p className="text-brand-gray text-sm md:text-base font-medium leading-relaxed">
-                    {mod.description}
-                  </p>
-                </div>
-
-                {mod.duration && (
-                  <div className="mt-6 pt-4 border-t border-gray-200 flex items-center justify-between font-mono text-xs">
-                    <span className="text-gray-500 uppercase">TIMEFRAME:</span>
-                    <span className="font-bold text-brand-navy">{mod.duration}</span>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 05. STRATEGIC OUTCOMES & LEARNING IMPACT */}
-      <section className="max-w-[1400px] mx-auto w-full px-4 md:px-6 mb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
-          <div className="lg:col-span-5">
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-green mb-3 block">
-              MEASURABLE CAPABILITIES
-            </span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold uppercase tracking-tight text-brand-navy mb-6">
-              STRATEGIC OUTCOMES.
-            </h2>
-            <p className="text-brand-gray text-base md:text-lg font-medium leading-relaxed mb-6">
-              Participants leave not just with conceptual knowledge, but with systemic muscle memory and cognitive tools applicable immediately to real-world complexity.
-            </p>
-            <div className="p-6 bg-white border border-gray-200 rounded-sm">
-              <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-brand-gray block mb-1">
-                INSTITUTIONAL VALUE
-              </span>
-              <p className="font-display text-lg font-bold text-brand-navy">
-                &ldquo;Purposeful play turns abstract policy and risk modeling into an experiential common language across leadership silos.&rdquo;
-              </p>
-            </div>
-          </div>
-
-          <div className="lg:col-span-7 space-y-6">
-            {program.outcomes.map((outcome, idx) => (
-              <div 
-                key={idx}
-                className="bg-white border border-gray-200 p-5 sm:p-8 rounded-sm shadow-sm flex items-start gap-4 sm:gap-5 hover:border-brand-green transition-colors"
-              >
-                <div className="w-10 h-10 rounded-full bg-emerald-50 text-brand-green flex items-center justify-center shrink-0 border border-emerald-200">
-                  <CheckCircle2 className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="font-display text-xl font-bold uppercase tracking-tight text-brand-navy mb-2">
-                    {outcome.title}
-                  </h3>
-                  <p className="text-brand-gray text-sm md:text-base font-medium leading-relaxed">
-                    {outcome.description}
-                  </p>
-                </div>
-              </div>
-            ))}
+            </section>
           </div>
 
         </div>
-      </section>
-
-      {/* 06. AUDIENCES & DELIVERABLES */}
-      <section className="max-w-[1400px] mx-auto w-full px-4 md:px-6 mb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          
-          {/* Target Audiences */}
-          <div className="bg-white border border-gray-200 p-5 sm:p-8 md:p-12 rounded-sm shadow-sm space-y-6">
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange block">
-              IDEAL COHORTS
-            </span>
-            <h3 className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-brand-navy">
-              WHO THIS IS DESIGNED FOR.
-            </h3>
-            <div className="space-y-6 divide-y divide-gray-100">
-              {program.audiences.map((aud, aIdx) => (
-                <div key={aIdx} className={aIdx > 0 ? "pt-6" : ""}>
-                  <h4 className="font-display text-base sm:text-lg font-bold text-brand-navy mb-1.5 flex items-center gap-2">
-                    <Users className="w-4 h-4 text-brand-orange" />
-                    {aud.title}
-                  </h4>
-                  <p className="text-xs md:text-sm text-brand-gray font-medium leading-relaxed">
-                    {aud.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Tangible Deliverables */}
-          <div className="bg-white border border-gray-200 p-5 sm:p-8 md:p-12 rounded-sm shadow-sm space-y-6">
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-green block">
-              WHAT IS INCLUDED
-            </span>
-            <h3 className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-brand-navy">
-              DELIVERABLES & TOOLKITS.
-            </h3>
-            <div className="space-y-6 divide-y divide-gray-100">
-              {program.deliverables.map((del, dIdx) => (
-                <div key={dIdx} className={dIdx > 0 ? "pt-6" : ""}>
-                  <h4 className="font-display text-lg font-bold text-brand-navy mb-1.5 flex items-center gap-2">
-                    <PackageCheck className="w-4 h-4 text-brand-green" />
-                    {del.title}
-                  </h4>
-                  <p className="text-xs md:text-sm text-brand-gray font-medium leading-relaxed">
-                    {del.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* 07. OTHER PROGRAMS SWITCHER */}
-      <section className="max-w-[1400px] mx-auto w-full px-4 md:px-6 mb-24">
-        <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-200">
-          <div>
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-gray block mb-1">
-              EXPLORE OUR OTHER PATHWAYS
-            </span>
-            <h2 className="font-display text-2xl md:text-3xl font-bold uppercase tracking-tight text-brand-navy">
-              MORE PURPOSEFUL PLAY PROGRAMS.
-            </h2>
-          </div>
-          <Link
-            href="/programs"
-            className="hidden sm:inline-flex items-center gap-1.5 font-mono text-xs font-bold uppercase tracking-widest text-brand-orange hover:text-brand-navy transition-colors"
-          >
-            VIEW ALL <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {otherPrograms.map((op) => (
-            <Link
-              key={op.id}
-              href={`/programs/${op.slug}`}
-              className="bg-white border border-gray-200 p-6 rounded-sm shadow-sm hover:shadow-md hover:border-brand-navy transition-all group flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <span className="font-mono text-xs font-bold text-brand-orange">
-                    #{op.displayNumber}
-                  </span>
-                  <span className="font-mono text-[10px] uppercase font-bold px-2 py-0.5 rounded-xs bg-gray-100 text-brand-navy">
-                    {op.tag}
-                  </span>
-                </div>
-
-                <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-brand-navy group-hover:text-brand-orange transition-colors mb-2">
-                  {op.name}
-                </h3>
-
-                <p className="text-xs text-brand-gray font-medium line-clamp-3 mb-6 leading-relaxed">
-                  {op.shortDescription}
-                </p>
-              </div>
-
-              <div className="pt-4 border-t border-gray-100 flex items-center justify-between font-mono text-xs">
-                <span className="text-gray-500 uppercase">{op.duration.label}</span>
-                <span className="text-brand-orange font-bold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                  VIEW PROGRAM &rarr;
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* 10. FINAL CALL TO ACTION */}
-      <section className="max-w-[1400px] mx-auto w-full px-4 md:px-6">
-        <div className="bg-brand-navy text-white rounded-sm p-6 sm:p-10 md:p-14 lg:p-16 border border-gray-800 shadow-2xl relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-10">
-          
-          <div className="max-w-2xl">
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange mb-3 block">
-              READY TO COLLABORATE?
-            </span>
-            <h3 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tighter leading-tight mb-4">
-              BRING {program.name.toUpperCase()} TO YOUR ORGANIZATION.
-            </h3>
-            <p className="text-white/80 text-base md:text-lg leading-relaxed font-medium">
-              We travel across India and internationally to run high-impact simulation sessions and custom workshops for colleges, companies, and civil society.
-            </p>
-          </div>
-
-          <div className="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto shrink-0">
-            <a
-              href={`https://wa.me/916381531026?text=${encodeURIComponent(program.whatsappMessage)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-brand-orange text-white px-8 py-5 rounded-sm font-mono text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-brand-navy transition-colors shadow-lg"
-            >
-              CHAT ON WHATSAPP <ArrowRight className="w-4 h-4" />
-            </a>
-            <Link
-              href="/contact"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 border border-white/30 text-white px-8 py-5 rounded-sm font-mono text-xs font-bold uppercase tracking-widest hover:bg-white/10 transition-colors"
-            >
-              CONTACT TEAM
-            </Link>
-          </div>
-
-        </div>
-      </section>
-
-    </main>
+      </main>
   );
 }

@@ -1,11 +1,9 @@
 import FeaturedEventHero from "./components/FeaturedEventHero";
-import TrustedBy from "./components/TrustedBy";
 import Stories from "./components/Stories";
 import AboutKudos from "./components/AboutKudos";
 import ProgramsShowcase from "./components/ProgramsShowcase";
 import FinalCTA from "./components/FinalCTA";
 import WhatWePlayWith from "./components/WhatWePlayWith";
-import CoursesSection from "./components/CoursesSection";
 
 export default function Home() {
   return (
@@ -20,17 +18,11 @@ export default function Home() {
       {/* 03.5 — OUR PROGRAMS (COMPACT SHOWCASE) */}
       <ProgramsShowcase />
 
-      {/* 04 — WHAT WE PLAY WITH */}
+      {/* 04 — WHAT WE DESIGN FOR */}
       <WhatWePlayWith />
 
       {/* 04.1 - SEE IT IN ACTION (Stories) */}
       <Stories />
-      
-      {/* 04.5 — COURSES */}
-      <CoursesSection />
-      
-      {/* 07 — TRUSTED BY / COLLABORATORS */}
-      <TrustedBy />
       
       {/* 13 — FINAL CTA */}
       <FinalCTA />
