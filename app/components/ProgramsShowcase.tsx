@@ -6,40 +6,32 @@ import { motion } from "framer-motion";
 
 const SHOWCASE_PROGRAMS = [
   {
-    num: "01",
     tag: "TABLETOP PLAY",
     name: "Game Session",
     desc: "Casual board game sessions exploring urban livability, governance, and complex systems.",
     format: "1–3 Hours · Tabletop",
     href: "/programs/game-sessions",
-    numColor: "text-brand-orange",
   },
   {
-    num: "02",
     tag: "COHORT LABS",
     name: "Play Workshops",
     desc: "Serious game sessions deploying game as a tool and play as a process for tangible outcomes.",
     format: "Half / Full Day · Intensive",
     href: "/programs/play-workshops",
-    numColor: "text-brand-green",
   },
   {
-    num: "03",
     tag: "PUBLIC EXHIBITS",
     name: "Play Exhibition",
     desc: "Curated exhibits in halls, campuses, and museums sparking curiosity through purposeful play.",
     format: "Public Showcase · Exhibits",
     href: "/programs/play-exhibition",
-    numColor: "text-brand-orange",
   },
   {
-    num: "04",
     tag: "ACADEMIC STUDIOS",
     name: "Courses",
     desc: "Undergraduate systems studios: ENVS102 (Disasters) & CSIT122 (IoT Systems) at FLAME University.",
     format: "Academic Cohorts · Systems",
     href: "/programs/courses",
-    numColor: "text-brand-green",
   },
 ];
 
@@ -52,20 +44,13 @@ export default function ProgramsShowcase() {
       <div className="max-w-[1400px] mx-auto w-full">
         
         {/* ============================================================ */}
-        {/* SWISS HEADER: Minimal, Bold, Direct                          */}
+        {/* SECTION HEADER (CLEAN & NATURAL)                             */}
         {/* ============================================================ */}
         <div className="flex flex-col md:flex-row md:items-end justify-between pb-8 sm:pb-12 mb-8 sm:mb-12 border-b-2 border-brand-navy gap-6">
           <div>
-            <div className="flex items-center gap-2.5 mb-2.5">
-              <span className="w-2 h-2 bg-brand-orange rounded-full"></span>
-              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-brand-orange">
-                FOUR FORMATS
-              </span>
-              <span className="text-brand-gray/30">/</span>
-              <span className="font-mono text-xs uppercase tracking-widest text-brand-gray">
-                ENGAGEMENT PATHWAYS
-              </span>
-            </div>
+            <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange block mb-2.5">
+              ENGAGEMENT PATHWAYS
+            </span>
             <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight text-brand-navy leading-[0.9]">
               OUR <span className="text-brand-orange">PROGRAMS.</span>
             </h2>
@@ -73,7 +58,7 @@ export default function ProgramsShowcase() {
 
           <div className="flex flex-col sm:items-end gap-2.5 max-w-md">
             <p className="font-mono text-xs sm:text-sm text-brand-gray uppercase tracking-wider text-left sm:text-right">
-              Four structured operational pathways engineered for universities, institutions, and civic bodies.
+              Structured operational pathways engineered for universities, institutions, and civic bodies.
             </p>
             <Link
               href="/programs"
@@ -86,12 +71,12 @@ export default function ProgramsShowcase() {
         </div>
 
         {/* ============================================================ */}
-        {/* PURE SWISS TYPOGRAPHIC GRID: NO IMAGES, NO CLUTTER          */}
+        {/* CLEAN TYPOGRAPHIC GRID WITHOUT TECHY INDEX NUMBERS           */}
         {/* ============================================================ */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {SHOWCASE_PROGRAMS.map((prog, idx) => (
             <motion.div
-              key={prog.num}
+              key={prog.name}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -99,15 +84,12 @@ export default function ProgramsShowcase() {
             >
               <Link
                 href={prog.href}
-                className="group flex flex-col justify-between h-full min-h-[380px] bg-[#faf8f5] hover:bg-white border-2 border-brand-navy/15 hover:border-brand-navy p-7 sm:p-8 rounded-xs transition-all duration-300 hover:shadow-xl hover:-translate-y-1.5"
+                className="group flex flex-col justify-between h-full min-h-[360px] bg-[#faf8f5] hover:bg-white border-2 border-brand-navy/15 hover:border-brand-navy p-7 sm:p-8 rounded-xs transition-all duration-300 hover:shadow-xl hover:-translate-y-1.5"
               >
                 <div>
-                  {/* Top Row: Massive Numeral & Category Tag */}
-                  <div className="flex items-start justify-between pb-6 border-b border-brand-navy/15">
-                    <span className="font-mono text-5xl sm:text-6xl font-black tracking-tighter text-brand-navy/20 group-hover:text-brand-orange transition-colors leading-none">
-                      {prog.num}
-                    </span>
-                    <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-brand-gray px-2.5 py-1 bg-white border border-brand-navy/15 rounded-xs">
+                  {/* Top Row: Clean Category Tag */}
+                  <div className="pb-4 border-b border-brand-navy/15 flex items-center justify-between">
+                    <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange">
                       {prog.tag}
                     </span>
                   </div>
@@ -117,7 +99,7 @@ export default function ProgramsShowcase() {
                     {prog.name}
                   </h3>
 
-                  {/* Minimal 1-Sentence Essence */}
+                  {/* Description */}
                   <p className="text-sm sm:text-base text-brand-navy/75 font-normal leading-relaxed">
                     {prog.desc}
                   </p>

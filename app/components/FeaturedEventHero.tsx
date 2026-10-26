@@ -3,13 +3,12 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Sparkles, Clock, MapPin, Users, Calendar as CalendarIcon } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
 export default function FeaturedEventHero() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const touchStartX = useRef<number | null>(null);
 
   // Auto-transition every 8 seconds (pauses on hover)
@@ -23,6 +22,12 @@ export default function FeaturedEventHero() {
 
   const goToSlide = (index: number) => {
     setActiveIndex((index + 3) % 3);
+  };
+
+  const openCalendar = () => {
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("open-events-calendar"));
+    }
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -39,13 +44,17 @@ export default function FeaturedEventHero() {
     touchStartX.current = null;
   };
 
-  const EDITORIAL_INDEX = [
-    { num: "01", title: "GAMES", desc: "Original tabletop systems & civic models" },
-    { num: "02", title: "WORKSHOPS", desc: "Multi-stakeholder simulation labs" },
-    { num: "03", title: "COURSES", desc: "Curriculum for universities & leaders" },
-    { num: "04", title: "EXHIBITIONS", desc: "Interactive public play installations" },
-    { num: "05", title: "SIMULATIONS", desc: "Policy, risk & urban trade-off tests" },
-  ];
+  const FEATURED_UPCOMING_EVENT = {
+    date: "24",
+    month: "OCT",
+    day: "SATURDAY",
+    time: "5:30 PM – 7:30 PM",
+    title: "Saturdays 4 Serious Social Games · Livable Cities",
+    category: "PUBLIC PLAYTEST",
+    game: "City Runners & Cascade",
+    venue: "Kolathur, Chennai",
+    capacity: "16 Seats · Tabletop Cohort",
+  };
 
   const INSTITUTIONS = [
     { name: "CAMBRIDGE UNIVERSITY", scope: "GLOBAL" },
@@ -62,7 +71,7 @@ export default function FeaturedEventHero() {
   const slides = [
     { num: "01", label: "CITY RUNNERS" },
     { num: "02", label: "BHARAT PLAY" },
-    { num: "03", label: "OUR WORK" },
+    { num: "03", label: "RECOGNITION" },
   ];
 
   return (
@@ -241,7 +250,7 @@ export default function FeaturedEventHero() {
           )}
 
           {/* ============================================================ */}
-          {/* BANNER 02 — BHARAT PLAY (Visual Focus: Typographic Index)    */}
+          {/* BANNER 02 — BHARAT PLAY (Visual Focus: Studio & Event)       */}
           {/* ============================================================ */}
           {activeIndex === 1 && (
             <motion.div
@@ -254,7 +263,7 @@ export default function FeaturedEventHero() {
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
                 
-                {/* LEFT: Typographic Statement & Purpose */}
+                {/* LEFT: Typographic Statement & Purpose (Exactly as in original) */}
                 <div className="lg:col-span-7 flex flex-col justify-center">
                   
                   {/* Eyebrow */}
@@ -307,67 +316,97 @@ export default function FeaturedEventHero() {
                   </motion.div>
                 </div>
 
-                {/* RIGHT: Large Typographic Editorial Index (Clean & proportional) */}
+                {/* RIGHT: ONE UPCOMING EVENT (WARM PAPER FRAME CARD) */}
                 <div className="lg:col-span-5 flex flex-col justify-center">
-                  <div className="border-t border-white/20">
-                    {EDITORIAL_INDEX.map((item, idx) => {
-                      const isHovered = hoveredIndex === idx;
-                      return (
-                        <motion.div
-                          key={item.title}
-                          initial={{ opacity: 0, x: 20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{
-                            duration: 0.45,
-                            delay: 0.14 + idx * 0.06,
-                            ease: [0.16, 1, 0.3, 1],
-                          }}
-                          onMouseEnter={() => setHoveredIndex(idx)}
-                          onMouseLeave={() => setHoveredIndex(null)}
-                          className="group relative py-2.5 sm:py-3.5 border-b border-white/10 transition-all duration-300 cursor-pointer"
-                        >
-                          {/* Active hover left indicator bar */}
-                          <div
-                            className={`absolute left-0 top-0 bottom-0 w-[2px] bg-brand-orange transition-all duration-300 ${
-                              isHovered ? "opacity-100" : "opacity-0"
-                            }`}
-                          />
+                  <motion.div
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.55, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
+                    className="relative bg-[#FAF8F5] text-brand-navy p-6 sm:p-7 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.45)] border-2 border-brand-navy rotate-[1deg] hover:rotate-0 transition-all duration-300 group"
+                  >
+                    {/* Playful washi tape strip on top — high visibility & bold contrast */}
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-[#FDE047] text-brand-navy border-2 border-brand-navy shadow-lg rounded-xs rotate-[-1.5deg] z-20 pointer-events-none whitespace-nowrap flex items-center justify-center">
+                      <span className="text-xs font-mono font-black tracking-widest uppercase">
+                        ✦ MARK YOUR CALENDAR ✦
+                      </span>
+                    </div>
 
-                          <div className={`flex items-baseline justify-between transition-transform duration-300 ${isHovered ? "translate-x-2.5" : ""}`}>
-                            <div className="flex items-baseline gap-3.5 sm:gap-5">
-                              <span
-                                className={`font-mono text-xs sm:text-[13px] font-bold tracking-widest transition-colors duration-300 ${
-                                  isHovered ? "text-brand-orange" : "text-white/40"
-                                }`}
-                              >
-                                {item.num}
-                              </span>
-                              <span
-                                className={`font-display text-lg sm:text-xl md:text-2xl font-black tracking-tight transition-colors duration-300 ${
-                                  isHovered ? "text-brand-orange" : "text-white/90"
-                                }`}
-                              >
-                                {item.title}
-                              </span>
-                            </div>
+                    {/* Friendly Header Tag */}
+                    <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-gray-200/80 pt-1">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-100 text-brand-orange text-xs font-bold tracking-wide">
+                        <Sparkles className="w-3.5 h-3.5 fill-current" />
+                        Next Community Playtest
+                      </span>
+                      <span className="text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full">
+                        Open to All
+                      </span>
+                    </div>
 
-                            {/* Minimal thin trailing line / metadata on hover */}
-                            <span
-                              className={`hidden md:inline font-mono text-[10px] uppercase tracking-wider text-white/50 transition-opacity duration-300 ${
-                                isHovered ? "opacity-100" : "opacity-0"
-                              }`}
-                            >
-                              {item.desc}
-                            </span>
-                          </div>
-                        </motion.div>
-                      );
-                    })}
-                  </div>
+                    {/* Date Block & Title */}
+                    <div className="flex items-start gap-4 mb-4">
+                      {/* Tear-off calendar date badge */}
+                      <div className="shrink-0 flex flex-col items-center justify-center w-16 py-2 px-1.5 bg-gradient-to-br from-brand-orange to-[#EA580C] text-white rounded-md shadow-md">
+                        <span className="text-[10px] font-bold tracking-widest uppercase opacity-90 leading-none">
+                          {FEATURED_UPCOMING_EVENT.month}
+                        </span>
+                        <span className="font-display text-3xl font-black leading-none my-0.5">
+                          {FEATURED_UPCOMING_EVENT.date}
+                        </span>
+                        <span className="text-[9px] font-bold tracking-wider uppercase opacity-90 leading-none">
+                          {FEATURED_UPCOMING_EVENT.day}
+                        </span>
+                      </div>
 
-                  <p className="mt-3 font-mono text-[10px] sm:text-[11px] text-white/35 tracking-[0.2em] uppercase">
-                    PRACTICE AREAS · PLAYABLE MEDIUMS
-                  </p>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-1.5 text-xs text-brand-gray font-medium mb-1">
+                          <Clock className="w-3.5 h-3.5 text-brand-orange shrink-0" />
+                          <span>{FEATURED_UPCOMING_EVENT.time}</span>
+                        </div>
+                        <h3 className="font-display text-base sm:text-lg font-bold text-brand-navy leading-snug group-hover:text-brand-orange transition-colors">
+                          {FEATURED_UPCOMING_EVENT.title}
+                        </h3>
+                      </div>
+                    </div>
+
+                    {/* Friendly Note */}
+                    <p className="text-xs sm:text-[13px] text-brand-navy/80 leading-relaxed mb-4 bg-orange-50/70 p-3 rounded-md border border-orange-200/60 font-medium">
+                      🎲 Play <span className="font-bold text-brand-navy">City Runners & Cascade</span> in a relaxed, friendly tabletop lab. Explore city systems and meet fellow curious minds!
+                    </p>
+
+                    {/* Quick Metadata */}
+                    <div className="flex items-center justify-between text-xs text-brand-navy/70 pb-4 mb-4 border-b border-gray-200/70 font-medium">
+                      <span className="flex items-center gap-1.5">
+                        <MapPin className="w-3.5 h-3.5 text-brand-orange shrink-0" />
+                        <span className="font-semibold text-brand-navy">{FEATURED_UPCOMING_EVENT.venue}</span>
+                      </span>
+                      <span className="flex items-center gap-1.5">
+                        <Users className="w-3.5 h-3.5 text-brand-orange shrink-0" />
+                        <span>{FEATURED_UPCOMING_EVENT.capacity}</span>
+                      </span>
+                    </div>
+
+                    {/* Actions */}
+                    <div className="flex items-center gap-2.5">
+                      <button
+                        type="button"
+                        onClick={openCalendar}
+                        className="flex-1 inline-flex items-center justify-center gap-2 bg-brand-orange hover:bg-brand-navy text-white px-5 py-3 rounded-md text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-200 shadow-md hover:shadow-lg cursor-pointer group/btn"
+                      >
+                        <span>Join This Session</span>
+                        <ArrowRight className="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform" />
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={openCalendar}
+                        title="View All Dates on Calendar"
+                        className="inline-flex items-center justify-center gap-1.5 px-3 py-3 border border-gray-300 hover:border-brand-navy text-brand-navy bg-white hover:bg-gray-50 rounded-md text-xs font-bold transition-colors cursor-pointer shadow-xs shrink-0"
+                      >
+                        <CalendarIcon className="w-4 h-4 text-brand-orange" />
+                        <span className="hidden sm:inline">All Dates</span>
+                      </button>
+                    </div>
+                  </motion.div>
                 </div>
 
               </div>
@@ -375,7 +414,7 @@ export default function FeaturedEventHero() {
           )}
 
           {/* ============================================================ */}
-          {/* BANNER 03 — OUR WORK (Visual Focus: Quality & Breadth)        */}
+          {/* BANNER 03 — RECOGNITION (Visual Focus: Quality & Breadth)    */}
           {/* ============================================================ */}
           {activeIndex === 2 && (
             <motion.div
@@ -436,7 +475,7 @@ export default function FeaturedEventHero() {
                       href="/projects"
                       className="group inline-flex items-center gap-3.5 bg-white text-brand-navy px-6 sm:px-8 py-3.5 sm:py-4 font-mono text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] hover:bg-brand-orange hover:text-white transition-all duration-300 shadow-[0_12px_30px_rgba(255,255,255,0.1)]"
                     >
-                      <span>EXPLORE OUR WORK</span>
+                      <span>EXPLORE RECOGNITION</span>
                       <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
                     </Link>
                   </motion.div>
@@ -502,7 +541,7 @@ export default function FeaturedEventHero() {
       <div className="relative z-10 max-w-[1440px] mx-auto w-full px-6 sm:px-10 lg:px-16 pb-8 sm:pb-10 pt-4 border-t border-white/10">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5">
           
-          {/* Navigation Line: 01 CITY RUNNERS ───── 02 BHARAT PLAY ───── 03 OUR WORK */}
+          {/* Navigation Line: 01 CITY RUNNERS ───── 02 BHARAT PLAY ───── 03 RECOGNITION */}
           <div
             className="flex items-center gap-2 sm:gap-6 md:gap-8 flex-wrap"
             role="tablist"

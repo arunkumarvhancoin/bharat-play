@@ -98,7 +98,7 @@ export default function GamesPage() {
                 </Link>
 
                 <a
-                  href={`https://wa.me/916381531026?text=${encodeURIComponent(`Hi Bharat Play, I would like to book a session of ${game.name}.`)}`}
+                  href={`https://wa.me/918237132553?text=${encodeURIComponent(`Hi Bharat Play, I would like to book a session of ${game.name}.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-mono text-xs font-bold uppercase text-brand-orange hover:text-brand-navy transition-colors inline-flex items-center gap-1"
@@ -178,7 +178,7 @@ export default function GamesPage() {
           </div>
           
           <a
-            href="https://wa.me/916381531026?text=Hi%20Bharat%20Play,%20we%20want%20to%20host%20a%20game%20session%20for%20our%20team."
+            href="https://wa.me/918237132553?text=Hi%20Bharat%20Play,%20we%20want%20to%20host%20a%20game%20session%20for%20our%20team."
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-brand-orange text-white hover:bg-white hover:text-brand-navy px-5 py-3 rounded-xs font-mono text-xs font-bold uppercase tracking-wider transition-colors shrink-0"

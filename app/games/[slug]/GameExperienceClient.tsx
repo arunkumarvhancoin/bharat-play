@@ -85,7 +85,7 @@ export default function GameExperienceClient({ game, otherGames }: GameExperienc
             {/* ACTIONS */}
             <div className="pt-2 flex flex-wrap items-center gap-4">
               <a
-                href={`https://wa.me/916381531026?text=${encodeURIComponent(`Hi Bharat Play, I would like to book a session for ${game.name}.`)}`}
+                href={`https://wa.me/918237132553?text=${encodeURIComponent(`Hi Bharat Play, I would like to book a session for ${game.name}.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-brand-navy text-white hover:bg-brand-orange px-6 py-3 rounded-xs font-mono text-xs font-bold uppercase tracking-wider transition-colors shadow-xs"

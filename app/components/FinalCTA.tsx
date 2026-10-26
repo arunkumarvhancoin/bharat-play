@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import { MouseEvent } from "react";
@@ -66,15 +65,18 @@ export default function FinalCTA() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto"
             >
-              <Link href="/events" className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-brand-green text-white px-8 py-4 sm:py-5 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-brand-navy transition-all duration-300 group shadow-[0_0_40px_rgba(11,218,81,0.3)] hover:shadow-[0_0_60px_rgba(255,255,255,0.5)]">
+              <button
+                type="button"
+                onClick={() => {
+                  if (typeof window !== "undefined") {
+                    window.dispatchEvent(new CustomEvent("open-events-calendar"));
+                  }
+                }}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-brand-green text-white px-8 py-4 sm:py-5 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-brand-navy transition-all duration-300 group shadow-[0_0_40px_rgba(11,218,81,0.3)] hover:shadow-[0_0_60px_rgba(255,255,255,0.5)] cursor-pointer"
+              >
                 UPCOMING EVENTS
                 <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-              </Link>
-              
-              <Link href="/about" className="w-full sm:w-auto inline-flex items-center justify-center gap-3 border border-gray-600 text-white px-8 py-4 sm:py-5 text-xs font-bold uppercase tracking-widest hover:border-white transition-colors group">
-                WORK WITH US
-                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-              </Link>
+              </button>
             </motion.div>
           </div>
           

@@ -71,3 +71,23 @@ html.lenis, html.lenis body {
   }
 }
 
+@keyframes gamesMarquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-games-marquee {
+  display: flex;
+  width: max-content;
+  animation: gamesMarquee 38s linear infinite;
+  will-change: transform;
+}
+
+.animate-games-marquee:hover {
+  animation-play-state: paused;
+}
+

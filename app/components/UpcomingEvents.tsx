@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -19,7 +18,7 @@ const UPCOMING_EVENTS = [
     title: "PLAYING WITH CITIES",
     meta: "Public Session · Chennai",
     color: "group-hover:text-brand-orange",
-    link: "https://wa.me/916381531026?text=Hi%20Bharat%20Play%2C%20I%20would%20like%20to%20register%20for%20the%20Playing%20With%20Cities%20session.",
+    link: "https://wa.me/918237132553?text=Hi%20Bharat%20Play%2C%20I%20would%20like%20to%20register%20for%20the%20Playing%20With%20Cities%20session.",
   },
 ];
 
@@ -70,12 +69,18 @@ export default function UpcomingEvents() {
               </motion.div>
             ))}
             
-            <div className="pt-8">
-              <Link href="/events" className="inline-flex items-center gap-3 text-brand-navy font-bold text-xs uppercase tracking-widest hover:text-brand-orange transition-colors group">
+              <button
+                type="button"
+                onClick={() => {
+                  if (typeof window !== "undefined") {
+                    window.dispatchEvent(new CustomEvent("open-events-calendar"));
+                  }
+                }}
+                className="inline-flex items-center gap-3 text-brand-navy font-bold text-xs uppercase tracking-widest hover:text-brand-orange transition-colors group cursor-pointer"
+              >
                 VIEW FULL CALENDAR
                 <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
+              </button>
           </div>
 
         </div>

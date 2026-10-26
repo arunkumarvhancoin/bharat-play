@@ -71,7 +71,7 @@ export default function ContactPage() {
     ].filter((item): item is string => item !== null);
 
     const messageText = parts.join("\n");
-    const whatsappUrl = `https://wa.me/916381531026?text=${encodeURIComponent(messageText)}`;
+    const whatsappUrl = `https://wa.me/918237132553?text=${encodeURIComponent(messageText)}`;
 
     window.open(whatsappUrl, "_blank");
   };
@@ -202,7 +202,7 @@ export default function ContactPage() {
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
                 <span className="font-mono text-xs text-brand-gray font-semibold">
-                  Direct dispatch to +91 63815 31026
+                  Direct dispatch to +91 82371 32553
                 </span>
               </div>
             </form>
@@ -237,12 +237,12 @@ export default function ContactPage() {
                   <div>
                     <div className="font-mono text-xs font-bold uppercase tracking-widest text-brand-gray mb-1">PHONE & WHATSAPP</div>
                     <a 
-                      href="https://wa.me/916381531026" 
+                      href="https://wa.me/918237132553" 
                       target="_blank" 
                       rel="noopener noreferrer" 
                       className="text-lg font-medium hover:text-brand-orange transition-colors"
                     >
-                      +91 63815 31026
+                      +91 82371 32553
                     </a>
                   </div>
                 </div>
@@ -302,7 +302,7 @@ export default function ContactPage() {
               </span>
               <div className="flex items-center gap-3">
                 <a
-                  href="https://wa.me/916381531026"
+                  href="https://wa.me/918237132553"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-brand-navy hover:text-white hover:bg-emerald-600 hover:border-emerald-600 transition-all shadow-sm"

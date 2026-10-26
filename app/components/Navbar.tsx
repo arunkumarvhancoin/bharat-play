@@ -24,7 +24,6 @@ interface NavLinkConfig {
 
 const NAV_LINKS: NavLinkConfig[] = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
   { 
     label: "Games", 
     href: "/games", 
@@ -44,7 +43,6 @@ const NAV_LINKS: NavLinkConfig[] = [
       { name: "Courses", href: "/programs/courses" },
     ]
   },
-  { label: "Events", href: "/events" },
   { label: "Testimonials", href: "/testimonials" },
   { label: "Contact", href: "/contact" },
 ];
@@ -276,7 +274,7 @@ export default function Navbar() {
             </nav>
             <div className="mt-auto py-8 flex justify-center">
               <a 
-                href="https://wa.me/916381531026?text=Hi%20Bharat%20Play%2C%20I%20would%20like%20to%20connect%20regarding%20City%20Runners." 
+                href="https://wa.me/918237132553?text=Hi%20Bharat%20Play%2C%20I%20would%20like%20to%20connect%20regarding%20City%20Runners." 
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsOpen(false)} 

@@ -318,9 +318,17 @@ export default function TestimonialsPage() {
             JOIN THE NEXT <br/> <span className="text-brand-orange">PLAYTEST SESSION.</span>
           </h2>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 w-full sm:w-auto">
-            <Link href="/events" className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-brand-navy text-white px-8 py-4 sm:py-5 rounded-sm font-mono text-xs font-bold uppercase tracking-widest hover:bg-brand-orange transition-colors">
+            <button
+              type="button"
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  window.dispatchEvent(new CustomEvent("open-events-calendar"));
+                }
+              }}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-brand-navy text-white px-8 py-4 sm:py-5 rounded-sm font-mono text-xs font-bold uppercase tracking-widest hover:bg-brand-orange transition-colors cursor-pointer"
+            >
               VIEW UPCOMING EVENTS <ArrowRight className="w-4 h-4" />
-            </Link>
+            </button>
             <Link href="/programs" className="w-full sm:w-auto inline-flex items-center justify-center gap-3 border border-brand-navy text-brand-navy px-8 py-4 sm:py-5 rounded-sm font-mono text-xs font-bold uppercase tracking-widest hover:bg-brand-navy hover:text-white transition-colors">
               EXPLORE ALL PROGRAMS <ArrowRight className="w-4 h-4" />
             </Link>

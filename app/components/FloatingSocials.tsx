@@ -1,7 +1,75 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import EventsCalendarModal from "./EventsCalendarModal";
+
+// Premium detailed Event Calendar SVG icon with metallic binder rings, blue header banner, calendar grid, and highlighted event star
+function EventCalendarIcon({ className = "w-7 h-7 sm:w-8 sm:h-8" }: { className?: string }) {
+  return (
+    <svg 
+      className={className} 
+      viewBox="0 0 32 32" 
+      fill="none" 
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {/* Subtle back card for realistic 3D paper sheet depth */}
+      <rect x="5" y="7" width="22" height="21" rx="4" fill="#1D4ED8" fillOpacity="0.35" />
+      
+      {/* Main Calendar Card Body */}
+      <rect 
+        x="4" 
+        y="6" 
+        width="24" 
+        height="22" 
+        rx="4" 
+        fill="#FFFFFF" 
+        stroke="#1E40AF" 
+        strokeWidth="1.5" 
+      />
+
+      {/* Top Banner Bar - Vibrant Royal Blue */}
+      <path 
+        d="M4 10C4 7.79086 5.79086 6 8 6H24C26.2091 6 28 7.79086 28 10V12.5H4V10Z" 
+        fill="#2563EB" 
+      />
+
+      {/* Top Banner Accent Line */}
+      <line x1="4" y1="12.5" x2="28" y2="12.5" stroke="#1D4ED8" strokeWidth="1" />
+
+      {/* Metallic Binder Rings */}
+      <rect x="8.5" y="2.5" width="3" height="6" rx="1.5" fill="#1E40AF" stroke="#BFDBFE" strokeWidth="1" />
+      <rect x="20.5" y="2.5" width="3" height="6" rx="1.5" fill="#1E40AF" stroke="#BFDBFE" strokeWidth="1" />
+
+      {/* Header Accent Dots */}
+      <circle cx="8" cy="9.2" r="0.8" fill="#93C5FD" />
+      <circle cx="12" cy="9.2" r="0.8" fill="#93C5FD" />
+      <circle cx="16" cy="9.2" r="0.8" fill="#93C5FD" />
+      <circle cx="20" cy="9.2" r="0.8" fill="#93C5FD" />
+      <circle cx="24" cy="9.2" r="0.8" fill="#93C5FD" />
+
+      {/* Calendar Grid Days */}
+      {/* Row 1 */}
+      <rect x="7" y="15" width="2.5" height="2.5" rx="0.75" fill="#94A3B8" />
+      <rect x="12" y="15" width="2.5" height="2.5" rx="0.75" fill="#94A3B8" />
+      <rect x="17" y="15" width="2.5" height="2.5" rx="0.75" fill="#94A3B8" />
+      <rect x="22" y="15" width="2.5" height="2.5" rx="0.75" fill="#94A3B8" />
+
+      {/* Row 2 - with Active Event Highlight */}
+      <rect x="7" y="20.5" width="2.5" height="2.5" rx="0.75" fill="#94A3B8" />
+      
+      {/* Highlighted Event Box (Royal Blue + Golden Event Star) */}
+      <rect x="11" y="19.5" width="5.5" height="5" rx="1.2" fill="#2563EB" />
+      <path 
+        d="M13.75 20.2L14.2 21.15L15.2 21.3L14.45 22L14.65 23L13.75 22.5L12.85 23L13.05 22L12.3 21.3L13.3 21.15L13.75 20.2Z" 
+        fill="#FBBF24" 
+      />
+
+      <rect x="18" y="20.5" width="2.5" height="2.5" rx="0.75" fill="#94A3B8" />
+      <rect x="22.5" y="20.5" width="2.5" height="2.5" rx="0.75" fill="#94A3B8" />
+    </svg>
+  );
+}
 
 function WhatsAppIcon({ className = "w-5 h-5" }: { className?: string }) {
   return (
@@ -63,128 +131,178 @@ const SOCIAL_ITEMS = [
     sizeClass: "w-10 h-10 sm:w-11 sm:h-11",
     iconSizeClass: "w-5 h-5",
   },
-  {
-    name: "WhatsApp",
-    label: "Chat on WhatsApp",
-    href: "https://wa.me/916381531026?text=Hi%20Bharat%20Play%2C%20I%20would%20like%20to%20connect.",
-    icon: WhatsAppIcon,
-    bgClass: "bg-[#25D366] text-white hover:bg-[#20ba59] hover:shadow-[0_6px_22px_rgba(37,211,102,0.55)]",
-    sizeClass: "w-12 h-12 sm:w-14 sm:h-14",
-    iconSizeClass: "w-6 h-6 sm:w-7 sm:h-7",
-    isPrimary: true,
-  },
 ];
 
 export default function FloatingSocials() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState(false);
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const [isCalendarHovered, setIsCalendarHovered] = useState(false);
+
+  // Listen to open-events-calendar event from any button on any page
+  useEffect(() => {
+    const handleOpenCalendar = () => setIsCalendarOpen(true);
+    window.addEventListener("open-events-calendar", handleOpenCalendar);
+    return () => window.removeEventListener("open-events-calendar", handleOpenCalendar);
+  }, []);
 
   return (
-    <div 
-      className="fixed bottom-5 right-4 sm:bottom-8 sm:right-8 z-40 flex flex-col items-end gap-2 sm:gap-3 pointer-events-none"
-      role="complementary"
-      aria-label="Floating social and contact links"
-    >
-      <div className="flex flex-col items-center gap-2 sm:gap-3 pointer-events-auto">
-        {/* Secondary Socials (YouTube, Instagram, LinkedIn) */}
-        {SOCIAL_ITEMS.filter((i) => !i.isPrimary).map((item) => {
-          const Icon = item.icon;
-          const isHovered = hoveredItem === item.name;
-
-          return (
-            <div 
-              key={item.name} 
-              className={`relative items-center ${mobileExpanded ? "flex" : "hidden sm:flex"}`}
+    <>
+      {/* ================================================================ */}
+      {/* 1. TOP-SIDE FLOATING EVENT CALENDAR BUTTON (VIBRANT BLUE)        */}
+      {/* ================================================================ */}
+      <div 
+        className="fixed top-24 sm:top-28 right-4 sm:right-6 md:right-8 z-40 pointer-events-auto flex items-center"
+        role="complementary"
+        aria-label="Events Calendar Access"
+      >
+        {/* Tooltip on desktop */}
+        <AnimatePresence>
+          {isCalendarHovered && (
+            <motion.div
+              initial={{ opacity: 0, x: 8, scale: 0.95 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: 6, scale: 0.95 }}
+              transition={{ duration: 0.15, ease: "easeOut" }}
+              className="hidden sm:flex absolute right-full mr-3 items-center pointer-events-none z-50 whitespace-nowrap"
             >
-              {/* Tooltip on desktop */}
-              <AnimatePresence>
-                {isHovered && (
-                  <motion.div
-                    initial={{ opacity: 0, x: 8, scale: 0.95 }}
-                    animate={{ opacity: 1, x: 0, scale: 1 }}
-                    exit={{ opacity: 0, x: 6, scale: 0.95 }}
-                    transition={{ duration: 0.15, ease: "easeOut" }}
-                    className="hidden sm:flex absolute right-full mr-3 items-center pointer-events-none z-50 whitespace-nowrap"
-                  >
-                    <div className="bg-brand-navy text-white text-xs font-mono font-bold tracking-wider uppercase px-3 py-1.5 rounded shadow-xl flex items-center gap-1.5">
-                      <span>{item.label}</span>
-                    </div>
-                    {/* Tooltip Arrow */}
-                    <div className="w-0 h-0 border-y-4 border-y-transparent border-l-4 border-l-brand-navy" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <div className="bg-[#1D4ED8] text-white text-xs font-mono font-bold tracking-wider uppercase px-3.5 py-2 rounded-sm shadow-xl flex items-center gap-2 border border-blue-400/40">
+                <span className="w-2 h-2 rounded-full bg-brand-orange animate-pulse" />
+                <span>Events Calendar</span>
+              </div>
+              <div className="w-0 h-0 border-y-4 border-y-transparent border-l-4 border-l-[#1D4ED8]" />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-              {/* Action Button */}
-              <a
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={item.label}
-                title={item.label}
-                onMouseEnter={() => setHoveredItem(item.name)}
-                onMouseLeave={() => setHoveredItem(null)}
-                className={`relative flex items-center justify-center rounded-full transition-all duration-300 transform hover:scale-110 active:scale-95 shadow-md ${item.sizeClass} ${item.bgClass}`}
-              >
-                <Icon className={item.iconSizeClass} />
-              </a>
-            </div>
-          );
-        })}
-
-        {/* Mobile Expand / Collapse Toggle Pill (Mobile only) */}
+        {/* The Blue Event Calendar Floating Button */}
         <button
           type="button"
-          onClick={() => setMobileExpanded(!mobileExpanded)}
-          aria-label={mobileExpanded ? "Collapse socials" : "Show more socials"}
-          className="sm:hidden w-8 h-8 rounded-full bg-white text-brand-navy border border-gray-200 shadow-md flex items-center justify-center font-mono text-[10px] font-bold tracking-widest active:scale-95 transition-transform"
+          onClick={() => setIsCalendarOpen(true)}
+          onMouseEnter={() => setIsCalendarHovered(true)}
+          onMouseLeave={() => setIsCalendarHovered(false)}
+          aria-label="Open Events Calendar"
+          title="Events Calendar"
+          className="relative flex items-center justify-center rounded-full transition-all duration-300 transform hover:scale-110 active:scale-95 shadow-[0_8px_25px_rgba(37,99,235,0.45)] hover:shadow-[0_12px_32px_rgba(37,99,235,0.7)] w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-[#2563EB] via-[#1D4ED8] to-[#1E40AF] text-white border-2 border-white cursor-pointer group"
         >
-          {mobileExpanded ? "✕" : "•••"}
+          {/* Subtle pulse ring around button */}
+          <span className="absolute -inset-1 rounded-full bg-blue-500 opacity-25 animate-ping pointer-events-none" />
+
+          {/* Detailed Event Calendar Icon */}
+          <EventCalendarIcon className="w-6 h-6 sm:w-7 sm:h-7 transition-transform group-hover:scale-105" />
+
+          {/* Active event notification badge */}
+          <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-brand-orange border-2 border-white rounded-full shadow-xs flex items-center justify-center pointer-events-none">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+          </span>
         </button>
-
-        {/* Primary Action (WhatsApp) - Always Visible */}
-        {(() => {
-          const wa = SOCIAL_ITEMS.find((i) => i.isPrimary)!;
-          const Icon = wa.icon;
-          const isHovered = hoveredItem === wa.name;
-
-          return (
-            <div key={wa.name} className="relative flex items-center">
-              {/* Tooltip on desktop */}
-              <AnimatePresence>
-                {isHovered && (
-                  <motion.div
-                    initial={{ opacity: 0, x: 8, scale: 0.95 }}
-                    animate={{ opacity: 1, x: 0, scale: 1 }}
-                    exit={{ opacity: 0, x: 6, scale: 0.95 }}
-                    transition={{ duration: 0.15, ease: "easeOut" }}
-                    className="hidden sm:flex absolute right-full mr-3 items-center pointer-events-none z-50 whitespace-nowrap"
-                  >
-                    <div className="bg-brand-navy text-white text-xs font-mono font-bold tracking-wider uppercase px-3 py-1.5 rounded shadow-xl flex items-center gap-1.5">
-                      <span>{wa.label}</span>
-                    </div>
-                    <div className="w-0 h-0 border-y-4 border-y-transparent border-l-4 border-l-brand-navy" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              <a
-                href={wa.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={wa.label}
-                title={wa.label}
-                onMouseEnter={() => setHoveredItem(wa.name)}
-                onMouseLeave={() => setHoveredItem(null)}
-                className={`relative flex items-center justify-center rounded-full transition-all duration-300 transform hover:scale-110 active:scale-95 shadow-xl ${wa.sizeClass} ${wa.bgClass}`}
-              >
-                <span className="absolute -inset-1 rounded-full bg-[#25D366] opacity-30 animate-ping pointer-events-none" />
-                <Icon className={wa.iconSizeClass} />
-              </a>
-            </div>
-          );
-        })()}
       </div>
-    </div>
+
+      {/* ================================================================ */}
+      {/* 2. DOWN-SIDE FLOATING ACTIONS (WHATSAPP & SOCIALS)               */}
+      {/* ================================================================ */}
+      <div 
+        className="fixed bottom-5 right-4 sm:bottom-8 sm:right-8 z-40 flex flex-col items-end gap-2.5 sm:gap-3 pointer-events-none"
+        role="complementary"
+        aria-label="Contact and Social Links"
+      >
+        <div className="flex flex-col items-center gap-2.5 sm:gap-3 pointer-events-auto">
+          {/* Secondary Socials (YouTube, Instagram, LinkedIn) */}
+          {SOCIAL_ITEMS.map((item) => {
+            const Icon = item.icon;
+            const isHovered = hoveredItem === item.name;
+
+            return (
+              <div 
+                key={item.name} 
+                className={`relative items-center ${mobileExpanded ? "flex" : "hidden sm:flex"}`}
+              >
+                {/* Tooltip on desktop */}
+                <AnimatePresence>
+                  {isHovered && (
+                    <motion.div
+                      initial={{ opacity: 0, x: 8, scale: 0.95 }}
+                      animate={{ opacity: 1, x: 0, scale: 1 }}
+                      exit={{ opacity: 0, x: 6, scale: 0.95 }}
+                      transition={{ duration: 0.15, ease: "easeOut" }}
+                      className="hidden sm:flex absolute right-full mr-3 items-center pointer-events-none z-50 whitespace-nowrap"
+                    >
+                      <div className="bg-brand-navy text-white text-xs font-mono font-bold tracking-wider uppercase px-3 py-1.5 rounded shadow-xl flex items-center gap-1.5">
+                        <span>{item.label}</span>
+                      </div>
+                      <div className="w-0 h-0 border-y-4 border-y-transparent border-l-4 border-l-brand-navy" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/* Action Button */}
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={item.label}
+                  title={item.label}
+                  onMouseEnter={() => setHoveredItem(item.name)}
+                  onMouseLeave={() => setHoveredItem(null)}
+                  className={`relative flex items-center justify-center rounded-full transition-all duration-300 transform hover:scale-110 active:scale-95 shadow-md ${item.sizeClass} ${item.bgClass}`}
+                >
+                  <Icon className={item.iconSizeClass} />
+                </a>
+              </div>
+            );
+          })}
+
+          {/* Mobile Expand / Collapse Toggle Pill (Mobile only) */}
+          <button
+            type="button"
+            onClick={() => setMobileExpanded(!mobileExpanded)}
+            aria-label={mobileExpanded ? "Collapse socials" : "Show more socials"}
+            className="sm:hidden w-8 h-8 rounded-full bg-white text-brand-navy border border-gray-200 shadow-md flex items-center justify-center font-mono text-[10px] font-bold tracking-widest active:scale-95 transition-transform"
+          >
+            {mobileExpanded ? "✕" : "•••"}
+          </button>
+
+          {/* WhatsApp Primary Action */}
+          <div className="relative flex items-center">
+            <AnimatePresence>
+              {hoveredItem === "WhatsApp" && (
+                <motion.div
+                  initial={{ opacity: 0, x: 8, scale: 0.95 }}
+                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                  exit={{ opacity: 0, x: 6, scale: 0.95 }}
+                  transition={{ duration: 0.15, ease: "easeOut" }}
+                  className="hidden sm:flex absolute right-full mr-3 items-center pointer-events-none z-50 whitespace-nowrap"
+                >
+                  <div className="bg-brand-navy text-white text-xs font-mono font-bold tracking-wider uppercase px-3 py-1.5 rounded shadow-xl flex items-center gap-1.5">
+                    <span>Chat on WhatsApp</span>
+                  </div>
+                  <div className="w-0 h-0 border-y-4 border-y-transparent border-l-4 border-l-brand-navy" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            <a
+              href="https://wa.me/918237132553?text=Hi%20Bharat%20Play%2C%20I%20would%20like%20to%20connect."
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Chat on WhatsApp"
+              title="Chat on WhatsApp"
+              onMouseEnter={() => setHoveredItem("WhatsApp")}
+              onMouseLeave={() => setHoveredItem(null)}
+              className="relative flex items-center justify-center rounded-full transition-all duration-300 transform hover:scale-110 active:scale-95 shadow-xl w-12 h-12 sm:w-14 sm:h-14 bg-[#25D366] text-white hover:bg-[#20ba59] hover:shadow-[0_6px_22px_rgba(37,211,102,0.55)]"
+            >
+              <span className="absolute -inset-1 rounded-full bg-[#25D366] opacity-30 animate-ping pointer-events-none" />
+              <WhatsAppIcon className="w-6 h-6 sm:w-7 sm:h-7" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Interactive Events Calendar Pop-up Modal */}
+      <EventsCalendarModal
+        isOpen={isCalendarOpen}
+        onClose={() => setIsCalendarOpen(false)}
+      />
+    </>
   );
 }

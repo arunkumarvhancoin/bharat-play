@@ -1,9 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 interface Topic {
   id: string;
@@ -74,7 +73,6 @@ const TOPICS: Topic[] = [
 
 export default function WhatWePlayWith() {
   const targetRef = useRef<HTMLDivElement>(null);
-  const [activeSlide, setActiveSlide] = useState(0);
 
   // Smooth scroll tracking across the entire container
   const { scrollYProgress } = useScroll({
@@ -82,24 +80,9 @@ export default function WhatWePlayWith() {
     offset: ["start start", "end end"]
   });
 
-  // Track active slide index based on progress
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const idx = Math.min(TOPICS.length - 1, Math.max(0, Math.round(latest * (TOPICS.length - 1))));
-    setActiveSlide(idx);
-  });
-
   // 6 full-viewport slides (track width = 600vw).
   // Slide 6 (FUTURE) reaches full view by 0.85, and remains fully on the viewport until 1.0
   const x = useTransform(scrollYProgress, [0, 0.88, 1], ["0%", "-83.3333%", "-83.3333%"]);
-
-  const scrollToSlide = (index: number) => {
-    if (!targetRef.current) return;
-    const rect = targetRef.current.getBoundingClientRect();
-    const scrollTop = window.scrollY + rect.top;
-    const totalScrollDistance = targetRef.current.offsetHeight - window.innerHeight;
-    const targetScroll = scrollTop + (index / (TOPICS.length - 1)) * totalScrollDistance;
-    window.scrollTo({ top: targetScroll, behavior: "smooth" });
-  };
 
   return (
     <section 
@@ -120,31 +103,6 @@ export default function WhatWePlayWith() {
               WHAT WE <span className="text-brand-orange">DESIGN FOR.</span>
             </h2>
           </div>
-
-          <div className="flex items-center gap-2 pointer-events-auto">
-            <button
-              type="button"
-              onClick={() => scrollToSlide(Math.max(0, activeSlide - 1))}
-              disabled={activeSlide === 0}
-              aria-label="Previous slide"
-              className="w-8 h-8 rounded-full border border-gray-200 bg-white shadow-2xs flex items-center justify-center text-brand-navy hover:text-brand-orange hover:border-brand-navy disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollToSlide(Math.min(TOPICS.length - 1, activeSlide + 1))}
-              disabled={activeSlide === TOPICS.length - 1}
-              aria-label="Next slide"
-              className="w-8 h-8 rounded-full border border-gray-200 bg-white shadow-2xs flex items-center justify-center text-brand-navy hover:text-brand-orange hover:border-brand-navy disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-            <div className="hidden sm:flex items-center gap-1.5 font-mono text-xs font-bold tracking-widest text-brand-gray bg-white/80 backdrop-blur-xs px-3 py-1.5 rounded-xs border border-gray-200 shadow-2xs ml-1">
-              <span>SCROLL TO EXPLORE</span>
-              <span className="text-brand-orange font-bold">→</span>
-            </div>
-          </div>
         </div>
 
         {/* Horizontal moving track with hardware acceleration */}
@@ -161,11 +119,9 @@ export default function WhatWePlayWith() {
 
                 {/* Text on the Left */}
                 <div className="md:col-span-6 flex flex-col justify-center">
-                  <div className="flex items-center gap-2 font-mono text-[11px] sm:text-xs font-bold uppercase tracking-widest text-brand-orange mb-1.5 sm:mb-3">
-                    <span>{topic.number}</span>
-                    <span className="text-gray-300">/</span>
-                    <span className="text-brand-gray">06</span>
-                  </div>
+                  <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange block mb-1.5 sm:mb-3">
+                    DOMAIN FOCUS
+                  </span>
 
                   <h3 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight uppercase text-brand-navy mb-2 sm:mb-6 leading-none">
                     {topic.title}
@@ -186,34 +142,9 @@ export default function WhatWePlayWith() {
           ))}
         </motion.div>
 
-        {/* Interactive Bottom Slide Selector Pills + Progress Line */}
-        <div className="absolute bottom-6 sm:bottom-8 left-4 sm:left-6 md:left-14 lg:left-20 right-4 sm:right-6 md:right-14 lg:right-20 z-20 flex flex-col gap-3">
-          {/* Slide Indicator Pills */}
-          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1 scrollbar-none justify-start sm:justify-center">
-            {TOPICS.map((topic, idx) => {
-              const isActive = activeSlide === idx;
-              return (
-                <button
-                  key={topic.id}
-                  type="button"
-                  onClick={() => scrollToSlide(idx)}
-                  className={`font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xs border transition-all cursor-pointer shrink-0 ${
-                    isActive
-                      ? "bg-brand-navy text-white border-brand-navy shadow-xs"
-                      : "bg-white/90 text-brand-navy/70 border-gray-200 hover:border-gray-400 hover:text-brand-navy"
-                  }`}
-                >
-                  <span className={isActive ? "text-brand-orange mr-1.5" : "text-gray-400 mr-1.5"}>
-                    {topic.number}
-                  </span>
-                  <span>{topic.title}</span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Minimalist Progress Line */}
-          <div className="w-full h-1 bg-gray-200 rounded-full overflow-hidden">
+        {/* Minimalist Progress Line */}
+        <div className="absolute bottom-6 sm:bottom-8 left-4 sm:left-6 md:left-14 lg:left-20 right-4 sm:right-6 md:right-14 lg:right-20 z-20">
+          <div className="w-full h-1 bg-gray-200/80 rounded-full overflow-hidden">
             <motion.div
               style={{ scaleX: scrollYProgress }}
               className="h-full bg-brand-orange origin-left"

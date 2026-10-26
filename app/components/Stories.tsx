@@ -80,7 +80,7 @@ const PLAYLIST_VIDEOS: VideoData[] = [
   }
 ];
 
-// 5 authentic workshop and session capture videos provided by user
+// Authentic workshop and session capture videos
 const WORKSHOP_CAPTURES: VideoData[] = [
   {
     id: "qxcTD7rLqw8",
@@ -120,32 +120,6 @@ const WORKSHOP_CAPTURES: VideoData[] = [
     duration: "ONLINE GAME",
     thumbnail: "https://i.ytimg.com/vi/NQkusxelw4Q/hqdefault.jpg",
     tapeRotation: "-rotate-1"
-  },
-  {
-    id: "KSGUtA8a9Fk",
-    url: "https://youtu.be/KSGUtA8a9Fk",
-    embedUrl: "https://www.youtube-nocookie.com/embed/KSGUtA8a9Fk?autoplay=1",
-    shortLabel: "Flooded Futures",
-    tag: "STUDENT GAME",
-    title: '"Flooded Futures" an interactive boardgame by Samika, Akrati, and Khushi',
-    subtitle: "Student-designed simulation from FLAME University exploring climate adaptation, community flood response, and infrastructure trade-offs.",
-    speaker: "FLAME University Students",
-    duration: "STUDENT DESIGN",
-    thumbnail: "https://i.ytimg.com/vi/KSGUtA8a9Fk/hqdefault.jpg",
-    tapeRotation: "rotate-2"
-  },
-  {
-    id: "Q_NdkrmE-XM",
-    url: "https://youtu.be/Q_NdkrmE-XM",
-    embedUrl: "https://www.youtube-nocookie.com/embed/Q_NdkrmE-XM?autoplay=1",
-    shortLabel: "Building-in-a-Box (BiBo)",
-    tag: "SERIOUS GAMEPLAY",
-    title: 'Building-in-a-Box (BiBo) gameplay',
-    subtitle: "Live gameplay demonstration of the BiBo board game balancing green building certifications, embodied carbon, and real estate economics.",
-    speaker: "Gameplay Lab",
-    duration: "GAMEPLAY LAB",
-    thumbnail: "https://i.ytimg.com/vi/Q_NdkrmE-XM/hqdefault.jpg",
-    tapeRotation: "-rotate-3"
   }
 ];
 
@@ -377,11 +351,11 @@ export default function Stories() {
             </div>
 
             <p className="text-xs sm:text-sm text-brand-gray font-medium max-w-md">
-              Live captures of tabletop defense games, electronic civic tech prototypes, and student-designed climate simulations.
+              Live captures of tabletop cyber defense games, electronic civic tech prototypes, and online youth peace simulations.
             </p>
           </div>
 
-          {/* 5 Video Cards Grid (Spacious 3-Column / 2-Column Responsive Layout - Much Bigger Cards!) */}
+          {/* 3 Video Cards Grid (Spacious 3-Column Responsive Layout) */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 sm:gap-8">
             {WORKSHOP_CAPTURES.map((video) => (
               <article

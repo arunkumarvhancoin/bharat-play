@@ -1,6 +1,7 @@
 import FeaturedEventHero from "./components/FeaturedEventHero";
 import Stories from "./components/Stories";
 import AboutKudos from "./components/AboutKudos";
+import GamesCarousel from "./components/GamesCarousel";
 import ProgramsShowcase from "./components/ProgramsShowcase";
 import FinalCTA from "./components/FinalCTA";
 import WhatWePlayWith from "./components/WhatWePlayWith";
@@ -14,6 +15,9 @@ export default function Home() {
       
       {/* 03 — ONE VIEW (ABOUT) */}
       <AboutKudos />
+
+      {/* 03.2 — OUR GAMES (AUTOMATIC ROTATING CAROUSEL) */}
+      <GamesCarousel />
 
       {/* 03.5 — OUR PROGRAMS (COMPACT SHOWCASE) */}
       <ProgramsShowcase />

@@ -167,7 +167,7 @@ export default function ProgramsPage() {
                   </Link>
 
                   <a
-                    href={`https://wa.me/916381531026?text=${encodeURIComponent(`Hi Bharat Play, I would like to inquire about hosting ${program.name} for our organization.`)}`}
+                    href={`https://wa.me/918237132553?text=${encodeURIComponent(`Hi Bharat Play, I would like to inquire about hosting ${program.name} for our organization.`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-mono text-xs font-bold uppercase text-brand-orange hover:text-brand-navy transition-colors inline-flex items-center gap-1"
@@ -226,7 +226,7 @@ export default function ProgramsPage() {
                     </a>
                   )}
                   <a
-                    href={`https://wa.me/916381531026?text=${encodeURIComponent(`Hi Bharat Play, I would like to inquire about hosting a session similar to ${session.title}.`)}`}
+                    href={`https://wa.me/918237132553?text=${encodeURIComponent(`Hi Bharat Play, I would like to inquire about hosting a session similar to ${session.title}.`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-mono text-xs font-bold uppercase text-brand-orange hover:text-brand-navy inline-flex items-center gap-1"
@@ -254,7 +254,7 @@ export default function ProgramsPage() {
           </div>
           
           <a
-            href="https://wa.me/916381531026?text=Hi%20Bharat%20Play,%20we%20want%20to%20design%20a%20custom%20purposeful%20play%20program%20for%20our%20institution."
+            href="https://wa.me/918237132553?text=Hi%20Bharat%20Play,%20we%20want%20to%20design%20a%20custom%20purposeful%20play%20program%20for%20our%20institution."
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-brand-orange text-white hover:bg-white hover:text-brand-navy px-5 py-3 rounded-xs font-mono text-xs font-bold uppercase tracking-wider transition-colors shrink-0"

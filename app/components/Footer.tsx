@@ -37,9 +37,19 @@ export default function Footer() {
               <h3 className="font-mono text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-3">SITEMAP</h3>
               <Link href="/games" className="text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm">Games</Link>
               <Link href="/programs" className="text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm">Programs</Link>
-              <Link href="/events" className="text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm">Events</Link>
+              <button 
+                type="button" 
+                onClick={() => {
+                  if (typeof window !== "undefined") {
+                    window.dispatchEvent(new CustomEvent("open-events-calendar"));
+                  }
+                }}
+                className="text-left text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm cursor-pointer"
+              >
+                Events Calendar
+              </button>
               <Link href="/testimonials" className="text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm">Testimonials</Link>
-              <Link href="/about" className="text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm">About Us</Link>
+              <Link href="/#about" className="text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm">About Us</Link>
             </div>
 
             <div className="flex flex-col gap-4">
@@ -62,7 +72,7 @@ export default function Footer() {
             <div className="flex flex-col gap-4">
               <h3 className="font-mono text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-3">CONNECT</h3>
               <a 
-                href="https://wa.me/916381531026" 
+                href="https://wa.me/918237132553" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="inline-flex items-center gap-1.5 text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm group"
