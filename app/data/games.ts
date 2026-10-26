@@ -237,7 +237,8 @@ export const GAMES: GameItem[] = [
       "BITSAA Chennai — Gandhi Jayanti Intergenerational Gathering",
       "FLAME University, Pune — Experiential Public Policy & Environmental Studies",
       "IIT BHU — Complex Systems Simulation & Engineering Showcase",
-      "Saturdays4SeriousSocialGames — Weekly community gameplay series in Chennai"
+      "Saturdays4SeriousSocialGames — Weekly community gameplay series in Chennai",
+      "Weekly Host Venues — Quest @ Besant Nagar & Falling Apple, Adyar (Chennai)"
     ]
   },
   {

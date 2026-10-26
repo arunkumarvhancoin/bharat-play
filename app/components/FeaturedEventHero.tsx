@@ -310,7 +310,7 @@ export default function FeaturedEventHero() {
                       href="/programs"
                       className="group inline-flex items-center gap-3.5 bg-brand-orange text-white px-6 sm:px-8 py-3.5 sm:py-4 font-mono text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] hover:bg-white hover:text-brand-navy transition-all duration-300 shadow-[0_12px_30px_rgba(249,115,22,0.22)]"
                     >
-                      <span>DISCOVER BHARAT PLAY</span>
+                      <span>EXPLORE PROGRAMS</span>
                       <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
                     </Link>
                   </motion.div>
@@ -460,25 +460,10 @@ export default function FeaturedEventHero() {
                     initial={{ opacity: 0, y: 14 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.55, delay: 0.22 }}
-                    className="text-sm sm:text-base md:text-lg text-white/75 font-normal leading-relaxed max-w-xl mb-6 sm:mb-8 font-sans"
+                    className="text-sm sm:text-base md:text-lg text-white/75 font-normal leading-relaxed max-w-xl font-sans"
                   >
                     From urban resilience and disaster preparedness to energy, cities and public systems, our games turn difficult questions into experiences people can explore together.
                   </motion.p>
-
-                  {/* CTA */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 14 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.28 }}
-                  >
-                    <Link
-                      href="/projects"
-                      className="group inline-flex items-center gap-3.5 bg-white text-brand-navy px-6 sm:px-8 py-3.5 sm:py-4 font-mono text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] hover:bg-brand-orange hover:text-white transition-all duration-300 shadow-[0_12px_30px_rgba(255,255,255,0.1)]"
-                    >
-                      <span>EXPLORE RECOGNITION</span>
-                      <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
-                    </Link>
-                  </motion.div>
                 </div>
 
                 {/* RIGHT: Minimal Institutional Recognition Strip / Typographic Wall */}

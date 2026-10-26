@@ -257,7 +257,7 @@ export default function ContactPage() {
                     PHYSICAL VENUES
                   </span>
                   <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-brand-navy">
-                    CITY RUNNERS HUBS
+                    WEEKLY HOST VENUES & HUBS
                   </h3>
                 </div>
                 <span className="font-mono text-xs uppercase font-bold px-2.5 py-1 rounded bg-brand-orange text-white">
@@ -271,16 +271,16 @@ export default function ContactPage() {
                   <div>
                     <span className="font-mono text-xs uppercase font-bold tracking-widest text-brand-gray block">1. NORTH CHENNAI</span>
                     <span className="font-display text-base font-bold uppercase text-brand-navy">Kolathur & MKB Nagar</span>
-                    <span className="font-mono text-xs text-brand-gray block mt-0.5 font-medium">Every Sunday · 2:30 PM to 5:30 PM</span>
+                    <span className="font-mono text-xs text-brand-gray block mt-0.5 font-medium">Bharat Play Experience Center · Every Sunday · 2:30 PM to 5:30 PM</span>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3.5 border-b border-gray-100 pb-4">
                   <MapPin className="w-4 h-4 text-brand-green mt-1 shrink-0" />
                   <div>
-                    <span className="font-mono text-xs uppercase font-bold tracking-widest text-brand-gray block">2. SOUTH CHENNAI</span>
-                    <span className="font-display text-base font-bold uppercase text-brand-navy">Besant Nagar & Chrompet</span>
-                    <span className="font-mono text-xs text-brand-gray block mt-0.5 font-medium">Every Sunday · 2:30 PM to 5:30 PM</span>
+                    <span className="font-mono text-xs uppercase font-bold tracking-widest text-brand-gray block">2. SOUTH CHENNAI (WEEKLY HOST VENUES)</span>
+                    <span className="font-display text-base font-bold uppercase text-brand-navy">Quest @ Besant Nagar & Falling Apple, Adyar</span>
+                    <span className="font-mono text-xs text-brand-gray block mt-0.5 font-medium">Weekly Community Play Hubs · Every Sunday · 2:30 PM to 5:30 PM (also Chrompet)</span>
                   </div>
                 </div>
 

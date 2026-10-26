@@ -210,7 +210,7 @@ export const PROGRAMS: ProgramItem[] = [
       },
       {
         question: "Can sessions be conducted on-site at our campus or office?",
-        answer: "Yes! We run sessions either at our Bharat Play Experience Center in Chennai or travel directly to your institution anywhere in India and internationally."
+        answer: "Yes! We run regular sessions across our weekly community host venues (Quest @ Besant Nagar, Falling Apple, Adyar, and our Bharat Play Experience Center in Kolathur), or travel directly to your institution anywhere in India and internationally."
       },
       {
         question: "What is the ideal group size?",
