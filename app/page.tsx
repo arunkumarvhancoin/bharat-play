@@ -4,7 +4,7 @@ import AboutKudos from "./components/AboutKudos";
 import GamesCarousel from "./components/GamesCarousel";
 import ProgramsShowcase from "./components/ProgramsShowcase";
 import FinalCTA from "./components/FinalCTA";
-import WhatWePlayWith from "./components/WhatWePlayWith";
+// import WhatWePlayWith from "./components/WhatWePlayWith";
 
 export default function Home() {
   return (
@@ -23,7 +23,7 @@ export default function Home() {
       <ProgramsShowcase />
 
       {/* 04 — WHAT WE DESIGN FOR */}
-      <WhatWePlayWith />
+      {/* <WhatWePlayWith /> */}
 
       {/* 04.1 - SEE IT IN ACTION (Stories) */}
       <Stories />
