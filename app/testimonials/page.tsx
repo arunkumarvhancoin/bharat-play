@@ -122,11 +122,14 @@ const REAL_TESTIMONIALS = [
 
 export default function TestimonialsPage() {
   return (
-    <main className="min-h-screen bg-brand-offwhite text-brand-navy pt-32 pb-32 selection:bg-brand-orange selection:text-white">
+    <main className="min-h-screen bg-[#FDFBF7] text-brand-navy pt-32 pb-32 selection:bg-brand-orange selection:text-white">
       
       {/* HEADER BREADCRUMB */}
       <div className="max-w-[1400px] mx-auto w-full px-4 md:px-6 mb-16">
-        <Link href="/" className="inline-flex items-center gap-2 text-brand-orange font-mono text-xs uppercase tracking-widest hover:text-brand-navy transition-colors">
+        <Link 
+          href="/" 
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 border border-amber-200/70 shadow-xs text-brand-orange hover:text-brand-navy font-mono text-xs uppercase tracking-wider transition-colors font-bold"
+        >
           <ArrowLeft className="w-4 h-4" /> BACK TO HOME
         </Link>
       </div>
@@ -167,7 +170,7 @@ export default function TestimonialsPage() {
 
       {/* TOP SECTION — TESTIMONIAL VIDEOS */}
       <section className="max-w-[1400px] mx-auto w-full px-4 md:px-6 mb-28">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 pb-6 border-b border-gray-200">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 pb-6 border-b border-amber-200/60">
           <div>
             <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange block mb-2">
               FIELD RECORDINGS & VIDEO REFLECTIONS
@@ -182,14 +185,22 @@ export default function TestimonialsPage() {
         </div>
 
         <div className="columns-1 md:columns-2 lg:columns-3 gap-8 [column-fill:_balance]">
-          {TESTIMONIAL_VIDEOS.map((vid, idx) => (
-            <motion.div
-              key={vid.id}
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: idx * 0.05 }}
-              className="break-inside-avoid mb-8 bg-white border border-gray-200 rounded-sm overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
-            >
+          {TESTIMONIAL_VIDEOS.map((vid, idx) => {
+            const videoTheme = [
+              { border: "border-[#C2410C]", shadow: "#C2410C" }, // Saffron
+              { border: "border-[#0C2444]", shadow: "#0C2444" }, // Navy Blue
+              { border: "border-[#12352B]", shadow: "#12352B" }, // Forest Green
+            ][idx % 3];
+
+            return (
+              <motion.div
+                key={vid.id}
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: idx * 0.05 }}
+                className={`break-inside-avoid mb-8 bg-white border-2 ${videoTheme.border} rounded-[24px] overflow-hidden transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between group`}
+                style={{ boxShadow: `10px 10px 0px ${videoTheme.shadow}` }}
+              >
               {/* Video Player — Native aspect ratio, unclipped with fast-loading poster */}
               <div className="relative w-full bg-black/95 overflow-hidden">
                 <video
@@ -203,10 +214,10 @@ export default function TestimonialsPage() {
               </div>
 
               {/* Video Meta Info */}
-              <div className="p-5 sm:p-6 md:p-8 flex flex-col justify-between flex-1">
+              <div className="p-6 sm:p-7 md:p-8 flex flex-col justify-between flex-1">
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="font-mono text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded bg-brand-offwhite text-brand-navy border border-gray-200">
+                    <span className="font-mono text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full bg-amber-50 text-amber-900 border border-amber-200/60">
                       {vid.tag}
                     </span>
                     <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-brand-orange">
@@ -224,13 +235,14 @@ export default function TestimonialsPage() {
                 </div>
               </div>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
       {/* SECTION — REAL WRITTEN TESTIMONIALS */}
       <section className="max-w-[1400px] mx-auto w-full px-4 md:px-6 mb-28">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 pb-6 border-b border-gray-200">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 pb-6 border-b border-amber-200/60">
           <div>
             <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange block mb-2">
               WRITTEN REFLECTIONS & ENDORSEMENTS
@@ -247,14 +259,11 @@ export default function TestimonialsPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {REAL_TESTIMONIALS.map((item, idx) => {
             const colSpan = idx === 0 || idx === 3 ? "lg:col-span-7" : "lg:col-span-5";
-            const borderAccent =
-              idx === 0
-                ? "border-l-4 border-l-brand-orange"
-                : idx === 1
-                ? "border-l-4 border-l-brand-green"
-                : idx === 2
-                ? "border-l-4 border-l-brand-navy"
-                : "border-l-4 border-l-brand-orange";
+            const quoteTheme = [
+              { border: "border-[#0C2444]", shadow: "#0C2444" }, // Navy Blue
+              { border: "border-[#C2410C]", shadow: "#C2410C" }, // Saffron
+              { border: "border-[#12352B]", shadow: "#12352B" }, // Forest Green
+            ][idx % 3];
 
             return (
               <motion.div
@@ -263,7 +272,8 @@ export default function TestimonialsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className={`relative bg-white border border-gray-200 rounded-sm p-6 sm:p-8 md:p-10 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group overflow-hidden ${colSpan} ${borderAccent}`}
+                className={`relative bg-white border-2 ${quoteTheme.border} rounded-[24px] p-7 sm:p-9 md:p-10 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 group overflow-hidden ${colSpan}`}
+                style={{ boxShadow: `10px 10px 0px ${quoteTheme.shadow}` }}
               >
                 {/* Decorative Quote Icon Watermark */}
                 <div className="absolute top-4 right-6 opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none">
@@ -272,7 +282,7 @@ export default function TestimonialsPage() {
 
                 <div className="relative z-10">
                   <div className="flex items-center justify-between mb-6">
-                    <span className="font-mono text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded bg-brand-offwhite text-brand-navy border border-gray-200">
+                    <span className="font-mono text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full bg-amber-50 text-amber-900 border border-amber-200/60">
                       {item.tag}
                     </span>
                     <Quote className="w-5 h-5 text-brand-orange/60 group-hover:text-brand-orange transition-colors" />
@@ -283,9 +293,9 @@ export default function TestimonialsPage() {
                   </p>
                 </div>
 
-                <div className="relative z-10 border-t border-gray-100 pt-6 flex items-center justify-between gap-4">
+                <div className="relative z-10 border-t border-amber-100 pt-6 flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3.5">
-                    <div className="w-11 h-11 rounded-full bg-brand-offwhite border border-gray-200 flex items-center justify-center font-mono text-xs font-bold text-brand-orange shrink-0 group-hover:bg-brand-orange group-hover:text-white transition-colors">
+                    <div className="w-11 h-11 rounded-full bg-gradient-to-br from-amber-100 to-orange-100 border border-amber-200 flex items-center justify-center font-mono text-xs font-bold text-brand-orange shrink-0 group-hover:bg-brand-orange group-hover:text-white transition-colors">
                       {item.initials}
                     </div>
                     <div className="flex flex-col">
@@ -310,11 +320,11 @@ export default function TestimonialsPage() {
 
       {/* FINAL CTA */}
       <section className="px-4 md:px-6">
-        <div className="max-w-[1000px] mx-auto w-full text-center">
+        <div className="max-w-[1000px] mx-auto w-full text-center bg-white border border-amber-200/80 rounded-3xl p-10 sm:p-14 shadow-sm">
           <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-green mb-4 block">
             EXPERIENCE IT YOURSELF
           </span>
-          <h2 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter text-brand-navy leading-[0.9] mb-8 sm:mb-12">
+          <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-bold uppercase tracking-tighter text-brand-navy leading-[0.9] mb-8 sm:mb-10">
             JOIN THE NEXT <br/> <span className="text-brand-orange">PLAYTEST SESSION.</span>
           </h2>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 w-full sm:w-auto">
@@ -325,11 +335,14 @@ export default function TestimonialsPage() {
                   window.dispatchEvent(new CustomEvent("open-events-calendar"));
                 }
               }}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-brand-navy text-white px-8 py-4 sm:py-5 rounded-sm font-mono text-xs font-bold uppercase tracking-widest hover:bg-brand-orange transition-colors cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white px-8 py-4 sm:py-5 rounded-full font-mono text-xs font-bold uppercase tracking-widest shadow-md shadow-orange-500/20 hover:scale-[1.02] transition-all cursor-pointer"
             >
               VIEW UPCOMING EVENTS <ArrowRight className="w-4 h-4" />
             </button>
-            <Link href="/programs" className="w-full sm:w-auto inline-flex items-center justify-center gap-3 border border-brand-navy text-brand-navy px-8 py-4 sm:py-5 rounded-sm font-mono text-xs font-bold uppercase tracking-widest hover:bg-brand-navy hover:text-white transition-colors">
+            <Link 
+              href="/programs" 
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 border-2 border-brand-navy/20 bg-white text-brand-navy px-8 py-4 sm:py-5 rounded-full font-mono text-xs font-bold uppercase tracking-widest hover:border-brand-navy hover:bg-brand-navy hover:text-white transition-all"
+            >
               EXPLORE ALL PROGRAMS <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

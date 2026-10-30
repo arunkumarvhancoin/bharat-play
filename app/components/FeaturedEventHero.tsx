@@ -45,15 +45,17 @@ export default function FeaturedEventHero() {
   };
 
   const FEATURED_UPCOMING_EVENT = {
-    date: "24",
-    month: "OCT",
+    date: "07",
+    month: "NOV",
     day: "SATURDAY",
-    time: "5:30 PM – 7:30 PM",
-    title: "Saturdays 4 Serious Social Games · Livable Cities",
-    category: "PUBLIC PLAYTEST",
-    game: "City Runners & Cascade",
-    venue: "Kolathur, Chennai",
-    capacity: "16 Seats · Tabletop Cohort",
+    time: "5:00 PM – 7:00 PM",
+    title: "Saturdays4SocialGames",
+    category: "TABLETOP SOCIAL PLAY",
+    game: "Discrete / Surprise Game Theme",
+    venue: "Venue TBA (Closer to date)",
+    capacity: "Limited to 15 Seats",
+    price: "₹99 / pax",
+    href: "/events/saturdays-4-social-games",
   };
 
   const INSTITUTIONS = [
@@ -76,7 +78,7 @@ export default function FeaturedEventHero() {
 
   return (
     <section
-      className="relative min-h-[100dvh] lg:h-[100dvh] w-full overflow-hidden bg-brand-navy text-white flex flex-col justify-between select-none"
+      className="relative min-h-[100dvh] lg:h-[100dvh] w-full overflow-hidden bg-gradient-to-b from-[#0B1728] via-[#0F223D] to-[#0B1A2E] text-white flex flex-col justify-between select-none"
       id="hero"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
@@ -316,36 +318,37 @@ export default function FeaturedEventHero() {
                   </motion.div>
                 </div>
 
-                {/* RIGHT: ONE UPCOMING EVENT (WARM PAPER FRAME CARD) */}
+                {/* RIGHT: ONE UPCOMING EVENT (PHYSICAL OFFSET CARD WITH HARD SHADOW) */}
                 <div className="lg:col-span-5 flex flex-col justify-center">
                   <motion.div
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.55, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
-                    className="relative bg-[#FAF8F5] text-brand-navy p-6 sm:p-7 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.45)] border-2 border-brand-navy rotate-[1deg] hover:rotate-0 transition-all duration-300 group"
+                    className="relative bg-white text-slate-800 p-6 sm:p-7 rounded-[26px] border-2 border-[#C2410C] transition-all duration-300 group"
+                    style={{ boxShadow: "10px 10px 0px #C2410C" }}
                   >
-                    {/* Playful washi tape strip on top — high visibility & bold contrast */}
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-[#FDE047] text-brand-navy border-2 border-brand-navy shadow-lg rounded-xs rotate-[-1.5deg] z-20 pointer-events-none whitespace-nowrap flex items-center justify-center">
-                      <span className="text-xs font-mono font-black tracking-widest uppercase">
-                        ✦ MARK YOUR CALENDAR ✦
+                    {/* Playful pill tape badge on top - Solid Matte Saffron */}
+                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 bg-[#C2410C] text-white border-2 border-white shadow-xs rounded-full rotate-[-1deg] z-20 pointer-events-none whitespace-nowrap flex items-center justify-center">
+                      <span className="text-xs font-bold tracking-wider uppercase font-mono">
+                        ✦ UPCOMING EVENT IN GOA ✦
                       </span>
                     </div>
 
                     {/* Friendly Header Tag */}
-                    <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-gray-200/80 pt-1">
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-100 text-brand-orange text-xs font-bold tracking-wide">
-                        <Sparkles className="w-3.5 h-3.5 fill-current" />
-                        Next Community Playtest
+                    <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-amber-200/50 pt-1">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0C2444] text-white text-xs font-bold tracking-wide">
+                        <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                        Community Festival Showcase
                       </span>
-                      <span className="text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full">
-                        Open to All
+                      <span className="text-xs font-bold text-white bg-[#15803D] px-3 py-0.5 rounded-full">
+                        {FEATURED_UPCOMING_EVENT.price}
                       </span>
                     </div>
 
                     {/* Date Block & Title */}
                     <div className="flex items-start gap-4 mb-4">
-                      {/* Tear-off calendar date badge */}
-                      <div className="shrink-0 flex flex-col items-center justify-center w-16 py-2 px-1.5 bg-gradient-to-br from-brand-orange to-[#EA580C] text-white rounded-md shadow-md">
+                      {/* Solid Matte Saffron Date Badge */}
+                      <div className="shrink-0 flex flex-col items-center justify-center w-16 py-2 px-1.5 bg-[#C2410C] text-white rounded-2xl shadow-xs">
                         <span className="text-[10px] font-bold tracking-widest uppercase opacity-90 leading-none">
                           {FEATURED_UPCOMING_EVENT.month}
                         </span>
@@ -358,26 +361,26 @@ export default function FeaturedEventHero() {
                       </div>
 
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-1.5 text-xs text-brand-gray font-medium mb-1">
+                        <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium mb-1">
                           <Clock className="w-3.5 h-3.5 text-brand-orange shrink-0" />
                           <span>{FEATURED_UPCOMING_EVENT.time}</span>
                         </div>
-                        <h3 className="font-display text-base sm:text-lg font-bold text-brand-navy leading-snug group-hover:text-brand-orange transition-colors">
+                        <h3 className="font-display text-base sm:text-lg font-bold text-slate-900 leading-snug group-hover:text-brand-orange transition-colors">
                           {FEATURED_UPCOMING_EVENT.title}
                         </h3>
                       </div>
                     </div>
 
                     {/* Friendly Note */}
-                    <p className="text-xs sm:text-[13px] text-brand-navy/80 leading-relaxed mb-4 bg-orange-50/70 p-3 rounded-md border border-orange-200/60 font-medium">
-                      🎲 Play <span className="font-bold text-brand-navy">City Runners & Cascade</span> in a relaxed, friendly tabletop lab. Explore city systems and meet fellow curious minds!
+                    <p className="text-xs sm:text-[13px] text-slate-700 leading-relaxed mb-4 bg-amber-50/80 p-3 rounded-2xl border border-amber-200/60 font-medium">
+                      🎲 Play <span className="font-bold text-slate-900">City Runners & Serious Games</span> in an engaging, screen-free analog community session exploring civic systems and strategy.
                     </p>
 
                     {/* Quick Metadata */}
-                    <div className="flex items-center justify-between text-xs text-brand-navy/70 pb-4 mb-4 border-b border-gray-200/70 font-medium">
+                    <div className="flex items-center justify-between text-xs text-slate-600 pb-4 mb-4 border-b border-amber-200/50 font-medium">
                       <span className="flex items-center gap-1.5">
                         <MapPin className="w-3.5 h-3.5 text-brand-orange shrink-0" />
-                        <span className="font-semibold text-brand-navy">{FEATURED_UPCOMING_EVENT.venue}</span>
+                        <span className="font-semibold text-slate-900">{FEATURED_UPCOMING_EVENT.venue}</span>
                       </span>
                       <span className="flex items-center gap-1.5">
                         <Users className="w-3.5 h-3.5 text-brand-orange shrink-0" />
@@ -385,25 +388,24 @@ export default function FeaturedEventHero() {
                       </span>
                     </div>
 
-                    {/* Actions */}
+                    {/* Actions: Solid Matte Saffron Button */}
                     <div className="flex items-center gap-2.5">
-                      <button
-                        type="button"
-                        onClick={openCalendar}
-                        className="flex-1 inline-flex items-center justify-center gap-2 bg-brand-orange hover:bg-brand-navy text-white px-5 py-3 rounded-md text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-200 shadow-md hover:shadow-lg cursor-pointer group/btn"
+                      <Link
+                        href={FEATURED_UPCOMING_EVENT.href}
+                        className="flex-1 inline-flex items-center justify-center gap-2 bg-[#C2410C] hover:bg-[#a3360a] text-white px-6 py-3.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-200 shadow-xs cursor-pointer group/btn"
                       >
                         <span>Join This Session</span>
                         <ArrowRight className="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform" />
-                      </button>
+                      </Link>
 
                       <button
                         type="button"
                         onClick={openCalendar}
                         title="View All Dates on Calendar"
-                        className="inline-flex items-center justify-center gap-1.5 px-3 py-3 border border-gray-300 hover:border-brand-navy text-brand-navy bg-white hover:bg-gray-50 rounded-md text-xs font-bold transition-colors cursor-pointer shadow-xs shrink-0"
+                        className="inline-flex items-center justify-center gap-1.5 px-4 py-3.5 border border-slate-300 hover:border-[#0C2444] text-slate-800 bg-white hover:bg-slate-50 rounded-full text-xs font-bold transition-colors cursor-pointer shadow-xs shrink-0"
                       >
-                        <CalendarIcon className="w-4 h-4 text-brand-orange" />
-                        <span className="hidden sm:inline">All Dates</span>
+                        <CalendarIcon className="w-4 h-4 text-[#0C2444]" />
+                        <span className="hidden sm:inline">Calendar</span>
                       </button>
                     </div>
                   </motion.div>

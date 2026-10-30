@@ -136,17 +136,17 @@ export default function Stories() {
   };
 
   return (
-    <section className="py-14 sm:py-20 md:py-32 bg-[#f8f6f0] border-b border-gray-200 text-brand-navy" id="stories">
+    <section className="py-14 sm:py-20 md:py-32 bg-white text-brand-navy border-b border-gray-200" id="stories">
       <div className="max-w-[1400px] mx-auto w-full px-4 md:px-6">
 
         {/* Section Header: Editorial Swiss Title */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between pb-8 mb-12 border-b border-gray-200 gap-6">
           <div>
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange mb-3 flex items-center gap-2">
-              <Sparkles className="w-3.5 h-3.5" /> SEE IT IN ACTION · DISCOURSE & FIELD FOOTAGE
+            <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-orange-50 text-brand-orange border border-orange-200 font-mono text-xs font-bold uppercase tracking-wider mb-3">
+              <Sparkles className="w-3.5 h-3.5 text-brand-orange" /> SEE IT IN ACTION · DISCOURSE & FIELD FOOTAGE
             </span>
             <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold uppercase tracking-tight text-brand-navy leading-none">
-              URBAN FUTURES · <span className="text-brand-green">TALK.</span>
+              URBAN FUTURES · <span className="text-brand-orange">TALK.</span>
             </h2>
           </div>
 
@@ -156,7 +156,7 @@ export default function Stories() {
         </div>
 
         {/* Top Pills Bar: Playlist Videos */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">
+        <div className="flex items-center gap-2.5 overflow-x-auto pb-4 mb-8 scrollbar-none">
           {PLAYLIST_VIDEOS.map((talk, idx) => {
             const isSelected = selectedIdx === idx;
             return (
@@ -164,13 +164,13 @@ export default function Stories() {
                 key={talk.id}
                 type="button"
                 onClick={() => handleSelectTalk(idx)}
-                className={`shrink-0 font-mono text-xs font-bold uppercase tracking-wider px-3.5 py-2 rounded-xs border transition-all duration-200 flex items-center gap-2 ${
+                className={`shrink-0 font-mono text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full border transition-all duration-200 flex items-center gap-2 cursor-pointer ${
                   isSelected
-                    ? "bg-brand-navy text-white border-brand-navy shadow-xs"
-                    : "bg-white text-brand-navy/70 border-gray-200 hover:border-gray-400 hover:text-brand-navy"
+                    ? "bg-brand-navy text-white border-brand-navy shadow-md font-bold"
+                    : "bg-gray-50 text-brand-navy/70 border-gray-200 hover:border-brand-navy hover:text-brand-navy"
                 }`}
               >
-                <span className={isSelected ? "text-brand-orange" : "text-gray-400"}>
+                <span className={isSelected ? "text-brand-orange font-black" : "text-gray-400"}>
                   {talk.number}
                 </span>
                 <span>{talk.shortLabel}</span>
@@ -186,11 +186,14 @@ export default function Stories() {
           <div className="lg:col-span-7 xl:col-span-7 flex flex-col">
             <div className="relative">
               {/* Translucent washi tape at top */}
-              <div className={`absolute -top-3.5 left-12 w-28 h-7 bg-amber-100/85 border border-amber-300/40 shadow-xs z-20 backdrop-blur-xs ${currentTalk.tapeRotation || "-rotate-1"}`} />
+              <div className={`absolute -top-3.5 left-12 w-28 h-7 bg-orange-100/90 border border-orange-300/60 shadow-xs z-20 backdrop-blur-xs ${currentTalk.tapeRotation || "-rotate-1"}`} />
 
-              {/* Framed Screen Container */}
-              <div className="p-3 sm:p-5 bg-white border border-gray-200 rounded-xs shadow-2xl">
-                <div className="relative aspect-video w-full overflow-hidden bg-black rounded-xs">
+              {/* Framed Screen Container with Hard Offset Shadow (Navy Blue Outline) */}
+              <div 
+                className="p-4 sm:p-6 bg-white border-2 border-[#0C2444] rounded-[26px]"
+                style={{ boxShadow: "10px 10px 0px #0C2444" }}
+              >
+                <div className="relative aspect-video w-full overflow-hidden bg-black rounded-2xl">
                   {isPlayingInline ? (
                     <iframe
                       src={currentTalk.embedUrl}
@@ -220,10 +223,10 @@ export default function Stories() {
 
                       {/* Badges on video */}
                       <div className="absolute top-3 left-3 flex items-center gap-2">
-                        <span className="font-mono text-xs font-bold uppercase tracking-wider bg-brand-navy text-white px-3 py-1 rounded-xs">
+                        <span className="font-mono text-xs font-bold uppercase tracking-wider bg-brand-navy text-white px-3 py-1 rounded-full shadow-xs">
                           {currentTalk.tag}
                         </span>
-                        <span className="font-mono text-xs font-bold uppercase tracking-wider bg-black/60 text-white px-3 py-1 rounded-xs backdrop-blur-xs">
+                        <span className="font-mono text-xs font-bold uppercase tracking-wider bg-black/60 text-white px-3 py-1 rounded-full backdrop-blur-xs">
                           {currentTalk.duration}
                         </span>
                       </div>
@@ -278,21 +281,21 @@ export default function Stories() {
               </span>
             </div>
 
-            <div className="flex flex-col gap-3 max-h-[660px] overflow-y-auto pr-1 scrollbar-thin">
+            <div className="flex flex-col gap-3 max-h-[660px] overflow-y-auto pr-1 scrollbar-thin" data-lenis-prevent>
               {PLAYLIST_VIDEOS.map((talk, idx) => {
                 const isSelected = selectedIdx === idx;
                 return (
                   <div
                     key={talk.id}
                     onClick={() => handleSelectTalk(idx)}
-                    className={`p-3 sm:p-3.5 rounded-xs border transition-all duration-200 cursor-pointer relative group flex gap-3.5 sm:gap-4 items-center ${
+                    className={`p-3.5 sm:p-4 rounded-2xl border transition-all duration-200 cursor-pointer relative group flex gap-3.5 sm:gap-4 items-center ${
                       isSelected
-                        ? "bg-white border-brand-navy shadow-md ring-2 ring-brand-navy/15 translate-x-1"
-                        : "bg-white/70 hover:bg-white border-gray-200 hover:border-gray-300"
+                        ? "bg-white border-orange-400 shadow-md ring-2 ring-orange-200/50 translate-x-1"
+                        : "bg-white/70 hover:bg-white border-amber-200/60 hover:border-orange-300"
                     }`}
                   >
                     {/* Thumbnail Preview (Bigger!) */}
-                    <div className="relative aspect-video w-32 sm:w-36 md:w-40 shrink-0 overflow-hidden rounded-xs bg-black">
+                    <div className="relative aspect-video w-32 sm:w-36 md:w-40 shrink-0 overflow-hidden rounded-xl bg-black">
                       <img
                         src={talk.thumbnail}
                         alt={talk.title}
@@ -355,37 +358,58 @@ export default function Stories() {
             </p>
           </div>
 
-          {/* 3 Video Cards Grid (Spacious 3-Column Responsive Layout) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 sm:gap-8">
-            {WORKSHOP_CAPTURES.map((video) => (
-              <article
-                key={video.id}
-                className={`bg-white border border-gray-200 hover:border-brand-navy rounded-xs p-5 sm:p-6 shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group ${video.tapeRotation || ""}`}
-              >
-                <div>
-                  {/* Washi Tape Strip on Top */}
-                  <div className="relative pt-2 mb-4">
-                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 w-28 h-6 bg-amber-100/90 border border-amber-300/40 shadow-xs z-20 backdrop-blur-xs rotate-[-1deg]" />
+          {/* 3 Physical Offset Paper Cards with Multi-Colored Outlines & Washi Tape */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-9 pt-6 sm:pt-8">
+            {WORKSHOP_CAPTURES.map((video, idx) => {
+              const borderStyles = [
+                { border: "border-[#C2410C]", shadow: "#C2410C" }, // Card 1: Saffron
+                { border: "border-[#0C2444]", shadow: "#0C2444" }, // Card 2: Deep Blue
+                { border: "border-[#12352B]", shadow: "#12352B" }, // Card 3: Dark Green
+              ];
+              const currentStyle = borderStyles[idx % borderStyles.length];
 
-                    {/* Video Thumbnail Frame (Much Bigger) */}
-                    <div 
-                      className="relative aspect-video w-full overflow-hidden bg-black rounded-xs cursor-pointer shadow-md"
+              return (
+                <article
+                  key={video.id}
+                  className={`relative bg-white border-2 ${currentStyle.border} rounded-[26px] p-5 sm:p-6 pt-7 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between group`}
+                  style={{ boxShadow: `10px 10px 0px ${currentStyle.shadow}` }}
+                >
+                {/* Realistic Torn Washi / Masking Tape Attached on Top */}
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
+                  <div
+                    className={`w-36 h-7 sm:h-8 bg-gradient-to-r from-[#FCE1C2]/95 via-[#FFF2E2]/95 to-[#FCE1C2]/95 border-y border-[#E7BA88]/80 shadow-[0_2px_8px_rgba(0,0,0,0.14)] backdrop-blur-xs flex items-center justify-center ${
+                      idx === 0 ? "-rotate-2" : idx === 1 ? "rotate-2" : "-rotate-1"
+                    }`}
+                    style={{
+                      clipPath:
+                        "polygon(0% 0%, 4% 25%, 1% 50%, 4% 75%, 0% 100%, 100% 100%, 96% 75%, 99% 50%, 96% 25%, 100% 0%)",
+                    }}
+                  >
+                    <div className="w-4/5 h-[1px] bg-white/60" />
+                  </div>
+                </div>
+
+                <div>
+                  {/* Polaroid Snapshot Frame around video */}
+                  <div className="p-2.5 sm:p-3 bg-white rounded-xl shadow-[inset_0_1px_2px_rgba(0,0,0,0.06),0_1px_3px_rgba(0,0,0,0.04)] border border-[#E9E4DC] mb-4">
+                    <div
+                      className="relative aspect-video w-full overflow-hidden bg-stone-900 rounded-lg cursor-pointer group/thumb"
                       onClick={() => setActiveModalVideo(video)}
                     >
                       <img
                         src={video.thumbnail}
                         alt={video.title}
                         loading="lazy"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full object-cover group-hover/thumb:scale-105 transition-transform duration-300"
                       />
-                      <div className="absolute inset-0 bg-black/35 group-hover:bg-black/50 transition-colors flex items-center justify-center">
-                        <div className="w-14 h-14 rounded-full bg-brand-orange text-white flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:bg-brand-navy transition-all duration-300">
-                          <Play className="w-6 h-6 ml-0.5 fill-current" />
+                      <div className="absolute inset-0 bg-stone-950/35 group-hover/thumb:bg-stone-950/50 transition-colors flex items-center justify-center">
+                        <div className="w-13 h-13 rounded-full bg-brand-orange text-white flex items-center justify-center shadow-xl group-hover/thumb:scale-110 transition-all duration-300">
+                          <Play className="w-5 h-5 ml-0.5 fill-current" />
                         </div>
                       </div>
 
-                      <div className="absolute top-2.5 left-2.5">
-                        <span className="font-mono text-[10px] font-bold uppercase tracking-wider bg-brand-navy/90 text-white px-2.5 py-1 rounded-xs">
+                      <div className="absolute top-2 left-2">
+                        <span className="text-[10px] font-mono font-bold uppercase tracking-wider bg-brand-navy/90 text-white px-2.5 py-0.5 rounded shadow-xs">
                           {video.tag}
                         </span>
                       </div>
@@ -396,19 +420,19 @@ export default function Stories() {
                     {video.title}
                   </h4>
 
-                  <p className="text-xs sm:text-sm text-brand-navy/80 font-medium leading-relaxed mb-5 line-clamp-3">
+                  <p className="text-xs sm:text-sm text-stone-600 font-normal leading-relaxed mb-5 line-clamp-3">
                     {video.subtitle}
                   </p>
                 </div>
 
-                {/* Actions */}
-                <div className="pt-4 border-t border-gray-100 flex items-center justify-between text-xs font-mono">
+                {/* Paper Note Footer with Perforated Tear Line */}
+                <div className="pt-4 border-t border-dashed border-stone-300/90 flex items-center justify-between text-xs font-mono">
                   <button
                     type="button"
                     onClick={() => setActiveModalVideo(video)}
-                    className="font-bold text-sm text-brand-orange hover:text-brand-navy transition-colors inline-flex items-center gap-1.5 cursor-pointer"
+                    className="font-bold text-xs text-brand-orange hover:text-brand-navy transition-colors inline-flex items-center gap-1.5 cursor-pointer"
                   >
-                    <span>PLAY VIDEO</span>
+                    <span>PLAY CAPTURE</span>
                     <Play className="w-3.5 h-3.5 fill-current" />
                   </button>
 
@@ -416,14 +440,15 @@ export default function Stories() {
                     href={video.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-bold text-brand-gray hover:text-brand-navy transition-colors inline-flex items-center gap-1.5"
+                    className="text-xs font-semibold text-stone-500 hover:text-brand-navy transition-colors inline-flex items-center gap-1.5"
                   >
                     <span>YOUTUBE</span>
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 </div>
               </article>
-            ))}
+              );
+            })}
           </div>
 
           {/* Clean Bottom Note */}
@@ -449,7 +474,7 @@ export default function Stories() {
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-brand-navy border border-white/20 rounded-sm w-full max-w-4xl overflow-hidden shadow-2xl relative"
+              className="bg-brand-navy border border-white/20 rounded-3xl w-full max-w-4xl overflow-hidden shadow-2xl relative"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal Bar */}

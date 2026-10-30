@@ -745,51 +745,68 @@ export const PROGRAMS: ProgramItem[] = [
     displayNumber: "04",
     name: "Courses",
     slug: "courses",
-    subtitle: "ACADEMIC & COHORT PLAY-BASED LEARNING PROGRAMS",
-    tag: "STRUCTURED COHORT COURSES",
-    tagline: "Academic semester studios and focused cohort courses facilitating play-based systems learning.",
-    shortDescription: "Structured play-based academic and cohort courses: ENVS102 (Disasters-Natural & Man-Made on 25th April, Sat) and CSIT122 (Introduction to Internet-of-Things on 23rd April, Thur).",
-    description: "Courses are structured academic and cohort learning programs that facilitate play-based systems learning. Our curriculum deploys hands-on tabletop simulations, experiential labs, and systems modeling to explore complex real-world dilemmas. Currently offering two specialized courses: ENVS102 : Disasters-Natural & Man-Made (on 25th April, Sat) and CSIT122 : Introduction to Internet-of-Things (on 23rd April, Thur).",
+    subtitle: "PLAY-BASED INTERDISCIPLINARY ACADEMIC COURSES",
+    tag: "INTERDISCIPLINARY COHORT COURSES",
+    tagline: "Unique play-based interdisciplinary courses for graduates and undergraduates across Policy, Humanities, Engineering, Business, and Design.",
+    shortDescription: "Play-based interdisciplinary courses for graduates & undergraduates: Environmental Leadership, Disaster Preparedness & Risk Management, Internet-of-Things (IoT), and Urban Futures.",
+    description: "Bharat Play offers unique, simulation-driven academic courses for undergraduate and graduate students across Policy, Humanities & Social Sciences, Engineering & Technology, Business & Entrepreneurship, and Art, Architecture, and Design. Courses cover Environmental Leadership, Disaster Preparedness & Risk Management, Internet-of-Things, and Urban Futures, benchmarked against institutions such as FLAME, IITs, ETH Zurich, DTU Denmark, NUS, and IIHS.",
     format: "Experiential Studios & Tabletop Systems Labs",
     duration: {
-      label: "Course Cohorts",
+      label: "Semester Studios & Intensive Cohorts",
       badge: "ACADEMIC & COHORT",
-      details: "Focused cohort studios: ENVS102 (25th April, Sat) & CSIT122 (23rd April, Thur)"
+      details: "Full-semester 2-4 credit courses or intensive multi-day studios"
     },
     cohortSize: {
       min: 15,
       max: 45,
       label: "15 – 45 Learners / Cohort"
     },
-    targetAudience: "Undergraduate & postgraduate students, higher-ed faculty, tech innovators, aspiring civil servants, and civic leaders",
+    targetAudience: "Undergraduate & postgraduate students across Policy, Humanities, Engineering, Business, Art & Architecture",
     focusAreas: [
-      "ENVS102 : Disasters-Natural & Man-Made (on 25th April, Sat)",
-      "CSIT122 : Introduction to Internet-of-Things (on 23rd April, Thur)"
+      "Environmental Leadership (Planetary Boundaries & Net-Zero Transitions)",
+      "Disaster Preparedness & Risk Management (Hazard Modeling & Crisis Sandboxes)",
+      "Internet-of-Things (IoT) (Sensor Grids, Telemetry & Cyber-Physical Security)",
+      "Urban Futures (Municipal Governance & City Simulation)"
     ],
     keyHighlights: [
-      "Taught directly by Dr. Balaji Kalluri, PhD (FLAME University faculty & Cambridge / DTU RiskLab alumnus)",
-      "Experiential, screen-free tabletop methodology: learn complex systemic dilemmas by playing and testing physical simulations",
-      "Rigorous academic curriculum benchmarked against accredited university standards"
+      "Taught by Master Instructor Dr. Balaji Kalluri, PhD (IISc Top-100 Design Educator, NUS & DTU Alumnus)",
+      "Accompanied by guest instructors from IITM, IITK, IITKGP, NUS, DTU, Iowa State, FLAME, CEPT, and IISc",
+      "Students rapid-prototype real gamified simulations on Urban Flooding, Landslides, Air Crashes, Heat Action Plans, and Cyber Risks",
+      "Rigorous academic curriculum benchmarked against FLAME, IITs, ETH Zurich, DTU Denmark, NUS, and IIHS"
     ],
     image: "",
-    leadFacilitator: "Dr. Balaji Kalluri, PhD (Systems Engineer & Urban Innovator)",
-    institutionalBacking: "Accredited FLAME University curriculum & academic pedagogy.",
+    leadFacilitator: "Dr. Balaji Kalluri, PhD (Master Instructor) & Global Guest Instructors",
+    institutionalBacking: "Benchmarked with FLAME, IITs, ETH Zurich, DTU Denmark, NUS, and IIHS.",
     ctaText: "ENROLL / INQUIRE ABOUT COURSES",
-    whatsappMessage: "Hi Bharat Play! I would like to enroll/inquire about the upcoming courses: ENVS102 Disasters (on 25th April, Sat) and CSIT122 IoT (on 23rd April, Thur).",
+    whatsappMessage: "Hi Bharat Play! I would like to enroll/inquire about the interdisciplinary courses (Environmental Leadership, Disaster Preparedness, IoT, and Urban Futures).",
     modules: [
       {
         number: "01",
-        title: "ENVS102 : Disasters-Natural & Man-Made",
-        duration: "25th April, Sat",
-        tag: "ENVS102 · SATURDAY",
-        description: "An intensive play-based studio exploring natural and anthropogenic hazards, emergency budget trade-offs, cascading infrastructure failures, and community disaster preparedness through serious games and tabletop crisis simulations."
+        title: "Environmental Leadership",
+        duration: "Core Vertical",
+        tag: "ENV401 · INTERDISCIPLINARY",
+        description: "An intensive play-based studio exploring planetary boundaries, ecological dilemmas, carbon budgeting, and green transition trade-offs using tabletop models."
       },
       {
         number: "02",
-        title: "CSIT122 : Introduction to Internet-of-Things",
-        duration: "23rd April, Thur",
-        tag: "CSIT122 · THURSDAY",
-        description: "A foundational hands-on course introducing the Internet-of-Things (IoT), sensor networks, edge intelligence, and connected urban infrastructure through playful systems modeling, smart city hardware-software interfaces, and cyber-physical security simulations."
+        title: "Disaster Preparedness & Risk Management",
+        duration: "Core Vertical",
+        tag: "DRR301 · INTERDISCIPLINARY",
+        description: "An experiential studio exploring natural and anthropogenic hazards, emergency budget trade-offs, cascading infrastructure failures, and community disaster preparedness through serious tabletop crisis sandboxes."
+      },
+      {
+        number: "03",
+        title: "Internet-of-Things (IoT)",
+        duration: "Core Vertical",
+        tag: "IOT201 · INTERDISCIPLINARY",
+        description: "A foundational hands-on course introducing sensor networks, edge intelligence, connected urban infrastructure, and cyber-physical security simulations (CASCADE)."
+      },
+      {
+        number: "04",
+        title: "Urban Futures",
+        duration: "Core Vertical",
+        tag: "URB501 · INTERDISCIPLINARY",
+        description: "Explore the operational and spatial realities of 21st-century cities. Using City Runners and Prospera, students step into the shoes of commissioners, town planners, and citizen collectives."
       }
     ],
     outcomes: [

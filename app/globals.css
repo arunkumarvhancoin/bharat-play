@@ -19,6 +19,16 @@
   --foreground: #111827;
 }
 
+/* Smooth scroll base setup - auto required for Lenis virtual scroll */
+html {
+  scroll-behavior: auto !important;
+  width: 100%;
+}
+
+body {
+  scroll-behavior: auto !important;
+}
+
 /* Official Lenis smooth scroll document rules */
 html.lenis, html.lenis body {
   height: auto;

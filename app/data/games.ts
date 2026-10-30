@@ -233,12 +233,14 @@ export const GAMES: GameItem[] = [
       }
     ],
     fieldDeployments: [
+      "Employed in Change Management Workshop organized for Public Administrators of Greater Chennai Corporation at IIT Madras",
+      "Employed for Civic Participation team in Janaagraha Centre for Citizenship and Democracy",
+      "Employed for Graduate Students at IIHS (Indian Institute for Human Settlements) Bengaluru",
       "Shiv Nadar University (SNU Chennai) — Tabletop Innovation Showcase",
       "BITSAA Chennai — Gandhi Jayanti Intergenerational Gathering",
       "FLAME University, Pune — Experiential Public Policy & Environmental Studies",
       "IIT BHU — Complex Systems Simulation & Engineering Showcase",
-      "Saturdays4SeriousSocialGames — Weekly community gameplay series in Chennai",
-      "Weekly Host Venues — Quest @ Besant Nagar & Falling Apple, Adyar (Chennai)"
+      "Saturdays4SeriousSocialGames — Weekly community gameplay series in Chennai"
     ]
   },
   {
@@ -379,7 +381,7 @@ export const GAMES: GameItem[] = [
       }
     ],
     fieldDeployments: [
-      "University of Cambridge, UK — Environmental Leadership Course",
+      "Employed in a program aimed at fostering environmental thought leadership at Cambridge University in UK",
       "FLAME University Center for Environment & Sustainability",
       "Bharat Play Innovation Center, Chennai"
     ]
@@ -525,6 +527,9 @@ export const GAMES: GameItem[] = [
       }
     ],
     fieldDeployments: [
+      "Employed in Training Indian Army Officers",
+      "Employed in Stakeholder Workshop in IIT Kharagpur",
+      "Employed with a program aimed at fostering environmental thought leadership at Cambridge University in UK",
       "FLAME Summer School, Pune — Net-Zero Energy Campus Design",
       "Civil Engineering Academic Forums across South India",
       "Bharat Play Built Environment Lab, Chennai"
@@ -668,6 +673,7 @@ export const GAMES: GameItem[] = [
       }
     ],
     fieldDeployments: [
+      "Play tested involving global experts and professionals from Japan, Denmark, US, Netherlands, Philippines, and India",
       "Validated with experts from Smart Buildings, Cybersecurity, IT and Network Infrastructure",
       "DTU RiskLab / DBI Fire & Security Framework Workshops",
       "Bharat Play Critical Infrastructure Simulation Lab"

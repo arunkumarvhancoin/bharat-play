@@ -149,14 +149,14 @@ export default function FloatingSocials() {
   return (
     <>
       {/* ================================================================ */}
-      {/* 1. TOP-SIDE FLOATING EVENT CALENDAR BUTTON (VIBRANT BLUE)        */}
+      {/* 1. TOP-SIDE FLOATING EVENT CALENDAR BUTTON + BOOK NOW            */}
       {/* ================================================================ */}
       <div 
         className="fixed top-24 sm:top-28 right-4 sm:right-6 md:right-8 z-40 pointer-events-auto flex items-center"
         role="complementary"
         aria-label="Events Calendar Access"
       >
-        {/* Tooltip on desktop */}
+        {/* Tooltip on desktop: "Upcoming Events" in Solid Matte Blue */}
         <AnimatePresence>
           {isCalendarHovered && (
             <motion.div
@@ -166,34 +166,42 @@ export default function FloatingSocials() {
               transition={{ duration: 0.15, ease: "easeOut" }}
               className="hidden sm:flex absolute right-full mr-3 items-center pointer-events-none z-50 whitespace-nowrap"
             >
-              <div className="bg-[#1D4ED8] text-white text-xs font-mono font-bold tracking-wider uppercase px-3.5 py-2 rounded-sm shadow-xl flex items-center gap-2 border border-blue-400/40">
-                <span className="w-2 h-2 rounded-full bg-brand-orange animate-pulse" />
-                <span>Events Calendar</span>
+              <div className="bg-[#0C2444] text-white text-xs font-bold tracking-wide px-4 py-2 rounded-full shadow-lg flex items-center gap-2 border border-white/20">
+                <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                <span>Upcoming Events</span>
               </div>
-              <div className="w-0 h-0 border-y-4 border-y-transparent border-l-4 border-l-[#1D4ED8]" />
+              <div className="w-0 h-0 border-y-4 border-y-transparent border-l-4 border-l-[#0C2444]" />
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* The Blue Event Calendar Floating Button */}
+        {/* The Event Calendar Floating Trigger: Icon + "BOOK NOW" Label */}
         <button
           type="button"
           onClick={() => setIsCalendarOpen(true)}
           onMouseEnter={() => setIsCalendarHovered(true)}
           onMouseLeave={() => setIsCalendarHovered(false)}
-          aria-label="Open Events Calendar"
-          title="Events Calendar"
-          className="relative flex items-center justify-center rounded-full transition-all duration-300 transform hover:scale-110 active:scale-95 shadow-[0_8px_25px_rgba(37,99,235,0.45)] hover:shadow-[0_12px_32px_rgba(37,99,235,0.7)] w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-[#2563EB] via-[#1D4ED8] to-[#1E40AF] text-white border-2 border-white cursor-pointer group"
+          aria-label="Open Upcoming Events Calendar - Book Now"
+          title="Book Now · Upcoming Events Calendar"
+          className="group flex flex-col items-center cursor-pointer select-none"
         >
-          {/* Subtle pulse ring around button */}
-          <span className="absolute -inset-1 rounded-full bg-blue-500 opacity-25 animate-ping pointer-events-none" />
+          {/* Circular Button Icon in Solid Matte Saffron */}
+          <div className="relative flex items-center justify-center rounded-full transition-all duration-300 transform group-hover:scale-110 active:scale-95 shadow-md w-12 h-12 sm:w-14 sm:h-14 bg-[#C2410C] text-white border-2 border-white">
+            {/* Subtle pulse ring around button */}
+            <span className="absolute -inset-1 rounded-full bg-[#C2410C] opacity-25 animate-ping pointer-events-none" />
 
-          {/* Detailed Event Calendar Icon */}
-          <EventCalendarIcon className="w-6 h-6 sm:w-7 sm:h-7 transition-transform group-hover:scale-105" />
+            {/* Detailed Event Calendar Icon */}
+            <EventCalendarIcon className="w-6 h-6 sm:w-7 sm:h-7 transition-transform group-hover:scale-105" />
 
-          {/* Active event notification badge */}
-          <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-brand-orange border-2 border-white rounded-full shadow-xs flex items-center justify-center pointer-events-none">
-            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+            {/* Active event notification badge in Solid Matte Green */}
+            <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-[#15803D] border-2 border-white rounded-full shadow-xs flex items-center justify-center pointer-events-none">
+              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+            </span>
+          </div>
+
+          {/* "BOOK NOW" Label Pill in Solid Matte Blue */}
+          <span className="mt-1 px-2.5 py-0.5 sm:px-3 sm:py-0.5 rounded-full bg-[#0C2444] text-white font-mono text-[9px] sm:text-[10px] font-black uppercase tracking-wider shadow-md border border-white/60 group-hover:bg-[#C2410C] transition-all transform group-hover:scale-105 whitespace-nowrap">
+            BOOK NOW
           </span>
         </button>
       </div>

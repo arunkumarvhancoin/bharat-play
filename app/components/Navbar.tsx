@@ -40,7 +40,7 @@ const NAV_LINKS: NavLinkConfig[] = [
       { name: "Game Session", href: "/programs/game-sessions" },
       { name: "Play Workshops", href: "/programs/play-workshops" },
       { name: "Play Exhibition", href: "/programs/play-exhibition" },
-      { name: "Courses", href: "/programs/courses" },
+      { name: "Courses", href: "/courses" },
     ]
   },
   { label: "Testimonials", href: "/testimonials" },
@@ -140,7 +140,7 @@ export default function Navbar() {
                           transition={{ duration: 0.15, ease: "easeOut" }}
                           className="absolute top-full left-0 pt-2 z-50 min-w-[210px]"
                         >
-                          <div className="bg-white rounded-sm shadow-xl border border-gray-100 py-1.5 overflow-hidden">
+                          <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-amber-200/60 py-2 overflow-hidden">
                             {link.dropdownItems.map((item) => {
                               const isItemActive = pathname === item.href;
                               return (

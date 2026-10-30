@@ -16,7 +16,7 @@ export default function FinalCTA() {
 
   return (
     <section 
-      className="py-16 md:py-32 px-4 md:px-6 bg-brand-navy text-white relative overflow-hidden group" 
+      className="py-20 md:py-32 px-4 md:px-6 bg-gradient-to-b from-[#091728] via-[#0E2038] to-[#0A1A2E] text-white relative overflow-hidden group select-none border-b border-blue-950" 
       id="join"
       onMouseMove={handleMouseMove}
     >
@@ -27,60 +27,62 @@ export default function FinalCTA() {
           background: useMotionTemplate`
             radial-gradient(
                650px circle at ${mouseX}px ${mouseY}px,
-               rgba(11, 218, 81, 0.15),
+               rgba(16, 185, 129, 0.15),
                transparent 80%
              )
           `,
         }}
       />
 
-      {/* Grid Pattern Background */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "radial-gradient(#fff 1px, transparent 1px)", backgroundSize: "32px 32px" }}></div>
-
-      <div className="max-w-[1400px] mx-auto w-full relative z-10">
+      <div className="max-w-[1000px] mx-auto w-full relative z-10 text-center flex flex-col items-center">
         
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-4 items-center">
-          
-          <div className="md:col-span-3">
-          </div>
+        {/* Playful Pill Badge (Saffron & White) */}
+        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/40 font-mono text-xs font-bold uppercase tracking-wider mb-6 shadow-md">
+          <span>🎲 PURPOSEFUL PLAY</span>
+          <span>·</span>
+          <span className="text-white">COMMUNITY SESSIONS</span>
+        </span>
 
-          <div className="md:col-span-9 flex flex-col items-start">
-            <div className="overflow-hidden">
-              <motion.h2 
-                initial={{ y: "100%" }}
-                whileInView={{ y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
-                className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter mb-8 sm:mb-12 leading-[0.9]"
-              >
-                WHAT WILL YOU <br /> 
-                <span className="text-brand-orange">PLAY NEXT?</span>
-              </motion.h2>
-            </div>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto"
-            >
-              <button
-                type="button"
-                onClick={() => {
-                  if (typeof window !== "undefined") {
-                    window.dispatchEvent(new CustomEvent("open-events-calendar"));
-                  }
-                }}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-brand-green text-white px-8 py-4 sm:py-5 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-brand-navy transition-all duration-300 group shadow-[0_0_40px_rgba(11,218,81,0.3)] hover:shadow-[0_0_60px_rgba(255,255,255,0.5)] cursor-pointer"
-              >
-                UPCOMING EVENTS
-                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-              </button>
-            </motion.div>
-          </div>
-          
+        {/* Center-aligned Title */}
+        <div className="overflow-hidden">
+          <motion.h2 
+            initial={{ y: "100%" }}
+            whileInView={{ y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+            className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter mb-5 leading-[0.9] text-white"
+          >
+            WHAT WILL YOU <br /> 
+            <span className="text-brand-orange">PLAY NEXT?</span>
+          </motion.h2>
         </div>
+
+        {/* Center-aligned Description */}
+        <p className="text-blue-100/80 font-medium text-lg sm:text-xl md:text-2xl max-w-2xl mb-8 leading-relaxed">
+          Step into a hands-on simulation. Deliberate, negotiate, and shape real solutions with our community.
+        </p>
+        
+        {/* Center-aligned CTA with Green Button */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="flex justify-center w-full"
+        >
+          <button
+            type="button"
+            onClick={() => {
+              if (typeof window !== "undefined") {
+                window.dispatchEvent(new CustomEvent("open-events-calendar"));
+              }
+            }}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-emerald-600 hover:bg-emerald-500 text-white px-10 py-5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-300 group shadow-xl shadow-emerald-950/60 hover:scale-105 active:scale-95 cursor-pointer"
+          >
+            <span>VIEW UPCOMING SESSIONS</span>
+            <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+          </button>
+        </motion.div>
 
       </div>
     </section>

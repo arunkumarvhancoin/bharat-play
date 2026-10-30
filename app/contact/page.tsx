@@ -76,7 +76,7 @@ export default function ContactPage() {
     window.open(whatsappUrl, "_blank");
   };
   return (
-    <main className="min-h-screen bg-brand-offwhite text-brand-navy pt-32 pb-40 selection:bg-brand-orange selection:text-white">
+    <main className="min-h-screen bg-[#FDFBF7] text-brand-navy pt-32 pb-40 selection:bg-brand-orange selection:text-white">
       
       <div className="max-w-[1400px] mx-auto w-full px-4 md:px-6">
         
@@ -120,9 +120,10 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="lg:col-span-7 bg-white p-5 sm:p-8 md:p-12 lg:p-14 border border-gray-200 rounded-sm shadow-sm"
+            className="lg:col-span-7 bg-white p-7 sm:p-10 md:p-12 border-2 border-[#0C2444] rounded-[26px]"
+            style={{ boxShadow: "10px 10px 0px #0C2444" }}
           >
-            <div className="mb-10 pb-6 border-b border-gray-100">
+            <div className="mb-8 pb-5 border-b border-amber-100">
               <span className="font-mono text-xs font-bold tracking-widest text-brand-orange uppercase block mb-1">
                 ONLINE INQUIRIES
               </span>
@@ -130,7 +131,7 @@ export default function ContactPage() {
                 SEND A MESSAGE
               </h2>
             </div>
-                      <form className="flex flex-col gap-7" onSubmit={handleSubmit}>
+            <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
                 <div className="flex flex-col gap-2">
                   <label htmlFor="firstName" className="font-mono text-xs font-bold tracking-widest text-brand-gray uppercase">First Name</label>
@@ -192,12 +193,12 @@ export default function ContactPage() {
                 ></textarea>
               </div>
 
-              <div className="flex flex-col sm:flex-row sm:items-center gap-4 mt-6">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4 mt-4">
                 <button 
                   type="submit" 
-                  className="bg-brand-navy text-white py-4 px-8 font-mono text-xs font-bold uppercase tracking-widest hover:bg-emerald-600 transition-colors flex items-center justify-center gap-3 group w-full sm:w-auto shadow"
+                  className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white py-4 px-8 font-mono text-xs font-bold uppercase tracking-widest rounded-full transition-all flex items-center justify-center gap-3 group w-full sm:w-auto shadow-md shadow-emerald-600/20 hover:scale-[1.02] cursor-pointer"
                 >
-                  <WhatsAppIcon className="w-4 h-4 text-emerald-400 group-hover:text-white transition-colors" />
+                  <WhatsAppIcon className="w-4 h-4 text-emerald-200 group-hover:text-white transition-colors" />
                   SEND MESSAGE (WHATSAPP)
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
@@ -213,13 +214,16 @@ export default function ContactPage() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="lg:col-span-5 flex flex-col gap-10"
+            className="lg:col-span-5 flex flex-col gap-8"
           >
-            {/* Direct Contact Block */}
-            <div className="bg-brand-navy text-white p-8 md:p-10 rounded-sm border-t-4 border-brand-green relative overflow-hidden group shadow-sm">
+            {/* Direct Contact Block (Saffron / Orange Outline & Shadow) */}
+            <div 
+              className="bg-brand-navy text-white p-8 md:p-9 rounded-[26px] border-2 border-[#C2410C] relative overflow-hidden group"
+              style={{ boxShadow: "10px 10px 0px #C2410C" }}
+            >
               <div className="absolute -right-16 -top-16 w-48 h-48 bg-brand-green/10 rounded-full blur-3xl group-hover:bg-brand-orange/20 transition-colors duration-700"></div>
               
-              <h3 className="font-display text-2xl font-bold uppercase tracking-tight mb-8 relative z-10">
+              <h3 className="font-display text-2xl font-bold uppercase tracking-tight mb-6 relative z-10">
                 DIRECT REACH
               </h3>
               
@@ -250,8 +254,11 @@ export default function ContactPage() {
             </div>
 
             {/* Address Block */}
-            <div className="bg-white border border-gray-200 p-8 md:p-10 rounded-sm shadow-sm relative overflow-hidden group">
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
+            <div 
+              className="bg-white border-2 border-[#12352B] p-8 md:p-9 rounded-[26px] relative overflow-hidden group"
+              style={{ boxShadow: "10px 10px 0px #12352B" }}
+            >
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-amber-100">
                 <div>
                   <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-green block mb-1">
                     PHYSICAL VENUES
@@ -260,13 +267,13 @@ export default function ContactPage() {
                     WEEKLY HOST VENUES & HUBS
                   </h3>
                 </div>
-                <span className="font-mono text-xs uppercase font-bold px-2.5 py-1 rounded bg-brand-orange text-white">
+                <span className="font-mono text-xs uppercase font-bold px-3 py-1 rounded-full bg-amber-50 text-amber-900 border border-amber-200/70">
                   CHENNAI
                 </span>
               </div>
               
               <div className="flex flex-col gap-5">
-                <div className="flex items-start gap-3.5 border-b border-gray-100 pb-4">
+                <div className="flex items-start gap-3.5 border-b border-amber-100/70 pb-4">
                   <MapPin className="w-4 h-4 text-brand-orange mt-1 shrink-0" />
                   <div>
                     <span className="font-mono text-xs uppercase font-bold tracking-widest text-brand-gray block">1. NORTH CHENNAI</span>
@@ -275,7 +282,7 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3.5 border-b border-gray-100 pb-4">
+                <div className="flex items-start gap-3.5 border-b border-amber-100/70 pb-4">
                   <MapPin className="w-4 h-4 text-brand-green mt-1 shrink-0" />
                   <div>
                     <span className="font-mono text-xs uppercase font-bold tracking-widest text-brand-gray block">2. SOUTH CHENNAI (WEEKLY HOST VENUES)</span>
@@ -305,7 +312,7 @@ export default function ContactPage() {
                   href="https://wa.me/918237132553"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-brand-navy hover:text-white hover:bg-emerald-600 hover:border-emerald-600 transition-all shadow-sm"
+                  className="w-10 h-10 rounded-full bg-white border border-amber-200/70 flex items-center justify-center text-brand-navy hover:text-white hover:bg-emerald-600 hover:border-emerald-600 transition-all shadow-xs"
                   aria-label="WhatsApp"
                   title="WhatsApp"
                 >
@@ -316,7 +323,7 @@ export default function ContactPage() {
                   href="https://www.instagram.com/bharat_play?utm_source=qr&stkn=MWRqaW9oZXZiMzhxNw%3D%3D"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-brand-navy hover:text-white hover:bg-pink-600 hover:border-pink-600 transition-all shadow-sm"
+                  className="w-10 h-10 rounded-full bg-white border border-amber-200/70 flex items-center justify-center text-brand-navy hover:text-white hover:bg-pink-600 hover:border-pink-600 transition-all shadow-xs"
                   aria-label="Instagram"
                   title="Instagram"
                 >
@@ -327,7 +334,7 @@ export default function ContactPage() {
                   href="https://in.linkedin.com/company/bharat-play"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-brand-navy hover:text-white hover:bg-blue-600 hover:border-blue-600 transition-all shadow-sm"
+                  className="w-10 h-10 rounded-full bg-white border border-amber-200/70 flex items-center justify-center text-brand-navy hover:text-white hover:bg-blue-600 hover:border-blue-600 transition-all shadow-xs"
                   aria-label="LinkedIn"
                   title="LinkedIn"
                 >
@@ -338,7 +345,7 @@ export default function ContactPage() {
                   href="https://www.youtube.com/playlist?list=PLNriavw_JQZo"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-brand-navy hover:text-white hover:bg-red-600 hover:border-red-600 transition-all shadow-sm"
+                  className="w-10 h-10 rounded-full bg-white border border-amber-200/70 flex items-center justify-center text-brand-navy hover:text-white hover:bg-red-600 hover:border-red-600 transition-all shadow-xs"
                   aria-label="YouTube"
                   title="YouTube"
                 >

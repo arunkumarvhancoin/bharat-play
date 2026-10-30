@@ -260,63 +260,93 @@ export default function ProgramExperienceClient({ program }: ProgramExperienceCl
   else if (slug === "courses") {
     pageTitle = "COURSES";
     introLine =
-      "Academic semester studios and focused cohort courses facilitating play-based systems learning through tactile simulations and interactive labs.";
+      "Unique PLAY-based interdisciplinary courses for graduates and undergraduates across Policy, Humanities & Social Sciences, Engineering, Business, Art, and Architecture.";
     items = [
       {
-        id: "envs102",
-        images: [],
-        category: "ACADEMIC STUDIO",
-        title: "ENVS102 : DISASTERS-NATURAL & MAN-MADE",
-        subtitle: "DEPARTMENT OF ENVIRONMENTAL STUDIES · FLAME UNIVERSITY",
+        id: "environmental-leadership",
+        images: ["/events_media/article_empathize_energy.jpg"],
+        category: "INTERDISCIPLINARY COURSE",
+        title: "ENVIRONMENTAL LEADERSHIP",
+        subtitle: "PLANETARY BOUNDARIES, ESG DECISION-MAKING & CLIMATE SYSTEMS",
         description:
-          "An intensive play-based studio exploring natural and anthropogenic hazards, emergency budget trade-offs, and disaster preparedness through serious games and tabletop crisis simulations.",
+          "An intensive play-based studio exploring environmental diplomacy, carbon budgeting, and net-zero transitions using tactile tabletop models and serious games.",
         details: [
-          { label: "SCHEDULE", value: "25th April, Sat" },
-          { label: "INSTITUTION", value: "Department of Environmental Studies, FLAME University" },
-          { label: "FORMAT", value: "Experiential Studio & Tabletop Hazard Simulation" },
-          { label: "AUDIENCE", value: "Undergraduate Scholars, Civic Leaders & Aspiring Civil Servants" },
-          { label: "SIMULATION", value: "Master of Disasters (MoD) & tabletop crisis sandboxes" },
-          { label: "TAKEAWAY", value: "Students experience the panic, delayed response, and resource trade-offs of disasters by designing and playtesting simulations." },
+          { label: "DISCIPLINES", value: "Policy, Humanities & Social Sciences, Business, Environmental Studies, Tech" },
+          { label: "BENCHMARKS", value: "Cambridge University, FLAME University, DTU RiskLab" },
+          { label: "FACULTY", value: "Dr. Balaji Kalluri (Master Instructor) & Guest Faculty from IITM, IITKGP, NUS" },
+          { label: "SIMULATION", value: "BiBo, Prospera, & Custom Climate Sandbox Models" },
+          { label: "STUDENT PROTOTYPES", value: "Learners design and playtest original simulation tools on heat action plans and ecological tipping points." },
         ],
       },
       {
-        id: "csit122",
-        images: [],
-        category: "ACADEMIC STUDIO",
-        title: "CSIT122 : INTRODUCTION TO INTERNET-OF-THINGS",
-        subtitle: "COMPUTER SCIENCE & INFORMATION TECHNOLOGY FACULTY",
+        id: "disaster-preparedness",
+        images: ["/events_media/article_landslides.jpg"],
+        category: "INTERDISCIPLINARY COURSE",
+        title: "DISASTER PREPAREDNESS & RISK MANAGEMENT",
+        subtitle: "NON-LINEAR SHOCKS, HAZARD GOVERNANCE & CRISIS SANDBOXES",
         description:
-          "A hands-on systems course exploring networked sensors, telemetry protocols, edge compute, and connected infrastructure through playful systems modeling and cyber-physical security simulations.",
+          "An experiential studio exploring natural and anthropogenic hazards, emergency budget trade-offs, cascading infrastructure failures, and community disaster preparedness through serious tabletop crisis sandboxes.",
         details: [
-          { label: "SCHEDULE", value: "23rd April, Thur" },
-          { label: "INSTITUTION", value: "Computer Science & Information Technology Faculty" },
-          { label: "FORMAT", value: "Interactive Playful Systems Lab & Prototyping" },
-          { label: "AUDIENCE", value: "Engineering Students, Tech Enthusiasts & Systems Innovators" },
+          { label: "DISCIPLINES", value: "Civil Engineering, Public Admin, Architecture, Social Sciences" },
+          { label: "BENCHMARKS", value: "IITs, DTU Denmark, ETH Zurich, FLAME University" },
+          { label: "FACULTY", value: "Dr. Balaji Kalluri with guest faculty from CEPT, IISc & DTU" },
+          { label: "SIMULATION", value: "Master of Disasters (MoD), Landslide Risk sandboxes, Deluge Dynamics" },
+          { label: "STUDENT PROTOTYPES", value: "Students rapid-prototype simulations on Urban Flooding, Landslides, and Air Crashes." },
+        ],
+      },
+      {
+        id: "internet-of-things",
+        images: ["/events_media/bibo_workshop_photo_1.jpg"],
+        category: "INTERDISCIPLINARY COURSE",
+        title: "INTERNET-OF-THINGS (IoT)",
+        subtitle: "SENSOR NETWORKS, CYBER-PHYSICAL INTERFACES & URBAN TELEMETRY",
+        description:
+          "A foundational hands-on course introducing the Internet-of-Things (IoT), sensor networks, edge intelligence, connected urban infrastructure, and cyber-physical security simulations.",
+        details: [
+          { label: "DISCIPLINES", value: "Computer Science, Electrical/ECE, Tech Innovators, Design" },
+          { label: "BENCHMARKS", value: "IISc Bangalore, NUS Singapore, DTU RiskLab" },
+          { label: "FACULTY", value: "Master Instructor & guest instructors from IITK, NUS & Iowa State" },
           { label: "SIMULATION", value: "CASCADE cyber-physical defense simulation and IoT telemetry sandboxes" },
-          { label: "TAKEAWAY", value: "Understand how smart cities, telemetry streams, and interconnected sensors function together and how to diagnose systemic failures before they occur." },
+          { label: "STUDENT PROTOTYPES", value: "Learners design gamified models of SCADA defense and Cyber/Quantum infrastructure risks." },
+        ],
+      },
+      {
+        id: "urban-futures",
+        images: ["/events_media/article_civictech_toy.jpg"],
+        category: "INTERDISCIPLINARY COURSE",
+        title: "URBAN FUTURES",
+        subtitle: "MUNICIPAL GOVERNANCE, LIVABILITY TRADE-OFFS & CITY SIMULATIONS",
+        description:
+          "Explore the operational and spatial realities of 21st-century cities. Using City Runners and Prospera, students step into the shoes of commissioners, town planners, and citizen collectives.",
+        details: [
+          { label: "DISCIPLINES", value: "Urban Planning, Public Policy, Architecture, Sociology, Economics" },
+          { label: "BENCHMARKS", value: "IIHS Bengaluru, IIT Madras, CEPT University" },
+          { label: "FACULTY", value: "Dr. Balaji Kalluri with practitioners from Greater Chennai Corporation & Janaagraha" },
+          { label: "SIMULATION", value: "City Runners (flagship Indian municipal simulation) & Prospera" },
+          { label: "STUDENT PROTOTYPES", value: "Learners develop simulations on participatory ward budgeting and urban flood mitigation." },
         ],
       },
     ];
   }
 
   return (
-    <main className="min-h-screen bg-[#faf8f5] text-brand-navy pt-28 sm:pt-36 pb-32 sm:pb-40 selection:bg-brand-orange selection:text-white">
+    <main className="min-h-screen bg-[#FDFBF7] text-brand-navy pt-28 sm:pt-36 pb-32 sm:pb-40 selection:bg-brand-orange selection:text-white">
       <div className="max-w-[1440px] mx-auto w-full px-5 sm:px-8 lg:px-14">
         
         {/* ============================================================ */}
         {/* BREADCRUMB & SWISS TITLE HEADER                              */}
         {/* ============================================================ */}
-        <header className="mb-16 sm:mb-24 pb-10 sm:pb-14 border-b-2 border-brand-navy/20">
+        <header className="mb-14 sm:mb-20 pb-8 sm:pb-12 border-b border-amber-200/70">
           {/* Subtle Top Navigation Breadcrumb */}
-          <div className="font-mono text-xs sm:text-sm font-bold uppercase tracking-[0.25em] text-brand-gray mb-4 sm:mb-6 flex items-center gap-2.5 flex-wrap">
+          <div className="font-mono text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-brand-gray mb-4 sm:mb-6 flex items-center gap-2.5 flex-wrap">
             <Link href="/" className="hover:text-brand-orange transition-colors">
               HOME
             </Link>
-            <span className="text-gray-300">/</span>
+            <span className="text-amber-200">/</span>
             <Link href="/programs" className="hover:text-brand-orange transition-colors">
               PROGRAMS
             </Link>
-            <span className="text-gray-300">/</span>
+            <span className="text-amber-200">/</span>
             <span className="text-brand-orange">{pageTitle}</span>
           </div>
 
@@ -337,7 +367,7 @@ export default function ProgramExperienceClient({ program }: ProgramExperienceCl
         {/* MAIN BODY: PAIRED IMAGE & CONTENT SHOWCASE (FULL WIDTH)      */}
         {/* ============================================================ */}
         <div className="w-full">
-          <section aria-label={`${pageTitle} Collection`} className="space-y-24 sm:space-y-36">
+          <section aria-label={`${pageTitle} Collection`} className="space-y-16 sm:space-y-24">
             {items.map((item) => {
               const hasImages = item.images && item.images.length > 0;
 
@@ -349,12 +379,13 @@ export default function ProgramExperienceClient({ program }: ProgramExperienceCl
                   <article
                     key={item.id}
                     id={item.id}
-                    className="pt-2 sm:pt-4 pb-16 sm:pb-24 border-b-2 border-brand-navy/15 last:border-b-0 scroll-mt-32"
+                    className="bg-white border-2 border-[#C2410C] rounded-[26px] p-7 sm:p-12 scroll-mt-32"
+                    style={{ boxShadow: "10px 10px 0px #C2410C" }}
                   >
                     <div className="max-w-5xl space-y-6">
                       {scheduleDetail && (
                         <div className="inline-block">
-                          <span className="font-mono text-xs sm:text-sm font-bold tracking-wider text-brand-navy bg-white px-3 py-1.5 border-2 border-brand-navy rounded-xs shadow-xs">
+                          <span className="font-mono text-xs sm:text-sm font-bold tracking-wider text-amber-900 bg-amber-50 px-4 py-1.5 border border-amber-200/80 rounded-full shadow-xs">
                             📅 {scheduleDetail.value}
                           </span>
                         </div>
@@ -365,148 +396,149 @@ export default function ProgramExperienceClient({ program }: ProgramExperienceCl
                         {item.title}
                       </h2>
 
-                        {/* Department / Subtitle */}
-                        {item.subtitle && (
-                          <p className="font-mono text-xs sm:text-sm md:text-base font-bold tracking-wider text-brand-gray uppercase">
-                            {item.subtitle}
-                          </p>
-                        )}
-
-                        {/* Concise Authentic Course Summary */}
-                        <p className="text-xl sm:text-2xl text-brand-navy/90 font-normal leading-relaxed font-sans pt-1">
-                          {item.description}
+                      {/* Department / Subtitle */}
+                      {item.subtitle && (
+                        <p className="font-mono text-xs sm:text-sm md:text-base font-bold tracking-wider text-brand-gray uppercase">
+                          {item.subtitle}
                         </p>
+                      )}
 
-                        {/* Key-Value Course Details */}
-                        {item.details && item.details.length > 0 && (
-                          <div className="mt-8 border-t-2 border-brand-navy/20 divide-y divide-brand-navy/10">
-                            {item.details.map((detail, dIdx) => (
-                              <div
-                                key={dIdx}
-                                className="py-3.5 sm:py-4.5 grid grid-cols-1 sm:grid-cols-12 gap-1.5 sm:gap-4 items-baseline"
-                              >
-                                <span className="sm:col-span-4 font-mono text-xs sm:text-sm font-bold uppercase tracking-[0.15em] text-brand-orange">
-                                  {detail.label}
-                                </span>
-                                <span className="sm:col-span-8 text-base sm:text-lg md:text-xl font-bold text-brand-navy leading-snug">
-                                  {detail.value}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    </article>
-                  );
-                }
+                      {/* Concise Authentic Course Summary */}
+                      <p className="text-xl sm:text-2xl text-brand-navy/90 font-normal leading-relaxed font-sans pt-1">
+                        {item.description}
+                      </p>
 
-                const hasMultipleImages = item.images.length > 1;
-                const primaryImage = item.images[0];
-                const secondaryImages = item.images.slice(1);
-
-                return (
-                  <article
-                    key={item.id}
-                    id={item.id}
-                    className="pt-2 sm:pt-4 pb-20 sm:pb-28 border-b-2 border-brand-navy/15 last:border-b-0 scroll-mt-32"
-                  >
-                    <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 xl:gap-12 items-start">
-                      
-                      {/* LEFT SUB-COLUMN: IMAGES (ACTUAL SIZE, ZERO PADDING, FULLY RENDERED) */}
-                      <div className="xl:col-span-7 space-y-4">
-                        {/* Primary Image: unpadded, uses its full natural proportions */}
-                        <div className="w-full overflow-hidden bg-brand-navy/[0.02]">
-                          <img
-                            src={primaryImage}
-                            alt={`${item.title} - Main Capture`}
-                            loading="lazy"
-                            className="w-full h-auto max-h-[720px] object-contain rounded-xs shadow-xs block"
-                          />
-                        </div>
-
-                        {/* Companion Images: clean unpadded grid only if multiple images */}
-                        {hasMultipleImages && (
-                          <>
+                      {/* Key-Value Course Details */}
+                      {item.details && item.details.length > 0 && (
+                        <div className="mt-8 border-t border-amber-200/60 divide-y divide-amber-100">
+                          {item.details.map((detail, dIdx) => (
                             <div
-                              className={`grid gap-3 sm:gap-4 ${
-                                secondaryImages.length === 1
-                                  ? "grid-cols-1"
-                                  : secondaryImages.length === 2
-                                  ? "grid-cols-1 sm:grid-cols-2"
-                                  : "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3"
-                              }`}
+                              key={dIdx}
+                              className="py-3.5 sm:py-4.5 grid grid-cols-1 sm:grid-cols-12 gap-1.5 sm:gap-4 items-baseline"
                             >
-                              {secondaryImages.map((imgSrc, imgIdx) => (
-                                <div
-                                  key={imgIdx}
-                                  className="w-full overflow-hidden bg-brand-navy/[0.02]"
-                                >
-                                  <img
-                                    src={imgSrc}
-                                    alt={`${item.title} - Archival View 0${imgIdx + 2}`}
-                                    loading="lazy"
-                                    className="w-full h-auto max-h-[360px] object-contain rounded-xs shadow-xs block hover:scale-[1.01] transition-transform duration-300"
-                                  />
-                                </div>
-                              ))}
+                              <span className="sm:col-span-4 font-mono text-xs sm:text-sm font-bold uppercase tracking-[0.15em] text-brand-orange">
+                                {detail.label}
+                              </span>
+                              <span className="sm:col-span-8 text-base sm:text-lg md:text-xl font-bold text-brand-navy leading-snug">
+                                {detail.value}
+                              </span>
                             </div>
-
-                            {/* Archival count caption */}
-                            <div className="pt-1.5 flex items-center justify-between text-xs font-mono font-semibold tracking-wider text-brand-gray border-t border-brand-navy/10">
-                              <span>ARCHIVAL CAPTURES ({item.images.length} IMAGES)</span>
-                              <span>100% UNEDITED AUTHENTIC DOCUMENTATION</span>
-                            </div>
-                          </>
-                        )}
-                      </div>
-
-                      {/* RIGHT SUB-COLUMN: TEXT PLACED DIRECTLY ALONGSIDE THE IMAGES */}
-                      <div className="xl:col-span-5 flex flex-col justify-start">
-                        {/* Massive Bold Title */}
-                        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-black uppercase tracking-tight text-brand-navy leading-[0.95] mb-3 sm:mb-4">
-                          {item.title}
-                        </h2>
-
-                        {/* Subtitle */}
-                        {item.subtitle && (
-                          <p className="font-mono text-xs sm:text-sm md:text-base font-bold tracking-wider text-brand-gray uppercase mb-5 sm:mb-6">
-                            {item.subtitle}
-                          </p>
-                        )}
-
-                        {/* Big Readable Description */}
-                        <p className="text-lg sm:text-xl md:text-2xl text-brand-navy/90 font-normal leading-relaxed font-sans mb-8 sm:mb-10">
-                          {item.description}
-                        </p>
-
-                        {/* Swiss Key-Value Details */}
-                        {item.details && item.details.length > 0 && (
-                          <div className="border-t-2 border-brand-navy/20 divide-y divide-brand-navy/10">
-                            {item.details.map((detail, dIdx) => (
-                              <div
-                                key={dIdx}
-                                className="py-3.5 sm:py-4.5 grid grid-cols-1 sm:grid-cols-12 gap-1.5 sm:gap-4 items-baseline"
-                              >
-                                <span className="sm:col-span-4 font-mono text-xs sm:text-sm font-bold uppercase tracking-[0.15em] text-brand-orange">
-                                  {detail.label}
-                                </span>
-                                <span className="sm:col-span-8 text-base sm:text-lg md:text-xl font-bold text-brand-navy leading-snug">
-                                  {detail.value}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </article>
                 );
-              })}
-            </section>
-          </div>
+              }
 
+              const hasMultipleImages = item.images.length > 1;
+              const primaryImage = item.images[0];
+              const secondaryImages = item.images.slice(1);
+
+              return (
+                <article
+                  key={item.id}
+                  id={item.id}
+                  className="bg-white border-2 border-[#0C2444] rounded-[26px] p-7 sm:p-10 lg:p-12 scroll-mt-32"
+                  style={{ boxShadow: "10px 10px 0px #0C2444" }}
+                >
+                  <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 xl:gap-12 items-start">
+                    
+                    {/* LEFT SUB-COLUMN: IMAGES (ACTUAL SIZE, ZERO PADDING, FULLY RENDERED) */}
+                    <div className="xl:col-span-7 space-y-4">
+                      {/* Primary Image: unpadded, uses its full natural proportions */}
+                      <div className="w-full overflow-hidden bg-brand-navy/[0.02] rounded-2xl border border-amber-100">
+                        <img
+                          src={primaryImage}
+                          alt={`${item.title} - Main Capture`}
+                          loading="lazy"
+                          className="w-full h-auto max-h-[720px] object-contain block"
+                        />
+                      </div>
+
+                      {/* Companion Images: clean unpadded grid only if multiple images */}
+                      {hasMultipleImages && (
+                        <>
+                          <div
+                            className={`grid gap-3 sm:gap-4 ${
+                              secondaryImages.length === 1
+                                ? "grid-cols-1"
+                                : secondaryImages.length === 2
+                                ? "grid-cols-1 sm:grid-cols-2"
+                                : "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3"
+                            }`}
+                          >
+                            {secondaryImages.map((imgSrc, imgIdx) => (
+                              <div
+                                key={imgIdx}
+                                className="w-full overflow-hidden bg-brand-navy/[0.02] rounded-2xl border border-amber-100"
+                              >
+                                <img
+                                  src={imgSrc}
+                                  alt={`${item.title} - Archival View 0${imgIdx + 2}`}
+                                  loading="lazy"
+                                  className="w-full h-auto max-h-[360px] object-contain block hover:scale-[1.01] transition-transform duration-300"
+                                />
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* Archival count caption */}
+                          <div className="pt-2 flex items-center justify-between text-xs font-mono font-semibold tracking-wider text-brand-gray border-t border-amber-100">
+                            <span>ARCHIVAL CAPTURES ({item.images.length} IMAGES)</span>
+                            <span>100% UNEDITED AUTHENTIC DOCUMENTATION</span>
+                          </div>
+                        </>
+                      )}
+                    </div>
+
+                    {/* RIGHT SUB-COLUMN: TEXT PLACED DIRECTLY ALONGSIDE THE IMAGES */}
+                    <div className="xl:col-span-5 flex flex-col justify-start">
+                      {/* Massive Bold Title */}
+                      <h2 className="font-display text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-black uppercase tracking-tight text-brand-navy leading-[0.95] mb-3 sm:mb-4">
+                        {item.title}
+                      </h2>
+
+                      {/* Subtitle */}
+                      {item.subtitle && (
+                        <p className="font-mono text-xs sm:text-sm md:text-base font-bold tracking-wider text-brand-gray uppercase mb-5 sm:mb-6">
+                          {item.subtitle}
+                        </p>
+                      )}
+
+                      {/* Big Readable Description */}
+                      <p className="text-lg sm:text-xl md:text-2xl text-brand-navy/90 font-normal leading-relaxed font-sans mb-8 sm:mb-10">
+                        {item.description}
+                      </p>
+
+                      {/* Swiss Key-Value Details */}
+                      {item.details && item.details.length > 0 && (
+                        <div className="border-t border-amber-200/60 divide-y divide-amber-100">
+                          {item.details.map((detail, dIdx) => (
+                            <div
+                              key={dIdx}
+                              className="py-3.5 sm:py-4.5 grid grid-cols-1 sm:grid-cols-12 gap-1.5 sm:gap-4 items-baseline"
+                            >
+                              <span className="sm:col-span-4 font-mono text-xs sm:text-sm font-bold uppercase tracking-[0.15em] text-brand-orange">
+                                {detail.label}
+                              </span>
+                              <span className="sm:col-span-8 text-base sm:text-lg md:text-xl font-bold text-brand-navy leading-snug">
+                                {detail.value}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+
+                  </div>
+                </article>
+              );
+            })}
+          </section>
         </div>
-      </main>
+
+      </div>
+    </main>
   );
 }

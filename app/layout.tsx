@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SmoothScroll from "./components/SmoothScroll";
 import FloatingSocials from "./components/FloatingSocials";
+import NavigationProgress from "./components/NavigationProgress";
+import PageContentTransition from "./components/PageContentTransition";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -35,9 +37,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${outfit.variable} ${dmSans.variable} ${dmMono.variable} antialiased`}>
       <body className="flex flex-col font-sans bg-white text-brand-navy selection:bg-brand-green selection:text-white w-full">
+        <NavigationProgress />
         <SmoothScroll>
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 flex flex-col">
+            <PageContentTransition>{children}</PageContentTransition>
+          </main>
           <Footer />
           <FloatingSocials />
         </SmoothScroll>
