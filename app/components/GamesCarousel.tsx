@@ -164,20 +164,14 @@ export default function GamesCarousel() {
 
       {/* Bottom Institutional Trust Strip */}
       <div className="max-w-[1400px] mx-auto w-full px-4 md:px-8 mt-10 sm:mt-12 pt-8 border-t border-emerald-900/60">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-xs font-mono">
+        <div className="flex flex-col md:flex-row items-start md:items-center gap-3 sm:gap-4 text-xs font-mono">
           <div className="flex items-center gap-2 text-emerald-300 shrink-0">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span className="font-bold uppercase tracking-wider">PROVEN INSTITUTIONAL PEDIGREE:</span>
           </div>
-          <p className="text-emerald-100/80 leading-relaxed max-w-3xl">
+          <p className="text-emerald-100/80 leading-relaxed max-w-4xl">
             Simulations employed at <strong className="text-white">Cambridge University (UK)</strong>, <strong className="text-white">Indian Army Officers Training</strong>, <strong className="text-white">Greater Chennai Corporation at IIT Madras</strong>, <strong className="text-white">IIT Kharagpur</strong>, <strong className="text-white">Janaagraha</strong>, and <strong className="text-white">IIHS Bengaluru</strong>. Protected under statutory Copyright RoCs.
           </p>
-          <Link
-            href="/games"
-            className="text-brand-orange hover:text-white font-bold uppercase tracking-wider shrink-0 underline"
-          >
-            Read Pedigree &rarr;
-          </Link>
         </div>
       </div>
     </section>
