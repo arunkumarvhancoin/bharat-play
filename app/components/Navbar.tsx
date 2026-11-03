@@ -24,6 +24,7 @@ interface NavLinkConfig {
 
 const NAV_LINKS: NavLinkConfig[] = [
   { label: "Home", href: "/" },
+  { label: "Values", href: "/values" },
   { 
     label: "Games", 
     href: "/games", 

@@ -48,6 +48,7 @@ export default function Footer() {
               >
                 Events Calendar
               </button>
+              <Link href="/values" className="text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm">Mission &amp; Values</Link>
               <Link href="/testimonials" className="text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm">Testimonials</Link>
               <Link href="/#about" className="text-brand-navy font-semibold hover:text-brand-orange transition-colors text-sm">About Us</Link>
             </div>
