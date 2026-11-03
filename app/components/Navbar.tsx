@@ -24,7 +24,7 @@ interface NavLinkConfig {
 
 const NAV_LINKS: NavLinkConfig[] = [
   { label: "Home", href: "/" },
-  { label: "Values", href: "/values" },
+  { label: "About Us", href: "/about" },
   { 
     label: "Games", 
     href: "/games", 
@@ -102,7 +102,7 @@ export default function Navbar() {
             {NAV_LINKS.map((link) => {
               const isSectionActive = link.hasDropdown
                 ? pathname.startsWith(link.href) || (link.dropdownKey === "programs" && pathname.startsWith("/courses"))
-                : pathname === link.href;
+                : pathname === link.href || (link.href === "/about" && pathname === "/values");
 
               const isThisHovered = hoveredDropdown === link.dropdownKey;
 
@@ -207,7 +207,7 @@ export default function Navbar() {
               {NAV_LINKS.map((link) => {
                 const isSectionActive = link.hasDropdown 
                   ? pathname.startsWith(link.href) || (link.dropdownKey === "programs" && pathname.startsWith("/courses"))
-                  : pathname === link.href;
+                  : pathname === link.href || (link.href === "/about" && pathname === "/values");
 
                 if (link.hasDropdown && link.dropdownKey && link.dropdownItems) {
                   const isExpanded = !!mobileExpanded[link.dropdownKey];

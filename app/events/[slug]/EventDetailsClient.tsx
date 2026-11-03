@@ -33,7 +33,7 @@ interface EventDetailsClientProps {
   otherEvents: ScheduledEvent[];
 }
 
-const TEST_WHATSAPP_NUMBER = "7397468732"; // Test WhatsApp: +91 7397468732
+const TEST_WHATSAPP_NUMBER = "8237132553"; // Bharat Play WhatsApp: +91 82371 32553
 
 export default function EventDetailsClient({ event, otherEvents }: EventDetailsClientProps) {
   const [isBookingOpen, setIsBookingOpen] = useState(false);

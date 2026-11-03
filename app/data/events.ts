@@ -184,40 +184,78 @@ export const EVENTS_DATA: ScheduledEvent[] = [
   },
 
   // =========================================================================
-  // 4. 17-18 Nov : Global award-winning Game Exhibition and Guided Play Workshops
-  //    at GAME4CHANGE INDIA FESTIVAL 2026. Book your seats. Entry free.
-  //    Avail special discount at the venue to buy our games. Venue: Alliance Franciace Bengaluru.
+  // 3. 18th Nov : CITY RUNNERS Workshop @ Alliance Française de Bangalore
+  //    Slots: 1. 11 AM - 1 PM, 2. 4 PM - 6 PM | Free Entry
+  //    Venue: Alliance Française de Bangalore
   // =========================================================================
   {
-    id: "game4change-india-festival-2026",
-    date: "2026-11-17",
-    formattedDate: "Tue & Wed, 17–18 Nov 2026",
-    time: "17–18 Nov 2026",
-    title: "GAME4CHANGE INDIA FESTIVAL 2026: Game Exhibition & Guided Play Workshops",
-    category: "Game Exhibition & Guided Play",
-    game: "Global Award-Winning Games",
-    venue: "Alliance Franciace Bengaluru",
-    venueAddress: "Alliance Franciace Bengaluru",
+    id: "city-runners-workshop-bangalore",
+    date: "2026-11-18",
+    formattedDate: "Wednesday, 18 Nov 2026",
+    time: "Slot 1: 11:00 AM – 1:00 PM · Slot 2: 4:00 PM – 6:00 PM",
+    title: "CITY RUNNERS Workshop · Alliance Française de Bangalore",
+    category: "Cooperative Strategy & Urban Governance Workshop",
+    game: "CITY RUNNERS",
+    venue: "Alliance Française de Bangalore",
+    venueAddress: "Alliance Française de Bangalore, 108 Thimmaiah Road, Vasanth Nagar, Bengaluru, Karnataka 560052",
     city: "Bengaluru",
-    capacity: "Book your seats · Entry free",
-    price: "Entry Free",
-    badge: "Entry Free · Special Venue Discount",
-    venueDiscount: "Avail special discount at the venue to buy our games",
+    capacity: "2 Dedicated Sessions · Free Entry (Registration Required)",
+    price: "Free Entry",
+    badge: "Free Entry · Limited Seats",
+    ageGroup: "Open for all (Students, Civic Leaders, Families & Urban Enthusiasts)",
+    duration: "2 Hours per session",
+    language: "English & Kannada",
     slots: [
-      "17 Nov · Book Your Seat",
-      "18 Nov · Book Your Seat",
+      "11:00 AM – 1:00 PM",
+      "4:00 PM – 6:00 PM",
     ],
-    description: "17-18 Nov : Global award-winning Game Exhibition and Guided Play Workshops at GAME4CHANGE INDIA FESTIVAL 2026. Book your seats. Entry free. Avail special discount at the venue to buy our games. Venue: Alliance Franciace Bengaluru.",
+    description: "CITY RUNNERS Workshop at Alliance Française de Bangalore on 18th Nov 2026. Two sessions: 11 AM - 1 PM & 4 PM - 6 PM. Free Entry — reserve your seat today!",
     about: [
-      "17-18 Nov : Global award-winning Game Exhibition and Guided Play Workshops at GAME4CHANGE INDIA FESTIVAL 2026. Book your seats. Entry free. Avail special discount at the venue to buy our games. Venue: Alliance Franciace Bengaluru."
+      "Join Bharat Play at Alliance Française de Bangalore on Wednesday, 18th November 2026, for a hands-on guided simulation workshop of our award-winning cooperative strategy game: CITY RUNNERS.",
+      "CITY RUNNERS invites players into an immersive simulation of urban governance, public transit, liveability, and civic resource allocation. You'll tackle real-world urban crises together, balancing budgets, citizen happiness, and sustainable infrastructure.",
+      "Sessions & Time Slots on 18th Nov 2026:",
+      "• Slot 1 (Morning): 11:00 AM – 1:00 PM",
+      "• Slot 2 (Evening): 4:00 PM – 6:00 PM",
+      "Venue: Alliance Française de Bangalore, 108 Thimmaiah Road, Vasanth Nagar, Bengaluru, Karnataka 560052.",
+      "Admission: Free Entry! Seating is strictly limited per table to preserve an engaging, high-interaction tabletop experience. Please register in advance to guarantee your spot."
     ],
     highlights: [
-      "17-18 Nov 2026",
-      "Global award-winning Game Exhibition and Guided Play Workshops",
-      "GAME4CHANGE INDIA FESTIVAL 2026",
-      "Book your seats — Entry free",
-      "Avail special discount at the venue to buy our games",
-      "Venue: Alliance Franciace Bengaluru"
+      "Date: Wednesday, 18 Nov 2026",
+      "Slot 1: 11:00 AM – 1:00 PM",
+      "Slot 2: 4:00 PM – 6:00 PM",
+      "Venue: Alliance Française de Bangalore",
+      "Price: Free Entry (Pre-registration required)",
+      "Game: CITY RUNNERS — Cooperative strategy game | Livable Cities | Urban Governance",
+      "Open to students, professionals, designers, civic enthusiasts, and families",
+      "Interactive tabletop simulation facilitated live by the Bharat Play team"
+    ],
+    mapUrl: "https://maps.google.com/?q=Alliance+Française+de+Bangalore+108+Thimmaiah+Rd+Vasanth+Nagar+Bengaluru",
+    media: [
+      {
+        type: "image",
+        url: "/cr.webp",
+        title: "City Runners · Tabletop Game Board",
+        caption: "Cooperative strategy game simulating livable cities & urban governance",
+      },
+      {
+        type: "image",
+        url: "/cr2.webp",
+        title: "Interactive Classroom & Workshop Play",
+        caption: "Multi-player table pods making collective city decisions",
+      },
+      {
+        type: "image",
+        url: "/events_media/serious_games_saturday/saturday_slide_1.jpg",
+        title: "Screen-Free Community Play",
+        caption: "Collaborative systems thinking in an engaging, screen-free environment",
+      },
+      {
+        type: "video",
+        url: "/events_media/serious_games_saturday/saturday_video_1.mp4",
+        poster: "/events_media/serious_games_saturday/saturday_slide_3.jpg",
+        title: "Live Tabletop Gameplay",
+        caption: "Participants making tactical moves and trade-offs",
+      },
     ],
     status: "upcoming",
   },
@@ -346,6 +384,17 @@ export function getEventById(id: string): ScheduledEvent | undefined {
       EVENTS_DATA.find((e) => e.id === "special-saturdays-4-social-games")
     );
   }
+  if (
+    id === "city-runners-bangalore" ||
+    id === "city-runners-workshop" ||
+    id === "alliance-francaise-bangalore" ||
+    id === "game4change-india-festival-2026"
+  ) {
+    return (
+      EVENTS_DATA.find((e) => e.id === "city-runners-workshop-bangalore") ||
+      EVENTS_DATA.find((e) => e.id === "game4change-india-festival-2026")
+    );
+  }
   return EVENTS_DATA.find((e) => e.id === id);
 }
 
@@ -356,6 +405,12 @@ export function getAllEventIds(): string[] {
   }
   if (!ids.includes("special-saturdays-4-social-games")) {
     ids.push("special-saturdays-4-social-games");
+  }
+  if (!ids.includes("city-runners-bangalore")) {
+    ids.push("city-runners-bangalore");
+  }
+  if (!ids.includes("game4change-india-festival-2026")) {
+    ids.push("game4change-india-festival-2026");
   }
   return ids;
 }

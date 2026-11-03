@@ -223,7 +223,7 @@ export default function EventsCalendarModal({ isOpen, onClose }: EventsCalendarM
                 Want to host a playful serious game session for your team or college?
               </span>
               <a
-                href={`https://wa.me/917397468732?text=${encodeURIComponent(
+                href={`https://wa.me/918237132553?text=${encodeURIComponent(
                   "Hi Bharat Play! I would like to inquire about hosting a serious game session for our college/organization."
                 )}`}
                 target="_blank"
