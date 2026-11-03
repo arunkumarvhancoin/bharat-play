@@ -108,39 +108,77 @@ export const EVENTS_DATA: ScheduledEvent[] = [
   },
 
   // =========================================================================
-  // 2. 14th Nov : Special Saturdays4SocialGames.
-  //    Venue & Price to be announced soon. Pls open early bird reservations.
-  //    Note. Items 2 & 3 are NOT FREE. Ticketed and Priced. We need to ascertain a fee.
+  // 2. 14th Nov : CHILDREN'S DAY PLAY WORKSHOP
+  //    A The Board Room x Bharat Play Innovations
+  //    Venue: The Board Room, Mylapore. Price: INR 499/pax
   // =========================================================================
   {
-    id: "special-saturdays-4-social-games",
+    id: "childrens-day-play-workshop",
     date: "2026-11-14",
     formattedDate: "Saturday, 14 Nov 2026",
-    time: "Venue & Price to be announced soon",
-    title: "Special Saturdays4SocialGames",
-    category: "Special Tabletop Play",
-    game: "Special Saturdays4SocialGames",
-    venue: "Venue to be announced soon",
-    venueAddress: "Venue details and ticket price will be announced soon",
-    city: "Venue TBA",
-    capacity: "Early Bird Reservations Open · Ticketed (Not Free)",
-    price: "Ticketed & Priced (Fee TBA)",
-    badge: "Early Bird Reservations Open · Ticketed",
-    ageGroup: "Open for all ages",
-    isEarlyBird: true,
+    time: "10:00 AM – 1:00 PM",
+    title: "CHILDREN'S DAY PLAY WORKSHOP : A The Board Room x Bharat Play Innovations",
+    category: "Children's Day Play Workshop",
+    game: "CITY RUNNERS",
+    venue: "The Board Room, Mylapore",
+    venueAddress: "The Board Room, Mylapore, Chennai, Tamil Nadu",
+    city: "Chennai",
+    capacity: "6 Players Per Table · Age 12+",
+    price: "INR 499/pax",
+    badge: "Children's Day Special · ₹499/pax",
+    ageGroup: "12+ (parents and grandparents are encouraged to join the table)",
+    duration: "3 Hours (10:00 AM – 1:00 PM)",
+    language: "English & Tamil",
     slots: [
-      "Early Bird Reservation",
+      "10:00 AM – 1:00 PM",
     ],
-    description: "14th Nov : Special Saturdays4SocialGames. Venue & Price to be announced soon. Pls open early bird reservations. Note: Ticketed and Priced (not free). Fee to be ascertained soon.",
+    description: "CHILDREN'S DAY PLAY WORKSHOP : A The Board Room x Bharat Play Innovations. Game Title: CITY RUNNERS. Cooperative strategy game | Livable Cities | Urban Governance. Bring your family and friends, and enjoy children's day like no other !",
     about: [
-      "14th Nov : Special Saturdays4SocialGames. Venue & Price to be announced soon. Early bird reservations are open now.",
-      "Note: This event is NOT FREE. It is ticketed and priced — fee to be ascertained soon."
+      "CHILDREN'S DAY PLAY WORKSHOP : A The Board Room x Bharat Play Innovations.",
+      "Celebrate Children's Day with an extraordinary, screen-free tabletop simulation where players take on interconnected civic roles.",
+      "Date : 14 Nov · Time : 10am to 1pm · Venue : The Board Room, Mylapore.",
+      "Age: 12+ (parents and grandparents are encouraged to join the table).",
+      "Game Title: CITY RUNNERS — Cooperative strategy game | Livable Cities | Urban Governance.",
+      "No. of Players : 6 per table · Price: INR 499/pax.",
+      "Bring your family and friends, and enjoy children's day like no other !"
     ],
     highlights: [
-      "14th Nov : Special Saturdays4SocialGames",
-      "Venue & Price to be announced soon",
-      "Early bird reservations open now",
-      "Ticketed and Priced (Not Free — fee to be ascertained)"
+      "Date: 14 Nov 2026",
+      "Time: 10am to 1pm",
+      "Venue: The Board Room, Mylapore",
+      "Age: 12+ (parents and grandparents are encouraged to join the table)",
+      "Game Title: CITY RUNNERS",
+      "Game Theme: Cooperative strategy game | Livable Cities | Urban Governance",
+      "No. of Players: 6 per table",
+      "Price: INR 499/pax",
+      "Bring your family and friends, and enjoy children's day like no other !"
+    ],
+    media: [
+      {
+        type: "image",
+        url: "/cr.webp",
+        title: "City Runners · Tabletop Game Board",
+        caption: "Cooperative strategy game simulating livable cities & urban governance",
+      },
+      {
+        type: "image",
+        url: "/cr2.webp",
+        title: "Interactive Classroom & Workshop Play",
+        caption: "Multi-player table pods making collective city decisions",
+      },
+      {
+        type: "image",
+        url: "/events_media/serious_games_saturday/saturday_slide_1.jpg",
+        title: "Screen-Free Community Play",
+        caption: "Friends and families collaborating around physical serious games",
+      },
+      {
+        type: "video",
+        url: "/events_media/serious_games_saturday/saturday_video_1.mp4",
+        poster: "/events_media/serious_games_saturday/saturday_slide_3.jpg",
+        title: "Live Tabletop Gameplay",
+        caption: "Participants making tactical moves and trade-offs",
+      },
     ],
     status: "upcoming",
   },
@@ -264,10 +302,34 @@ export const EVENTS_DATA: ScheduledEvent[] = [
   },
 ];
 
+export function hasConfirmedVenueAndPrice(event: ScheduledEvent): boolean {
+  const v = (event.venue || "").trim().toLowerCase();
+  const p = (event.price || "").trim().toLowerCase();
+
+  // Venue must be specified and not be a placeholder/TBA
+  const hasNoVenue =
+    !v ||
+    v.includes("to be announced") ||
+    v.includes("tba") ||
+    v.includes("announced closer") ||
+    v.includes("announced soon");
+
+  // Price must be specified and not be a placeholder/TBA
+  const hasNoPrice =
+    !p ||
+    p.includes("to be announced") ||
+    p.includes("fee tba") ||
+    p.includes("tba") ||
+    p.includes("announced soon");
+
+  return !hasNoVenue && !hasNoPrice;
+}
+
 export function getUpcomingEvents(): ScheduledEvent[] {
-  return EVENTS_DATA.filter((e) => e.status === "upcoming").sort(
-    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
-  );
+  // Only return upcoming events that have confirmed venue and price
+  return EVENTS_DATA.filter(
+    (e) => e.status === "upcoming" && hasConfirmedVenueAndPrice(e)
+  ).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 }
 
 export function getConductedEvents(): ScheduledEvent[] {
@@ -278,6 +340,12 @@ export function getEventById(id: string): ScheduledEvent | undefined {
   if (id === "serious-games-on-saturdays") {
     return EVENTS_DATA.find((e) => e.id === "saturdays-4-social-games");
   }
+  if (id === "special-saturdays-4-social-games") {
+    return (
+      EVENTS_DATA.find((e) => e.id === "childrens-day-play-workshop") ||
+      EVENTS_DATA.find((e) => e.id === "special-saturdays-4-social-games")
+    );
+  }
   return EVENTS_DATA.find((e) => e.id === id);
 }
 
@@ -285,6 +353,9 @@ export function getAllEventIds(): string[] {
   const ids = EVENTS_DATA.map((e) => e.id);
   if (!ids.includes("serious-games-on-saturdays")) {
     ids.push("serious-games-on-saturdays");
+  }
+  if (!ids.includes("special-saturdays-4-social-games")) {
+    ids.push("special-saturdays-4-social-games");
   }
   return ids;
 }

@@ -45,17 +45,17 @@ export default function FeaturedEventHero() {
   };
 
   const FEATURED_UPCOMING_EVENT = {
-    date: "07",
+    date: "14",
     month: "NOV",
     day: "SATURDAY",
-    time: "5:00 PM – 7:00 PM",
-    title: "Saturdays4SocialGames",
-    category: "TABLETOP SOCIAL PLAY",
-    game: "Discrete / Surprise Game Theme",
-    venue: "Venue TBA (Closer to date)",
-    capacity: "Limited to 15 Seats",
-    price: "₹99 / pax",
-    href: "/events/saturdays-4-social-games",
+    time: "10:00 AM – 1:00 PM",
+    title: "Children's Day Play Workshop",
+    category: "CHILDREN'S DAY SPECIAL",
+    game: "CITY RUNNERS",
+    venue: "The Board Room, Mylapore",
+    capacity: "6 Players/Table · Age 12+",
+    price: "INR 499 / pax",
+    href: "/events/childrens-day-play-workshop",
   };
 
   const INSTITUTIONS = [
@@ -330,7 +330,7 @@ export default function FeaturedEventHero() {
                     {/* Playful pill tape badge on top - Solid Matte Saffron */}
                     <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 bg-[#C2410C] text-white border-2 border-white shadow-xs rounded-full rotate-[-1deg] z-20 pointer-events-none whitespace-nowrap flex items-center justify-center">
                       <span className="text-xs font-bold tracking-wider uppercase font-mono">
-                        ✦ UPCOMING EVENT IN GOA ✦
+                        ✦ CHILDREN&apos;S DAY SPECIAL ✦
                       </span>
                     </div>
 
@@ -338,7 +338,7 @@ export default function FeaturedEventHero() {
                     <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-amber-200/50 pt-1">
                       <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0C2444] text-white text-xs font-bold tracking-wide">
                         <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-                        Community Festival Showcase
+                        The Board Room x Bharat Play
                       </span>
                       <span className="text-xs font-bold text-white bg-[#15803D] px-3 py-0.5 rounded-full">
                         {FEATURED_UPCOMING_EVENT.price}
@@ -373,7 +373,7 @@ export default function FeaturedEventHero() {
 
                     {/* Friendly Note */}
                     <p className="text-xs sm:text-[13px] text-slate-700 leading-relaxed mb-4 bg-amber-50/80 p-3 rounded-2xl border border-amber-200/60 font-medium">
-                      🎲 Play <span className="font-bold text-slate-900">City Runners & Serious Games</span> in an engaging, screen-free analog community session exploring civic systems and strategy.
+                      🎲 Play <span className="font-bold text-slate-900">City Runners</span> — a cooperative strategy game on Livable Cities &amp; Urban Governance. Bring your family &amp; friends!
                     </p>
 
                     {/* Quick Metadata */}

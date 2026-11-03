@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
-import { EVENTS_DATA, getEventById, getAllEventIds } from "../../data/events";
+import { getEventById, getAllEventIds, getUpcomingEvents } from "../../data/events";
 import EventDetailsClient from "./EventDetailsClient";
 
 export function generateStaticParams() {
@@ -29,7 +29,7 @@ async function EventDetailsServer({ params }: { params: Promise<{ slug: string }
     notFound();
   }
 
-  const otherEvents = EVENTS_DATA.filter((e) => e.id !== event.id && e.status === "upcoming");
+  const otherEvents = getUpcomingEvents().filter((e) => e.id !== event.id);
 
   return <EventDetailsClient event={event} otherEvents={otherEvents} />;
 }

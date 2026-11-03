@@ -4,7 +4,6 @@
 import Link from "next/link";
 import {
   ArrowLeft,
-  ArrowRight,
   Sparkles,
   Target,
   Compass,
@@ -14,9 +13,6 @@ import {
   HeartHandshake,
   CheckCircle2,
   XCircle,
-  Lightbulb,
-  Layers,
-  ArrowUpRight,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -362,61 +358,71 @@ export default function ValuesPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex flex-col gap-6">
             {CORE_VALUES.map((val) => {
               const IconComponent = val.icon;
               return (
                 <div
                   key={val.number}
-                  className={`border-3 rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 bg-white ${val.bgTint}`}
+                  className={`border-3 rounded-3xl p-6 sm:p-8 transition-all duration-200 hover:-translate-y-1 bg-white ${val.bgTint}`}
                   style={{
                     borderColor: val.borderColor,
-                    boxShadow: `6px 6px 0px ${val.borderColor}`,
+                    boxShadow: `7px 7px 0px ${val.borderColor}`,
                   }}
                 >
-                  <div>
-                    {/* Top Row: Tag & Number */}
-                    <div className="flex items-center justify-between gap-2 mb-5">
-                      <span className={`px-3 py-1 rounded-full font-mono text-xs font-bold uppercase tracking-wider ${val.badgeBg}`}>
-                        {val.tag}
-                      </span>
-                      <span className="font-mono text-lg font-bold text-slate-400">
-                        {val.number}
-                      </span>
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                    
+                    {/* Left Section: Tag, Number, Title & Icon */}
+                    <div className="lg:col-span-4 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-200/80 pb-5 lg:pb-0 lg:pr-6">
+                      <div>
+                        <div className="flex items-center gap-3 mb-3">
+                          <span className={`px-3 py-1 rounded-full font-mono text-xs font-bold uppercase tracking-wider ${val.badgeBg}`}>
+                            {val.tag}
+                          </span>
+                          <span className="font-mono text-base font-bold text-slate-400">
+                            {val.number}
+                          </span>
+                        </div>
+
+                        <div className="flex items-start gap-3">
+                          <div
+                            className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 mt-0.5"
+                            style={{ backgroundColor: `${val.borderColor}15`, color: val.borderColor }}
+                          >
+                            <IconComponent className="w-5 h-5" />
+                          </div>
+                          <h3 className="font-display text-2xl sm:text-3xl font-black uppercase text-brand-navy leading-tight">
+                            {val.title}
+                          </h3>
+                        </div>
+                      </div>
                     </div>
 
-                    {/* Icon & Title */}
-                    <div className="flex items-start gap-3 mb-4">
-                      <div
-                        className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 mt-0.5"
-                        style={{ backgroundColor: `${val.borderColor}15`, color: val.borderColor }}
-                      >
-                        <IconComponent className="w-5 h-5" />
-                      </div>
-                      <h3 className="font-display text-xl sm:text-2xl font-bold uppercase text-brand-navy leading-tight">
-                        {val.title}
-                      </h3>
+                    {/* Middle Section: Highlight & Description */}
+                    <div className="lg:col-span-5 flex flex-col justify-center lg:px-4">
+                      <p className="text-lg sm:text-xl font-bold text-slate-800 leading-snug mb-2">
+                        &ldquo;{val.highlight}&rdquo;
+                      </p>
+                      <p className="text-base text-slate-600 font-medium leading-relaxed">
+                        {val.description}
+                      </p>
                     </div>
 
-                    {/* Highlight Quote */}
-                    <p className="text-base sm:text-lg font-bold text-slate-800 leading-snug mb-3">
-                      &ldquo;{val.highlight}&rdquo;
-                    </p>
-
-                    {/* Short Description */}
-                    <p className="text-sm sm:text-base text-slate-600 font-medium leading-relaxed mb-5">
-                      {val.description}
-                    </p>
-                  </div>
-
-                  {/* Bullet Takeaways */}
-                  <div className="pt-4 border-t border-slate-200/80 space-y-2">
-                    {val.bullets.map((b, i) => (
-                      <div key={i} className="flex items-start gap-2 text-xs sm:text-sm font-semibold text-slate-800">
-                        <span className="text-brand-orange font-bold text-base leading-none mt-0.5">&bull;</span>
-                        <span>{b}</span>
+                    {/* Right Section: What This Looks Like (Takeaway Panel) */}
+                    <div className="lg:col-span-3 bg-white/90 rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-2xs">
+                      <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-slate-400 block mb-2.5">
+                        WHAT THIS LOOKS LIKE
+                      </span>
+                      <div className="space-y-2.5">
+                        {val.bullets.map((b, i) => (
+                          <div key={i} className="flex items-start gap-2.5 text-xs sm:text-sm font-semibold text-slate-800 leading-snug">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                            <span>{b}</span>
+                          </div>
+                        ))}
                       </div>
-                    ))}
+                    </div>
+
                   </div>
                 </div>
               );

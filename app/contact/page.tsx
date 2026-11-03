@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useState } from "react";
@@ -5,9 +6,12 @@ import {
   ArrowRight, 
   Mail, 
   MapPin, 
-  Phone 
+  Phone,
+  Clock,
+  ExternalLink,
+  Navigation,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 function WhatsAppIcon({ className = "w-5 h-5" }: { className?: string }) {
   return (
@@ -46,6 +50,70 @@ function YoutubeIcon({ className = "w-5 h-5" }: { className?: string }) {
   );
 }
 
+interface VenueInfo {
+  id: string;
+  region: string;
+  tabTitle: string;
+  badge: string;
+  badgeColor: string;
+  title: string;
+  area: string;
+  timing: string;
+  schedule: string;
+  description: string;
+  coordinates: string;
+  mapQuery: string;
+  googleMapsUrl: string;
+}
+
+const CHENNAI_VENUES: VenueInfo[] = [
+  {
+    id: "north",
+    region: "NORTH CHENNAI",
+    tabTitle: "Kolathur (Main Hub)",
+    badge: "FLAGSHIP LAB",
+    badgeColor: "bg-[#C2410C] text-white",
+    title: "Bharat Play Innovation cum Experience Center",
+    area: "Kolathur & MKB Nagar, Chennai",
+    timing: "2:30 PM – 5:30 PM",
+    schedule: "Every Sunday Session",
+    description: "Our dedicated physical tabletop lab and prototyping studio where we design games, playtest simulations, and host regular public sessions.",
+    coordinates: "13.1245° N, 80.2185° E",
+    mapQuery: "Kolathur, Chennai, Tamil Nadu",
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Kolathur+Chennai+Tamil+Nadu",
+  },
+  {
+    id: "south",
+    region: "SOUTH CHENNAI",
+    tabTitle: "Besant Nagar / Adyar",
+    badge: "WEEKLY HOST HUB",
+    badgeColor: "bg-[#15803D] text-white",
+    title: "Quest & Falling Apple",
+    area: "Besant Nagar, Adyar & Chrompet, Chennai",
+    timing: "2:30 PM – 5:30 PM",
+    schedule: "Every Sunday Session",
+    description: "Coastal community play hubs hosted with The Learning Community at Quest (near 4th Seaward Rd, Valmiki Nagar) and Falling Apple (Adyar).",
+    coordinates: "13.0001° N, 80.2667° E",
+    mapQuery: "Besant Nagar, Chennai, Tamil Nadu",
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Besant+Nagar+Chennai+Tamil+Nadu",
+  },
+  {
+    id: "central",
+    region: "CENTRAL CHENNAI",
+    tabTitle: "Anna Nagar",
+    badge: "COMMUNITY HUB",
+    badgeColor: "bg-[#0C2444] text-white",
+    title: "Anna Nagar & Nerkundram Play Circle",
+    area: "Anna Nagar & Nerkundram, Chennai",
+    timing: "2:30 PM – 5:30 PM",
+    schedule: "Every Sunday Session",
+    description: "Centrally connected urban play sessions for college cohorts, young professionals, urban planners, and civic problem-solvers.",
+    coordinates: "13.0850° N, 80.2101° E",
+    mapQuery: "Anna Nagar, Chennai, Tamil Nadu",
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Anna+Nagar+Chennai+Tamil+Nadu",
+  },
+];
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -54,6 +122,9 @@ export default function ContactPage() {
     subject: "",
     message: "",
   });
+
+  const [selectedVenueIndex, setSelectedVenueIndex] = useState(0);
+  const activeVenue = CHENNAI_VENUES[selectedVenueIndex];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -75,13 +146,20 @@ export default function ContactPage() {
 
     window.open(whatsappUrl, "_blank");
   };
+
+  const handleReserveVenue = (venue: VenueInfo) => {
+    const text = `Hi Bharat Play team, I would like to reserve a seat for the upcoming Sunday session at ${venue.title} (${venue.area}).`;
+    const url = `https://wa.me/918237132553?text=${encodeURIComponent(text)}`;
+    window.open(url, "_blank");
+  };
+
   return (
     <main className="min-h-screen bg-[#FDFBF7] text-brand-navy pt-32 pb-40 selection:bg-brand-orange selection:text-white">
       
       <div className="max-w-[1400px] mx-auto w-full px-4 md:px-6">
         
         {/* Header Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-end mb-28 pt-12 md:pt-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-end mb-20 md:mb-24 pt-12 md:pt-16">
           <div className="lg:col-span-8">
             <motion.h4 
               initial={{ opacity: 0, y: 20 }}
@@ -113,14 +191,14 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
           
           {/* Left Column: Form */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="lg:col-span-7 bg-white p-7 sm:p-10 md:p-12 border-2 border-[#0C2444] rounded-[26px]"
+            className="lg:col-span-6 bg-white p-7 sm:p-10 md:p-12 border-3 border-[#0C2444] rounded-[28px]"
             style={{ boxShadow: "10px 10px 0px #0C2444" }}
           >
             <div className="mb-8 pb-5 border-b border-amber-100">
@@ -131,6 +209,7 @@ export default function ContactPage() {
                 SEND A MESSAGE
               </h2>
             </div>
+            
             <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
                 <div className="flex flex-col gap-2">
@@ -209,42 +288,54 @@ export default function ContactPage() {
             </form>
           </motion.div>
 
-          {/* Right Column: Contact Details & Socials */}
+          {/* Right Column: Contact Details & Elegant Interactive Map */}
           <motion.div 
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="lg:col-span-5 flex flex-col gap-8"
+            className="lg:col-span-6 flex flex-col gap-8"
           >
-            {/* Direct Contact Block (Saffron / Orange Outline & Shadow) */}
+            {/* Direct Contact Block */}
             <div 
-              className="bg-brand-navy text-white p-8 md:p-9 rounded-[26px] border-2 border-[#C2410C] relative overflow-hidden group"
+              className="bg-brand-navy text-white p-7 sm:p-9 rounded-[28px] border-3 border-[#C2410C] relative overflow-hidden group"
               style={{ boxShadow: "10px 10px 0px #C2410C" }}
             >
-              <div className="absolute -right-16 -top-16 w-48 h-48 bg-brand-green/10 rounded-full blur-3xl group-hover:bg-brand-orange/20 transition-colors duration-700"></div>
+              <div className="absolute -right-16 -top-16 w-48 h-48 bg-brand-green/10 rounded-full blur-3xl group-hover:bg-brand-orange/20 transition-colors duration-700 pointer-events-none" />
               
-              <h3 className="font-display text-2xl font-bold uppercase tracking-tight mb-6 relative z-10">
-                DIRECT REACH
-              </h3>
+              <div className="flex items-center justify-between mb-6 relative z-10">
+                <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange">
+                  DIRECT CHANNELS
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/80 text-emerald-400 border border-emerald-500/30 font-mono text-[11px] font-bold">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  RESPONSIVE IN 24H
+                </span>
+              </div>
               
-              <div className="flex flex-col gap-6 relative z-10">
-                <div className="flex items-start gap-4">
-                  <Mail className="w-5 h-5 text-brand-green mt-1 shrink-0" />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative z-10">
+                <div className="flex items-start gap-3.5">
+                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 text-brand-green">
+                    <Mail className="w-5 h-5" />
+                  </div>
                   <div>
-                    <div className="font-mono text-xs font-bold uppercase tracking-widest text-brand-gray mb-1">EMAIL</div>
-                    <a href="mailto:hello@bharatplay.org" className="text-lg font-medium hover:text-brand-orange transition-colors">hello@bharatplay.org</a>
+                    <div className="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-0.5">EMAIL</div>
+                    <a href="mailto:hello@bharatplay.org" className="text-base font-semibold hover:text-brand-orange transition-colors">
+                      hello@bharatplay.org
+                    </a>
                   </div>
                 </div>
                 
-                <div className="flex items-start gap-4">
-                  <Phone className="w-5 h-5 text-brand-green mt-1 shrink-0" />
+                <div className="flex items-start gap-3.5">
+                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 text-emerald-400">
+                    <Phone className="w-5 h-5" />
+                  </div>
                   <div>
-                    <div className="font-mono text-xs font-bold uppercase tracking-widest text-brand-gray mb-1">PHONE & WHATSAPP</div>
+                    <div className="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-0.5">PHONE &amp; WHATSAPP</div>
                     <a 
                       href="https://wa.me/918237132553" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="text-lg font-medium hover:text-brand-orange transition-colors"
+                      className="text-base font-semibold hover:text-brand-orange transition-colors"
                     >
                       +91 82371 32553
                     </a>
@@ -253,59 +344,160 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Address Block */}
+            {/* ========================================================== */}
+            {/* ELEGANT ARCHITECTURAL VENUE & MAP CONTAINER                */}
+            {/* ========================================================== */}
             <div 
-              className="bg-white border-2 border-[#12352B] p-8 md:p-9 rounded-[26px] relative overflow-hidden group"
-              style={{ boxShadow: "10px 10px 0px #12352B" }}
+              className="bg-white border-3 border-[#0C2444] rounded-[28px] overflow-hidden transition-all duration-300"
+              style={{ boxShadow: "10px 10px 0px #0C2444" }}
             >
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-amber-100">
+              {/* Card Header */}
+              <div className="p-6 sm:p-7 pb-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-4">
                 <div>
-                  <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-green block mb-1">
-                    PHYSICAL VENUES
-                  </span>
-                  <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-brand-navy">
-                    WEEKLY HOST VENUES & HUBS
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="w-2 h-2 rounded-full bg-brand-orange" />
+                    <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#0C2444]">
+                      EXPERIENCE HUBS &amp; LABS
+                    </span>
+                  </div>
+                  <h3 className="font-display text-2xl font-black uppercase tracking-tight text-brand-navy">
+                    CHENNAI VENUES &amp; MAP
                   </h3>
                 </div>
-                <span className="font-mono text-xs uppercase font-bold px-3 py-1 rounded-full bg-amber-50 text-amber-900 border border-amber-200/70">
-                  CHENNAI
-                </span>
+
+                <div className="flex items-center gap-2">
+                  <span className="px-3 py-1 rounded-full font-mono text-xs font-bold uppercase tracking-wider bg-slate-100 text-slate-700 border border-slate-200">
+                    3 ACTIVE HUBS
+                  </span>
+                </div>
               </div>
-              
-              <div className="flex flex-col gap-5">
-                <div className="flex items-start gap-3.5 border-b border-amber-100/70 pb-4">
-                  <MapPin className="w-4 h-4 text-brand-orange mt-1 shrink-0" />
-                  <div>
-                    <span className="font-mono text-xs uppercase font-bold tracking-widest text-brand-gray block">1. NORTH CHENNAI</span>
-                    <span className="font-display text-base font-bold uppercase text-brand-navy">Kolathur & MKB Nagar</span>
-                    <span className="font-mono text-xs text-brand-gray block mt-0.5 font-medium">Bharat Play Experience Center · Every Sunday · 2:30 PM to 5:30 PM</span>
-                  </div>
-                </div>
 
-                <div className="flex items-start gap-3.5 border-b border-amber-100/70 pb-4">
-                  <MapPin className="w-4 h-4 text-brand-green mt-1 shrink-0" />
-                  <div>
-                    <span className="font-mono text-xs uppercase font-bold tracking-widest text-brand-gray block">2. SOUTH CHENNAI (WEEKLY HOST VENUES)</span>
-                    <span className="font-display text-base font-bold uppercase text-brand-navy">Quest @ Besant Nagar & Falling Apple, Adyar</span>
-                    <span className="font-mono text-xs text-brand-gray block mt-0.5 font-medium">Weekly Community Play Hubs · Every Sunday · 2:30 PM to 5:30 PM (also Chrompet)</span>
-                  </div>
+              {/* Venue Selector Tabs */}
+              <div className="px-6 sm:px-7 pt-4 pb-2 bg-slate-50/70 border-b border-slate-200/60">
+                <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+                  {CHENNAI_VENUES.map((venue, idx) => {
+                    const isSelected = selectedVenueIndex === idx;
+                    return (
+                      <button
+                        key={venue.id}
+                        type="button"
+                        onClick={() => setSelectedVenueIndex(idx)}
+                        className={`px-4 py-2 rounded-full font-mono text-xs font-bold uppercase tracking-wider shrink-0 transition-all cursor-pointer ${
+                          isSelected
+                            ? "bg-[#0C2444] text-white shadow-sm"
+                            : "bg-white text-slate-600 hover:text-brand-navy border border-slate-200/80 hover:bg-slate-100"
+                        }`}
+                      >
+                        {venue.tabTitle}
+                      </button>
+                    );
+                  })}
                 </div>
+              </div>
 
-                <div className="flex items-start gap-3.5">
-                  <MapPin className="w-4 h-4 text-brand-navy mt-1 shrink-0" />
-                  <div>
-                    <span className="font-mono text-xs uppercase font-bold tracking-widest text-brand-gray block">3. CENTRAL CHENNAI</span>
-                    <span className="font-display text-base font-bold uppercase text-brand-navy">Anna Nagar & Nerkundram</span>
-                    <span className="font-mono text-xs text-brand-gray block mt-0.5 font-medium">Every Sunday · 2:30 PM to 5:30 PM</span>
+              {/* Map Preview Frame */}
+              <div className="relative w-full aspect-[16/9] bg-slate-100 border-b border-slate-200 overflow-hidden group">
+                <iframe
+                  key={activeVenue.id}
+                  title={activeVenue.title}
+                  src={`https://maps.google.com/maps?q=${encodeURIComponent(activeVenue.mapQuery)}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+                  className="w-full h-full border-0 grayscale-[25%] contrast-[1.05] group-hover:grayscale-0 transition-all duration-500"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+
+                {/* Coordinate Overlay Banner */}
+                <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+                  <div className="px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-slate-200 shadow-sm font-mono text-[11px] font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
+                    <Navigation className="w-3.5 h-3.5 text-brand-orange" />
+                    <span>{activeVenue.coordinates}</span>
                   </div>
+
+                  <a
+                    href={activeVenue.googleMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="pointer-events-auto px-3 py-1.5 rounded-full bg-[#0C2444] hover:bg-brand-orange text-white text-[11px] font-mono font-bold uppercase tracking-wider transition-colors shadow-sm inline-flex items-center gap-1.5"
+                  >
+                    <span>OPEN MAP</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
                 </div>
+              </div>
+
+              {/* Active Venue Details */}
+              <div className="p-6 sm:p-7">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeVenue.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.25 }}
+                    className="flex flex-col gap-4"
+                  >
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <span className={`px-3 py-1 rounded-full font-mono text-[11px] font-bold uppercase tracking-wider ${activeVenue.badgeColor}`}>
+                        {activeVenue.badge}
+                      </span>
+                      <span className="font-mono text-xs font-bold text-slate-400 uppercase tracking-wider">
+                        {activeVenue.region}
+                      </span>
+                    </div>
+
+                    <div>
+                      <h4 className="font-display text-xl sm:text-2xl font-bold uppercase text-brand-navy leading-tight mb-1">
+                        {activeVenue.title}
+                      </h4>
+                      <p className="font-mono text-xs text-brand-gray font-medium flex items-center gap-1.5">
+                        <MapPin className="w-3.5 h-3.5 text-brand-orange shrink-0" />
+                        <span>{activeVenue.area}</span>
+                      </p>
+                    </div>
+
+                    <p className="text-sm text-slate-600 font-medium leading-relaxed">
+                      {activeVenue.description}
+                    </p>
+
+                    {/* Schedule Pill Strip */}
+                    <div className="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs font-mono font-semibold text-slate-700">
+                      <div className="flex items-center gap-2">
+                        <Clock className="w-4 h-4 text-emerald-600" />
+                        <span>{activeVenue.timing} ({activeVenue.schedule})</span>
+                      </div>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="pt-2 flex flex-wrap items-center gap-3">
+                      <a
+                        href={activeVenue.googleMapsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 min-w-[140px] inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-mono text-xs font-bold uppercase tracking-wider transition-all"
+                      >
+                        <Navigation className="w-3.5 h-3.5 text-brand-navy" />
+                        <span>GET DIRECTIONS</span>
+                        <ExternalLink className="w-3 h-3 text-slate-500" />
+                      </a>
+
+                      <button
+                        type="button"
+                        onClick={() => handleReserveVenue(activeVenue)}
+                        className="flex-1 min-w-[140px] inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-mono text-xs font-bold uppercase tracking-wider transition-all shadow-xs cursor-pointer"
+                      >
+                        <WhatsAppIcon className="w-3.5 h-3.5 text-white" />
+                        <span>RSVP SUNDAY SEAT</span>
+                      </button>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
               </div>
             </div>
 
-            {/* Social Links — Simple icons normally at the end */}
-            <div className="flex items-center justify-between pt-2">
+            {/* Social Links */}
+            <div className="flex items-center justify-between pt-1 px-1">
               <span className="font-mono text-xs font-bold uppercase tracking-widest text-brand-gray">
-                FOLLOW US
+                SOCIAL COLLECTIVE
               </span>
               <div className="flex items-center gap-3">
                 <a
