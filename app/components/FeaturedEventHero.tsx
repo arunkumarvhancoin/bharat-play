@@ -59,15 +59,55 @@ export default function FeaturedEventHero() {
   };
 
   const INSTITUTIONS = [
-    { name: "CAMBRIDGE UNIVERSITY", scope: "GLOBAL" },
-    { name: "IIT MADRAS", scope: "INDIA" },
-    { name: "IIT BOMBAY", scope: "INDIA" },
-    { name: "NEWCASTLE UNIVERSITY", scope: "GLOBAL" },
-    { name: "IIT DELHI", scope: "INDIA" },
-    { name: "FLAME UNIVERSITY", scope: "INDIA" },
-    { name: "JANAAGRAHA", scope: "INDIA" },
-    { name: "CCE FINLAND", scope: "GLOBAL" },
-    { name: "EUROPEAN ENERGY NETWORK", scope: "GLOBAL" },
+    {
+      name: "Cambridge University",
+      logo: "/logos/cambridge.svg",
+      heightClass: "h-8 sm:h-9",
+    },
+    {
+      name: "IIT Madras",
+      logo: "/logos/iitm.png",
+      heightClass: "h-8 sm:h-9",
+      hasWhiteBox: true,
+    },
+    {
+      name: "IIT Bombay",
+      logo: "/logos/iitb.png",
+      heightClass: "h-8 sm:h-9",
+    },
+    // Row 2 (Enlarged)
+    {
+      name: "Newcastle University",
+      logo: "/logos/newcastle_crest.png",
+      heightClass: "h-11 sm:h-14",
+    },
+    {
+      name: "IIT Delhi",
+      logo: "/logos/iitd.png",
+      heightClass: "h-12 sm:h-16",
+    },
+    {
+      name: "FLAME University",
+      logo: "/logos/flame.svg",
+      heightClass: "h-10 sm:h-13",
+    },
+    // Row 3
+    // Row 3
+    {
+      name: "Janaagraha",
+      logo: "/logos/janaagraha.svg",
+      heightClass: "h-7 sm:h-8",
+    },
+    {
+      name: "CCE Finland",
+      logo: "/logos/cce_finland.png",
+      heightClass: "h-10 sm:h-13",
+    },
+    {
+      name: "European Energy Network",
+      logo: "/logos/enr.png",
+      heightClass: "h-12 sm:h-15",
+    },
   ];
 
   const slides = [
@@ -137,15 +177,16 @@ export default function FeaturedEventHero() {
         </AnimatePresence>
       </div>
 
-      {/* Top spacing to comfortably clear sticky header */}
-      <div className="pt-16 sm:pt-20 md:pt-24" />
+      {/* Top spacing to comfortably clear fixed header (Navbar is h-20 on mobile, md:h-24 on desktop) */}
+      <div className="h-28 sm:h-32 md:h-36 lg:h-28 shrink-0" />
 
       {/* ============================================================ */}
       {/* MAIN CAROUSEL STAGE                                         */}
       {/* ============================================================ */}
-      <div className="relative z-10 max-w-[1440px] mx-auto w-full px-6 sm:px-10 lg:px-16 my-auto py-2 sm:py-4">
+      <div className="relative z-10 max-w-[1440px] mx-auto w-full px-5 sm:px-10 lg:px-16 my-0 lg:my-auto py-3 sm:py-4 lg:py-2">
         <AnimatePresence mode="wait">
-          
+
+
           {/* ============================================================ */}
           {/* BANNER 01 — CITY RUNNERS (Visual Focus: Featured Artifact)   */}
           {/* ============================================================ */}
@@ -159,16 +200,18 @@ export default function FeaturedEventHero() {
               className="w-full"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                
+
+
                 {/* LEFT: Bold Typography & Strong Hierarchy */}
                 <div className="lg:col-span-7 flex flex-col justify-center order-1">
-                  
+
+
                   {/* Small Eyebrow */}
                   <motion.div
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.45, delay: 0.08 }}
-                    className="mb-4 sm:mb-6 flex items-center gap-3"
+                    className="mb-3 sm:mb-6 flex items-center gap-3 pt-1"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-brand-orange" />
                     <span className="font-mono text-xs sm:text-[13px] font-semibold tracking-[0.25em] text-brand-orange uppercase">
@@ -181,7 +224,7 @@ export default function FeaturedEventHero() {
                     initial={{ opacity: 0, y: 28 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, delay: 0.14, ease: [0.16, 1, 0.3, 1] }}
-                    className="font-display text-5xl sm:text-7xl md:text-8xl xl:text-[9.5rem] font-black uppercase tracking-[-0.04em] text-white leading-[0.84] mb-5 sm:mb-7"
+                    className="font-display text-5xl sm:text-7xl md:text-8xl xl:text-[9.5rem] font-black uppercase tracking-[-0.04em] text-white leading-[0.9] sm:leading-[0.84] mb-4 sm:mb-7 pt-1"
                   >
                     CITY<br />RUNNERS
                   </motion.h1>
@@ -231,7 +274,8 @@ export default function FeaturedEventHero() {
                         alt="City Runners serious game board"
                         className="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-105"
                       />
-                      
+
+
                       {/* Editorial subtle light gradient */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/15 pointer-events-none" />
 
@@ -264,16 +308,18 @@ export default function FeaturedEventHero() {
               className="w-full"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
-                
+
+
                 {/* LEFT: Typographic Statement & Purpose (Exactly as in original) */}
                 <div className="lg:col-span-7 flex flex-col justify-center">
-                  
+
+
                   {/* Eyebrow */}
                   <motion.div
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.45, delay: 0.08 }}
-                    className="mb-3 sm:mb-4 flex items-center gap-3"
+                    className="mb-3 sm:mb-4 flex items-center gap-3 pt-1"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-brand-orange" />
                     <span className="font-mono text-xs font-semibold tracking-[0.25em] text-white/70 uppercase">
@@ -286,7 +332,7 @@ export default function FeaturedEventHero() {
                     initial={{ opacity: 0, y: 22 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.65, delay: 0.14, ease: [0.16, 1, 0.3, 1] }}
-                    className="font-display text-3xl sm:text-5xl md:text-6xl xl:text-7xl font-black uppercase tracking-[-0.035em] text-white leading-[0.92] mb-4 sm:mb-5 max-w-2xl"
+                    className="font-display text-3xl sm:text-5xl md:text-6xl xl:text-7xl font-black uppercase tracking-[-0.035em] text-white leading-[0.95] sm:leading-[0.92] mb-4 sm:mb-5 max-w-2xl pt-1"
                   >
                     WE MAKE COMPLEX<br />
                     <span className="text-brand-orange">SYSTEMS PLAYABLE.</span>
@@ -428,16 +474,18 @@ export default function FeaturedEventHero() {
               className="w-full"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
-                
+
+
                 {/* LEFT: Authoritative Statement & Narrative */}
                 <div className="lg:col-span-6 flex flex-col justify-center">
-                  
+
+
                   {/* Eyebrow */}
                   <motion.div
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.45, delay: 0.08 }}
-                    className="mb-3 sm:mb-4 flex items-center gap-3"
+                    className="mb-3 sm:mb-4 flex items-center gap-3 pt-1"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-brand-green" />
                     <span className="font-mono text-xs font-semibold tracking-[0.25em] text-white/70 uppercase">
@@ -450,7 +498,7 @@ export default function FeaturedEventHero() {
                     initial={{ opacity: 0, y: 22 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.65, delay: 0.14, ease: [0.16, 1, 0.3, 1] }}
-                    className="font-display text-3xl sm:text-5xl md:text-6xl xl:text-7xl font-black uppercase tracking-[-0.035em] text-white leading-[0.92] mb-4 sm:mb-5"
+                    className="font-display text-3xl sm:text-5xl md:text-6xl xl:text-7xl font-black uppercase tracking-[-0.035em] text-white leading-[0.95] sm:leading-[0.92] mb-4 sm:mb-5 pt-1"
                   >
                     PLAYING WITH<br />
                     REAL-WORLD<br />
@@ -468,54 +516,69 @@ export default function FeaturedEventHero() {
                   </motion.p>
                 </div>
 
-                {/* RIGHT: Minimal Institutional Recognition Strip / Typographic Wall */}
+                {/* RIGHT: Institutional Recognition Logo Grid */}
                 <div className="lg:col-span-6 flex flex-col justify-center lg:pl-4">
-                  
+
+
                   {/* Subtle introduce label */}
-                  <div className="flex items-center justify-between border-b border-white/20 pb-2.5 mb-4 sm:mb-5">
+                  <div className="flex items-center justify-between border-b border-white/20 pb-2.5 mb-3 sm:mb-4">
                     <span className="font-mono text-xs font-bold tracking-[0.22em] text-brand-orange uppercase">
-                      SELECTED INSTITUTIONS & COLLABORATORS
+                      SELECTED INSTITUTIONS &amp; COLLABORATORS
                     </span>
                     <span className="font-mono text-[10px] text-brand-green uppercase tracking-wider hidden sm:inline">
                       GOVT. OF INDIA COPYRIGHT
                     </span>
                   </div>
 
-                  {/* Loose Editorial Typographic Wall (Clean proportional layout) */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 sm:gap-x-8 gap-y-3 sm:gap-y-3.5">
+                  {/* 3x3 Institutional Logo Grid (Seamless, no card background) */}
+                  <div className="grid grid-cols-3 gap-x-3 sm:gap-x-6 gap-y-4 sm:gap-y-6 items-center">
                     {INSTITUTIONS.map((inst, idx) => (
                       <motion.div
                         key={inst.name}
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{
-                          duration: 0.4,
-                          delay: 0.12 + idx * 0.04,
+                          duration: 0.35,
+                          delay: 0.08 + idx * 0.035,
                           ease: "easeOut",
                         }}
-                        className="group flex items-baseline gap-2.5 border-b border-white/[0.07] pb-2 transition-colors hover:border-white/30"
+                        className="group flex flex-col items-center justify-center p-1 sm:p-2 transition-all duration-300"
                       >
-                        <span className="font-mono text-[10px] text-white/30 tracking-widest">
-                          {String(idx + 1).padStart(2, "0")}
-                        </span>
-                        <div className="flex flex-col">
-                          <span className="font-display text-xs sm:text-sm font-bold tracking-tight text-white/85 group-hover:text-white transition-colors">
-                            {inst.name}
-                          </span>
-                          <span className="font-mono text-[9px] tracking-widest text-white/40 uppercase">
-                            {inst.scope}
-                          </span>
+                        {/* Logo Image */}
+                        <div className="h-12 sm:h-16 flex items-center justify-center w-full">
+                          {inst.hasWhiteBox ? (
+                            <div className="bg-white rounded-xl px-2.5 py-1.5 shadow-xs flex items-center justify-center">
+                              <img
+                                src={inst.logo}
+                                alt={`${inst.name} logo`}
+                                className={`${inst.heightClass} w-auto max-w-[95%] object-contain transition-all duration-300 group-hover:scale-105`}
+                                loading="lazy"
+                              />
+                            </div>
+                          ) : (
+                            <img
+                              src={inst.logo}
+                              alt={`${inst.name} logo`}
+                              className={`${inst.heightClass} w-auto max-w-[95%] object-contain opacity-85 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105 filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)]`}
+                              loading="lazy"
+                            />
+                          )}
                         </div>
+
+                        {/* Institution Name Caption */}
+                        <span className="font-mono text-[9px] sm:text-[10px] font-semibold text-white/55 group-hover:text-white transition-colors uppercase tracking-wider text-center mt-1.5 sm:mt-2 truncate max-w-full">
+                          {inst.name}
+                        </span>
                       </motion.div>
                     ))}
                   </div>
 
-                  <p className="mt-4 font-mono text-[10px] text-white/35 tracking-widest uppercase">
-                    DEPLOYED ACROSS ACADEMIA, POLICY BODIES & CIVIC LABS
+                  <p className="mt-3.5 sm:mt-4 font-mono text-[10px] text-white/35 tracking-widest uppercase">
+                    DEPLOYED ACROSS ACADEMIA, POLICY BODIES &amp; CIVIC LABS
                   </p>
                 </div>
 
-              </div>
+            </div>
             </motion.div>
           )}
 
@@ -525,41 +588,40 @@ export default function FeaturedEventHero() {
       {/* ============================================================ */}
       {/* EDITORIAL CAROUSEL NAVIGATION (Thin Line / Progress)        */}
       {/* ============================================================ */}
-      <div className="relative z-10 max-w-[1440px] mx-auto w-full px-6 sm:px-10 lg:px-16 pb-8 sm:pb-10 pt-4 border-t border-white/10">
+      <div className="relative z-10 max-w-[1440px] mx-auto w-full px-6 sm:px-10 lg:px-16 pb-8 sm:pb-10 pt-4 border-t border-white/10 shrink-0">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5">
-          
-          {/* Navigation Line: 01 CITY RUNNERS ───── 02 BHARAT PLAY ───── 03 RECOGNITION */}
-          <div
-            className="flex items-center gap-2 sm:gap-6 md:gap-8 flex-wrap"
-            role="tablist"
-            aria-label="Editorial carousel navigation"
-          >
-            {slides.map((s, idx) => {
-              const isActive = idx === activeIndex;
-              return (
-                <button
-                  key={s.label}
-                  role="tab"
-                  aria-selected={isActive}
-                  aria-label={`Switch to banner ${s.num}: ${s.label}`}
-                  onClick={() => goToSlide(idx)}
-                  className="group relative flex items-center gap-1.5 sm:gap-3 py-2 text-left focus:outline-none cursor-pointer"
-                >
-                  <span
-                    className={`font-mono text-[11px] sm:text-sm font-bold tracking-wider transition-colors duration-300 ${
-                      isActive ? "text-brand-orange" : "text-white/40 group-hover:text-white/80"
-                    }`}
-                  >
-                    {s.num}
-                  </span>
 
-                  <span
-                    className={`font-mono text-[11px] sm:text-sm font-bold tracking-[0.16em] uppercase transition-colors duration-300 ${
-                      isActive ? "text-white" : "text-white/50 group-hover:text-white/80"
-                    }`}
-                  >
-                    {s.label}
-                  </span>
+
+      {/* Navigation Line: 01 CITY RUNNERS ───── 02 BHARAT PLAY ───── 03 RECOGNITION */}
+      <div
+        className="flex items-center gap-2 sm:gap-6 md:gap-8 flex-wrap"
+        role="tablist"
+        aria-label="Editorial carousel navigation"
+      >
+        {slides.map((s, idx) => {
+          const isActive = idx === activeIndex;
+          return (
+            <button
+              key={s.label}
+              role="tab"
+              aria-selected={isActive}
+              aria-label={`Switch to banner ${s.num}: ${s.label}`}
+              onClick={() => goToSlide(idx)}
+              className="group relative flex items-center gap-1.5 sm:gap-3 py-2 text-left focus:outline-none cursor-pointer"
+            >
+              <span
+                className={`font-mono text-[11px] sm:text-sm font-bold tracking-wider transition-colors duration-300 ${isActive ? "text-brand-orange" : "text-white/40 group-hover:text-white/80"
+                  }`}
+              >
+                {s.num}
+              </span>
+
+              <span
+                className={`font-mono text-[11px] sm:text-sm font-bold tracking-[0.16em] uppercase transition-colors duration-300 ${isActive ? "text-white" : "text-white/50 group-hover:text-white/80"
+                  }`}
+              >
+                {s.label}
+              </span>
 
                   {/* Thin connecting/progress line */}
                   <div className="relative w-6 sm:w-16 md:w-24 h-[2px] bg-white/10 overflow-hidden ml-1">

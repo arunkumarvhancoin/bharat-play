@@ -1,0 +1,3178 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb" dir="ltr">
+
+<head>
+
+
+
+  
+  <meta charset="utf-8">
+	<meta name="keywords" content="FLAME University, liberal, arts, education, liberal education, liberal education in india, liberal education india, management education, business school, management college, liberal arts, communication, performing arts, top MBA institute, liberal arts in india">
+	<meta name="robots" content="index,follow">
+	<meta name="description" content="The Pioneers of Liberal Education in India. FLAME University is a hub for rigorous and diverse course offerings at both the undergraduate and post-graduate levels.">
+	<title>FLAME University | The Pioneers of Liberal Education in India</title>
+	<link href="/favicon.ico" rel="icon" type="image/vnd.microsoft.icon">
+<link href="/plugins/system/t4/themes/base/vendors/font-awesome5/css/all.min.css?304cf3" rel="stylesheet">
+	<link href="/plugins/system/t4/themes/base/vendors/font-awesome/css/font-awesome.min.css?304cf3" rel="stylesheet">
+	<link href="/plugins/system/t4/themes/base/vendors/icomoon/css/icomoon.css?304cf3" rel="stylesheet">
+	<link href="/templates/ja_alpha/js/owl-carousel/owl.carousel.min.css?304cf3" rel="stylesheet">
+	<link href="/plugins/system/jce/css/content.css?badb4208be409b1335b815dde676300e" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Archivo%3A400%2C500%2C600%2C700%2C" rel="stylesheet">
+	<link href="https://www.flame.edu.in/modules/mod_flame_home_slider/assets/css/style.css" rel="stylesheet">
+	<link href="https://www.flame.edu.in/media/com_simplesocialmediastream/css/styles.min.css" rel="stylesheet">
+	<link href="https://www.flame.edu.in/media/com_simplesocialmediastream/css/grid.min.css" rel="stylesheet">
+	<link href="https://www.flame.edu.in/media/com_simplesocialmediastream/css/timeline.min.css" rel="stylesheet">
+	<link href="https://www.flame.edu.in/media/com_simplesocialmediastream/css/carousel.min.css" rel="stylesheet">
+	<link href="//use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+	<link href="/components/com_jevents/views/flat/assets/css/modstyle.css?v=3.6.59" rel="stylesheet">
+	<link href="/components/com_jevents/assets/css/jevcustom.css?v=3.6.59" rel="stylesheet">
+	<link href="https://www.flame.edu.in/modules/mod_flame_home_page/assets/css/owl.carousel.min.css" rel="stylesheet">
+	<link href="https://www.flame.edu.in/modules/mod_flame_home_page/assets/css/style-1.css" rel="stylesheet">
+	<link href="https://www.flame.edu.in/modules/mod_flame_home_page/assets/css/home.css" rel="stylesheet">
+	<link href="https://www.flame.edu.in/modules/mod_flame_home_page/assets/css/main.css" rel="stylesheet">
+	<link href="https://www.flame.edu.in/modules/mod_flame_home_page/assets/css/owl.theme.default.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css" rel="stylesheet">
+	<link href="/templates/ja_alpha/css/template.css" rel="stylesheet">
+	<link href="/media/t4/css/14-101.css" rel="stylesheet">
+<script src="/media/vendor/jquery/js/jquery.min.js?3.7.1"></script>
+	<script src="/templates/ja_alpha/js/imagesloaded.pkgd.min.js?304cf3"></script>
+	<script src="/media/legacy/js/jquery-noconflict.min.js?504da4"></script>
+	<script src="/media/vendor/jquery-migrate/js/jquery-migrate.min.js?3.5.2"></script>
+	<script src="/plugins/system/t4/themes/base/vendors/bootstrap/js/bootstrap.bundle.min.js?304cf3"></script>
+	<script src="/templates/ja_alpha/js/ekko-lightbox.js?304cf3"></script>
+	<script src="/templates/ja_alpha/js/html5lightbox/html5lightbox.js?304cf3"></script>
+	<script src="/templates/ja_alpha/js/owl-carousel/owl.carousel.min.js?304cf3"></script>
+	<script src="/templates/ja_alpha/js/isotope.pkgd.min.js?304cf3"></script>
+	<script type="application/json" class="joomla-script-options new">{"joomla.jtext":{"MOD_FINDER_SEARCH_VALUE":"Search &hellip;"},"system.paths":{"root":"","rootFull":"https:\/\/www.flame.edu.in\/","base":"","baseFull":"https:\/\/www.flame.edu.in\/"},"csrf.token":"034277ca1060db1fe5fc6048855d460a"}</script>
+	<script src="/media/system/js/core.min.js?a3d8f8"></script>
+	<script src="/media/com_finder/js/finder.min.js?755761" type="module"></script>
+	<script src="/templates/ja_alpha/js/template.js"></script>
+	<script src="/plugins/system/t4/themes/base/js/base.js?304cf3"></script>
+	<script src="https://www.flame.edu.in/modules/mod_flame_home_slider/assets/js/script.js"></script>
+	<script src="https://www.flame.edu.in/media/com_simplesocialmediastream/js/utils.min.js"></script>
+	<script src="https://www.flame.edu.in/media/com_simplesocialmediastream/js/wall.min.js"></script>
+	<script src="https://www.flame.edu.in/media/com_simplesocialmediastream/js/timeline.min.js"></script>
+	<script src="https://www.flame.edu.in/media/com_simplesocialmediastream/js/carousel.min.js"></script>
+	<script src="https://www.flame.edu.in/modules/mod_flame_home_page/assets/js/popper.js"></script>
+	<script src="https://www.flame.edu.in/modules/mod_flame_home_page/assets/js/homepage.js"></script>
+	<script src="https://www.flame.edu.in/modules/mod_flame_home_page/assets/js/main.js"></script>
+	<script src="https://www.flame.edu.in/modules/mod_flame_home_page/assets/js/anime.min.js"></script>
+	<script src="https://www.flame.edu.in/modules/mod_flame_home_page/assets/js/perfect-scrollbar.min.js"></script>
+	<script>function fetchMoreLatestEvents(modid, direction)
+{        
+        jQuery.ajax({
+                    type : 'POST',
+                    dataType : 'json',
+                    url : "https://www.flame.edu.in/index.php?option=com_jevents&ttoption=com_jevents&typeaheadtask=gwejson&file=fetchlatestevents&path=module&folder=mod_jevents_latest&token=e2d29858a1390a334bb479c19121af2e",
+                    data : {'json':JSON.stringify({'modid':modid, 'direction':direction})},
+                    contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                    scriptCharset: "utf-8"
+            })                        
+                .done(function( data ){                    
+                    jQuery("#mod_events_latest_"+modid+"_data").replaceWith(data.html);
+                    try {
+                        document.getElementById("mod_events_latest_"+modid+"_data").parentNode.scrollIntoView({block: "start", behavior: "smooth"});
+                    }
+                    catch (e) {
+                    }
+                })
+                .fail(function(x) {
+        alert('fail '+x);
+                });
+}</script>
+	<script type="application/json" id="ingallery-cfg">{"ajax_url":"\/component\/ingallery\/?task=gallery.view&language=en-GB","ajax_data_url":"\/component\/ingallery\/?task=picture.data&language=en-GB","lang":{"error_title":"Unfortunately, an error occurred","system_error":"Sytem error. Please view logs for more information or enable display errors in InGallery components settings."}}</script>
+
+
+  
+  <meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes"/>
+  <style  type="text/css">
+    @-webkit-viewport   { width: device-width; }
+    @-moz-viewport      { width: device-width; }
+    @-ms-viewport       { width: device-width; }
+    @-o-viewport        { width: device-width; }
+    @viewport           { width: device-width; }
+  </style>
+  <meta name="HandheldFriendly" content="true"/>
+  <meta name="apple-mobile-web-app-capable" content="YES"/>
+ 
+  <!-- //META FOR IOS & HANDHELD -->
+  <link href="https://www.flame.edu.in/modules/mod_flame_home_page/assets/css/main.css" rel="stylesheet"/>
+<!-- FLAME University GA4 Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6GQ7X6ZW6Y"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6GQ7X6ZW6Y');
+</script>
+
+
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N7JDDRD');</script>
+<!-- End Google Tag Manager -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-13233860-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "url": "https://www.flame.edu.in/",
+  "sameAs": ["https://en.wikipedia.org/wiki/FLAME_University","https://www.facebook.com/FlameUniversity","https://twitter.com/flameuniversity","https://plus.google.com/+FLAMEUniversityPune","https://www.youtube.com/user/FLAMEUniversity/","https://www.linkedin.com/edu/flame-university-360028","https://instagram.com/flameuniversity/"],
+  "name": "FLAME University",
+  "logo": "https://www.flame.edu.in/images/flameuniversity-logo.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Pune, India",
+    "postalCode": "412115",
+    "streetAddress": "Gat No. 1270, Lavale, Off. Pune - Bangalore Highway"
+  },  
+   "email": "enquiry@flame.edu.in",
+  "telephone": "1-800-209-4567",   
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://query.flame.edu.in/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<!-- Hotjar Tracking Code for Site 6615542 (name missing) -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:6615542,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "bmkt1vbtwu");
+</script>
+  
+  
+   <link href="https://www.flame.edu.in/modules/mod_flame_home_page/assets/css/main.css" rel="stylesheet"/>
+  <script src="/media/com_rsform/js/utm_handler.js"></script>
+<script src="/media/com_rsform/js/utm-link-appender.js"></script>
+  
+
+<!--[if lt IE 9]>
+    <script src="/media/jui/js/html5.js"></script>
+  <![endif]-->
+<!--[/JCBGUI$$$$]-->
+<!--[JCBGUI.joomla_module.default.1.$$$$]
+
+     
+    
+
+    echo "<p>" . $row['slidertitle'] . ", " . $sliderimageuploaddfieldscall . "<br></p>";-->
+</head>
+
+<body class="site-default navigation-default theme-default layout-home1 com_content view-archive item-101" data-jver="5">
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N7JDDRD"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+  
+  <div class="t4-wrapper">
+    <div class="t4-content">
+      <div class="t4-content-inner">
+        
+<div id="t4-menu" class="t4-section  t4-menu"><div class="t4-module module " id="Mod109"><div class="module-inner"><div class="module-ct">
+
+<div class="border-top-sush"></div>
+<div class="container">
+       <div class="flame-topbar  ">
+         <div class="flame-topbar__logo">
+            <!-- closed menu - logo --> <a aria-label="Home" class="flame-topbar__logo-link" data-gtm="main-logo" href="https://www.flame.edu.in/"> <img alt="FLAME University" class="flame-topbar__logo-img" id="top_mark" src="https://www.flame.edu.in/images/FLAME-Logo.png"/> </a>
+         </div>
+         <div class="button-wrapper-for-older-browsers">
+            <nav class="flame-topbar__buttons">
+				
+               <!-- site menu button --> <a aria-controls="flame-site-menu" aria-expanded="false" class="flame-topbar__menu-button flame-js-site-menu-button" data-gtm="mearch-button" href="#footer" onclick="return false;"> 
+               <span class="menu-text">Menu</span>
+               <img alt="" class="close-x" height="30" src="/images/menu-mag.svg" width="43"/> </a> 
+               <!-- info for button -->
+            </nav>
+         </div>
+      </div>
+	</div>
+      <div class="menubackdrop-white">
+		  <a aria-label="Home" class="flame_logo_banner" href="https://www.flame.edu.in/" id="flame_logo_banner"> <img alt="FLAME University" src="/images/FLAME-menu-banner.svg"/> </a></div>
+      <div id="dark-menu-ks" class="menubackdrop-dark"></div>
+      <header id="main-header">
+         <div class="flame-site-menu" id="flame-site-menu">
+            <!-- close site menu button -->
+            <a class="flame-topbar__menu-button -close-x flame-js-site-menu-button-close-x" href="#">
+               <!-- close site menu button -->
+               <img class="close-x" height="30" src="/images/close-x.svg" width="30"/>
+            </a>
+            <!-- info for button -->
+            <a class="flame-topbar__info-for-button flame-js-info-menu-button" style="display: none" href="#"></a>
+            <a class="flame_logo_banner" href="https://www.flame.edu.in/" ><img alt="FLAME University" src="/images/FLAME-menu-banner.svg"/></a>
+            <div class="flame-site-menu__primary-wrapper">
+               <!-- search -->
+               <div class="flame-search">
+                  <div class="flame-search__form">
+                     
+                     
+                     
+                     <div id="menubuttondesign">
+                     
+<form class="mod-finder js-finder-searchform form-search" action="/search" method="get" role="search">
+    <label for="mod-finder-searchword132" class="visually-hidden finder">Search</label><div class="mod-finder__search input-group"><input type="text" name="q" id="mod-finder-searchword132" class="js-finder-search-query form-control" value="" placeholder="Search &hellip;"><button class="btn btn-primary" type="submit"><span class="icon-search icon-white" aria-hidden="true"></span> Search</button></div>
+            </form>
+                     </div>
+    
+                     
+                  </div>
+                  <div class="flame-search__common-searches">
+                     <div class="label">
+						 <ul>
+						 	<li><a href="/contact-us/invite-flame-to-your-school"> INVITE FLAME TO YOUR SCHOOL</a></li>
+							 <li><a href="/admissions/visit-us"> VISIT FLAME - BOOK A CAMPUS TOUR</a></li>
+							 <li><a href="/admissions/download-brochure"> DOWNLOAD BROCHURE</a></li>
+							 <li><a href="/contact-us/admission-enquiry"> REQUEST INFO</a></li>
+							 <li><a href="/voice-of-flame"> VOICE OF FLAME</a></li>
+						 </ul>
+                       
+                     </div>
+                     <ul class="items">
+                     </ul>
+                  </div>
+               </div>
+               <!-- end search -->
+               <div class="flame-site-menu__divider"></div>
+               <!-- primary nav -->
+               <nav aria-label="Main" aria-live="polite" class="accordion primary-nav" data-behavior="accordion" role="tablist">
+                  <ul class="primary-nav__mainmenu">
+                     <li class="accordion__item js-show-item-default" data-binding="expand-accordion-item">
+                        <a href="/academics">ACADEMICS</a>
+                        <button aria-controls="panel0" aria-expanded="false" aria-selected="false" class="accordion__title primary-nav__togglesubmenu" data-binding="expand-accordion-trigger" id="tab0" role="tab" tabindex="0">
+                        <span class="h-sr-only">toggle submenu
+                        </span></button>
+                        <div aria-hidden="true" aria-labelledby="tab0" class="accordion__content primary-nav__submenu" data-binding="expand-accordion-container" id="panel0" role="tabpanel">
+                           <ul aria-hidden="true" class="accordion__content-inner " id="sub-0">
+                             <li>
+                                 <a href="/academics/ug" style="position: relative; display: block;">UNDERGRADUATE<span style="position: relative; top:-10px; line-height: 1; font-size: 80%; display: block; padding-top: 5px;">B.A., B.Sc., BBA, BBA(CM), Hons.</span></a>
+                              </li>
+							   <li> <a href="/academics/ug-bdes" style="position: relative; display: block;">  UNDERGRADUATE DESIGN<span style="position: relative; top:-10px; line-height: 1; font-size: 80%; display: block; padding-top: 5px;">B.Des</span></a> </li>
+							    <li>
+                                 <a href="/academics/pg" style="position: relative; display: block;">POSTGRADUATE<span style="position: relative; top:-10px; line-height: 1; font-size: 80%; display: block; padding-top: 5px;">MBA, MBA (CM), M.Sc., PGPEI</span></a>
+                              </li>
+							  <li>
+                                 <a href="/academics/doctoral-program">DOCTORAL</a>
+                              </li>
+                               <li>
+                                 <a href="/academics/flame-summer-school">FLAME SUMMER SCHOOL</a>
+                              </li>
+                              	    <li>
+                                 <a href="/academics/summer-immersion-program">SUMMER IMMERSION PROGRAM (FUSIP)</a>
+                              </li>
+							    <li>
+                                 <a href="/academics/flame-investment-lab">FLAME INVESTMENT LAB (FIL)</a>
+                              </li>
+                               <li>
+                                 <a href="/academics/schools-departments">SCHOOLS & DEPARTMENTS</a>
+                              </li>
+							     <li>  <a href="/academics/resources">RESOURCES</a>
+						    </li>
+                              
+                              
+                           </ul>
+                        </div>
+                     </li>
+					 
+					 <li class="accordion__item js-show-item-default" data-binding="expand-accordion-item">
+                        <a href="/programs">PROGRAMS</a>
+                     
+                     </li>
+					 
+                     <li class="accordion__item js-show-item-default" data-binding="expand-accordion-item">
+                        <a href="/admissions">ADMISSIONS</a>
+                        <button aria-controls="panel1" aria-expanded="false" aria-selected="false" class="accordion__title primary-nav__togglesubmenu" data-binding="expand-accordion-trigger" id="tab1" role="tab" tabindex="0">
+                        <span class="h-sr-only">toggle submenu
+                        </span></button>
+                        <div aria-hidden="true" aria-labelledby="tab1" class="accordion__content primary-nav__submenu" data-binding="expand-accordion-container" id="panel1" role="tabpanel">
+                           <ul aria-hidden="true" class="accordion__content-inner " id="sub-1">
+						   <li><a href="/admissions/apply">APPLY TO FLAME</a></li>
+                             
+                             
+                                   <li>
+                                 <a href="/admissions/ug" style="position: relative; display: block;">UNDERGRADUATE PROGRAM<span style="position: relative; top:-10px; line-height: 1; font-size: 80%; display: block; padding-top: 5px;">B.A., B.Sc., BBA, BBA(CM), Hons.</span></a>
+                              </li>
+							   <li> <a href="/admissions/ug-bdes" style="position: relative; display: block;">  UNDERGRADUATE PROGRAM<span style="position: relative; top:-10px; line-height: 1; font-size: 80%; display: block; padding-top: 5px;">B.Des</span></a> </li>
+							    <li>
+                                 <a href="/admissions/pg" style="position: relative; display: block;">POSTGRADUATE PROGRAMS<span style="position: relative; top:-10px; line-height: 1; font-size: 80%; display: block; padding-top: 5px;">MBA, MBA (CM), M.Sc., PGPEI</span></a>
+                              </li> 
+
+							   <li> <a href="/admissions/doctoral-program">  DOCTORAL PROGRAM </a> </li>
+							    <li> <a href="/admissions/flame-summer-school">  FLAME SUMMER SCHOOL </a> </li>
+							   <li> <a href="/admissions/summer-immersion-program">  SUMMER IMMERSION PROGRAM </a> </li>
+							   <li> <a href="/admissions/scholarships">  SCHOLARSHIPS </a> </li>
+							   <li> <a href="/admissions/visit-us">  VISIT US </a> </li>
+							   <li> <a href="/admissions/download-brochure">  DOWNLOAD BROCHURE </a> </li>
+							   <li> <a href="/admissions/student-experiences">  STUDENT EXPERIENCES </a> </li>
+							   <li> <a href="/admissions/alumni-achievements">  ALUMNI ACHIEVEMENTS </a> </li>
+							   <li> <a href="/flame55">  FLAME 55 </a> </li>
+						    <li> <a href="/admissions/chat-with-student-ambassadors"> CHAT WITH STUDENT AMBASSADORS </a> </li>  
+                           </ul>
+                        </div>
+                     </li>
+                     <li class="accordion__item js-show-item-default" data-binding="expand-accordion-item">
+                        <a href="/faculty">FACULTY</a>
+                     
+                     </li>
+                     <li class="accordion__item js-show-item-default" data-binding="expand-accordion-item">
+                        <a href="/research">RESEARCH</a>
+                        <button aria-controls="panel3" aria-expanded="false" aria-selected="false" class="accordion__title primary-nav__togglesubmenu" data-binding="expand-accordion-trigger" id="tab3" role="tab" tabindex="0">
+                        <span class="h-sr-only">toggle submenu
+                        </span></button>
+                        <div aria-hidden="true" aria-labelledby="tab3" class="accordion__content primary-nav__submenu" data-binding="expand-accordion-container" id="panel3" role="tabpanel">
+                           <ul aria-hidden="true" class="accordion__content-inner " id="sub-3">
+                              <li>
+                                 <a href="/research/faculty-research">FACULTY RESEARCH</a>
+                              </li>
+                              <li>
+                                 <a href="/research/student-research">STUDENT RESEARCH</a>
+                              </li>
+							   <li>
+                                 <a href="/research/centres">RESEARCH CENTRES</a>
+                              </li>
+							   <li>
+                                 <a href="/research/thought-leadership">FACULTY THOUGHT LEADERSHIP</a>
+                              </li>
+							  <li>
+                                 <a href="/research/flame-working-paper-series">FLAME WORKING PAPER SERIES</a>
+								 
+                              </li>
+							  
+							    <li>
+                                 <a href="/research/postdoctoral-research-fellowship">POSTDOCTORAL RESEARCH FELLOWSHIP</a>
+                              </li>
+							     <li>
+                                 <a href="/research/conferences">CONFERENCES</a>
+                              </li>
+							   <li>
+                                 <a href="/research/ignite-magazine">IGNITE MAGAZINE</a>
+                              </li>
+							 
+							   <!--<li>
+                                 <a href="/cka/">CENTRE FOR KNOWLEDGE ALTERNATIVES</a>
+                              </li>-->
+							  
+					
+							  
+                           </ul>
+                        </div>
+                     </li>
+                     <li class="accordion__item js-show-item-default" data-binding="expand-accordion-item">
+                        <a href="/global-connect">GLOBAL CONNECT</a>
+                        <button aria-controls="panel4" aria-expanded="false" aria-selected="false" class="accordion__title primary-nav__togglesubmenu" data-binding="expand-accordion-trigger" id="tab4" role="tab" tabindex="0">
+                        <span class="h-sr-only">toggle submenu </span></button>
+                        <div aria-hidden="true" aria-labelledby="tab4" class="accordion__content primary-nav__submenu" data-binding="expand-accordion-container" id="panel4" role="tabpanel">
+                           <ul aria-hidden="true" class="accordion__content-inner " id="sub-4">
+                              <li>
+                                 <a href="/global-connect/study-abroad">STUDY ABROAD</a>
+                              </li>
+							   <li>
+                                 <a href="/global-connect/global-engagement">GLOBAL ENGAGEMENT</a>
+                              </li>
+                           </ul>
+                        </div>
+                     </li>
+					 
+					 
+					  <li class="accordion__item js-show-item-default" data-binding="expand-accordion-item">
+                        <a href="/campus-life">CAMPUS LIFE 
+</a>
+                        <button aria-controls="panel4" aria-expanded="false" aria-selected="false" class="accordion__title primary-nav__togglesubmenu" data-binding="expand-accordion-trigger" id="tab4" role="tab" tabindex="0">
+                        <span class="h-sr-only">toggle submenu
+                        </span></button>
+                        <div aria-hidden="true" aria-labelledby="tab4" class="accordion__content primary-nav__submenu" data-binding="expand-accordion-container" id="panel4" role="tabpanel">
+                           <ul aria-hidden="true" class="accordion__content-inner " id="sub-4">
+                               <li> 
+                                 <a href="/campus-life/student-life">STUDENT LIFE</a>
+                              </li>
+                              <li>
+                                 <a href="/campus-life/infrastructure">INFRASTRUCTURE</a>
+                              </li>
+						
+							   <li>
+                                 <a href="/campus-life/community">COMMUNITY</a>
+                              </li>
+							   <li>
+                                 <a href="/campus-life/faqs">FAQS</a>
+                              </li>
+                           </ul>
+                        </div>
+                     </li>
+					  <li class="accordion__item js-show-item-default" data-binding="expand-accordion-item">
+                        <a href="/career-services">CAREER SERVICES
+</a>
+                        <button aria-controls="panel4" aria-expanded="false" aria-selected="false" class="accordion__title primary-nav__togglesubmenu" data-binding="expand-accordion-trigger" id="tab4" role="tab" tabindex="0">
+                        <span class="h-sr-only">toggle submenu
+                        </span></button>
+                        <div aria-hidden="true" aria-labelledby="tab4" class="accordion__content primary-nav__submenu" data-binding="expand-accordion-container" id="panel4" role="tabpanel">
+                           <ul aria-hidden="true" class="accordion__content-inner " id="sub-4">
+                              <li>
+                                 <a href="/career-services/ug">UNDERGRADUATE</a>
+                              </li>
+                               <li>
+                                 <a href="/career-services/pg">POSTGRADUATE</a>
+                              </li> 
+                              <li>
+                                 <a href="/career-services/why-recruit-from-flame">WHY RECRUIT FROM FLAME?</a>
+                              </li>
+							   <li>
+                                 <a href="/career-services/placement-process">PLACEMENT PROCESS</a>
+                              </li>
+							   <li>
+                                 <a href="/career-services/training-modules">TRAINING MODULES</a>
+                              </li>
+							   <li>
+                                 <a href="/career-services/placement-report">PLACEMENT REPORT</a>
+                              </li>
+							   <li>
+                                 <a href="/career-services/summer-internship-program">SUMMER INTERNSHIP PROGRAM</a>
+                              </li>
+                           </ul>
+                        </div>
+                     </li>
+					 
+					 
+					 
+					
+					 
+					 
+					 
+					  <li class="accordion__item js-show-item-default" >
+                        <a href="/campus-life/student-life/alumni"> ALUMNI
+						  </a></li>
+                     <li class="accordion__item js-show-item-default" data-binding="expand-accordion-item">
+                        <a href="/about-flame">ABOUT FLAME</a>
+                        <button aria-controls="panel4" aria-expanded="false" aria-selected="false" class="accordion__title primary-nav__togglesubmenu" data-binding="expand-accordion-trigger" id="tab4" role="tab" tabindex="0">
+                        <span class="h-sr-only">toggle submenu
+                        </span></button>
+                        <div aria-hidden="true" aria-labelledby="tab4" class="accordion__content primary-nav__submenu" data-binding="expand-accordion-container" id="panel4" role="tabpanel">
+                           <ul aria-hidden="true" class="accordion__content-inner " id="sub-4">
+                              <li>
+                                 <a href="/about-flame/the-flame-vision">THE FLAME VISION</a>
+                              </li>
+							   <li>
+                                 <a href="/about-flame/leadership">LEADERSHIP</a>
+                              </li>
+							   <li>
+                                 <a href="/about-flame/accreditation">ACCREDITATION</a>
+                              </li>
+							   <li>
+                                 <a href="/about-flame/notable-guests">NOTABLE GUESTS</a>
+                              </li>
+							   <li>
+                                 <a href="/about-flame/what-is-liberal-education">WHAT IS LIBERAL EDUCATION?</a>
+                              </li>
+                           </ul>
+                        </div>
+                     </li>
+					  <li class="accordion__item js-show-item-default" data-binding="expand-accordion-item">
+                        <a href="/contact-us">CONTACT</a>
+                        <button aria-controls="panel4" aria-expanded="false" aria-selected="false" class="accordion__title primary-nav__togglesubmenu" data-binding="expand-accordion-trigger" id="tab4" role="tab" tabindex="0">
+                        <span class="h-sr-only">toggle submenu
+                        </span></button>
+                        <div aria-hidden="true" aria-labelledby="tab4" class="accordion__content primary-nav__submenu" data-binding="expand-accordion-container" id="panel4" role="tabpanel">
+                           <ul aria-hidden="true" class="accordion__content-inner " id="sub-4">
+                              <li>
+                                 <a href="/contact-us/admission-enquiry">ADMISSION ENQUIRY</a>
+                              </li>
+							   <li>
+                                 <a href="/contact-us/other-enquiries">OTHER ENQUIRIES</a>
+                              </li>
+							   <li>
+                                 <a href="/contact-us/directions-location-map">DIRECTIONS & LOCATION MAP</a>
+                              </li>
+							   <li>
+                                 <a href="/contact-us/about-pune">ABOUT PUNE</a>
+                              </li>
+							   <li>
+                                 <a href="/contact-us/jobs-at-flame">WORK WITH US</a>
+                              </li>
+							   <li>
+                                 <a href="/contact-us/invite-flame-to-your-school">INVITE FLAME TO YOUR SCHOOL FOR A WEBINAR</a>
+                              </li>
+                           </ul>
+                        </div>
+                     </li>
+                  </ul>
+               </nav>
+            </div>
+            <!-- end primary wrapper -->
+            <!-- tactical -->
+            <div class="tac-wrapper">
+				
+               <nav aria-label="Quick links" class="tactical-nav">
+				     
+                  <ul class="tactical-nav__list">
+                     <li>
+                        <a href="/gateway/prospective-students">Prospective Students </a>
+                     </li>
+                     <li>
+                        <a href="/gateway/current-students"> Current Students</a>
+                     </li>
+                     <li>
+                        <a href="/gateway/faculty-staff"> Faculty & Staff </a>
+                     </li>
+                     <li>
+                        <a href="/gateway/parents-families">  Parents & Families </a>
+                     </li>
+                     <li>
+                        <a href="/gateway/alumni-friends"> Alumni & Friends </a>
+                     </li>
+                     
+                  </ul>
+               </nav>
+            </div>
+            <!-- secondary -->
+            <div class="sec-wrapper">
+               <div class="link-box-style">
+				<div class=" ">
+				 
+					<div class="row">
+						
+					<div class=" col-lg-4 col-sm-6"><a href="/contact-us/admission-enquiry">
+						<div class="padding-20 boder-box-1">Admission  Enquiry</div></a>
+				</div>
+						 
+						<div class="col-lg-4 col-sm-6"><a href="/admissions/visit-us">
+						<div class="padding-20 boder-box-1">Visit Us</div></a>
+				</div>
+						
+						<div class="col-lg-4 col-sm-6"><a href="/admissions/apply">
+						<div class="padding-20 boder-box-1"> Apply Now</div></a>
+				</div>
+					 
+						
+					</div> 
+			 
+				</div>
+				
+		   
+		   </div>
+            </div>
+            <!-- end secondary -->
+         </div> 
+         <div class="flame-info-for-menu" id="flame-info-for-menu">
+            <!-- site menu button -->
+            <a class="flame-topbar__menu-button flame-js-site-menu-button" href="#">
+            <span class="flame-topbar__menu-button-text">FLAME Menu
+            </span>
+            <img class="close-x" height="30" src="/images/menu-mag.svg" alt="close" width="43"/>
+            </a>
+            <!-- close info for button -->
+            <a class="flame-topbar__info-for-button -close-x flame-js-info-menu-button" href="#">
+            <img class="close-x" height="10" src="/images/close-x-small.svg" alt="close" width="10"/>
+            <span>close
+            </span>
+            </a>
+            <a class="flame_logo_banner" href="https://www.flame.edu.in/" id="flame_logo_banner"><img alt="FLAME University" src="https://www.flame.edu.in/images/FLAME-Logo.png"/></a>
+         </div>
+		   <nav class="navbar navbar-expand-lg container">
+  <a class="navbar-brand" href="https://www.flame.edu.in/"><img src="/images/white-Logo-FLAME.svg" width="120px" class="logo-inner"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item ">
+        <a class="nav-link" href="/academics">Academics </a>
+      </li>
+	  
+	   <li class="nav-item ">
+        <a class="nav-link" href="/programs">Programs </a>
+      </li>
+	  
+		<li class="nav-item "> 
+        <a class="nav-link" href="/faculty">Faculty </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/contact-us/jobs-at-flame">Careers </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/admissions/visit-us">VISIT </a>
+      </li>
+     <li class="nav-item">
+        <a class="nav-link" href="/admissions/apply">Apply </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+      </header></div></div></div></div>
+
+
+
+<div id="t4-hero" class="t4-section  t4-hero  t4-palette-blue"><script>
+	document.getElementsByTagName("body").style.background = "red";
+</script>
+<!-- Slider-->
+ <section id="slider">
+<div class="home-slider owl-carousel js-fullheight d-none d-sm-block">
+	
+
+
+		
+      <div class="slider-item js-fullheight " style="background-image: url(/images/homepage-slider/Admissions-for-Academic-Year-2026-27-Now-Open.jpg);">
+      	<div class="overlay"></div>
+        <div class="container">
+          <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+	          <div class="col-md-5 ftco-animate">
+	          	<div class="text  ">
+	          		
+		            <h1 class="mb-3">Admissions for Academic Year 2027-28 Now Open</h1>
+					<p>Your Greatest Story Begins Here</p>
+					
+			
+						
+		<p><a href="https://www.flame.edu.in/admissions/apply?utm_source=website&utm_medium=homepage-slider&utm_campaign=ay2027-28-admissions-application-open&utm_content=homepage-slider-application-open&utm_term=cta_apply_now"   class="l_hp__overview_btn">Apply Now</a></p>
+        
+	            </div>
+	           
+
+	          </div>
+			  <div class="col-md-7 ftco-animate">
+			   <div class="everlasting"> <img src="/images/homepage-slider/Everlasting-Learning.png" alt="Everlasting"> </div>  
+			  </div>
+	        </div>
+        </div>
+      </div>
+
+      
+	
+      <div class="slider-item js-fullheight " style="background-image: url(/images/homepage-slider/everlasting-flame-vol-17-d.jpg);">
+      	<div class="overlay"></div>
+        <div class="container">
+          <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+	          <div class="col-md-5 ftco-animate">
+	          	<div class="text  ">
+	          		
+		            <h1 class="mb-3">EVERLASTING FLAME</h1>
+					<p>A Newsletter from the Vice-Chancellor's Desk</p>
+					
+			
+						
+		<p><a href="https://www.flame.edu.in/newsletters/vc-newsletter"   class="l_hp__overview_btn">Know More</a></p>
+        
+	            </div>
+	           
+
+	          </div>
+			  <div class="col-md-7 ftco-animate">
+			   
+			  </div>
+	        </div>
+        </div>
+      </div>
+
+      
+	
+      <div class="slider-item js-fullheight " style="background-image: url(/images/homepage-slider/Suhani-Mathur-desktop-slider.jpg);">
+      	<div class="overlay"></div>
+        <div class="container">
+          <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+	          <div class="col-md-5 ftco-animate">
+	          	<div class="text  ">
+	          		
+		            <h1 class="mb-3">Attending the Leadership in Action Seminar 2025, Morocco </h1>
+					<p>Undergraduate student Suhani Mathur attended the seminar with students from across the world and participated in leadership dialogue. </p>
+					
+			
+						
+		<p><a href="https://youtu.be/kr0o55ot9Qs?si=BsGZ2NbxNy6PWHJQ" target=blank  class="l_hp__overview_btn">Know more </a></p>
+        
+	            </div>
+	           
+
+	          </div>
+			  <div class="col-md-7 ftco-animate">
+			   
+			  </div>
+	        </div>
+        </div>
+      </div>
+
+      
+	
+      <div class="slider-item js-fullheight " style="background-image: url(/images/homepage-slider/Shreshtha-Deshpande-desktop-slider%20%20.jpg);">
+      	<div class="overlay"></div>
+        <div class="container">
+          <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+	          <div class="col-md-5 ftco-animate">
+	          	<div class="text  ">
+	          		
+		            <h1 class="mb-3">Learning with Impact: Local and Global Perspectives</h1>
+					<p>Undergraduate student Shreshtha Deshpande shares her experience from the Beijing Sister City Youth Camp, China, and Developmental Activities Program.  
+</p>
+					
+			
+						
+		<p><a href="https://youtu.be/nbCPES0-pOo?si=U3NxuKIdvdbs6v-T" target=blank  class="l_hp__overview_btn">Know more </a></p>
+        
+	            </div>
+	           
+
+	          </div>
+			  <div class="col-md-7 ftco-animate">
+			   
+			  </div>
+	        </div>
+        </div>
+      </div>
+
+      
+	
+      <div class="slider-item js-fullheight " style="background-image: url(/images/homepage-slider/ma-venkataramanan%20-8apr-desktop.jpg);">
+      	<div class="overlay"></div>
+        <div class="container">
+          <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+	          <div class="col-md-5 ftco-animate">
+	          	<div class="text  ">
+	          		
+		            <h1 class="mb-3">Liberal Arts is India’s smartest bet for a complex world</h1>
+					<p>Prof. Venkataramanan speaks to New Indian Express on how liberal education builds mental range before students commit to a more defined path</p>
+					
+			
+						
+		<p><a href="https://www.flame.edu.in/in-the-media/liberal-arts-is-indias-smartest-bet-for-a-complex-world"   class="l_hp__overview_btn">Learn More</a></p>
+        
+	            </div>
+	           
+
+	          </div>
+			  <div class="col-md-7 ftco-animate">
+			   
+			  </div>
+	        </div>
+        </div>
+      </div>
+
+      
+	
+      <div class="slider-item js-fullheight " style="background-image: url(/images/homepage-slider/shivkumar-jolad-desktop-8apr26.jpg);">
+      	<div class="overlay"></div>
+        <div class="container">
+          <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+	          <div class="col-md-5 ftco-animate">
+	          	<div class="text  ">
+	          		
+		            <h1 class="mb-3">FLAME University maps India’s ever-changing state and district borders</h1>
+					<p>Prof. Jolad speaks to The Indian Express about 'The India State Stories', a project on the rich tapestry of Indian states and districts</p>
+					
+			
+						
+		<p><a href="https://www.flame.edu.in/in-the-media/flame-university-maps-indias-ever-changing-state-and-district-borders  "   class="l_hp__overview_btn">Learn More </a></p>
+        
+	            </div>
+	           
+
+	          </div>
+			  <div class="col-md-7 ftco-animate">
+			   
+			  </div>
+	        </div>
+        </div>
+      </div>
+
+      
+	
+      <div class="slider-item js-fullheight " style="background-image: url(/images/homepage-slider/Q1-banners-desktop-8apr26.jpg);">
+      	<div class="overlay"></div>
+        <div class="container">
+          <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+	          <div class="col-md-5 ftco-animate">
+	          	<div class="text  ">
+	          		
+		            <h1 class="mb-3">CONGRATULATIONS TO FLAME FACULTY FOR THEIR RESEARCH PAPERS PUBLISHED IN Q1 RANKED JOURNALS</h1>
+					<p></p>
+					
+			
+						
+		<p><a href="https://www.flame.edu.in/spotlights/congratulations-to-the-flame-faculty-for-their-research-papers-published-in-q1-ranked-journals"   class="l_hp__overview_btn">Read More</a></p>
+        
+	            </div>
+	           
+
+	          </div>
+			  <div class="col-md-7 ftco-animate">
+			   
+			  </div>
+	        </div>
+        </div>
+      </div>
+
+      
+	
+      <div class="slider-item js-fullheight " style="background-image: url(/images/homepage-slider/Introducing-Concentrations.jpg);">
+      	<div class="overlay"></div>
+        <div class="container">
+          <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+	          <div class="col-md-5 ftco-animate">
+	          	<div class="text  ">
+	          		
+		            <h1 class="mb-3">Redefining Interdisciplinary Learning for a Changing World</h1>
+					<p>Introducing Concentrations at FLAME to deepen understanding, broaden perspectives, and shape mindset to thrive in an ever-changing world.</p>
+					
+			
+						
+		<p><a href="https://youtu.be/s6CJjvnR81Y" target=blank  class="l_hp__overview_btn">Know More</a></p>
+        
+	            </div>
+	           
+
+	          </div>
+			  <div class="col-md-7 ftco-animate">
+			   <div class="everlasting"> <img src="/images/homepage-slider/Everlasting-Learning.png" alt="Everlasting"> </div>  
+			  </div>
+	        </div>
+        </div>
+      </div>
+
+      
+	     
+	
+	
+	
+
+
+
+
+	
+
+       
+    </div>
+    
+    
+    
+    
+    <!-- MOBILE -->
+    
+    
+    
+    
+    <div class="home-slider owl-carousel js-fullheight d-block d-sm-none">
+	
+		
+      <div class="slider-item js-fullheight " style="background-image: url(/images/homepage-slider/Admissions-for-Academic-Year-2026-27-Now-Open-M.jpg);">
+      	<div class="overlay"></div>
+        <div class="container">
+          <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+	          <div class="col-md-12 ftco-animate">
+	          	<div class="text w-50  ">
+	          		
+		            <h1 class="mb-3">Admissions for Academic Year 2027-28 Now Open</h1>
+					<p>Your Greatest Story Begins Here</p>
+					
+			
+										 
+					 <p><a href="https://www.flame.edu.in/admissions/apply?utm_source=website&utm_medium=homepage-slider&utm_campaign=ay2027-28-admissions-application-open&utm_content=homepage-slider-application-open&utm_term=cta_apply_now"   class="l_hp__overview_btn">Apply Now</a></p>
+					 
+					 					
+
+
+	            </div>
+	            <div class="everlasting"> <img src="/images/homepage-slider/Everlasting-Learning.png" alt="Everlasting"> </div>  
+
+	          </div>
+	        </div>
+        </div>
+      </div>
+
+      
+	
+      <div class="slider-item js-fullheight " style="background-image: url(/images/homepage-slider/mobile/everlasting-flame-vol-17-m.jpg);">
+      	<div class="overlay"></div>
+        <div class="container">
+          <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+	          <div class="col-md-12 ftco-animate">
+	          	<div class="text w-50  ">
+	          		
+		            <h1 class="mb-3">EVERLASTING FLAME</h1>
+					<p>A Newsletter from the Vice-Chancellor's Desk</p>
+					
+			
+										 
+					 <p><a href="https://www.flame.edu.in/newsletters/vc-newsletter"   class="l_hp__overview_btn">Know More</a></p>
+					 
+					 					
+
+
+	            </div>
+	            
+
+	          </div>
+	        </div>
+        </div>
+      </div>
+
+      
+	
+      <div class="slider-item js-fullheight " style="background-image: url(/images/homepage-slider/mobile/Suhani-Mathur-Mobile-banner.jpg);">
+      	<div class="overlay"></div>
+        <div class="container">
+          <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+	          <div class="col-md-12 ftco-animate">
+	          	<div class="text w-50  ">
+	          		
+		            <h1 class="mb-3">Attending the Leadership in Action Seminar 2025, Morocco </h1>
+					<p>Undergraduate student Suhani Mathur attended the seminar with students from across the world and participated in leadership dialogue. </p>
+					
+			
+										 
+					 <p><a href="https://youtu.be/kr0o55ot9Qs?si=BsGZ2NbxNy6PWHJQ" target=blank  class="l_hp__overview_btn">Know more </a></p>
+					 
+					 					
+
+
+	            </div>
+	            
+
+	          </div>
+	        </div>
+        </div>
+      </div>
+
+      
+	
+      <div class="slider-item js-fullheight " style="background-image: url(/images/homepage-slider/mobile/Shreshtha-Deshpande-Mobile-banner.jpg);">
+      	<div class="overlay"></div>
+        <div class="container">
+          <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+	          <div class="col-md-12 ftco-animate">
+	          	<div class="text w-50  ">
+	          		
+		            <h1 class="mb-3">Learning with Impact: Local and Global Perspectives</h1>
+					<p>Undergraduate student Shreshtha Deshpande shares her experience from the Beijing Sister City Youth Camp, China, and Developmental Activities Program.  
+</p>
+					
+			
+										 
+					 <p><a href="https://youtu.be/nbCPES0-pOo?si=U3NxuKIdvdbs6v-T" target=blank  class="l_hp__overview_btn">Know more </a></p>
+					 
+					 					
+
+
+	            </div>
+	            
+
+	          </div>
+	        </div>
+        </div>
+      </div>
+
+      
+	
+      <div class="slider-item js-fullheight " style="background-image: url(/images/homepage-slider/mobile/ma-venkataramanan%20-8apr-mobile.jpg);">
+      	<div class="overlay"></div>
+        <div class="container">
+          <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+	          <div class="col-md-12 ftco-animate">
+	          	<div class="text w-50  ">
+	          		
+		            <h1 class="mb-3">Liberal Arts is India’s smartest bet for a complex world</h1>
+					<p>Prof. Venkataramanan speaks to New Indian Express on how liberal education builds mental range before students commit to a more defined path</p>
+					
+			
+										 
+					 <p><a href="https://www.flame.edu.in/in-the-media/liberal-arts-is-indias-smartest-bet-for-a-complex-world"   class="l_hp__overview_btn">Learn More</a></p>
+					 
+					 					
+
+
+	            </div>
+	            
+
+	          </div>
+	        </div>
+        </div>
+      </div>
+
+      
+	
+      <div class="slider-item js-fullheight " style="background-image: url(/images/homepage-slider/mobile/shivkumar-jolad-mobile-8apr26.jpg);">
+      	<div class="overlay"></div>
+        <div class="container">
+          <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+	          <div class="col-md-12 ftco-animate">
+	          	<div class="text w-50  ">
+	          		
+		            <h1 class="mb-3">FLAME University maps India’s ever-changing state and district borders</h1>
+					<p>Prof. Jolad speaks to The Indian Express about 'The India State Stories', a project on the rich tapestry of Indian states and districts</p>
+					
+			
+										 
+					 <p><a href="https://www.flame.edu.in/in-the-media/flame-university-maps-indias-ever-changing-state-and-district-borders  "   class="l_hp__overview_btn">Learn More </a></p>
+					 
+					 					
+
+
+	            </div>
+	            
+
+	          </div>
+	        </div>
+        </div>
+      </div>
+
+      
+	
+      <div class="slider-item js-fullheight " style="background-image: url(/images/homepage-slider/mobile/Q1-banner-mobile-8apr26.jpg);">
+      	<div class="overlay"></div>
+        <div class="container">
+          <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+	          <div class="col-md-12 ftco-animate">
+	          	<div class="text w-50  ">
+	          		
+		            <h1 class="mb-3">CONGRATULATIONS TO FLAME FACULTY FOR THEIR RESEARCH PAPERS PUBLISHED IN Q1 RANKED JOURNALS</h1>
+					<p></p>
+					
+			
+										 
+					 <p><a href="https://www.flame.edu.in/spotlights/congratulations-to-the-flame-faculty-for-their-research-papers-published-in-q1-ranked-journals"   class="l_hp__overview_btn">Read More</a></p>
+					 
+					 					
+
+
+	            </div>
+	            
+
+	          </div>
+	        </div>
+        </div>
+      </div>
+
+      
+	
+      <div class="slider-item js-fullheight " style="background-image: url(/images/homepage-slider/Introducing-Concentrations-M.jpg);">
+      	<div class="overlay"></div>
+        <div class="container">
+          <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+	          <div class="col-md-12 ftco-animate">
+	          	<div class="text w-50  ">
+	          		
+		            <h1 class="mb-3">Redefining Interdisciplinary Learning for a Changing World</h1>
+					<p>Introducing Concentrations at FLAME to deepen understanding, broaden perspectives, and shape mindset to thrive in an ever-changing world.</p>
+					
+			
+										 
+					 <p><a href="https://youtu.be/s6CJjvnR81Y" target=blank  class="l_hp__overview_btn">Know More</a></p>
+					 
+					 					
+
+
+	            </div>
+	            <div class="everlasting"> <img src="/images/homepage-slider/Everlasting-Learning.png" alt="Everlasting"> </div>  
+
+	          </div>
+	        </div>
+        </div>
+      </div>
+
+      
+	     
+
+    </div>
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+</section>
+
+<script src="/modules/mod_flame_home_page/assets/js/bootstrap.min.js"></script>
+<script src="/modules/mod_flame_home_page/assets/js/owl.carousel.min.js"></script>
+
+<script src="/modules/mod_flame_home_page/assets/js/main-1.js"></script>
+	   <!--slider end-->
+	   <!--white box-->
+	   <div class="container pose-sush">
+		   
+	   <div class="top-yellow-boder box-color-pad">
+	   	<div class="row pad-fsk">
+			<!--Spotlight-->
+			
+		   	<div class="  col-lg-6 ">
+				<h3 class="sub-title">Spotlight</h3>
+				<div class="spotlight">
+					 
+					<div id="myCarousel" class="carousel slide" data-ride="carousel">
+       
+       
+       
+       
+       
+       <div class="carousel-inner">
+			
+					
+
+
+          <div class="carousel-item ">
+            <img class="first-slide" src="/images/spotlight/FLAME-Dance-Club-Offbeat-secured-first-place-in-the-group-dance-category-at-Reverb.jpg" alt="First slide">
+            <div class="container">
+              <div class="carousel-caption  ">
+                 <p style="line-height: 21px;">FLAME Dance Club ‘Offbeat’ secured first place in the group dance category at Reverb, hosted by the Symbiosis Institute of Technology.</p>
+                 
+                 
+                 
+                 
+                 
+				  				  
+				 
+				 
+               </div>
+            </div>
+          </div>
+        	
+			
+
+
+
+
+
+
+		
+
+
+          <div class="carousel-item ">
+            <img class="first-slide" src="/images/spotlight/FLAME-Music-Club-secured-2nd-place.jpg" alt="First slide">
+            <div class="container">
+              <div class="carousel-caption  ">
+                 <p style="line-height: 21px;">FLAME Music Club secured 2nd place at Bodhi Tree – Battle of Music, an inter-college competition celebrating musical talent.</p>
+                 
+                 
+                 
+                 
+                 
+				  				  
+				 
+				 
+               </div>
+            </div>
+          </div>
+        	
+			
+
+
+
+
+
+
+		
+
+
+          <div class="carousel-item ">
+            <img class="first-slide" src="/images/spotlight/Govind-Nayanar.jpg" alt="First slide">
+            <div class="container">
+              <div class="carousel-caption  ">
+                 <p style="line-height: 21px;">Undergraduate student Govind Nayanar completed the Wipro Bangalore Full Marathon (42.2 km) within an impressive time of 5 hours and 14 minutes</p>
+                 
+                 
+                 
+                 
+                 
+				  				  
+				 
+				 
+               </div>
+            </div>
+          </div>
+        	
+			
+
+
+
+
+
+
+		
+
+
+          <div class="carousel-item ">
+            <img class="first-slide" src="/images/spotlight/Tara-Vinzanekar-Spotlight.jpg" alt="First slide">
+            <div class="container">
+              <div class="carousel-caption  ">
+                 <p style="line-height: 21px;">Undergraduate Student Tara Vinzanekar successfully summits Mount Kilimanjaro, the world’s fourth highest peak, after a 7-day trek</p>
+                 
+                 
+                 
+                 
+                 
+				  				  
+				 
+				 
+               </div>
+            </div>
+          </div>
+        	
+			
+
+
+
+
+
+
+		
+
+
+          <div class="carousel-item ">
+            <img class="first-slide" src="/images/spotlight/Krish-Kumar-Spotlight.jpg" alt="First slide">
+            <div class="container">
+              <div class="carousel-caption  ">
+                 <p style="line-height: 21px;">FLAME Alumnus Krish Kumar secures 3rd position overall at Ironman 70.3 Vietnam and Sprint Triathlon</p>
+                 
+                 
+                 
+                 
+                 
+				  				  
+				 
+				 
+               </div>
+            </div>
+          </div>
+        	
+			
+
+
+
+
+
+
+		
+
+
+          <div class="carousel-item ">
+            <img class="first-slide" src="/images/spotlight/Dhwani-Balchandani.jpg" alt="First slide">
+            <div class="container">
+              <div class="carousel-caption  ">
+                 <p style="line-height: 21px;">Undergraduate student Dhwani Balchandani has been selected to represent Gujarat in women’s squash at the National Games 2025 in Dehradun!</p>
+                 
+                 
+                 
+                 
+                 
+				  				  
+				 
+				 
+               </div>
+            </div>
+          </div>
+        	
+			
+
+
+
+
+
+
+	
+        
+        </div>
+       
+
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+         </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+         </a>
+      </div>
+
+						<script>$(".carousel-item").first().addClass( "active" );</script>
+					 
+			 <div class="link">
+		   	 
+					<ul class="flame-sl-more_list d-md-none">
+                <li class="flame-sl-more_li"><a href="/spotlights/">All Spotlights</a></li>
+                 
+              </ul>
+		   </div>
+				</div>
+			</div>
+			
+			<!--Spotlight end-->
+			
+			<!--Event-->
+			<div class="col-lg-3 brnone"> 
+			<h3 class="sub-title">EVENTS</h3>
+				<div class="flame-event">
+                    <table class="mod_events_latest_table jevbootstrap" width="100%" border="0" cellspacing="0" cellpadding="0" align="center"><tr><td class="mod_events_latest_first" style="border-color:#f54d4d"><div class="f-event"><br />
+<h3 class="date-event"><span class="mod_events_latest_date">30</span></h3><br />
+<h4 class="month-event"><span class="mod_events_latest_date">Nov</span></h4><br />
+<h4 class="time-event"><span class="mod_events_latest_date">12:00AM</span></h4></div><br />
+<div class="event-title"><span class="mod_events_latest_content"><a href="/flame-events/917/2nd-international-conference-work-wages-and-workforce-2026"  target="_top" >2nd International Conference: Work, Wages and Workforce - 2026</a></span></div></td></tr>
+<tr><td class="mod_events_latest" style="border-color:#f54d4d"><div class="f-event"><br />
+<h3 class="date-event"><span class="mod_events_latest_date">03</span></h3><br />
+<h4 class="month-event"><span class="mod_events_latest_date">Apr</span></h4><br />
+<h4 class="time-event"><span class="mod_events_latest_date">12:00AM</span></h4></div><br />
+<div class="event-title"><span class="mod_events_latest_content"><a href="/flame-events/916/national-conference-of-psychology-2027-bridging-theory-and-practice"  target="_top" >National Conference of Psychology 2027: Bridging Theory and Practice</a></span></div></td></tr>
+</table>
+    				</div>
+				<div class="clearFix"></div>
+			<div class="link">
+		   	 
+					<ul class="flame-sl-more_list d-md-none">
+                 <li class="flame-sl-more_li"><a href="/flame-events">Event Calendar</a></li>
+               </ul>
+		   </div>
+			</div>
+			<!--Event End-->
+			
+			<!--In the Media-->
+			<div class=" col-lg-3 no-b-f"> 
+			<h3 class="sub-title">MEDIA</h3>
+				<div class="in-media">
+				    
+				    
+			   
+					<div class="in-media-item">
+		
+                <p><a href="/in-the-media/comfort-or-complication-the-rise-of-ai-in-human-grieving">Comfort or Complication? The Rise of AI in Human Grieving</a></p>
+						<p>www.nenow.in | 20 October, 2026</p>
+					</div>
+					
+					
+   
+					<div class="in-media-item">
+		
+                <p><a href="/in-the-media/when-care-becomes-controversial-the-complex-politics-of-menstrual-leave">When Care Becomes Controversial: The Complex Politics of Menstrual Leave</a></p>
+						<p>www.nenow.in | 17 October, 2026</p>
+					</div>
+					
+					
+			
+					
+				</div>
+				
+			 <div class="link">
+		   	 
+					<ul class="flame-sl-more_list d-md-none">
+                 
+                <li class="flame-sl-more_li"><a href="/in-the-media/">All Media</a></li>
+              </ul>
+		   </div>
+			
+			</div>
+			
+			<!--In the Media End-->
+			
+		   </div>
+				<div class="clearfix"></div>
+			<div class="row">
+		   <div class="col-lg-12">
+				<div class="link">
+		   	 
+					<ul class="flame-sl-more_list d-none d-md-block d-lg-block">
+                <li class="flame-sl-more_li"><a href="/spotlights/">All Spotlight</a></li>
+                <li class="flame-sl-more_li"><a href="/flame-events/">Event Calendar</a></li>
+                <li class="flame-sl-more_li"><a href="/in-the-media/">All Media</a></li>
+              </ul>
+		   </div>
+				</div>
+		   </div>	
+		   
+		   </div>
+		   
+	   </div>
+	   
+	   <!--white box end-->
+	   	   
+	   
+
+<section class="about-flame-uni">
+	<div class="pad-top-120"></div>
+	<div class="container">
+		<div class="row">
+		<div class="col-lg-4 liberal-title align-self-center">
+			<h2 class="small-text">FLAME UNIVERSITY’S<br>
+			<span class="big-text">LIBERAL<br> EDUCATION</span>
+			</h2>
+		</div>
+		<div class="col-lg-8 liberal-text align-self-center">
+			<p>Our educational philosophy is rooted in the concept of Liberal Education. We believe that the real world does not function in isolation, and neither should knowledge. By interconnecting social sciences, humanities, physical sciences, business, design, natural sciences, fine & performing arts, communications management and computational sciences, we equip our students for an ever-changing new world. At FLAME, our students interact with various disciplines and are encouraged to address pressing world challenges through different perspectives. Our aim is to help them grow as critical thinkers and lifelong learners, as they lead purposeful lives, rather than just narrow professions. Therefore, we foster an environment that is personalised, participatory, and provides a transformational experience to aid in their personal and professional journeys.</p>
+		</div>
+			</div>
+	</div>
+</section>
+
+
+
+	   <section class="box-4-link">
+	   		
+	   		<div class="link-box-style">
+				<div class="container">
+					<div class="row">
+						<div class="col">
+						<h3 class="sub-title">YOUR JOURNEY WITH FLAME | RE-INVENTING LIBERAL EDUCATION. AGAIN.</h3>
+							<p class="journey-flame">We challenge what is known and believed about higher education. From re-inventing liberal education in India, to helping you chart your own unique career path; FLAME is not where you are, it is for who you are, and where you want to be.</p>
+							
+						</div>
+						
+					</div>
+					<div class="row"> 
+						
+					<div class=" col-lg-3 col-sm-6">
+						<div class="padding-20 boder-box-1"><a href="/academics">Chart Unique Career Trajectories</a>
+						<p>Our multidisciplinary curriculum encourages you to explore what drives you and makes you unique. You can discover new avenues of growth and scout over 350 career combinations to make a place for yourself in the real world.</p>
+							<p class=" ">	<a class="l_hp__overview_btn" href="/academics">ACADEMICS</a>   </p>
+							
+						</div>
+				</div>
+						
+						<div class="col-lg-3 col-sm-6">
+						<div class="padding-20 boder-box-1"><a href="/research">Uncover Questions, Discover Answers</a>
+							<p>We not only focus on finding answers to glaring world challenges, but also on creating new knowledge.  With seven fully functional research centres, you can explore several faculty-student research opportunities.</p>
+							<p class=" ">	<a class="l_hp__overview_btn" href="/research">RESEARCH</a>   </p>
+							
+							</div>
+				</div>
+						
+						<div class="col-lg-3 col-sm-6">
+						<div class="padding-20 boder-box-1"><a href="/campus-life/student-life">Learn through Personalised Mentoring</a>
+							<p>With a 15:1 student:faculty ratio our faculty will mentor you one-on-one, where you can learn from their real-world experiences, hard-won career knowledge, and other life experiences. We believe that these relationships will set you up for future success.</p>
+							<p class=" ">	<a class="l_hp__overview_btn" href="/campus-life/student-life">STUDENT SUPPORT</a>   </p>
+							
+							</div>
+				</div> 
+						 
+						<div class="col-lg-3 col-sm-6">
+						<div class="padding-20 boder-box-1"><a href="/campus-life">EXPLORE THE WORLD AT FLAME UNIVERSITY</a>
+							<p>	The beautifully designed, high-tech campus has carefully crafted spaces for recreation, collaboration, and sports. Differently-styled spaces provide students and teachers with the flexibility to create learning environments on-the-go.</p>
+							 <p class=" ">	<a class="l_hp__overview_btn" href="/campus-life">CAMPUS LIFE</a>   </p>
+							</div>
+				</div>
+						
+					</div>
+			 
+				</div>
+				
+		   
+		   </div>
+	   </section>
+	   
+	   
+	   
+	   
+	   <!-- FLAME About main-->
+	   
+	  <!-- <section id="flame-about-home">
+	  
+		   <div class="container">
+		   	<div class="row ">
+			   	<div class="col-lg-6 align-self-center">
+					<div class="flame-shild">
+						<img src="/images/home/flame-shild.svg" alt="FLAME Logo">
+					</div>
+					<div class="flame-abt-text">
+						<h3 class="sub-title">Personal. Global. Empowering.</h3>
+						<h1 class="flame-mian-title">FLAME University's 
+Liberal Education</h1>
+						<p>FLAME’s educational philosophy is rooted in the concept of liberal education, a system of instruction that transcends the artificial divisions that exist between disciplines and unmasks the underlying unity of all knowledge. It urges the student to engage with multiple disciplines in order to view issues from different perspectives leading to deeper understanding and better solution of problems. At the core of its educational experience is its resolute emphasis on lifelong learning, critical thinking, tolerance, and good citizenship.</p>
+
+						<p>The University prepares students for leading purposeful lives rather than specific and narrow professions. It does this in a participatory, personalized environment which provides a transformational experience for the students with the motivation and skills to change the world for the better.  </p>
+						<p><a class="l_hp__overview_btn" href="/about-flame">Know More</a></p>
+					</div>
+				</div>
+				<div class="  col-lg-6 order-first order-lg-2 align-self-center">
+					<img src="/images/home/home-page-photo-about.jpg" class="img-fluid">
+				</div>
+			   </div>
+		   
+		   </div>
+	   </section>-->
+	    
+	   <!-- flame about end-->
+	   
+	   </div>
+
+<div id="t4-section-1" class="t4-section  t4-section-1  section-overlap"><section class="teams" style="width:100%;">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				 <div class="m-people-main__top">
+
+                 <h3 class="sub-title">Creative Thinkers, Passionate Doers</h3>
+
+						<h2 class="flame-mian-title">OUR COMMUNITY OF ACTIVE AND ACCOMPLISHED SCHOLARS</h2>
+
+               </div>
+			</div>
+		</div>
+  
+  
+      <div class="row">
+		  
+        <div class="col-sm-12">
+          <div id="customers-teams" class="owl-carousel">
+
+
+            <!--team 1 -->
+            <div class="item">
+				<a target=_blank href="https://doi.org/10.1002/ijop.13200">
+              <div class="shadow-effect">
+                <img class="img-circle" src="/images/faculty/fulltime/sairaj-patki.jpg#joomlaImage://local-images/faculty/fulltime/sairaj-patki.jpg?width=375&height=400" alt="Faculty Image">
+                <h2>Intra-individual trait distribution-based typology</h2>
+							
+				<p class="title">Prof. Sairaj Patki</p>
+<p class="fsfdesig">Faculty of Psychology</p>
+
+
+  <p class="fsbottomlink">	<a class="l_hp__overview_btn" href="https://www.flame.edu.in/faculty">Meet All Faculty</a>   </p>  
+									 <!--Social Icons End Here-->
+               </div>
+           </a>
+            </div>
+            <!--END OF team 1 -->
+					
+
+            <!--team 1 -->
+            <div class="item">
+				<a target=_blank href="https://doi.org/10.1080/23311983.2025.2473137">
+              <div class="shadow-effect">
+                <img class="img-circle" src="/images/faculty/fulltime/arman-ovla.jpg#joomlaImage://local-images/faculty/fulltime/arman-ovla.jpg?width=375&height=400" alt="Faculty Image">
+                <h2>Khatoozin – a naïve woman sculptor from Kurdistan</h2>
+							
+				<p class="title">Prof. Arman Ovla</p>
+<p class="fsfdesig">Faculty of Design</p>
+
+
+  <p class="fsbottomlink">	<a class="l_hp__overview_btn" href="https://www.flame.edu.in/faculty">Meet All Faculty</a>   </p>  
+									 <!--Social Icons End Here-->
+               </div>
+           </a>
+            </div>
+            <!--END OF team 1 -->
+					
+
+            <!--team 1 -->
+            <div class="item">
+				<a target=_blank href="https://doi.org/10.1108/JEIM-08-2024-0409">
+              <div class="shadow-effect">
+                <img class="img-circle" src="/images/faculty/fulltime/vinod-kumar.jpg#joomlaImage://local-images/faculty/fulltime/vinod-kumar.jpg?width=375&height=400" alt="Faculty Image">
+                <h2>Unveiling the motivating factors behind dark patterns in e-commerce</h2>
+							
+				<p class="title">Prof. Vinod Kumar</p>
+<p class="fsfdesig">Faculty of Digital Marketing and Communications</p>
+
+
+  <p class="fsbottomlink">	<a class="l_hp__overview_btn" href="https://www.flame.edu.in/faculty">Meet All Faculty</a>   </p>  
+									 <!--Social Icons End Here-->
+               </div>
+           </a>
+            </div>
+            <!--END OF team 1 -->
+					
+
+            <!--team 1 -->
+            <div class="item">
+				<a target=_blank href="https://doi.org/10.1016/j.inteco.2025.100581">
+              <div class="shadow-effect">
+                <img class="img-circle" src="/images/faculty/fulltime/prof-yashobanta-parida.jpg#joomlaImage://local-images/faculty/fulltime/prof-yashobanta-parida.jpg?width=375&height=400" alt="Faculty Image">
+                <h2>Do Natural Disasters translate into Trade Disasters?</h2>
+							
+				<p class="title">Prof. Yashobanta Parida</p>
+<p class="fsfdesig">Faculty of Economics</p>
+
+
+  <p class="fsbottomlink">	<a class="l_hp__overview_btn" href="https://www.flame.edu.in/faculty">Meet All Faculty</a>   </p>  
+									 <!--Social Icons End Here-->
+               </div>
+           </a>
+            </div>
+            <!--END OF team 1 -->
+					
+
+            <!--team 1 -->
+            <div class="item">
+				<a target=_blank href="https://doi.org/10.1002/cb.2438">
+              <div class="shadow-effect">
+                <img class="img-circle" src="/images/faculty/fulltime/sajith-narayan.jpg#joomlaImage://local-images/faculty/fulltime/sajith-narayan.jpg?width=375&height=400" alt="Faculty Image">
+                <h2>Understanding the Causes and Outcomes of Consumer Activism</h2>
+							
+				<p class="title">Prof. Sajith Narayanan</p>
+<p class="fsfdesig">Faculty of Digital Marketing & Communications</p>
+
+
+  <p class="fsbottomlink">	<a class="l_hp__overview_btn" href="/">Meet All Faculty</a>   </p>  
+									 <!--Social Icons End Here-->
+               </div>
+           </a>
+            </div>
+            <!--END OF team 1 -->
+					
+
+            <!--team 1 -->
+            <div class="item">
+				<a target=_blank href="https://doi.org/10.1016/j.cbpc.2024.110053">
+              <div class="shadow-effect">
+                <img class="img-circle" src="/images/faculty/fulltime/anuradha-batabyal.jpg#joomlaImage://local-images/faculty/fulltime/anuradha-batabyal.jpg?width=375&height=400" alt="Faculty Image">
+                <h2>Quercetin, the new stress buster</h2>
+							
+				<p class="title">Prof. Anuradha Batabyal</p>
+<p class="fsfdesig">Faculty of Environmental Studies</p>
+
+
+  <p class="fsbottomlink">	<a class="l_hp__overview_btn" href="https://www.flame.edu.in/faculty">Meet All Faculty</a>   </p>  
+									 <!--Social Icons End Here-->
+               </div>
+           </a>
+            </div>
+            <!--END OF team 1 -->
+					
+
+            <!--team 1 -->
+            <div class="item">
+				<a target=_blank href="https://journals.sagepub.com/doi/10.1177/14707853251321567">
+              <div class="shadow-effect">
+                <img class="img-circle" src="/images/faculty/fulltime/Damini-Goyal-Gupta.jpg#joomlaImage://local-images/faculty/fulltime/Damini-Goyal-Gupta.jpg?width=375&height=400" alt="Faculty Image">
+                <h2>Political branding of parties and leaders: A bibliometric clustered analysis of two decades  </h2>
+							
+				<p class="title">Prof. Damini Gupta</p>
+<p class="fsfdesig">Faculty of Digital Marketing and Communications</p>
+
+
+  <p class="fsbottomlink">	<a class="l_hp__overview_btn" href="https://www.flame.edu.in/faculty">Meet All Faculty</a>   </p>  
+									 <!--Social Icons End Here-->
+               </div>
+           </a>
+            </div>
+            <!--END OF team 1 -->
+					
+
+            <!--team 1 -->
+            <div class="item">
+				<a target=_blank href="https://www.thelancet.com/journals/lansea/article/PIIS2772-3682(24)00154-9/fulltext">
+              <div class="shadow-effect">
+                <img class="img-circle" src="/images/faculty/fulltime/sunil-rajpal.jpg#joomlaImage://local-images/faculty/fulltime/sunil-rajpal.jpg?width=375&height=400" alt="Faculty Image">
+                <h2>Small-area variation in child under-vaccination in India</h2>
+							
+				<p class="title">Prof. Sunil Rajpal</p>
+<p class="fsfdesig">Faculty of Economics</p>
+
+
+  <p class="fsbottomlink">	<a class="l_hp__overview_btn" href="https://www.flame.edu.in/faculty">Meet All Faculty</a>   </p>  
+									 <!--Social Icons End Here-->
+               </div>
+           </a>
+            </div>
+            <!--END OF team 1 -->
+					
+         
+            
+            
+            
+  
+            
+            
+						
+						
+          </div>
+          
+  
+          
+        </div>
+      </div>
+      </div>
+    </section>
+
+
+
+<script>
+   
+		        $('#customers-teams').owlCarousel({
+		            loop: true,
+		            center: true,
+		            items: 3,
+		            margin: 0,
+		            autoplay: true,
+		            dots:false,
+                	nav:true,
+		            autoplayTimeout: 9500,
+					checkVisibility: true,
+		            responsive: {
+								  0: {
+									items: 1
+								  },
+								  768: {
+									items: 2
+								  },
+								  1170: {
+									items: 4
+								  },
+							   1280: {
+									items: 4
+								  },
+						 		1370: {
+									items: 4
+								  },
+								}
+					
+						});
+</script>
+
+<!-- people of FLAME-->
+
+	   
+
+      <section class="o-people">
+
+		   	
+
+		  <div>
+
+         <div class="o-people__content">
+
+            <div class="m-people-main">
+
+               <div class="m-people-main__top">
+
+                 <!-- <h3 class="sub-title">BOLD, DRIVEN, PASSIONATE THINKERS</h3>-->
+
+						<h2 class="flame-mian-title">OUR COMMUNITY OF DOERS</h2>
+
+               </div>
+
+               <div class="m-people-main__bottom aos-init aos-animate" data-aos="fade" data-aos-duration="600">
+
+				   
+
+
+
+
+
+
+
+
+				    <!-- people of flame item-->
+
+                  <div class="m-person" id="p46" role="tabpanel" tabindex="0" aria-labeledby="b46" >
+
+                     <div class="m-person__image" style="background-image: url(/images/happenings/homepage/ujjwal-kumar.jpg);"> 
+
+						 <img alt="Ujjwal Kumar at the India AI Impact Summit 2026" src="/images/happenings/homepage/ujjwal-kumar.jpg" ></div>
+
+                     1<div class="m-person__caption">
+
+                        <div class="m-person__bio">
+
+                           <div class="m-person__category"><a href="/happenings">
+
+                              <span>Happenings</span></a>
+
+                           </div>
+
+                           <div class="m-person__biocontent">
+
+                              <h3 class="m-person__name">Ujjwal Kumar</h3>
+
+                              <p class="m-person__major">Ujjwal Kumar at the India AI Impact Summit 2026</p>
+
+                           </div>
+
+                        </div>
+
+                        <div class="m-person__button"> 
+
+							<p><a class="l_hp__overview_btn"  href="https://www.flame.edu.in/happenings/ujjwal-kumar-at-the-india-ai-impact-summit-2026">Read More</a></p>
+
+                         <div class="everlasting-happning" ><img src="/images/happenings/everlasting-knowledge.png"></div>    
+
+                        </div>
+
+                        
+                     </div>
+
+                  </div>
+
+				   <!-- people of flame item end-->
+
+				   
+
+				   
+
+        
+
+
+				    <!-- people of flame item-->
+
+                  <div class="m-person" id="p45" role="tabpanel" tabindex="0" aria-labeledby="b45" hidden>
+
+                     <div class="m-person__image" style="background-image: url(/images/happenings/atharva-shrivastava-happening.jpg);"> 
+
+						 <img alt="Interdisciplinarity, Indian Premier League, and International Sport: A Journey into the Industry" src="/images/happenings/atharva-shrivastava-happening.jpg" ></div>
+
+                     1<div class="m-person__caption">
+
+                        <div class="m-person__bio">
+
+                           <div class="m-person__category"><a href="/happenings">
+
+                              <span>Happenings</span></a>
+
+                           </div>
+
+                           <div class="m-person__biocontent">
+
+                              <h3 class="m-person__name">Atharva Shrivastava</h3>
+
+                              <p class="m-person__major">Interdisciplinarity, Indian Premier League, and International Sport: A Journey into the Industry</p>
+
+                           </div>
+
+                        </div>
+
+                        <div class="m-person__button"> 
+
+							<p><a class="l_hp__overview_btn"  href="https://www.flame.edu.in/happenings/interdisciplinarity-indian-premier-league-and-international-sport-a-journey-into-the-industry">Read More</a></p>
+
+                         <div class="everlasting-happning" ><img src="/images/happenings/everlasting-knowledge.png"></div>    
+
+                        </div>
+
+                        
+                     </div>
+
+                  </div>
+
+				   <!-- people of flame item end-->
+
+				   
+
+				   
+
+        
+
+
+				    <!-- people of flame item-->
+
+                  <div class="m-person" id="p44" role="tabpanel" tabindex="0" aria-labeledby="b44" hidden>
+
+                     <div class="m-person__image" style="background-image: url(/images/happenings/homepage/akshaya-d.jpg);"> 
+
+						 <img alt="Akshaya D on Representing FLAME University at the Harvard Conference 2025" src="/images/happenings/homepage/akshaya-d.jpg" ></div>
+
+                     1<div class="m-person__caption">
+
+                        <div class="m-person__bio">
+
+                           <div class="m-person__category"><a href="/happenings">
+
+                              <span>Happenings</span></a>
+
+                           </div>
+
+                           <div class="m-person__biocontent">
+
+                              <h3 class="m-person__name">Akshaya D</h3>
+
+                              <p class="m-person__major">Akshaya D on Representing FLAME University at the Harvard Conference 2025</p>
+
+                           </div>
+
+                        </div>
+
+                        <div class="m-person__button"> 
+
+							<p><a class="l_hp__overview_btn"  href="https://www.flame.edu.in/happenings/akshaya-d-on-representing-flame-university-at-the-harvard-conference-2025">Read More</a></p>
+
+                         <div class="everlasting-happning" ><img src="/images/happenings/everlasting-knowledge.png"></div>    
+
+                        </div>
+
+                        
+                     </div>
+
+                  </div>
+
+				   <!-- people of flame item end-->
+
+				   
+
+				   
+
+        
+
+
+
+
+                   
+
+                   
+
+    
+
+  
+
+    
+
+    
+
+    		   <!-- people of flame item-->
+
+               <div class="m-person" id="dc27" role="tabpanel" tabindex="0" aria-labeledby="b7" hidden="">
+
+                  <div class="m-person__image" style="background-image: url(/images/student%20experiences/homepage/Sanvi-Madan-home.jpg);"><img alt="Carter Trousdale ’20" src="/images/student%20experiences/homepage/Sanvi-Madan-home.jpg"></div>
+
+                  <div class="m-person__caption">
+
+                     <div class="m-person__bio">
+
+                        <div class="m-person__category"><a href="/admissions/student-experiences/">
+
+                           <span>Distinctive Combinations 
+
+                           </span></a>
+
+                        </div>
+
+                        <div class="m-person__biocontent">
+
+                           <h3 class="m-person__name">Sanvi Madan</h3>
+
+                           <p class="m-person__major"><a href="https://www.flame.edu.in/academics/ug/program-structure/major-minor-courses/environmental-studies">Environmental Studies</a> 
+
+                             Major  <br> <a href="https://www.flame.edu.in/academics/ug/program-structure/major-minor-courses/public-policy">Public Policy</a>  Minor </p>    
+
+                           <p class="m-person__role"></p>
+
+                        </div>
+
+                     </div>
+
+                     <div class="m-person__button"><a class="l_hp__overview_btn" href="/admissions/student-experiences/sanvi-madan">
+
+                       Read More
+
+                        </a>
+                        <div class="everlasting-distinctive-combi" ><img src="/images/student%20experiences/everlasting-knowledge.png" alt="FLAME Everlasting"></div>                      </div>
+                             
+                  </div>
+
+               </div>
+
+				   <!-- people of flame item end-->
+
+   
+
+    
+
+    
+
+    		   <!-- people of flame item-->
+
+               <div class="m-person" id="dc3" role="tabpanel" tabindex="0" aria-labeledby="b7" hidden="">
+
+                  <div class="m-person__image" style="background-image: url(/images/student%20experiences/nandini-mehta-2.jpg);"><img alt="Carter Trousdale ’20" src="/images/student%20experiences/nandini-mehta-2.jpg"></div>
+
+                  <div class="m-person__caption">
+
+                     <div class="m-person__bio">
+
+                        <div class="m-person__category"><a href="/admissions/student-experiences/">
+
+                           <span>Distinctive Combinations 
+
+                           </span></a>
+
+                        </div>
+
+                        <div class="m-person__biocontent">
+
+                           <h3 class="m-person__name">Nandini Mehta</h3>
+
+                           <p class="m-person__major"><a href="/academics/ug/program-structure/major-minor-courses/economics">Economics</a> 
+
+                             Major  <br> <a href="/academics/ug/program-structure/major-minor-courses/finance">Finance</a>  Minor </p>    
+
+                           <p class="m-person__role"></p>
+
+                        </div>
+
+                     </div>
+
+                     <div class="m-person__button"><a class="l_hp__overview_btn" href="/admissions/student-experiences/nandini-mehta">
+
+                       Read More
+
+                        </a>
+                        <div class="everlasting-distinctive-combi" ><img src="/images/student%20experiences/everlasting-knowledge.png" alt="FLAME Everlasting"></div>                      </div>
+                             
+                  </div>
+
+               </div>
+
+				   <!-- people of flame item end-->
+
+   
+
+    
+
+    
+
+    		   <!-- people of flame item-->
+
+               <div class="m-person" id="dc2" role="tabpanel" tabindex="0" aria-labeledby="b7" hidden="">
+
+                  <div class="m-person__image" style="background-image: url(/images/student%20experiences/saumya%20sampat-2.jpg);"><img alt="Carter Trousdale ’20" src="/images/student%20experiences/saumya%20sampat-2.jpg"></div>
+
+                  <div class="m-person__caption">
+
+                     <div class="m-person__bio">
+
+                        <div class="m-person__category"><a href="/admissions/student-experiences/">
+
+                           <span>Distinctive Combinations 
+
+                           </span></a>
+
+                        </div>
+
+                        <div class="m-person__biocontent">
+
+                           <h3 class="m-person__name">Saumya Sampath</h3>
+
+                           <p class="m-person__major"><a href="/academics/ug/program-structure/major-minor-courses/international-studies">International Studies</a> 
+
+                             &amp; <a href="/academics/ug/program-structure/major-minor-courses/digital-marketing">Digital Marketing</a>  Major  <br> </p>    
+
+                           <p class="m-person__role"></p>
+
+                        </div>
+
+                     </div>
+
+                     <div class="m-person__button"><a class="l_hp__overview_btn" href="/admissions/student-experiences/saumya-sampath">
+
+                       Read More
+
+                        </a>
+                        <div class="everlasting-distinctive-combi" ><img src="/images/homepage-slider/Everlasting-Knowledge.png" alt="FLAME Everlasting"></div>                      </div>
+                             
+                  </div>
+
+               </div>
+
+				   <!-- people of flame item end-->
+
+  
+
+
+
+				   
+
+				   
+
+				    <!-- people of flame item-->
+
+                  <div class="m-person" id="a3" role="tabpanel" tabindex="0" aria-labeledby="b3" hidden="">
+
+                     <div class="m-person__image" style="background-image: url(/images/alumni%20achievements/homepage/tanya%20malhotra-2.jpg);"> 
+
+						 <img alt="Taanya Malhotra" src="/images/alumni%20achievements/homepage/tanya%20malhotra-2.jpg" ></div>
+
+                     1<div class="m-person__caption">
+
+                        <div class="m-person__bio">
+
+                           <div class="m-person__category"><a href="/admissions/alumni-achievements/">
+
+                              <span>Alumni in Focus</span></a>
+
+                           </div>
+
+                           <div class="m-person__biocontent">
+
+                              <h3 class="m-person__name">Taanya Malhotra</h3>
+
+                              <p class="m-person__major">Major: <span class="alumnimajor">Film & TV</span></p>
+
+                              <p class="m-person__major">Minor: <span class="alumnimajor">Advertising & Branding</span></p>
+
+                           </div>
+
+                        </div>
+
+                        <div class="m-person__button"> 
+
+							<p><a class="l_hp__overview_btn" href="/admissions/alumni-achievements/">Know More</a></p>
+
+                            <div class="everlasting-alumni-in-focus" ><img src="/images/homepage-slider/Everlasting-Connections.png"></div> 
+                        </div>
+
+                     </div>
+
+                  </div>
+
+				   <!-- people of flame item end-->
+
+
+				   
+
+				   
+
+				    <!-- people of flame item-->
+
+                  <div class="m-person" id="a2" role="tabpanel" tabindex="0" aria-labeledby="b2" hidden="">
+
+                     <div class="m-person__image" style="background-image: url(/images/alumni%20achievements/homepage/vrinda-chokhani-2.jpg);"> 
+
+						 <img alt="Vrinda Chokhani" src="/images/alumni%20achievements/homepage/vrinda-chokhani-2.jpg" ></div>
+
+                     1<div class="m-person__caption">
+
+                        <div class="m-person__bio">
+
+                           <div class="m-person__category"><a href="/admissions/alumni-achievements/">
+
+                              <span>Alumni in Focus</span></a>
+
+                           </div>
+
+                           <div class="m-person__biocontent">
+
+                              <h3 class="m-person__name">Vrinda Chokhani</h3>
+
+                              <p class="m-person__major">Major: <span class="alumnimajor">Finance</span></p>
+
+                              <p class="m-person__major">Minor: <span class="alumnimajor">Economics</span></p>
+
+                           </div>
+
+                        </div>
+
+                        <div class="m-person__button"> 
+
+							<p><a class="l_hp__overview_btn" href="/admissions/alumni-achievements/">Know More</a></p>
+
+                            <div class="everlasting-alumni-in-focus" ><img src="/images/homepage-slider/Everlasting-Connections.png"></div> 
+                        </div>
+
+                     </div>
+
+                  </div>
+
+				   <!-- people of flame item end-->
+
+
+				   
+
+				   
+
+				    <!-- people of flame item-->
+
+                  <div class="m-person" id="a1" role="tabpanel" tabindex="0" aria-labeledby="b1" hidden="">
+
+                     <div class="m-person__image" style="background-image: url(/images/alumni%20achievements/homepage/aditya%20balu-2.jpg);"> 
+
+						 <img alt="Aditya Ashok Balu" src="/images/alumni%20achievements/homepage/aditya%20balu-2.jpg" ></div>
+
+                     1<div class="m-person__caption">
+
+                        <div class="m-person__bio">
+
+                           <div class="m-person__category"><a href="/admissions/alumni-achievements/">
+
+                              <span>Alumni in Focus</span></a>
+
+                           </div>
+
+                           <div class="m-person__biocontent">
+
+                              <h3 class="m-person__name">Aditya Ashok Balu</h3>
+
+                              <p class="m-person__major">Major: <span class="alumnimajor">International Studies</span></p>
+
+                              <p class="m-person__major">Minor: <span class="alumnimajor">Environmental Studies</span></p>
+
+                           </div>
+
+                        </div>
+
+                        <div class="m-person__button"> 
+
+							<p><a class="l_hp__overview_btn" href="/admissions/alumni-achievements/">Know More</a></p>
+
+                            <div class="everlasting-alumni-in-focus" ><img src="/images/homepage-slider/Everlasting-Connections.png"></div> 
+                        </div>
+
+                     </div>
+
+                  </div>
+
+				   <!-- people of flame item end-->
+
+
+        
+
+                   <!-- people of flame item-->
+
+                  <div class="m-person" id="sb30" role="tabpanel" tabindex="0" aria-labeledby="b30" hidden="">
+
+                     <div class="m-person__image" style="background-image: url(/images/study%20abroad%20experiences/Rajvi-Jhaveri.jpg);"> 
+
+						 <img alt="Rajvi Jhaveri" src="/images/study%20abroad%20experiences/Rajvi-Jhaveri.jpg" ></div>
+
+                     1<div class="m-person__caption">
+
+                        <div class="m-person__bio">
+
+                           <div class="m-person__category"><a href="/global-connect/study-abroad/experiences">
+
+                              <span>Study Abroad Stories</span></a>
+
+                           </div>
+
+                           <div class="m-person__biocontent">
+
+                              <h3 class="m-person__name">Rajvi Jhaveri</h3>
+
+                              <p class="m-person__major">FLAME University</p>
+
+                              <p class="m-person__major">Semester abroad @Kelley School of Business</p>
+
+                           </div>
+
+                        </div>
+
+                        <div class="m-person__button"> 
+
+							<p><a class="l_hp__overview_btn" href="/global-connect/study-abroad/experiences/rajvi-jhaveri">Know More</a></p>
+                            <div class="everlasting-study-abroad" ><img src="/images/homepage-slider/Everlasting-Experiences.png"></div>                         </div>
+
+                     </div>
+
+                  </div>
+
+				   <!-- people of flame item end-->
+
+    
+
+                   <!-- people of flame item-->
+
+                  <div class="m-person" id="sb29" role="tabpanel" tabindex="0" aria-labeledby="b29" hidden="">
+
+                     <div class="m-person__image" style="background-image: url(/images/study%20abroad%20experiences/Dhriti-Sumanth-01.jpg);"> 
+
+						 <img alt="Dhriti Sumanth" src="/images/study%20abroad%20experiences/Dhriti-Sumanth-01.jpg" ></div>
+
+                     1<div class="m-person__caption">
+
+                        <div class="m-person__bio">
+
+                           <div class="m-person__category"><a href="/global-connect/study-abroad/experiences">
+
+                              <span>Study Abroad Stories</span></a>
+
+                           </div>
+
+                           <div class="m-person__biocontent">
+
+                              <h3 class="m-person__name">Dhriti Sumanth</h3>
+
+                              <p class="m-person__major">FLAME University</p>
+
+                              <p class="m-person__major">Semester abroad @Wellesley College, USA</p>
+
+                           </div>
+
+                        </div>
+
+                        <div class="m-person__button"> 
+
+							<p><a class="l_hp__overview_btn" href="/global-connect/study-abroad/experiences/dhriti-sumanth">Know More</a></p>
+                            <div class="everlasting-study-abroad" ><img src="/images/homepage-slider/Everlasting-Experiences.png"></div>                         </div>
+
+                     </div>
+
+                  </div>
+
+				   <!-- people of flame item end-->
+
+    
+
+                   <!-- people of flame item-->
+
+                  <div class="m-person" id="sb3" role="tabpanel" tabindex="0" aria-labeledby="b3" hidden="">
+
+                     <div class="m-person__image" style="background-image: url(/images/study%20abroad%20experiences/manojna-lanka.jpg);"> 
+
+						 <img alt="Manojna Lanka" src="/images/study%20abroad%20experiences/manojna-lanka.jpg" ></div>
+
+                     1<div class="m-person__caption">
+
+                        <div class="m-person__bio">
+
+                           <div class="m-person__category"><a href="/global-connect/study-abroad/experiences">
+
+                              <span>Study Abroad Stories</span></a>
+
+                           </div>
+
+                           <div class="m-person__biocontent">
+
+                              <h3 class="m-person__name">Manojna Lanka</h3>
+
+                              <p class="m-person__major">FLAME University</p>
+
+                              <p class="m-person__major">Semester abroad @Wellesley College, USA</p>
+
+                           </div>
+
+                        </div>
+
+                        <div class="m-person__button"> 
+
+							<p><a class="l_hp__overview_btn" href="/global-connect/study-abroad/experiences/manojna-lanka">Know More</a></p>
+                            <div class="everlasting-study-abroad" ><img src="/images/homepage-slider/Everlasting-Experiences.png"></div>                         </div>
+
+                     </div>
+
+                  </div>
+
+				   <!-- people of flame item end-->
+
+
+             </div>
+
+         </div>
+
+         <div aria-label="People" class="m-people-thumbs aos-init aos-animate" data-aos="fade" data-aos-duration="600" role="tablist">
+
+            <div class="m-people-thumbs__content">
+
+				
+				<!-- people of flame item left-->
+
+               <button style="background-image: url(/images/happenings/homepage/ujjwal-kumar.jpg);" aria-controls="p46" aria-selected="true" id="b46" class="m-people-thumbs__button" role="tab" tabindex="0">  
+
+               <span class="sr-only">Ujjwal Kumar at the India AI Impact Summit 2026
+               </span></button>
+
+				<!-- people of flame item  left end-->
+
+				
+
+	
+				<!-- people of flame item left-->
+
+               <button style="background-image: url(/images/happenings/atharva-shrivastava-happening.jpg);" aria-controls="p45" aria-selected="false" id="b45" class="m-people-thumbs__button" role="tab" tabindex="0">  
+
+               <span class="sr-only">Interdisciplinarity, Indian Premier League, and International Sport: A Journey into the Industry
+               </span></button>
+
+				<!-- people of flame item  left end-->
+
+				
+
+	
+				<!-- people of flame item left-->
+
+               <button style="background-image: url(/images/happenings/homepage/akshaya-d.jpg);" aria-controls="p44" aria-selected="false" id="b44" class="m-people-thumbs__button" role="tab" tabindex="0">  
+
+               <span class="sr-only">Akshaya D on Representing FLAME University at the Harvard Conference 2025
+               </span></button>
+
+				<!-- people of flame item  left end-->
+
+				
+
+	
+	
+
+                
+
+ 
+
+
+				<!-- people of flame item left-->
+
+               <button style="background-image: url(/images/student%20experiences/homepage/Sanvi-Madan-home.jpg);" aria-controls="dc27" aria-selected="false" class="m-people-thumbs__button" role="tab" tabindex="0">  
+
+               <span class="sr-only">Sanvi Madan
+               </span></button>
+
+				<!-- people of flame item  left end-->
+
+				
+
+	
+
+
+				<!-- people of flame item left-->
+
+               <button style="background-image: url(/images/student%20experiences/nandini-mehta-2.jpg);" aria-controls="dc3" aria-selected="false" class="m-people-thumbs__button" role="tab" tabindex="0">  
+
+               <span class="sr-only">Nandini Mehta
+               </span></button>
+
+				<!-- people of flame item  left end-->
+
+				
+
+	
+
+
+				<!-- people of flame item left-->
+
+               <button style="background-image: url(/images/student%20experiences/saumya%20sampat-2.jpg);" aria-controls="dc2" aria-selected="false" class="m-people-thumbs__button" role="tab" tabindex="0">  
+
+               <span class="sr-only">Saumya Sampath
+               </span></button>
+
+				<!-- people of flame item  left end-->
+
+				
+
+	
+	
+
+
+				<!-- people of flame item left-->
+
+               <button style="background-image: url(/images/alumni%20achievements/homepage/tanya%20malhotra-2.jpg);" aria-controls="a3" aria-selected="false" class="m-people-thumbs__button" role="tab" tabindex="0">  
+
+               <span class="sr-only">Taanya Malhotra
+               </span></button>
+
+				<!-- people of flame item  left end-->
+
+				
+
+	
+				<!-- people of flame item left-->
+
+               <button style="background-image: url(/images/alumni%20achievements/homepage/vrinda-chokhani-2.jpg);" aria-controls="a2" aria-selected="false" class="m-people-thumbs__button" role="tab" tabindex="0">  
+
+               <span class="sr-only">Vrinda Chokhani
+               </span></button>
+
+				<!-- people of flame item  left end-->
+
+				
+
+	
+				<!-- people of flame item left-->
+
+               <button style="background-image: url(/images/alumni%20achievements/homepage/aditya%20balu-2.jpg);" aria-controls="a1" aria-selected="false" class="m-people-thumbs__button" role="tab" tabindex="0">  
+
+               <span class="sr-only">Aditya Ashok Balu
+               </span></button>
+
+				<!-- people of flame item  left end-->
+
+				
+
+	
+		
+
+                
+
+
+				<!-- people of flame item left-->
+
+               <button style="background-image: url(/images/study%20abroad%20experiences/Rajvi-Jhaveri.jpg);" aria-controls="sb30" aria-selected="false" class="m-people-thumbs__button" role="tab" tabindex="0">  
+
+               <span class="sr-only">Rajvi Jhaveri
+               </span></button>
+
+				<!-- people of flame item  left end-->
+
+				
+
+	
+				<!-- people of flame item left-->
+
+               <button style="background-image: url(/images/study%20abroad%20experiences/Dhriti-Sumanth-01.jpg);" aria-controls="sb29" aria-selected="false" class="m-people-thumbs__button" role="tab" tabindex="0">  
+
+               <span class="sr-only">Dhriti Sumanth
+               </span></button>
+
+				<!-- people of flame item  left end-->
+
+				
+
+	
+				<!-- people of flame item left-->
+
+               <button style="background-image: url(/images/study%20abroad%20experiences/manojna-lanka.jpg);" aria-controls="sb3" aria-selected="false" class="m-people-thumbs__button" role="tab" tabindex="0">  
+
+               <span class="sr-only">Manojna Lanka
+               </span></button>
+
+				<!-- people of flame item  left end-->
+
+				
+
+	
+      
+
+				            
+
+            </div>
+
+         </div>
+
+        
+
+          <!-- end people-content -->
+
+			 </div>
+
+			  <div class="container">
+
+			  <div class="row">
+
+		   <div class="col-lg-12">
+
+				<div class="link">
+
+		   	 
+
+					<ul class="flame-sl-more_list">
+
+                <li class="flame-sl-more_li"><a href="/happenings">Happenings </a></li>
+
+                <li class="flame-sl-more_li"><a href="/admissions/student-experiences/">Distinctive Combinations</a></li>
+
+                <li class="flame-sl-more_li"><a href="/admissions/alumni-achievements/">Alumni in Focus</a></li>
+
+						<li class="flame-sl-more_li"><a href="/global-connect/study-abroad/experiences">Study Abroad Stories</a></li>
+
+              </ul>
+
+		   </div>
+
+				</div>
+
+		   </div>
+
+			  </div>
+
+			  
+
+			   </div>
+
+		  
+
+      </section><div class="clearfix"></div><div class="bg-flame-people-blue"> </div>  
+	   
+		  
+		  
+		  
+		  <!-- Research-->
+		  <section class="research-flame-home">
+	   		<div class="container ">
+				<div class=" flame_stats">
+					 <div class="margin-right-flame row flame-top-line">
+						 <div class="col-lg-12">
+							 <h3 class="sub-title">A TRANSFORMATIVE JOURNEY</h3>
+						<h2 class="flame-mian-title">PEOPLE, IMPACT, EXPERIENCES</h2>
+						<p>Academics and a plethora of extra-curriculars. Research and exploration, for you and the world. Study groups and friend circles. Breaking boundaries and creating memories. Opening your mind and changing the world. FLAME helps you walk your path, on campus, and in the real world.</p></div>
+						<div class="col col-lg-6 ">
+						<h2 class="flame-mian-title">EXPLORE LIFE AT</h2>
+
+							<p><img src="/images/home/life-at-flame.png" alt="Life at FLAME"></p>
+
+							<p>Learn more about your FLAME experience, whether you're a student leader on the FLAME Student Council, rubbing elbows in Student Houses, learning through Peer and Faculty Mentoring, participating in Student Clubs, Exchange Programs, or Festivals. </p>
+						</div>
+					
+						 
+					<div class=" col-lg-6">
+				<p><img src="/images/home/Campus-Life.jpg" alt="Life At Campus"></p>
+				</div><hr>
+						 
+				</div>
+					<div class="margin-right-flame row bor-top-sush">
+		   <div class="col ">
+				<div class="link">
+		   	 
+					<ul class="flame-sl-more_list">
+                <li class="flame-sl-more_li"><a href="/campus-life">Know More</a></li>
+              </ul>
+		   </div>
+				</div>
+		   </div>
+					
+				</div>
+
+		
+		   </div>
+	   </section>   <div class="clearfix"></div>
+		  <!-- Research End-->
+
+	   
+	   
+	   <section class="gc-s">
+		   <div class="container">
+		   
+			   
+			   <div class="row">
+				<div class=" flame_stats">
+					 <div class="margin-right-flame row ">
+						 <div class="col-lg-12">
+							 <h3 class="sub-title">International Network</h3>
+						<h2 class="flame-mian-title">Connecting Worlds</h2>
+							 <p class="flame-top-line">
+								 Thinking, hearing, speaking, and teaching transcend borders. We help you navigate in a world that is influenced by many languages and diverse cultures, from a living to a learning experience. Consider learning internationally and take advantage of the world at your fingertips.
+							 </p>
+						 </div>
+						 
+						 
+						 <div class="global-img">
+						 	<img src="/images/home/Global-Connect.jpg" alt="Global Connect">
+						 </div>		 
+						 
+						 
+						 
+						 
+						 
+						 
+						 
+					<div class="  ">
+		   <div class="col">
+				<div class="link">
+		   	 
+					<ul class="flame-sl-more_list">
+                <li class="flame-sl-more_li"><a href="/global-connect">Know More</a></li>
+              </ul>
+		   </div>
+				</div>
+		   </div>
+					
+				</div>
+			</div>
+			   
+		   </div>
+		   </div>
+		   
+		   
+		   
+		   
+	   		
+	   </section>
+	   <!-- real world learning-->
+	   
+	   <section id="real-world" style="background-color: #ffffff !important;">
+	   	<div class="container  ">
+		   	<div class="row">
+				<div class="col">
+					 <h3 class="sub-title">Learning Outside The Classroom</h3>
+						<h2 class="flame-mian-title">EXPERIENCE THE REAL WORLD</h2>
+					<p>Change happens, but not just within a classroom. Apply your learnings and drive change through our
+exclusive real-world learning programs.</p>
+				</div>
+			</div>
+			<div class="row equal">
+			
+				<div class="col-lg-3 ">
+			<a href="/academics/ug/program-structure/experiential-learning/dip">
+			        <div class="border-1">
+						<img src="/images/home/discover-india-program.jpg" alt="">
+					<div class="t-world">
+						<h4>Discover India Program (DIP)</h4>
+ 						
+					</div> 
+					<!--<div class="btn-group-all">
+						<div class="btn-bottom"><a href="https://dip.flame.edu.in/" class="link-flame-plain">Know More <span class="fas fa-long-arrow-alt-right"></span> </a></div>
+					</div>-->
+					</div></a>
+				</div>
+				
+				<div class="col-lg-3">
+			<a href="/campus-life/student-life/student-programs/developmental-activities-program-dap" >
+				<div class="border-1">
+						<img src="/images/home/development-activities-program.jpg" alt="">
+					<div class="t-world">
+						<h4>Developmental Activities Program (DAP)</h4>
+						 
+						
+					</div> 
+					<!--<div class="btn-group-all">
+						<div class="btn-bottom"><a href="/campus-life/student-life/student-programs/developmental-activities-program-dap" class="link-flame-plain">Know More <span class="fas fa-long-arrow-alt-right"></span> </a></div>
+					</div>-->
+					</div></a>
+				</div>
+				<div class="col-lg-3">
+			<a href="/academics/flame-investment-lab" >
+				<div class="border-1">
+						<img src="/images/home/flame-investment-lab.jpg" alt="">
+					<div class="t-world">
+						<h4>FLAME Investment Lab (FIL)</h4>
+						 
+						
+					</div>
+				 
+					</div> </a>
+				</div>
+				
+				<div class="col-lg-3 col">
+				    <a href="/research/centres/centre-for-entrepreneurship-innovation" >
+				<div class="border-1">
+						<img src="/images/home/flame-centre-for-entrepreneurship-and-innovation.jpg" alt="">
+					<div class="t-world">
+						<h4>FLAME Centre for Entrepreneurship &  Innovation</h4>
+						 
+						
+					</div>
+ 				</div> </a>
+				</div>
+			</div>
+			
+			
+			
+
+			
+			
+		   </div>
+	   
+	   </section>
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	    <section id="real-world" style="background-color: #f7f7f7 !important;">
+	   	<div class="container  ">
+		   	<div class="row">
+				<div class="col">
+					 <h3 class="sub-title">Stories from our community</h3>
+						<h2 class="flame-mian-title">Voice of FLAME</h2>
+					<p>Join us as we celebrate the unique voices and diverse perspectives that make up our remarkable community.</p>
+				</div>
+			</div>
+			<div class="row equal">
+			
+			
+			<!-- START: Articles Anywhere -->
+			
+				<div class="col-lg-2 " style="padding-right: 0;">
+			<a href="/voice-of-flame/culture/building-foundations-for-global-learning-parents-as-partners-in-the-study-abroad-journey" itemprop="url" aria-label="Read more: Building Foundations for Global Learning: Parents as Partners in the Study Abroad Journey">
+			        <div class="border-1" style="border: none;">
+					<img src="/images/Voice%20of%20FLAME/resized/building-foundations-for-global-learning-parents-as-partners-in-the-study-abroad-journey_320x180.jpg" srcset="/images/Voice%20of%20FLAME/resized/building-foundations-for-global-learning-parents-as-partners-in-the-study-abroad-journey_640x360.jpg 1.5x, /images/Voice%20of%20FLAME/resized/building-foundations-for-global-learning-parents-as-partners-in-the-study-abroad-journey_320x180.jpg 1x" alt="Building Foundations For Global Learning Parents As Partners in the Study Abroad Journey" title="Building Foundations For Global Learning Parents As Partners in the Study Abroad Journey" width="320" height="180">
+	 
+				
+					</div></a>
+				</div>
+				
+				
+				
+				
+				<div class="col-lg-4">
+		<a href="/voice-of-flame/culture/building-foundations-for-global-learning-parents-as-partners-in-the-study-abroad-journey" itemprop="url" aria-label="Read more: Building Foundations for Global Learning: Parents as Partners in the Study Abroad Journey">
+				<div class="border-1" style="border: none;">
+					
+					<div class="">
+						<p style="font-weight: bold;">Building Foundations for Global Learning: Parents as Partners in the Study Abroad Journey</p>
+						<p style="font-size: 12px;"><em>Author: <span class="field-value "> Anshika Arora</span>, <span class="field-value "> Assistant General Manager, Higher Education Counselling Office, FLAME University</span></em></p>	 
+						
+					</div> 
+					
+					</div></a>
+				</div>
+				
+				
+				
+		
+			
+				<div class="col-lg-2 " style="padding-right: 0;">
+			<a href="/voice-of-flame/culture/attending-the-global-leadership-summit-2025" itemprop="url" aria-label="Read more: Attending the Global Leadership Summit 2025">
+			        <div class="border-1" style="border: none;">
+					<img src="/images/Voice%20of%20FLAME/resized/attending-the-global-leadership-summit-2025_320x180.jpg" srcset="/images/Voice%20of%20FLAME/resized/attending-the-global-leadership-summit-2025_640x360.jpg 1.5x, /images/Voice%20of%20FLAME/resized/attending-the-global-leadership-summit-2025_320x180.jpg 1x" alt="Attending the Global Leadership Summit 2025" title="Attending the Global Leadership Summit 2025" width="320" height="180">
+	 
+				
+					</div></a>
+				</div>
+				
+				
+				
+				
+				<div class="col-lg-4">
+		<a href="/voice-of-flame/culture/attending-the-global-leadership-summit-2025" itemprop="url" aria-label="Read more: Attending the Global Leadership Summit 2025">
+				<div class="border-1" style="border: none;">
+					
+					<div class="">
+						<p style="font-weight: bold;">Attending the Global Leadership Summit 2025</p>
+						<p style="font-size: 12px;"><em>Author: <span class="field-value "> Shriyans Chaudhari</span>, <span class="field-value "> Postgraduate Student</span></em></p>	 
+						
+					</div> 
+					
+					</div></a>
+				</div>
+				
+				
+				
+		
+<!-- END: Articles Anywhere -->	
+				
+
+		   </div>
+
+<br>
+<div class="col-md-12" style="text-align-last: center;"><a href="/voice-of-flame" class="l_hp__overview_btn">Read More</a></div>
+
+	   
+	   </section>
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   <!-- Link box 3-->
+	 <section class="box-3-link">
+<div class="link-box-style">
+<div class="container">
+<div class="row-eq-height">
+<div class="">
+<h3 class="sub-title">Learn more about FLAME</h3>
+</div>
+</div>
+<div class="row">
+<div class=" col-lg-3 col-sm-6">
+<div class="padding-20 boder-box-1"><a href="/contact-us/admission-enquiry"><span style="font-size: 18px;">HAVE QUESTIONS? </span> <br />ASK US ANYTHING</a></div>
+</div>
+<div class="col-lg-3 col-sm-6">
+<div class="padding-20 boder-box-1"><a href="/admissions/apply"><span style="font-size: 18px;">START YOUR JOURNEY</span> <br />APPLY NOW</a></div>
+</div>
+<div class="col-lg-3 col-sm-6">
+<div class="padding-20 boder-box-1"><a href="/admissions/visit-us"><span style="font-size: 18px;">EXPLORE FLAME</span> <br />BOOK A CAMPUS TOUR</a></div>
+</div>
+<div class="col-lg-3 col-sm-6 links-area align-self-center ">
+<ul>
+<li><a href="/contact-us/invite-flame-to-your-school">Invite Us To Your School</a></li>
+<li><a href="/admissions/download-brochure">Download Brochure</a></li>
+
+</ul>
+</div>
+</div>
+<div class="newsletter-form row">
+<div class="col-md-9">
+<div class="row align-self-center">
+<div class="col-md-4 align-self-center">
+<h3 class="sub-title">Subscribe to Our Quarterly Newsletter</h3>
+</div>
+<div class="col-md-6 align-self-center text-white">Stay updated with the latest news and events related to the FLAME community.</div>
+<div class="col-md-2 align-self-center"><a href="/newsletters/subscribe" class="l_hp__overview_btn ">Subscribe Now</a></div>
+</div>
+</div>
+<div class="col-md-9"></div>
+</div>
+</div>
+</div>
+</section>
+
+
+<style>
+.filter-items.sb-default {
+    display: none !important;
+}
+.sb-thumb {
+    max-height: 236px;
+}
+</style>
+
+	   			<!--instagram-->
+			<section id="insta" style="margin-bottom: 50px;">
+	   	<div class="container">
+		   	<div class="row">
+				<div class="col"> 
+					 <h3 class="sub-title">FLAME University On Instagram</h3>
+					<h2 class="flame-mian-title" style="margin-bottom: 0px;">FLAME University in Photos <span style="float: right; font-size: 14px; font-weight: 500; float: right; font-family: 'Archivo'; text-transform: none;"><a href='/flame-social-wall'>All Social Media</a></span></h2> 
+				</div>
+			</div>
+				</div>
+				
+				<div class="container-fluid" ><div class="ingallery-container" data-id="1"></div></div> 
+
+				<div class="container-fluid"  style="display: none;" > <!-- Simple Social Media Stream By Asana Plugins --><style type="text/css">#timeline_wall1default.sboard .sb-item, #timeline_wall1default.sboard .sb-isizer { width: 15.973%; margin-bottom: 9.996px; }                                #timeline_wall1default.sboard .sb-item.sb-twofold { width: 32.779%; }                                #timeline_wall1default.sboard .sb-item.sb-threefold { width: 49.585%; }                                #timeline_wall1default.sboard .sb-gsizer { width: 0.833%; }                        @media (min-width: 960px) and (max-width: 1200px) { #timeline_wall1default.sboard .sb-item, #timeline_wall1default.sboard .sb-isizer { width: 24.219%; margin-bottom: 10.003px; }                                #timeline_wall1default.sboard .sb-item.sb-twofold { width: 49.480%; }                                #timeline_wall1default.sboard .sb-item.sb-threefold { width: 74.741%; }                                #timeline_wall1default.sboard .sb-gsizer { width: 1.042%; } }                        @media (min-width: 768px) and (max-width: 959px) { #timeline_wall1default.sboard .sb-item, #timeline_wall1default.sboard .sb-isizer { width: 24.024%; margin-bottom: 9.999px; }                                #timeline_wall1default.sboard .sb-item.sb-twofold { width: 49.350%; }                                #timeline_wall1default.sboard .sb-item.sb-threefold { width: 74.676%; }                                #timeline_wall1default.sboard .sb-gsizer { width: 1.302%; } }                        @media (min-width: 600px) and (max-width: 767px) { #timeline_wall1default.sboard .sb-item, #timeline_wall1default.sboard .sb-isizer { width: 32.222%; margin-bottom: 10.002px; }                                #timeline_wall1default.sboard .sb-item.sb-twofold { width: 66.111%; }                                #timeline_wall1default.sboard .sb-item.sb-threefold { width: 100.000%; }                                #timeline_wall1default.sboard .sb-gsizer { width: 1.667%; } }                        @media (min-width: 480px) and (max-width: 599px) { #timeline_wall1default.sboard .sb-item, #timeline_wall1default.sboard .sb-isizer { width: 48.959%; margin-bottom: 9.998px; }                                #timeline_wall1default.sboard .sb-item.sb-twofold { width: 100.001%; }                                #timeline_wall1default.sboard .sb-item.sb-threefold { width: 151.043%; }                                #timeline_wall1default.sboard .sb-gsizer { width: 2.083%; } }                        @media (min-width: 320px) and (max-width: 479px) { #timeline_wall1default.sboard .sb-item, #timeline_wall1default.sboard .sb-isizer { width: 100%; margin-bottom: 10.000px; }                                #timeline_wall1default.sboard .sb-item.sb-twofold { width: 100%; }                                #timeline_wall1default.sboard .sb-item.sb-threefold { width: 100%; }                                #timeline_wall1default.sboard .sb-gsizer { width: 0%; } }                        @media (max-width: 319px) { #timeline_wall1default.sboard .sb-item, #timeline_wall1default.sboard .sb-isizer { width: 100%; margin-bottom: 10.001px; }                                #timeline_wall1default.sboard .sb-item.sb-twofold { width: 100%; }                                #timeline_wall1default.sboard .sb-item.sb-threefold { width: 100%; }                                #timeline_wall1default.sboard .sb-gsizer { width: 0%; } }#timeline_wall1default.sboard .bg-facebook{background-color:#305790 !important}#sb_wall1default .sb-facebook.sb-hover:hover, #sb_wall1default .sb-facebook.active{background-color: #305790 !important;border-color: #305790 !important;color: #fff !important}#timeline_wall1default.sboard .bg-twitter{background-color:#06d0fe !important}#sb_wall1default .sb-twitter.sb-hover:hover, #sb_wall1default .sb-twitter.active{background-color: #06d0fe !important;border-color: #06d0fe !important;color: #fff !important}#timeline_wall1default.sboard .bg-google{background-color:#c04d2e !important}#sb_wall1default .sb-google.sb-hover:hover, #sb_wall1default .sb-google.active{background-color: #c04d2e !important;border-color: #c04d2e !important;color: #fff !important}#timeline_wall1default.sboard .bg-pinterest{background-color:#cb1218 !important}#sb_wall1default .sb-pinterest.sb-hover:hover, #sb_wall1default .sb-pinterest.active{background-color: #cb1218 !important;border-color: #cb1218 !important;color: #fff !important}#timeline_wall1default.sboard .bg-flickr{background-color:#ff0185 !important}#sb_wall1default .sb-flickr.sb-hover:hover, #sb_wall1default .sb-flickr.active{background-color: #ff0185 !important;border-color: #ff0185 !important;color: #fff !important}#timeline_wall1default.sboard .bg-instagram{background-color:#295477 !important}#sb_wall1default .sb-instagram.sb-hover:hover, #sb_wall1default .sb-instagram.active{background-color: #295477 !important;border-color: #295477 !important;color: #fff !important}#timeline_wall1default.sboard .bg-youtube{background-color:#b80000 !important}#sb_wall1default .sb-youtube.sb-hover:hover, #sb_wall1default .sb-youtube.active{background-color: #b80000 !important;border-color: #b80000 !important;color: #fff !important}#timeline_wall1default.sboard .bg-vimeo{background-color:#00a0dc !important}#sb_wall1default .sb-vimeo.sb-hover:hover, #sb_wall1default .sb-vimeo.active{background-color: #00a0dc !important;border-color: #00a0dc !important;color: #fff !important}#timeline_wall1default.sboard .bg-rss{background-color:#d78b2d !important}#sb_wall1default .sb-rss.sb-hover:hover, #sb_wall1default .sb-rss.active{background-color: #d78b2d !important;border-color: #d78b2d !important;color: #fff !important}#timeline_wall1default.sboard .bg-soundcloud{background-color:#ff3300 !important}#sb_wall1default .sb-soundcloud.sb-hover:hover, #sb_wall1default .sb-soundcloud.active{background-color: #ff3300 !important;border-color: #ff3300 !important;color: #fff !important}#timeline_wall1default.sboard .bg-vk{background-color:#1e73be !important}#sb_wall1default .sb-vk.sb-hover:hover, #sb_wall1default .sb-vk.active{background-color: #1e73be !important;border-color: #1e73be !important;color: #fff !important}#timeline_wall1default.sboard .bg-linkedin{background-color:#1884BC !important}#sb_wall1default .sb-linkedin.sb-hover:hover, #sb_wall1default .sb-linkedin.active{background-color: #1884BC !important;border-color: #1884BC !important;color: #fff !important}#timeline_wall1default.sboard .sb-item .sb-container .sb-inner{background-color: #ffffff}#timeline_wall1default.sboard .sb-item .sb-container{border-width: 1px}#timeline_wall1default.sboard.sb-default, #timeline_wall1default.sboard.sb-default a{font-size: 11px}#timeline_wall1default.sboard.sb-default .sb-heading{font-size: 12px !important}#timeline_wall1default.sboard.sb-default .sb-item .sb-title a{color: #000000}#timeline_wall1default.sboard.sb-default .sb-item{color: rgba(0, 0, 0, 0.8)}#timeline_wall1default.sboard .sb-content{border-bottom-left-radius: 0 !important;border-bottom-right-radius: 0 !important}</style><div id="sb_wall1default">                    <div class="filter-items sb-default">                        <input type="text" class="sb-search" placeholder="Search......" />                    </div><div id="timeline_wall1default" class="sboard sb-wall sb-default  sb-default-light" data-columns><div class="sb-gsizer"></div><div class="sb-isizer"></div><p class="sboard-nodata"><strong>Simple Social Media Stream: </strong> There is no feed to show or there is a connectivity problem!</p></div></div>            <script type="text/javascript">                jQuery(document).ready(function($) {                    function sb_getwinsize() {                        var wsize = {                            winCurrentWidth: jQuery(window).width(),                            newWidth: 0,                            winCurrentHeight: jQuery(window).height(),                            newHeight: 0                        };                        var gapWidth = Math.round((wsize.winCurrentWidth * 15) / 100);                        var currentWidth = wsize.winCurrentWidth-gapWidth;                        wsize.newWidth = currentWidth-10;                        var gapHeight = Math.round((wsize.winCurrentHeight * 5) / 100);                        var currentHeight = wsize.winCurrentHeight-gapHeight;                        wsize.newHeight = currentHeight-30;                        return wsize;                    }                });            </script><!-- End Simple Social Media Stream - cache is enabled - duration: 360 minutes --></div> 
+			
+				</section>
+	   </div>
+
+
+
+
+
+
+
+
+<div id="t4-section-9" class="t4-section  t4-section-9   p-0"><footer>
+
+	   	<div class="container">
+
+		   
+
+		   	<div class="foo-all">
+
+				<div class="row">
+
+					<div class="col-lg-3">
+
+						<div class="logo-foot">
+
+							<img src="/images/footer/white-Logo-FLAME.png" alt="FLAME Logo">
+
+							
+
+											
+
+							<p><i class="fas fa-solid fa-bank"></i> Gat No. 1270, Lavale, Off. Pune Bengaluru Highway, Pune - 412115, Maharashtra, India.</p>
+
+
+
+							<p><i class="fas fa-solid fa-phone"></i> Toll-free: 1-800-209-4567  <br>
+
+							<i class="fas fa-solid fa-envelope"></i> Email: enquiry@flame.edu.in</p>
+							<p style="font-size:14px">Sponsoring Body: Foundation for Liberal And Management Education Society.</p>
+
+						</div> 
+
+					</div>
+
+					
+
+					<div class="col-lg-9 ">
+
+					<div class="row">
+
+						<div class="col-lg-2 "></div>
+
+						<div class="col-lg-10 ">
+
+							<div class="col social">
+
+							<ul> 
+
+									<li><a href="https://www.facebook.com/FlameUniversity"  title="Facebook" target="_blank" style="color: #fff;"><i class="fa fa-facebook"></i></a></li>
+
+								<!--<li><a href="https://twitter.com/flameuniversity" target="_blank"  title="Twitter" style="color: #fff;"><i class="fa fa-twitter" target="_blank"></i> </a></li>-->
+
+                               <li> <a href="https://x.com/flameuniversity" target="_blank" title="Twitter" style="color: #fff;"> <img src="/images/footer/twitter_white.png" width="15" onmouseover="this.src='/images/footer/twitter_yellow.png'" onmouseout="this.src='/images/footer/twitter_white.png'" style="vertical-align:middle;" > </a> </li>
+
+								<li><a href="https://instagram.com/flameuniversity/" target="_blank" title="Instagram"  style="color: #fff;"><i class="fa fa-instagram" target="_blank"></i> </a></li>
+
+								<li><a href="https://www.youtube.com/user/FLAMEUniversity/" target="_blank"  title="Youtube" style="color: #fff;"><i class="fa fa-youtube" target="_blank"></i> </a></li>
+
+								<li><a href="https://www.linkedin.com/company/flameuniversity/" target="_blank" title="Linkedin" style="color: #fff;"><i class="fa fa-linkedin" target="_blank"></i> </a></li>
+								
+									<li><a href="https://www.flame.edu.in/voice-of-flame" target="_blank" title="Voice of FLAME" style="color: #fff;"><i class="fa fa-rss-square" target="_blank"></i> </a></li>
+
+								<li><a href="/flame-social-wall">All Social Media</a></li>
+
+								</ul>
+
+						</div> </div>
+
+							
+
+						</div>
+
+						<div class="row pad-top-40 foot-links">
+
+							 <!--<div class="col-lg-2 col-lg-offset-1  "  >
+
+								<h5>INFO FOR</h5>
+
+								 <ul>
+
+								 	<li><a href="/gateway/prospective-students">Prospective Students</a></li>
+
+									 <li><a href="/gateway/current-students">Current Students</a></li>
+
+									 <li><a href="/gateway/faculty-staff">Faculty & Staff</a></li>
+
+									 <li><a href="/gateway/parents-families">Parents & Families</a></li>
+
+									 <li><a href="/gateway/alumni-friends">Alumni & Friends</a></li>
+
+								 </ul>
+
+							</div>-->
+
+              <div class="col-lg-3 " >
+
+							
+
+							<h5>COME SAY HELLO</h5>
+
+								 <ul>
+
+								 	<li><a href="/admissions/visit-us">Campus Tour</a></li>
+
+									 <li><a href="/contact-us/directions-location-map">Directions & Location Map</a></li>
+
+							
+									<li><a href="/admissions/chat-with-student-ambassadors">Chat with Student Ambassadors</a></li>
+								 </ul>
+
+							</div>
+
+              <div class="col-lg-3 " >
+
+							<h5>IMPORTANT INFO</h5>
+
+								 <ul>
+																								
+								 	<li><a href="/important-info/mandatory-disclosure">Mandatory Disclosure</a></li>
+
+									 <li><a href="/important-info/academic-calendar">Academic Calendar</a></li>
+
+									 <li><a href="/important-info/student-grievances-redressal">Student Grievances Redressal</a></li>
+									 
+									 <li style=""><a href="/important-info/mandatory-disclosure/ombudsperson">Ombudsperson</a></li>
+									
+									 <li style=""><a href="https://iqac.flame.edu.in/" target="_blank">IQAC</a></li>
+									 
+                           
+								 </ul>
+
+							</div>
+
+              <div class="col-lg-3  "  >
+
+							<h5>EXPLORE FLAME</h5>
+
+								 <ul>
+
+								 	<li><a href="/campus-life/student-life">Student Life</a></li>
+
+									 <li><a href="/campus-life/infrastructure">Infrastructure</a></li>
+
+									 <li><a href="/about-flame/notable-guests">Notable Guests</a></li>
+									 
+									  <li><a href="https://everlasting.flame.edu.in" target="_blank">The Spirit of Everlasting</a></li>
+									  <li><a href="https://www.flame.edu.in/pdfs/brochures/university/" target="_blank">FLAME University Viewbook</a></li>
+
+								 </ul>
+
+							</div>
+
+              <div class="col-lg-3  "  >
+
+							<h5>PRESS / MEDIA</h5>
+
+								 <ul>
+
+								 	<li><a href="/happenings">Newsroom</a></li>
+
+									 <li><a href="/flame-events">Event Calendar</a></li>
+
+									 <li><a href="/in-the-media">In the Media</a></li>
+									 <li><a href="/newsletters">Newsletters</a></li>
+
+								 </ul>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		   </div>
+
+	   
+ 
+	   </footer>
+
+	   <section class="footer-bottom">
+
+	   	<div class="container">
+
+		   	<div class="row">
+
+				<div class="col">
+
+				Copyright 2026. All rights reserved. FLAME University
+
+				</div>
+
+			</div>
+
+		   </div>
+
+	   </section>
+
+	   </div>
+
+
+
+
+
+
+
+<div id="t4-verticle-lines" class="t4-section  t4-verticle-lines"><div class="vertical-lines">
+  <div class="container-wrap">
+    <div class="line-wrap container">
+      <div class="line-item line-1"></div>
+      <div class="line-item line-2"></div>
+      <div class="line-item line-3"></div>
+      <div class="line-item line-4"></div>
+      <div class="line-item line-5"></div>
+    </div>
+  </div>
+</div></div><a href='javascript:' id='back-to-top'><i class='fa fa-chevron-up'></i></a>
+      </div>
+    </div>
+  </div>
+  
+<script src="/media/com_ingallery/js/masonry.pkgd.min.js?v=2.1.18"></script><script src="/media/com_ingallery/js/frontend.js?v=2.1.18"></script><link href="/media/com_ingallery/css/frontend.css?v=2.1.18" rel="stylesheet" /></body>
+</html>

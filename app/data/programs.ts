@@ -40,6 +40,8 @@ export interface ProgramConductedSession {
   youtubeUrl?: string;
   youtubeEmbedUrl?: string;
   linkedinUrl?: string;
+  reportUrl?: string;
+  reportLabel?: string;
   culturalStory?: string;
   contextChallenge?: string;
   simulationDeployed?: string;
@@ -219,6 +221,141 @@ export const PROGRAMS: ProgramItem[] = [
     ],
     conductedSessions: [
       {
+        id: "chennai-good-governance-iitm",
+        number: "01",
+        title: "GAMES FOR GOOD GOVERNANCE: CHENNAI",
+        subtitle: "Jointly with School of Sustainability at IIT Madras · ICSR Campus",
+        date: "26 APR 2025",
+        venue: "ICSR, IIT Madras Campus, Chennai",
+        partner: "School of Sustainability at IIT Madras",
+        format: "Multi-Agency Urban Governance & Tabletop Policy Simulation",
+        participants: "CMWSSB, WRD, Municipal Corporations, State Planning Commission, CUMTA, SWRMA, SaciWATERs, World Resources Institute (WRI), NGOs, University Students & Game Developers",
+        description: "An intensive multi-stakeholder governance simulation conducted at the ICSR Building, IIT Madras Campus. Bringing together senior government officials from municipal bodies, transport authorities, water boards, policy researchers, and student innovators to explore complex urban infrastructure trade-offs and participatory systems governance through tabletop play.",
+        takeaway: "Bridging inter-departmental silos across water, transit, and municipal planning through immersive game-based decision making.",
+        tag: "URBAN GOVERNANCE",
+        reportUrl: "https://drive.google.com/file/d/1f82S6y0OHGckmu26dh5ky8p6YTjcu408/view?usp=drivesdk",
+        reportLabel: "View IIT Madras Workshop Report (PDF)",
+        image: "/events_media/workshops/chennai_good_governance_slide.png",
+        galleryImages: [
+          "/events_media/workshops/chennai_good_governance_slide.png"
+        ],
+        contextChallenge: "Breaking down bureaucratic institutional silos between water supply, transport authorities, disaster agencies, and urban planning bodies to co-create livable cities.",
+        simulationDeployed: "City Runners and customized participatory urban systems tabletop sandboxes.",
+        keyInsights: [
+          "Cross-departmental teams stress-tested budget reallocations during simulated monsoon inundations.",
+          "Government officials and grassroots researchers directly negotiated ward-level resource prioritizations.",
+          "Demonstrated how serious games provide a neutral, psychologically safe space for policy co-design."
+        ]
+      },
+      {
+        id: "kolkata-green-buildings-iitkgp",
+        number: "02",
+        title: "GREEN BUILDINGS IN RESIDENTIAL SECTOR: KOLKATA",
+        subtitle: "Jointly with Centre of Excellence in Urban Design and Planning, IIT Kharagpur",
+        date: "05 JUN 2025",
+        venue: "IIT Kharagpur Research Park, Rajarhat, Kolkata",
+        partner: "Centre of Excellence in Urban Design and Planning, IIT Kharagpur",
+        format: "Built Environment Serious Simulation & Multi-Sector Industry Lab",
+        participants: "HUDCO, CPWD, State Bank of India (SBI), S. S. Solutions, Ghosh Bose & Associates, Sapnil Developers Pvt. Ltd., EGC Facility Management, Swastic Group, DAV Model School, Master's Students & Research Scholars",
+        description: "Convened on World Environment Day at the IIT Kharagpur Research Park in Kolkata, this workshop tackled residential decarbonization and circular built environments. Public sector infrastructure heads, commercial bankers, and private developers playtested lifecycle simulation models alongside young scholars to break down complex net-zero trade-offs.",
+        takeaway: "Accelerating green building adoption by engaging banks, public works departments, private developers, and students in tactile lifecycle decision-making.",
+        tag: "GREEN BUILDINGS",
+        reportUrl: "https://drive.google.com/file/d/1fPxXn_-rGyEMHY3OfoeVOrJtB8Wg4q2s/view?usp=sharing",
+        reportLabel: "View IIT Kharagpur Workshop Report (PDF)",
+        image: "/events_media/workshops/kolkata_green_buildings_slide.png",
+        galleryImages: [
+          "/events_media/workshops/kolkata_green_buildings_slide.png"
+        ],
+        contextChallenge: "Bridging financial appraisal, regulatory compliance, and architectural design to accelerate green building adoption in residential housing.",
+        simulationDeployed: "BiBo (Building-in-a-Box) serious board game and sustainable lifecycle trade-off matrices.",
+        keyInsights: [
+          "Brought bankers (SBI) and public works engineers (CPWD, HUDCO) to the same table to model upfront green capital costs vs. operational lifecycle savings.",
+          "High school students from DAV Model School worked alongside experienced architects to explore passive solar design.",
+          "Highlighted the imperative of circular materials and energy efficiency in high-density Indian urban residential clusters."
+        ]
+      },
+      {
+        id: "hyderabad-gyanotsav-meru",
+        number: "03",
+        title: "GYANOTSAV FEST: SERIOUS GAMES FOR EDUCATORS: HYDERABAD",
+        subtitle: "Jointly with Meru International School, Hyderabad & FLAME University",
+        date: "29 MAY 2025",
+        venue: "Meru International School, Tellapur, Hyderabad",
+        partner: "Meru International School & FLAME University",
+        format: "Pedagogical Capacity Lab & Serious Game Integration for Educators",
+        participants: "40+ High School Teachers, Subject Educators & School Leadership Team",
+        description: "Held during the Gyanotsav Fest at Meru International School's Tellapur campus, this educator capacity development lab equipped teachers with serious board game mechanics. Facilitators demonstrated how tabletop systems thinking and gamified reflection can transform classroom teaching across STEM and social sciences without screens.",
+        takeaway: "Equipping educators with tabletop game mechanics to transform complex curriculum concepts into active, exploratory learning sandboxes.",
+        tag: "EDUCATOR CAPACITY",
+        reportUrl: "https://lnkd.in/p/gqikgysU",
+        reportLabel: "View Meru International School Field Report",
+        image: "/events_media/workshops/hyderabad_gyanotsav_slide.png",
+        galleryImages: [
+          "/events_media/workshops/hyderabad_gyanotsav_slide.png"
+        ],
+        contextChallenge: "Overcoming conventional lecture fatigue and screen-based distractions by equipping educators with tactile, experiential game tools.",
+        simulationDeployed: "Pedagogical tabletop tools and curriculum-aligned systems simulation decks.",
+        keyInsights: [
+          "40+ educators experienced firsthand how tabletop roleplay fosters active curiosity and deep conceptual retention.",
+          "Teachers designed custom simulation prompts linking syllabus topics to live real-world urban questions.",
+          "Strengthened school leadership's commitment to purposeful play as a core pedagogical pillar."
+        ]
+      },
+      {
+        id: "mumbai-summer-school-somaiya",
+        number: "04",
+        title: "SUMMER SCHOOL ON SUSTAINABLE URBAN FUTURES: MUMBAI",
+        subtitle: "Jointly with K J Somaiya Vidyavihar University",
+        date: "02 – 07 JUN 2025",
+        venue: "School of Management, Somaiya Vidyavihar University, Mumbai",
+        partner: "K J Somaiya Institute of Management / Somaiya Vidyavihar University",
+        format: "6-Day Intensive Summer School Studio & Speculative Urban Simulation",
+        participants: "Learning & Development (L&D) Professionals, Filmmakers, Researchers & Management Scholars",
+        description: "A week-long intensive executive play studio held at the School of Management, Somaiya Vidyavihar University in Mumbai. Interdisciplinary professionals, creative filmmakers, and researchers engaged in deep tabletop simulation cycles, unpacking urban fragility, sustainable infrastructure investments, and planetary boundaries.",
+        takeaway: "Connecting corporate L&D leaders, creative filmmakers, and researchers to explore wicked urban challenges through collaborative tabletop gameplay.",
+        tag: "SUMMER SCHOOL",
+        reportUrl: "https://kjsim.somaiya.edu/en/view-events/2182",
+        reportLabel: "View Somaiya Summer School Documentation",
+        image: "/events_media/workshops/mumbai_summer_school_slide.png",
+        galleryImages: [
+          "/events_media/workshops/mumbai_summer_school_slide.png"
+        ],
+        contextChallenge: "Integrating management pedagogy, ESG governance, and creative storytelling to address the complexities of urban climate futures.",
+        simulationDeployed: "Multi-layered urban resilience tabletop simulations, speculative scenario card sets, and collaborative debrief protocols.",
+        keyInsights: [
+          "Blended corporate management frameworks with grassroots urban sustainability imperatives.",
+          "Participants developed speculative urban scenario maps for metropolitan megacities.",
+          "Pioneered cross-disciplinary synergies between executive training and purposeful tabletop design."
+        ]
+      },
+      {
+        id: "pune-urban-futures-flame",
+        number: "05",
+        title: "GAMIFIED URBAN FUTURES LITERACY: PUNE",
+        subtitle: "Jointly with One Young India at FLAME University",
+        date: "20 JUN 2025",
+        venue: "FLAME University Campus, Pune",
+        partner: "One Young India & FLAME University",
+        format: "Youth Tabletop Simulation, Collaborative Counter-Mapping & Futures Lab",
+        participants: "~100 High-School Children from across India",
+        description: "A dynamic youth leadership immersion on the FLAME University campus in Pune. ~100 high-school children from across India engaged in tabletop simulations and collaborative counter-mapping worksheets, stepping into roles of civic decision-makers to build futures literacy and urban systems empathy.",
+        takeaway: "Nurturing 21st-century civic responsibility and systems literacy among the next generation of Indian leaders through collaborative gameplay.",
+        tag: "YOUTH FUTURES",
+        reportUrl: "https://docs.google.com/presentation/d/1Ao8jKBZBljv_92wVHGupCIIG3qnTTIHI/edit?usp=sharing&ouid=105162873441748821883&rtpof=true&sd=true",
+        reportLabel: "View FLAME Workshop Presentation (Slides)",
+        image: "/events_media/workshops/pune_urban_futures_slide.png",
+        galleryImages: [
+          "/events_media/workshops/pune_urban_futures_slide.png"
+        ],
+        contextChallenge: "Empowering adolescents to understand urban complexities, spatial planning, and community governance beyond passive textbook definitions.",
+        simulationDeployed: "Interactive urban governance boards, collaborative floor-scale counter-mapping canvases, and crisis roleplay cards.",
+        keyInsights: [
+          "~100 youth participants from nationwide schools collaborated across large simulation pod tables.",
+          "Children co-mapped ward vulnerabilities, green corridors, and public transit nodes on giant shared canvases.",
+          "Demonstrated how serious play awakens civic agency and collective problem-solving in young minds."
+        ]
+      },
+      {
         id: "city-runners-play",
         number: "01",
         title: "CITY RUNNERS PLAY",
@@ -377,8 +514,143 @@ export const PROGRAMS: ProgramItem[] = [
     ],
     conductedSessions: [
       {
-        id: "carnival-games-for-good",
+        id: "chennai-good-governance-iitm",
         number: "01",
+        title: "GAMES FOR GOOD GOVERNANCE: CHENNAI",
+        subtitle: "Jointly with School of Sustainability at IIT Madras · ICSR Campus",
+        date: "26 APR 2025",
+        venue: "ICSR, IIT Madras Campus, Chennai",
+        partner: "School of Sustainability at IIT Madras",
+        format: "Multi-Agency Urban Governance & Tabletop Policy Simulation",
+        participants: "CMWSSB, WRD, Municipal Corporations, State Planning Commission, CUMTA, SWRMA, SaciWATERs, World Resources Institute (WRI), NGOs, University Students & Game Developers",
+        description: "An intensive multi-stakeholder governance simulation conducted at the ICSR Building, IIT Madras Campus. Bringing together senior government officials from municipal bodies, transport authorities, water boards, policy researchers, and student innovators to explore complex urban infrastructure trade-offs and participatory systems governance through tabletop play.",
+        takeaway: "Bridging inter-departmental silos across water, transit, and municipal planning through immersive game-based decision making.",
+        tag: "URBAN GOVERNANCE",
+        reportUrl: "https://drive.google.com/file/d/1f82S6y0OHGckmu26dh5ky8p6YTjcu408/view?usp=drivesdk",
+        reportLabel: "View IIT Madras Workshop Report (PDF)",
+        image: "/events_media/workshops/chennai_good_governance_slide.png",
+        galleryImages: [
+          "/events_media/workshops/chennai_good_governance_slide.png"
+        ],
+        contextChallenge: "Breaking down bureaucratic institutional silos between water supply, transport authorities, disaster agencies, and urban planning bodies to co-create livable cities.",
+        simulationDeployed: "City Runners and customized participatory urban systems tabletop sandboxes.",
+        keyInsights: [
+          "Cross-departmental teams stress-tested budget reallocations during simulated monsoon inundations.",
+          "Government officials and grassroots researchers directly negotiated ward-level resource prioritizations.",
+          "Demonstrated how serious games provide a neutral, psychologically safe space for policy co-design."
+        ]
+      },
+      {
+        id: "kolkata-green-buildings-iitkgp",
+        number: "02",
+        title: "GREEN BUILDINGS IN RESIDENTIAL SECTOR: KOLKATA",
+        subtitle: "Jointly with Centre of Excellence in Urban Design and Planning, IIT Kharagpur",
+        date: "05 JUN 2025",
+        venue: "IIT Kharagpur Research Park, Rajarhat, Kolkata",
+        partner: "Centre of Excellence in Urban Design and Planning, IIT Kharagpur",
+        format: "Built Environment Serious Simulation & Multi-Sector Industry Lab",
+        participants: "HUDCO, CPWD, State Bank of India (SBI), S. S. Solutions, Ghosh Bose & Associates, Sapnil Developers Pvt. Ltd., EGC Facility Management, Swastic Group, DAV Model School, Master's Students & Research Scholars",
+        description: "Convened on World Environment Day at the IIT Kharagpur Research Park in Kolkata, this workshop tackled residential decarbonization and circular built environments. Public sector infrastructure heads, commercial bankers, and private developers playtested lifecycle simulation models alongside young scholars to break down complex net-zero trade-offs.",
+        takeaway: "Accelerating green building adoption by engaging banks, public works departments, private developers, and students in tactile lifecycle decision-making.",
+        tag: "GREEN BUILDINGS",
+        reportUrl: "https://drive.google.com/file/d/1fPxXn_-rGyEMHY3OfoeVOrJtB8Wg4q2s/view?usp=sharing",
+        reportLabel: "View IIT Kharagpur Workshop Report (PDF)",
+        image: "/events_media/workshops/kolkata_green_buildings_slide.png",
+        galleryImages: [
+          "/events_media/workshops/kolkata_green_buildings_slide.png"
+        ],
+        contextChallenge: "Bridging financial appraisal, regulatory compliance, and architectural design to accelerate green building adoption in residential housing.",
+        simulationDeployed: "BiBo (Building-in-a-Box) serious board game and sustainable lifecycle trade-off matrices.",
+        keyInsights: [
+          "Brought bankers (SBI) and public works engineers (CPWD, HUDCO) to the same table to model upfront green capital costs vs. operational lifecycle savings.",
+          "High school students from DAV Model School worked alongside experienced architects to explore passive solar design.",
+          "Highlighted the imperative of circular materials and energy efficiency in high-density Indian urban residential clusters."
+        ]
+      },
+      {
+        id: "hyderabad-gyanotsav-meru",
+        number: "03",
+        title: "GYANOTSAV FEST: SERIOUS GAMES FOR EDUCATORS: HYDERABAD",
+        subtitle: "Jointly with Meru International School, Hyderabad & FLAME University",
+        date: "29 MAY 2025",
+        venue: "Meru International School, Tellapur, Hyderabad",
+        partner: "Meru International School & FLAME University",
+        format: "Pedagogical Capacity Lab & Serious Game Integration for Educators",
+        participants: "40+ High School Teachers, Subject Educators & School Leadership Team",
+        description: "Held during the Gyanotsav Fest at Meru International School's Tellapur campus, this educator capacity development lab equipped teachers with serious board game mechanics. Facilitators demonstrated how tabletop systems thinking and gamified reflection can transform classroom teaching across STEM and social sciences without screens.",
+        takeaway: "Equipping educators with tabletop game mechanics to transform complex curriculum concepts into active, exploratory learning sandboxes.",
+        tag: "EDUCATOR CAPACITY",
+        reportUrl: "https://lnkd.in/p/gqikgysU",
+        reportLabel: "View Meru International School Field Report",
+        image: "/events_media/workshops/hyderabad_gyanotsav_slide.png",
+        galleryImages: [
+          "/events_media/workshops/hyderabad_gyanotsav_slide.png"
+        ],
+        contextChallenge: "Overcoming conventional lecture fatigue and screen-based distractions by equipping educators with tactile, experiential game tools.",
+        simulationDeployed: "Pedagogical tabletop tools and curriculum-aligned systems simulation decks.",
+        keyInsights: [
+          "40+ educators experienced firsthand how tabletop roleplay fosters active curiosity and deep conceptual retention.",
+          "Teachers designed custom simulation prompts linking syllabus topics to live real-world urban questions.",
+          "Strengthened school leadership's commitment to purposeful play as a core pedagogical pillar."
+        ]
+      },
+      {
+        id: "mumbai-summer-school-somaiya",
+        number: "04",
+        title: "SUMMER SCHOOL ON SUSTAINABLE URBAN FUTURES: MUMBAI",
+        subtitle: "Jointly with K J Somaiya Vidyavihar University",
+        date: "02 – 07 JUN 2025",
+        venue: "School of Management, Somaiya Vidyavihar University, Mumbai",
+        partner: "K J Somaiya Institute of Management / Somaiya Vidyavihar University",
+        format: "6-Day Intensive Summer School Studio & Speculative Urban Simulation",
+        participants: "Learning & Development (L&D) Professionals, Filmmakers, Researchers & Management Scholars",
+        description: "A week-long intensive executive play studio held at the School of Management, Somaiya Vidyavihar University in Mumbai. Interdisciplinary professionals, creative filmmakers, and researchers engaged in deep tabletop simulation cycles, unpacking urban fragility, sustainable infrastructure investments, and planetary boundaries.",
+        takeaway: "Connecting corporate L&D leaders, creative filmmakers, and researchers to explore wicked urban challenges through collaborative tabletop gameplay.",
+        tag: "SUMMER SCHOOL",
+        reportUrl: "https://kjsim.somaiya.edu/en/view-events/2182",
+        reportLabel: "View Somaiya Summer School Documentation",
+        image: "/events_media/workshops/mumbai_summer_school_slide.png",
+        galleryImages: [
+          "/events_media/workshops/mumbai_summer_school_slide.png"
+        ],
+        contextChallenge: "Integrating management pedagogy, ESG governance, and creative storytelling to address the complexities of urban climate futures.",
+        simulationDeployed: "Multi-layered urban resilience tabletop simulations, speculative scenario card sets, and collaborative debrief protocols.",
+        keyInsights: [
+          "Blended corporate management frameworks with grassroots urban sustainability imperatives.",
+          "Participants developed speculative urban scenario maps for metropolitan megacities.",
+          "Pioneered cross-disciplinary synergies between executive training and purposeful tabletop design."
+        ]
+      },
+      {
+        id: "pune-urban-futures-flame",
+        number: "05",
+        title: "GAMIFIED URBAN FUTURES LITERACY: PUNE",
+        subtitle: "Jointly with One Young India at FLAME University",
+        date: "20 JUN 2025",
+        venue: "FLAME University Campus, Pune",
+        partner: "One Young India & FLAME University",
+        format: "Youth Tabletop Simulation, Collaborative Counter-Mapping & Futures Lab",
+        participants: "~100 High-School Children from across India",
+        description: "A dynamic youth leadership immersion on the FLAME University campus in Pune. ~100 high-school children from across India engaged in tabletop simulations and collaborative counter-mapping worksheets, stepping into roles of civic decision-makers to build futures literacy and urban systems empathy.",
+        takeaway: "Nurturing 21st-century civic responsibility and systems literacy among the next generation of Indian leaders through collaborative gameplay.",
+        tag: "YOUTH FUTURES",
+        reportUrl: "https://docs.google.com/presentation/d/1Ao8jKBZBljv_92wVHGupCIIG3qnTTIHI/edit?usp=sharing&ouid=105162873441748821883&rtpof=true&sd=true",
+        reportLabel: "View FLAME Workshop Presentation (Slides)",
+        image: "/events_media/workshops/pune_urban_futures_slide.png",
+        galleryImages: [
+          "/events_media/workshops/pune_urban_futures_slide.png"
+        ],
+        contextChallenge: "Empowering adolescents to understand urban complexities, spatial planning, and community governance beyond passive textbook definitions.",
+        simulationDeployed: "Interactive urban governance boards, collaborative floor-scale counter-mapping canvases, and crisis roleplay cards.",
+        keyInsights: [
+          "~100 youth participants from nationwide schools collaborated across large simulation pod tables.",
+          "Children co-mapped ward vulnerabilities, green corridors, and public transit nodes on giant shared canvases.",
+          "Demonstrated how serious play awakens civic agency and collective problem-solving in young minds."
+        ]
+      },
+      {
+        id: "carnival-games-for-good",
+        number: "06",
         title: "CARNIVAL OF GAMES FOR GOOD: 5-DAY SERIOUS GAME DESIGN BOOTCAMP",
         subtitle: "Navaratri Serious Game Design & Youth Leadership · 8 Play Sessions · 6 Thematic Games",
         date: "16 – 20 OCT 2026",
@@ -637,6 +909,141 @@ export const PROGRAMS: ProgramItem[] = [
     ],
     conductedSessions: [
       {
+        id: "chennai-good-governance-iitm",
+        number: "01",
+        title: "GAMES FOR GOOD GOVERNANCE: CHENNAI",
+        subtitle: "Jointly with School of Sustainability at IIT Madras · ICSR Campus",
+        date: "26 APR 2025",
+        venue: "ICSR, IIT Madras Campus, Chennai",
+        partner: "School of Sustainability at IIT Madras",
+        format: "Multi-Agency Urban Governance & Tabletop Policy Simulation",
+        participants: "CMWSSB, WRD, Municipal Corporations, State Planning Commission, CUMTA, SWRMA, SaciWATERs, World Resources Institute (WRI), NGOs, University Students & Game Developers",
+        description: "An intensive multi-stakeholder governance simulation conducted at the ICSR Building, IIT Madras Campus. Bringing together senior government officials from municipal bodies, transport authorities, water boards, policy researchers, and student innovators to explore complex urban infrastructure trade-offs and participatory systems governance through tabletop play.",
+        takeaway: "Bridging inter-departmental silos across water, transit, and municipal planning through immersive game-based decision making.",
+        tag: "URBAN GOVERNANCE",
+        reportUrl: "https://drive.google.com/file/d/1f82S6y0OHGckmu26dh5ky8p6YTjcu408/view?usp=drivesdk",
+        reportLabel: "View IIT Madras Workshop Report (PDF)",
+        image: "/events_media/workshops/chennai_good_governance_slide.png",
+        galleryImages: [
+          "/events_media/workshops/chennai_good_governance_slide.png"
+        ],
+        contextChallenge: "Breaking down bureaucratic institutional silos between water supply, transport authorities, disaster agencies, and urban planning bodies to co-create livable cities.",
+        simulationDeployed: "City Runners and customized participatory urban systems tabletop sandboxes.",
+        keyInsights: [
+          "Cross-departmental teams stress-tested budget reallocations during simulated monsoon inundations.",
+          "Government officials and grassroots researchers directly negotiated ward-level resource prioritizations.",
+          "Demonstrated how serious games provide a neutral, psychologically safe space for policy co-design."
+        ]
+      },
+      {
+        id: "kolkata-green-buildings-iitkgp",
+        number: "02",
+        title: "GREEN BUILDINGS IN RESIDENTIAL SECTOR: KOLKATA",
+        subtitle: "Jointly with Centre of Excellence in Urban Design and Planning, IIT Kharagpur",
+        date: "05 JUN 2025",
+        venue: "IIT Kharagpur Research Park, Rajarhat, Kolkata",
+        partner: "Centre of Excellence in Urban Design and Planning, IIT Kharagpur",
+        format: "Built Environment Serious Simulation & Multi-Sector Industry Lab",
+        participants: "HUDCO, CPWD, State Bank of India (SBI), S. S. Solutions, Ghosh Bose & Associates, Sapnil Developers Pvt. Ltd., EGC Facility Management, Swastic Group, DAV Model School, Master's Students & Research Scholars",
+        description: "Convened on World Environment Day at the IIT Kharagpur Research Park in Kolkata, this workshop tackled residential decarbonization and circular built environments. Public sector infrastructure heads, commercial bankers, and private developers playtested lifecycle simulation models alongside young scholars to break down complex net-zero trade-offs.",
+        takeaway: "Accelerating green building adoption by engaging banks, public works departments, private developers, and students in tactile lifecycle decision-making.",
+        tag: "GREEN BUILDINGS",
+        reportUrl: "https://drive.google.com/file/d/1fPxXn_-rGyEMHY3OfoeVOrJtB8Wg4q2s/view?usp=sharing",
+        reportLabel: "View IIT Kharagpur Workshop Report (PDF)",
+        image: "/events_media/workshops/kolkata_green_buildings_slide.png",
+        galleryImages: [
+          "/events_media/workshops/kolkata_green_buildings_slide.png"
+        ],
+        contextChallenge: "Bridging financial appraisal, regulatory compliance, and architectural design to accelerate green building adoption in residential housing.",
+        simulationDeployed: "BiBo (Building-in-a-Box) serious board game and sustainable lifecycle trade-off matrices.",
+        keyInsights: [
+          "Brought bankers (SBI) and public works engineers (CPWD, HUDCO) to the same table to model upfront green capital costs vs. operational lifecycle savings.",
+          "High school students from DAV Model School worked alongside experienced architects to explore passive solar design.",
+          "Highlighted the imperative of circular materials and energy efficiency in high-density Indian urban residential clusters."
+        ]
+      },
+      {
+        id: "hyderabad-gyanotsav-meru",
+        number: "03",
+        title: "GYANOTSAV FEST: SERIOUS GAMES FOR EDUCATORS: HYDERABAD",
+        subtitle: "Jointly with Meru International School, Hyderabad & FLAME University",
+        date: "29 MAY 2025",
+        venue: "Meru International School, Tellapur, Hyderabad",
+        partner: "Meru International School & FLAME University",
+        format: "Pedagogical Capacity Lab & Serious Game Integration for Educators",
+        participants: "40+ High School Teachers, Subject Educators & School Leadership Team",
+        description: "Held during the Gyanotsav Fest at Meru International School's Tellapur campus, this educator capacity development lab equipped teachers with serious board game mechanics. Facilitators demonstrated how tabletop systems thinking and gamified reflection can transform classroom teaching across STEM and social sciences without screens.",
+        takeaway: "Equipping educators with tabletop game mechanics to transform complex curriculum concepts into active, exploratory learning sandboxes.",
+        tag: "EDUCATOR CAPACITY",
+        reportUrl: "https://lnkd.in/p/gqikgysU",
+        reportLabel: "View Meru International School Field Report",
+        image: "/events_media/workshops/hyderabad_gyanotsav_slide.png",
+        galleryImages: [
+          "/events_media/workshops/hyderabad_gyanotsav_slide.png"
+        ],
+        contextChallenge: "Overcoming conventional lecture fatigue and screen-based distractions by equipping educators with tactile, experiential game tools.",
+        simulationDeployed: "Pedagogical tabletop tools and curriculum-aligned systems simulation decks.",
+        keyInsights: [
+          "40+ educators experienced firsthand how tabletop roleplay fosters active curiosity and deep conceptual retention.",
+          "Teachers designed custom simulation prompts linking syllabus topics to live real-world urban questions.",
+          "Strengthened school leadership's commitment to purposeful play as a core pedagogical pillar."
+        ]
+      },
+      {
+        id: "mumbai-summer-school-somaiya",
+        number: "04",
+        title: "SUMMER SCHOOL ON SUSTAINABLE URBAN FUTURES: MUMBAI",
+        subtitle: "Jointly with K J Somaiya Vidyavihar University",
+        date: "02 – 07 JUN 2025",
+        venue: "School of Management, Somaiya Vidyavihar University, Mumbai",
+        partner: "K J Somaiya Institute of Management / Somaiya Vidyavihar University",
+        format: "6-Day Intensive Summer School Studio & Speculative Urban Simulation",
+        participants: "Learning & Development (L&D) Professionals, Filmmakers, Researchers & Management Scholars",
+        description: "A week-long intensive executive play studio held at the School of Management, Somaiya Vidyavihar University in Mumbai. Interdisciplinary professionals, creative filmmakers, and researchers engaged in deep tabletop simulation cycles, unpacking urban fragility, sustainable infrastructure investments, and planetary boundaries.",
+        takeaway: "Connecting corporate L&D leaders, creative filmmakers, and researchers to explore wicked urban challenges through collaborative tabletop gameplay.",
+        tag: "SUMMER SCHOOL",
+        reportUrl: "https://kjsim.somaiya.edu/en/view-events/2182",
+        reportLabel: "View Somaiya Summer School Documentation",
+        image: "/events_media/workshops/mumbai_summer_school_slide.png",
+        galleryImages: [
+          "/events_media/workshops/mumbai_summer_school_slide.png"
+        ],
+        contextChallenge: "Integrating management pedagogy, ESG governance, and creative storytelling to address the complexities of urban climate futures.",
+        simulationDeployed: "Multi-layered urban resilience tabletop simulations, speculative scenario card sets, and collaborative debrief protocols.",
+        keyInsights: [
+          "Blended corporate management frameworks with grassroots urban sustainability imperatives.",
+          "Participants developed speculative urban scenario maps for metropolitan megacities.",
+          "Pioneered cross-disciplinary synergies between executive training and purposeful tabletop design."
+        ]
+      },
+      {
+        id: "pune-urban-futures-flame",
+        number: "05",
+        title: "GAMIFIED URBAN FUTURES LITERACY: PUNE",
+        subtitle: "Jointly with One Young India at FLAME University",
+        date: "20 JUN 2025",
+        venue: "FLAME University Campus, Pune",
+        partner: "One Young India & FLAME University",
+        format: "Youth Tabletop Simulation, Collaborative Counter-Mapping & Futures Lab",
+        participants: "~100 High-School Children from across India",
+        description: "A dynamic youth leadership immersion on the FLAME University campus in Pune. ~100 high-school children from across India engaged in tabletop simulations and collaborative counter-mapping worksheets, stepping into roles of civic decision-makers to build futures literacy and urban systems empathy.",
+        takeaway: "Nurturing 21st-century civic responsibility and systems literacy among the next generation of Indian leaders through collaborative gameplay.",
+        tag: "YOUTH FUTURES",
+        reportUrl: "https://docs.google.com/presentation/d/1Ao8jKBZBljv_92wVHGupCIIG3qnTTIHI/edit?usp=sharing&ouid=105162873441748821883&rtpof=true&sd=true",
+        reportLabel: "View FLAME Workshop Presentation (Slides)",
+        image: "/events_media/workshops/pune_urban_futures_slide.png",
+        galleryImages: [
+          "/events_media/workshops/pune_urban_futures_slide.png"
+        ],
+        contextChallenge: "Empowering adolescents to understand urban complexities, spatial planning, and community governance beyond passive textbook definitions.",
+        simulationDeployed: "Interactive urban governance boards, collaborative floor-scale counter-mapping canvases, and crisis roleplay cards.",
+        keyInsights: [
+          "~100 youth participants from nationwide schools collaborated across large simulation pod tables.",
+          "Children co-mapped ward vulnerabilities, green corridors, and public transit nodes on giant shared canvases.",
+          "Demonstrated how serious play awakens civic agency and collective problem-solving in young minds."
+        ]
+      },
+      {
         id: "bharat-play-launch-exhibition",
         number: "01",
         title: "BHARAT PLAY INNOVATIONS: INAUGURATION & SYSTEMS EXHIBITION",
@@ -862,6 +1269,141 @@ export const PROGRAMS: ProgramItem[] = [
       }
     ],
     conductedSessions: [
+      {
+        id: "chennai-good-governance-iitm",
+        number: "01",
+        title: "GAMES FOR GOOD GOVERNANCE: CHENNAI",
+        subtitle: "Jointly with School of Sustainability at IIT Madras · ICSR Campus",
+        date: "26 APR 2025",
+        venue: "ICSR, IIT Madras Campus, Chennai",
+        partner: "School of Sustainability at IIT Madras",
+        format: "Multi-Agency Urban Governance & Tabletop Policy Simulation",
+        participants: "CMWSSB, WRD, Municipal Corporations, State Planning Commission, CUMTA, SWRMA, SaciWATERs, World Resources Institute (WRI), NGOs, University Students & Game Developers",
+        description: "An intensive multi-stakeholder governance simulation conducted at the ICSR Building, IIT Madras Campus. Bringing together senior government officials from municipal bodies, transport authorities, water boards, policy researchers, and student innovators to explore complex urban infrastructure trade-offs and participatory systems governance through tabletop play.",
+        takeaway: "Bridging inter-departmental silos across water, transit, and municipal planning through immersive game-based decision making.",
+        tag: "URBAN GOVERNANCE",
+        reportUrl: "https://drive.google.com/file/d/1f82S6y0OHGckmu26dh5ky8p6YTjcu408/view?usp=drivesdk",
+        reportLabel: "View IIT Madras Workshop Report (PDF)",
+        image: "/events_media/workshops/chennai_good_governance_slide.png",
+        galleryImages: [
+          "/events_media/workshops/chennai_good_governance_slide.png"
+        ],
+        contextChallenge: "Breaking down bureaucratic institutional silos between water supply, transport authorities, disaster agencies, and urban planning bodies to co-create livable cities.",
+        simulationDeployed: "City Runners and customized participatory urban systems tabletop sandboxes.",
+        keyInsights: [
+          "Cross-departmental teams stress-tested budget reallocations during simulated monsoon inundations.",
+          "Government officials and grassroots researchers directly negotiated ward-level resource prioritizations.",
+          "Demonstrated how serious games provide a neutral, psychologically safe space for policy co-design."
+        ]
+      },
+      {
+        id: "kolkata-green-buildings-iitkgp",
+        number: "02",
+        title: "GREEN BUILDINGS IN RESIDENTIAL SECTOR: KOLKATA",
+        subtitle: "Jointly with Centre of Excellence in Urban Design and Planning, IIT Kharagpur",
+        date: "05 JUN 2025",
+        venue: "IIT Kharagpur Research Park, Rajarhat, Kolkata",
+        partner: "Centre of Excellence in Urban Design and Planning, IIT Kharagpur",
+        format: "Built Environment Serious Simulation & Multi-Sector Industry Lab",
+        participants: "HUDCO, CPWD, State Bank of India (SBI), S. S. Solutions, Ghosh Bose & Associates, Sapnil Developers Pvt. Ltd., EGC Facility Management, Swastic Group, DAV Model School, Master's Students & Research Scholars",
+        description: "Convened on World Environment Day at the IIT Kharagpur Research Park in Kolkata, this workshop tackled residential decarbonization and circular built environments. Public sector infrastructure heads, commercial bankers, and private developers playtested lifecycle simulation models alongside young scholars to break down complex net-zero trade-offs.",
+        takeaway: "Accelerating green building adoption by engaging banks, public works departments, private developers, and students in tactile lifecycle decision-making.",
+        tag: "GREEN BUILDINGS",
+        reportUrl: "https://drive.google.com/file/d/1fPxXn_-rGyEMHY3OfoeVOrJtB8Wg4q2s/view?usp=sharing",
+        reportLabel: "View IIT Kharagpur Workshop Report (PDF)",
+        image: "/events_media/workshops/kolkata_green_buildings_slide.png",
+        galleryImages: [
+          "/events_media/workshops/kolkata_green_buildings_slide.png"
+        ],
+        contextChallenge: "Bridging financial appraisal, regulatory compliance, and architectural design to accelerate green building adoption in residential housing.",
+        simulationDeployed: "BiBo (Building-in-a-Box) serious board game and sustainable lifecycle trade-off matrices.",
+        keyInsights: [
+          "Brought bankers (SBI) and public works engineers (CPWD, HUDCO) to the same table to model upfront green capital costs vs. operational lifecycle savings.",
+          "High school students from DAV Model School worked alongside experienced architects to explore passive solar design.",
+          "Highlighted the imperative of circular materials and energy efficiency in high-density Indian urban residential clusters."
+        ]
+      },
+      {
+        id: "hyderabad-gyanotsav-meru",
+        number: "03",
+        title: "GYANOTSAV FEST: SERIOUS GAMES FOR EDUCATORS: HYDERABAD",
+        subtitle: "Jointly with Meru International School, Hyderabad & FLAME University",
+        date: "29 MAY 2025",
+        venue: "Meru International School, Tellapur, Hyderabad",
+        partner: "Meru International School & FLAME University",
+        format: "Pedagogical Capacity Lab & Serious Game Integration for Educators",
+        participants: "40+ High School Teachers, Subject Educators & School Leadership Team",
+        description: "Held during the Gyanotsav Fest at Meru International School's Tellapur campus, this educator capacity development lab equipped teachers with serious board game mechanics. Facilitators demonstrated how tabletop systems thinking and gamified reflection can transform classroom teaching across STEM and social sciences without screens.",
+        takeaway: "Equipping educators with tabletop game mechanics to transform complex curriculum concepts into active, exploratory learning sandboxes.",
+        tag: "EDUCATOR CAPACITY",
+        reportUrl: "https://lnkd.in/p/gqikgysU",
+        reportLabel: "View Meru International School Field Report",
+        image: "/events_media/workshops/hyderabad_gyanotsav_slide.png",
+        galleryImages: [
+          "/events_media/workshops/hyderabad_gyanotsav_slide.png"
+        ],
+        contextChallenge: "Overcoming conventional lecture fatigue and screen-based distractions by equipping educators with tactile, experiential game tools.",
+        simulationDeployed: "Pedagogical tabletop tools and curriculum-aligned systems simulation decks.",
+        keyInsights: [
+          "40+ educators experienced firsthand how tabletop roleplay fosters active curiosity and deep conceptual retention.",
+          "Teachers designed custom simulation prompts linking syllabus topics to live real-world urban questions.",
+          "Strengthened school leadership's commitment to purposeful play as a core pedagogical pillar."
+        ]
+      },
+      {
+        id: "mumbai-summer-school-somaiya",
+        number: "04",
+        title: "SUMMER SCHOOL ON SUSTAINABLE URBAN FUTURES: MUMBAI",
+        subtitle: "Jointly with K J Somaiya Vidyavihar University",
+        date: "02 – 07 JUN 2025",
+        venue: "School of Management, Somaiya Vidyavihar University, Mumbai",
+        partner: "K J Somaiya Institute of Management / Somaiya Vidyavihar University",
+        format: "6-Day Intensive Summer School Studio & Speculative Urban Simulation",
+        participants: "Learning & Development (L&D) Professionals, Filmmakers, Researchers & Management Scholars",
+        description: "A week-long intensive executive play studio held at the School of Management, Somaiya Vidyavihar University in Mumbai. Interdisciplinary professionals, creative filmmakers, and researchers engaged in deep tabletop simulation cycles, unpacking urban fragility, sustainable infrastructure investments, and planetary boundaries.",
+        takeaway: "Connecting corporate L&D leaders, creative filmmakers, and researchers to explore wicked urban challenges through collaborative tabletop gameplay.",
+        tag: "SUMMER SCHOOL",
+        reportUrl: "https://kjsim.somaiya.edu/en/view-events/2182",
+        reportLabel: "View Somaiya Summer School Documentation",
+        image: "/events_media/workshops/mumbai_summer_school_slide.png",
+        galleryImages: [
+          "/events_media/workshops/mumbai_summer_school_slide.png"
+        ],
+        contextChallenge: "Integrating management pedagogy, ESG governance, and creative storytelling to address the complexities of urban climate futures.",
+        simulationDeployed: "Multi-layered urban resilience tabletop simulations, speculative scenario card sets, and collaborative debrief protocols.",
+        keyInsights: [
+          "Blended corporate management frameworks with grassroots urban sustainability imperatives.",
+          "Participants developed speculative urban scenario maps for metropolitan megacities.",
+          "Pioneered cross-disciplinary synergies between executive training and purposeful tabletop design."
+        ]
+      },
+      {
+        id: "pune-urban-futures-flame",
+        number: "05",
+        title: "GAMIFIED URBAN FUTURES LITERACY: PUNE",
+        subtitle: "Jointly with One Young India at FLAME University",
+        date: "20 JUN 2025",
+        venue: "FLAME University Campus, Pune",
+        partner: "One Young India & FLAME University",
+        format: "Youth Tabletop Simulation, Collaborative Counter-Mapping & Futures Lab",
+        participants: "~100 High-School Children from across India",
+        description: "A dynamic youth leadership immersion on the FLAME University campus in Pune. ~100 high-school children from across India engaged in tabletop simulations and collaborative counter-mapping worksheets, stepping into roles of civic decision-makers to build futures literacy and urban systems empathy.",
+        takeaway: "Nurturing 21st-century civic responsibility and systems literacy among the next generation of Indian leaders through collaborative gameplay.",
+        tag: "YOUTH FUTURES",
+        reportUrl: "https://docs.google.com/presentation/d/1Ao8jKBZBljv_92wVHGupCIIG3qnTTIHI/edit?usp=sharing&ouid=105162873441748821883&rtpof=true&sd=true",
+        reportLabel: "View FLAME Workshop Presentation (Slides)",
+        image: "/events_media/workshops/pune_urban_futures_slide.png",
+        galleryImages: [
+          "/events_media/workshops/pune_urban_futures_slide.png"
+        ],
+        contextChallenge: "Empowering adolescents to understand urban complexities, spatial planning, and community governance beyond passive textbook definitions.",
+        simulationDeployed: "Interactive urban governance boards, collaborative floor-scale counter-mapping canvases, and crisis roleplay cards.",
+        keyInsights: [
+          "~100 youth participants from nationwide schools collaborated across large simulation pod tables.",
+          "Children co-mapped ward vulnerabilities, green corridors, and public transit nodes on giant shared canvases.",
+          "Demonstrated how serious play awakens civic agency and collective problem-solving in young minds."
+        ]
+      },
       {
         id: "disasters-natural-man-made-envs102",
         number: "01",

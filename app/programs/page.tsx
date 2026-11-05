@@ -15,7 +15,7 @@ export default function ProgramsPage() {
       date: "April 2026",
       venue: "Quest Alliance, Chennai",
       summary: "BiBo serious game capacity development for vocational trainers in green skills and planetary boundaries.",
-      image: "/games/bibo.webp",
+      image: "/games/bibo-game.webp",
       linkedinUrl: "https://lnkd.in/p/gd2GD9Gx"
     },
     {

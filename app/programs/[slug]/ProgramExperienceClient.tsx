@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { ProgramItem } from "../../data/programs";
 
@@ -17,6 +18,9 @@ interface CatalogueItem {
   subtitle?: string;
   description: string;
   details: CatalogueDetail[];
+  district?: string;
+  reportUrl?: string;
+  reportLabel?: string;
 }
 
 interface ProgramExperienceClientProps {
@@ -76,7 +80,7 @@ export default function ProgramExperienceClient({ program }: ProgramExperienceCl
       },
       {
         id: "bibo",
-        images: ["/games/bibo.webp"],
+        images: ["/games/bibo-game.webp"],
         category: "GAME SESSION",
         title: "BiBo — BUILDING-IN-A-BOX",
         subtitle: "RETHINKING HOW WE DESIGN, BUILD AND MANAGE FUTURE BUILDINGS",
@@ -134,22 +138,124 @@ export default function ProgramExperienceClient({ program }: ProgramExperienceCl
   else if (slug === "play-workshops") {
     pageTitle = "PLAY WORKSHOPS";
     introLine =
-      "Serious board game play sessions curated for targeted cohorts to deliver predefined outcomes using game as a tool and play as a process.";
+      "Serious board game play sessions curated for targeted cohorts to deliver predefined outcomes using game as a tool and play as a process across districts and premier institutions.";
     items = [
       {
-        id: "quest-alliance-vocational-trainers-bibo",
-        images: [
-          "/events_media/linkedin/bibo_workshop_1.jpg",
-          "/events_media/linkedin/bibo_workshop_2.jpg",
-          "/events_media/linkedin/bibo_workshop_4.jpg",
-          "/events_media/linkedin/bibo_workshop_5.jpg",
+        id: "chennai-good-governance-iitm",
+        district: "Chennai, Tamil Nadu",
+        images: ["/events_media/workshops/chennai_good_governance_slide.png"],
+        category: "PLAY WORKSHOP",
+        title: "GAMES FOR GOOD GOVERNANCE",
+        subtitle: "JOINTLY WITH SCHOOL OF SUSTAINABILITY AT IIT MADRAS · ICSR CAMPUS",
+        description:
+          "An intensive multi-stakeholder governance simulation conducted at the ICSR Building, IIT Madras Campus. Bringing together senior government officials from municipal bodies, transport authorities, water boards, policy researchers, and student innovators to explore complex urban infrastructure trade-offs and participatory systems governance through tabletop play.",
+        details: [
+          { label: "DISTRICT / CITY", value: "Chennai, Tamil Nadu" },
+          { label: "DATE", value: "26 APR 2025" },
+          { label: "VENUE", value: "ICSR, IIT Madras Campus, Chennai" },
+          { label: "PARTNER", value: "School of Sustainability at IIT Madras" },
+          { label: "FORMAT", value: "Multi-Agency Urban Governance & Tabletop Policy Simulation" },
+          { label: "PARTICIPANTS", value: "CMWSSB, WRD, Municipal Corporations, State Planning Commission, CUMTA, SWRMA, SaciWATERs, World Resources Institute (WRI), NGOs, University Students & Game Developers" },
+          { label: "TAKEAWAY", value: "Bridging inter-departmental silos across water, transit, and municipal planning through immersive game-based decision making." },
         ],
+        reportUrl: "https://drive.google.com/file/d/1f82S6y0OHGckmu26dh5ky8p6YTjcu408/view?usp=drivesdk",
+        reportLabel: "View IIT Madras Workshop Report (PDF)",
+      },
+      {
+        id: "kolkata-green-buildings-iitkgp",
+        district: "Kolkata, West Bengal",
+        images: ["/events_media/workshops/kolkata_green_buildings_slide.png"],
+        category: "PLAY WORKSHOP",
+        title: "GREEN BUILDINGS IN RESIDENTIAL SECTOR",
+        subtitle: "JOINTLY WITH CENTRE OF EXCELLENCE IN URBAN DESIGN AND PLANNING, IIT KHARAGPUR",
+        description:
+          "Convened on World Environment Day at the IIT Kharagpur Research Park in Kolkata, this workshop tackled residential decarbonization and circular built environments. Public sector infrastructure heads, commercial bankers, and private developers playtested lifecycle simulation models alongside young scholars to break down complex net-zero trade-offs.",
+        details: [
+          { label: "DISTRICT / CITY", value: "Kolkata, West Bengal" },
+          { label: "DATE", value: "05 JUN 2025" },
+          { label: "VENUE", value: "IIT Kharagpur Research Park, Rajarhat, Kolkata" },
+          { label: "PARTNER", value: "Centre of Excellence in Urban Design and Planning, IIT Kharagpur" },
+          { label: "FORMAT", value: "Built Environment Serious Simulation & Multi-Sector Industry Lab" },
+          { label: "PARTICIPANTS", value: "HUDCO, CPWD, State Bank of India (SBI), S. S. Solutions, Ghosh Bose & Associates, Sapnil Developers Pvt. Ltd., EGC Facility Management, Swastic Group, DAV Model School, Master's Students & Research Scholars" },
+          { label: "TAKEAWAY", value: "Accelerating green building adoption by engaging banks, public works departments, private developers, and students in tactile lifecycle decision-making." },
+        ],
+        reportUrl: "https://drive.google.com/file/d/1fPxXn_-rGyEMHY3OfoeVOrJtB8Wg4q2s/view?usp=sharing",
+        reportLabel: "View IIT Kharagpur Workshop Report (PDF)",
+      },
+      {
+        id: "hyderabad-gyanotsav-meru",
+        district: "Hyderabad, Telangana",
+        images: ["/events_media/workshops/hyderabad_gyanotsav_slide.png"],
+        category: "PLAY WORKSHOP",
+        title: "GYANOTSAV FEST: SERIOUS GAMES FOR EDUCATORS",
+        subtitle: "JOINTLY WITH MERU INTERNATIONAL SCHOOL, HYDERABAD & FLAME UNIVERSITY",
+        description:
+          "Held during the Gyanotsav Fest at Meru International School's Tellapur campus, this educator capacity development lab equipped teachers with serious board game mechanics. Facilitators demonstrated how tabletop systems thinking and gamified reflection can transform classroom teaching across STEM and social sciences without screens.",
+        details: [
+          { label: "DISTRICT / CITY", value: "Hyderabad (Tellapur), Telangana" },
+          { label: "DATE", value: "29 MAY 2025" },
+          { label: "VENUE", value: "Meru International School, Tellapur, Hyderabad" },
+          { label: "PARTNER", value: "Meru International School & FLAME University" },
+          { label: "FORMAT", value: "Pedagogical Capacity Lab & Serious Game Integration for Educators" },
+          { label: "PARTICIPANTS", value: "40+ High School Teachers, Subject Educators & School Leadership Team" },
+          { label: "TAKEAWAY", value: "Equipping educators with tabletop game mechanics to transform complex curriculum concepts into active, exploratory learning sandboxes." },
+        ],
+        reportUrl: "https://lnkd.in/p/gqikgysU",
+        reportLabel: "View Meru International School Field Report",
+      },
+      {
+        id: "mumbai-summer-school-somaiya",
+        district: "Mumbai, Maharashtra",
+        images: ["/events_media/workshops/mumbai_summer_school_slide.png"],
+        category: "PLAY WORKSHOP",
+        title: "SUMMER SCHOOL ON SUSTAINABLE URBAN FUTURES",
+        subtitle: "JOINTLY WITH K J SOMAIYA VIDYAVIHAR UNIVERSITY",
+        description:
+          "A week-long intensive executive play studio held at the School of Management, Somaiya Vidyavihar University in Mumbai. Interdisciplinary professionals, creative filmmakers, and researchers engaged in deep tabletop simulation cycles, unpacking urban fragility, sustainable infrastructure investments, and planetary boundaries.",
+        details: [
+          { label: "DISTRICT / CITY", value: "Mumbai, Maharashtra" },
+          { label: "DATE", value: "02 – 07 JUN 2025" },
+          { label: "VENUE", value: "School of Management, Somaiya Vidyavihar University, Mumbai" },
+          { label: "PARTNER", value: "K J Somaiya Institute of Management / Somaiya Vidyavihar University" },
+          { label: "FORMAT", value: "6-Day Intensive Summer School Studio & Speculative Urban Simulation" },
+          { label: "PARTICIPANTS", value: "Learning & Development (L&D) Professionals, Filmmakers, Researchers & Management Scholars" },
+          { label: "TAKEAWAY", value: "Connecting corporate L&D leaders, creative filmmakers, and researchers to explore wicked urban challenges through collaborative tabletop gameplay." },
+        ],
+        reportUrl: "https://kjsim.somaiya.edu/en/view-events/2182",
+        reportLabel: "View Somaiya Summer School Documentation",
+      },
+      {
+        id: "pune-urban-futures-flame",
+        district: "Pune, Maharashtra",
+        images: ["/events_media/workshops/pune_urban_futures_slide.png"],
+        category: "PLAY WORKSHOP",
+        title: "GAMIFIED URBAN FUTURES LITERACY",
+        subtitle: "JOINTLY WITH ONE YOUNG INDIA AT FLAME UNIVERSITY",
+        description:
+          "A dynamic youth leadership immersion on the FLAME University campus in Pune. ~100 high-school children from across India engaged in tabletop simulations and collaborative counter-mapping worksheets, stepping into roles of civic decision-makers to build futures literacy and urban systems empathy.",
+        details: [
+          { label: "DISTRICT / CITY", value: "Pune, Maharashtra" },
+          { label: "DATE", value: "20 JUN 2025" },
+          { label: "VENUE", value: "FLAME University Campus, Pune" },
+          { label: "PARTNER", value: "One Young India & FLAME University" },
+          { label: "FORMAT", value: "Youth Tabletop Simulation, Collaborative Counter-Mapping & Futures Lab" },
+          { label: "PARTICIPANTS", value: "~100 High-School Children from across India" },
+          { label: "TAKEAWAY", value: "Nurturing 21st-century civic responsibility and systems literacy among the next generation of Indian leaders through collaborative gameplay." },
+        ],
+        reportUrl: "https://docs.google.com/presentation/d/1Ao8jKBZBljv_92wVHGupCIIG3qnTTIHI/edit?usp=sharing&ouid=105162873441748821883&rtpof=true&sd=true",
+        reportLabel: "View FLAME Workshop Presentation (Slides)",
+      },
+      {
+        id: "quest-alliance-vocational-trainers-bibo",
+        district: "Chennai, Tamil Nadu",
+        images: ["/events_media/linkedin/bibo_workshop_1.jpg"],
         category: "PLAY WORKSHOP",
         title: "GREEN SKILLS & VOCATIONAL TRAINER CAPACITY",
         subtitle: "BiBo SERIOUS GAME CAPACITY DEVELOPMENT TRAINING",
         description:
           "Co-developed, curated, and facilitated by Bharat Play Innovations in partnership with Quest Alliance (Gujarat) using the BiBo Board Game in Chennai. Educating and inspiring vocational trainers who train youth entering retail, hospitality, BPO/ITES, and wellness sectors to make green skills, climate change, and environmental impact comprehensible, actionable, and aspirational.",
         details: [
+          { label: "DISTRICT / CITY", value: "Chennai, Tamil Nadu" },
           { label: "DATE", value: "APR 2026" },
           { label: "VENUE", value: "Quest Alliance Center, Chennai" },
           { label: "PARTNER", value: "Quest Alliance (Gujarat) & City Atlas" },
@@ -157,20 +263,20 @@ export default function ProgramExperienceClient({ program }: ProgramExperienceCl
           { label: "PARTICIPANTS", value: "Vocational Trainers, Grassroots Educators & Skilling Leaders" },
           { label: "TAKEAWAY", value: "Using GAME as a TOOL and PLAY as a PROCESS to translate green skills into tangible career pathways." },
         ],
+        reportUrl: "https://www.linkedin.com/posts/balajikalluri_bharatplay-greenskills-vocationaltraining-activity-7193237145719328768-vU2M",
+        reportLabel: "View Vocational Trainer Lab Dispatch",
       },
       {
         id: "teen-vikas-singapore-workshop",
-        images: [
-          "/events_media/linkedin/singapore_workshop_1.jpg",
-          "/events_media/linkedin/singapore_workshop_2.jpg",
-          "/events_media/linkedin/singapore_workshop_3.jpg",
-        ],
+        district: "Singapore (International)",
+        images: ["/events_media/linkedin/singapore_workshop_1.jpg"],
         category: "PLAY WORKSHOP",
         title: "SCIENCE MEETS SPIRITUALITY",
         subtitle: "TEEN VIKAS DISASTER RESILIENCE WORKSHOP · SINGAPORE",
         description:
           "Delivered for Teen Vikas in Singapore, Dr. Balaji Kalluri reframed youth empowerment into a play-based workshop blending spiritual principles with scientific disaster resilience, preparing youth to become ambitious global environmental leaders by honing their critical observations and sadhana.",
         details: [
+          { label: "DISTRICT / CITY", value: "Singapore" },
           { label: "DATE", value: "28 FEB 2026" },
           { label: "VENUE", value: "Sri Sathya Sai Vedic Society, Singapore" },
           { label: "PARTNER", value: "Sri Sathya Sai Vedic Society Singapore & Teen Vikas Educare" },
@@ -178,9 +284,12 @@ export default function ProgramExperienceClient({ program }: ProgramExperienceCl
           { label: "PARTICIPANTS", value: "Singaporean Youth, Teen Vikas Scholars, Gurus & Community Educators" },
           { label: "TAKEAWAY", value: "Preparing youth to become ambitious global environmental leaders by blending divine values with disaster resilience science." },
         ],
+        reportUrl: "https://www.linkedin.com/posts/balajikalluri_teenvikas-singapore-disasterresilience-activity-7170701192568160256-4b2A",
+        reportLabel: "View Singapore Youth Workshop Dispatch",
       },
       {
         id: "resilience-starts-at-home",
+        district: "Chennai, Tamil Nadu",
         images: ["/events_media/linkedin/resilience_at_home.jpg"],
         category: "PLAY WORKSHOP",
         title: "RESILIENCE STARTS AT HOME",
@@ -188,6 +297,7 @@ export default function ProgramExperienceClient({ program }: ProgramExperienceCl
         description:
           "Marking solidarity with the UN International Day for Disaster Risk Reduction on Vijayadasami / Navratri, this family play workshop deployed the Master of Disasters (MoD) board game followed by guided community countermapping connecting gameplay intuition with Chennai's real flood, heatwave, and drought topography.",
         details: [
+          { label: "DISTRICT / CITY", value: "Chennai (Chrompet), Tamil Nadu" },
           { label: "DATE", value: "20 OCT 2026" },
           { label: "VENUE", value: "Inner Companion Sanctuary, Chrompet, Chennai" },
           { label: "PARTNER", value: "Inner Companion Foundation, ASSIST & Chennai Resilience Centre" },
@@ -195,6 +305,8 @@ export default function ProgramExperienceClient({ program }: ProgramExperienceCl
           { label: "PARTICIPANTS", value: "Families, Children (Age 8+) & Neighborhood Volunteers" },
           { label: "TAKEAWAY", value: "True disaster preparedness begins at the family dining table, validated through community countermapping." },
         ],
+        reportUrl: "https://www.linkedin.com/posts/balajikalluri_resilience-boardgames-navratri-activity-7253303681469075456-jZ_w",
+        reportLabel: "View Inter-generational Workshop Dispatch",
       },
     ];
   }
@@ -329,6 +441,19 @@ export default function ProgramExperienceClient({ program }: ProgramExperienceCl
     ];
   }
 
+  const isPlayWorkshops = slug === "play-workshops";
+
+  const [expandedIds, setExpandedIds] = useState<Record<string, boolean>>({
+    [items[0]?.id || ""]: true,
+  });
+
+  const toggleExpand = (id: string) => {
+    setExpandedIds((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
   return (
     <main className="min-h-screen bg-[#FDFBF7] text-brand-navy pt-28 sm:pt-36 pb-32 sm:pb-40 selection:bg-brand-orange selection:text-white">
       <div className="max-w-[1440px] mx-auto w-full px-5 sm:px-8 lg:px-14">
@@ -370,6 +495,164 @@ export default function ProgramExperienceClient({ program }: ProgramExperienceCl
           <section aria-label={`${pageTitle} Collection`} className="space-y-16 sm:space-y-24">
             {items.map((item) => {
               const hasImages = item.images && item.images.length > 0;
+              const primaryImage = item.images[0];
+
+              // SPECIAL CLICK-TO-EXPAND WORKSHOP ACCORDION WITH BULLETIN SYMBOL
+              if (isPlayWorkshops) {
+                const isExpanded = !!expandedIds[item.id];
+
+                return (
+                  <article
+                    key={item.id}
+                    id={item.id}
+                    className="bg-white border-2 border-[#0C2444] rounded-[26px] p-6 sm:p-9 lg:p-11 scroll-mt-32 transition-all duration-300"
+                    style={{ boxShadow: isExpanded ? "10px 10px 0px #0C2444" : "5px 5px 0px #0C2444" }}
+                  >
+                    {/* CLICKABLE HEADER WITH BULLETIN SYMBOL */}
+                    <div
+                      role="button"
+                      tabIndex={0}
+                      onClick={() => toggleExpand(item.id)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          toggleExpand(item.id);
+                        }
+                      }}
+                      className="w-full text-left cursor-pointer select-none group flex items-start justify-between gap-4 sm:gap-8"
+                    >
+                      <div className="flex-1">
+                        {item.district && (
+                          <div className="mb-2 sm:mb-3">
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-orange/10 text-brand-orange border border-brand-orange/30 font-mono text-xs font-bold uppercase tracking-wider">
+                              <span>📍</span>
+                              <span>{item.district}</span>
+                            </span>
+                          </div>
+                        )}
+
+                        <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight text-brand-navy leading-[1.0] group-hover:text-brand-orange transition-colors">
+                          {item.title}
+                        </h2>
+
+                        {item.subtitle && (
+                          <p className="font-mono text-xs sm:text-sm font-bold tracking-wider text-brand-gray uppercase mt-2">
+                            {item.subtitle}
+                          </p>
+                        )}
+                      </div>
+
+                      {/* BULLETIN SYMBOL (NO TEXT) */}
+                      <div
+                        className={`w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center border-2 border-[#0C2444] shrink-0 transition-all duration-300 ${
+                          isExpanded
+                            ? "bg-[#0C2444] text-white rotate-180"
+                            : "bg-white text-[#0C2444] group-hover:bg-[#0C2444] group-hover:text-white"
+                        }`}
+                      >
+                        <svg
+                          className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2.5}
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                    </div>
+
+                    {/* EXPANDED CONTENT (AUTHENTIC NEWSPAPER BROADSHEET LAYOUT) */}
+                    {isExpanded && (
+                      <div className="pt-6 sm:pt-8 mt-5 sm:mt-6 border-t border-amber-200/80 animate-in fade-in duration-300">
+                        {/* 1. TOP IMAGE (NEWSPAPER ARCHIVAL PLATE) */}
+                        <div className="w-full">
+                          <div className="w-full overflow-hidden bg-transparent rounded-xl border border-amber-200/70">
+                            <img
+                              src={primaryImage}
+                              alt={`${item.title} - Archival Plate`}
+                              loading="lazy"
+                              className="w-full h-auto max-h-[640px] object-contain block mx-auto"
+                            />
+                          </div>
+
+                          {/* 2. PHOTO CAPTION & REPORT LINK BAR (BELOW IMAGE, ZERO SOLID BACKGROUND) */}
+                          <div className="mt-3 py-1 flex flex-wrap items-center justify-between gap-3 text-xs font-mono border-b border-amber-100">
+                            {item.district && (
+                              <span className="text-brand-gray tracking-wider uppercase font-semibold">
+                                ARCHIVAL FIELD DOCUMENTATION · {item.district}
+                              </span>
+                            )}
+                            {item.reportUrl && (
+                              <a
+                                href={item.reportUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 text-brand-orange hover:text-brand-navy font-bold uppercase tracking-wider transition-colors duration-200 group/link"
+                              >
+                                <span className="text-sm leading-none">📄</span>
+                                <span className="underline underline-offset-4 decoration-brand-orange/60 group-hover/link:decoration-brand-navy">
+                                  {item.reportLabel || "View Workshop Report"}
+                                </span>
+                                <svg
+                                  className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                  strokeWidth={2.5}
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                  />
+                                </svg>
+                              </a>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* 3. NEWSPAPER EDITORIAL / STORY SECTION (BELOW THE IMAGE) */}
+                        <div className="mt-6 space-y-6">
+                          {/* Lead Narrative Paragraph */}
+                          <p className="text-base sm:text-lg md:text-xl text-brand-navy/90 font-normal leading-relaxed font-sans">
+                            {item.description}
+                          </p>
+
+                          {/* 4. KEY METADATA & FACT-BOX (2-COLUMN BROADSHEET GRID) */}
+                          {item.details && item.details.length > 0 && (
+                            <div className="pt-4 border-t-2 border-brand-navy/10">
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2.5">
+                                {item.details.map((detail, dIdx) => {
+                                  const isFullWidth =
+                                    detail.label === "PARTICIPANTS" ||
+                                    detail.label === "TAKEAWAY" ||
+                                    detail.label === "FORMAT";
+                                  return (
+                                    <div
+                                      key={dIdx}
+                                      className={`py-2 border-b border-amber-100 ${
+                                        isFullWidth ? "md:col-span-2" : "md:col-span-1"
+                                      } flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3`}
+                                    >
+                                      <span className="font-mono text-xs font-bold uppercase tracking-[0.12em] text-brand-orange shrink-0 sm:w-36">
+                                        {detail.label}
+                                      </span>
+                                      <span className="text-xs sm:text-sm md:text-base font-semibold text-brand-navy leading-snug">
+                                        {detail.value}
+                                      </span>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </article>
+                );
+              }
 
               // SPECIAL AUTHENTIC COURSE LAYOUT (NO IMAGES OR VISUAL PLACEHOLDERS)
               if (!hasImages) {
@@ -432,7 +715,6 @@ export default function ProgramExperienceClient({ program }: ProgramExperienceCl
               }
 
               const hasMultipleImages = item.images.length > 1;
-              const primaryImage = item.images[0];
               const secondaryImages = item.images.slice(1);
 
               return (
@@ -494,6 +776,15 @@ export default function ProgramExperienceClient({ program }: ProgramExperienceCl
 
                     {/* RIGHT SUB-COLUMN: TEXT PLACED DIRECTLY ALONGSIDE THE IMAGES */}
                     <div className="xl:col-span-5 flex flex-col justify-start">
+                      {item.district && (
+                        <div className="mb-3">
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-orange/10 text-brand-orange border border-brand-orange/30 font-mono text-xs font-bold uppercase tracking-wider">
+                            <span>📍</span>
+                            <span>{item.district}</span>
+                          </span>
+                        </div>
+                      )}
+
                       {/* Massive Bold Title */}
                       <h2 className="font-display text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-black uppercase tracking-tight text-brand-navy leading-[0.95] mb-3 sm:mb-4">
                         {item.title}

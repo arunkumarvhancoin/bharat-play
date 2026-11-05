@@ -198,7 +198,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
   const emailShareUrl = `mailto:?subject=${encodeURIComponent(`Invitation: ${event.title} (${event.formattedDate})`)}&body=${encodeURIComponent(`Hi,\n\nI thought you'd love to join this session with Bharat Play:\n\n${event.title}\nDate: ${event.formattedDate} (${event.time})\nVenue: ${event.venue}\nAddress: ${event.venueAddress || event.venue + ", " + event.city}\n\nCheck out the full details and reserve your spot here:\n${currentUrl}\n\nHope to see you there!`)}`;
 
   return (
-    <div className="min-h-screen bg-[#FDFBF7] text-slate-800 pt-24 pb-20 selection:bg-orange-500 selection:text-white">
+    <div className="min-h-screen bg-[#FDFBF7] text-slate-800 pt-28 md:pt-32 pb-20 selection:bg-orange-500 selection:text-white">
       {/* Subtle Warm Background Glow */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[850px] h-[450px] bg-gradient-to-b from-orange-100/50 via-amber-50/30 to-transparent rounded-full blur-3xl opacity-75" />

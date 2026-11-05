@@ -430,13 +430,25 @@ export const GAMES: GameItem[] = [
       "Corporate Sustainability, ESG & Facilities Teams",
       "Construction Project Managers & MEP Consultants"
     ],
-    image: "/games/bibo.webp",
+    image: "/games/bibo-game.webp",
     gallery: [
       {
-        src: "/games/bibo.webp",
+        src: "/games/bibo-game.webp",
         caption: "BiBo (Building-in-a-Box) educational green building and sustainable construction lab components.",
         alt: "BiBo Game Lab",
-        aspect: "square"
+        aspect: "landscape"
+      },
+      {
+        src: "/about/journey/maastricht_workshop.jpg",
+        caption: "BiBo green building simulation lab with European researchers at BEHAVE Conference, Maastricht.",
+        alt: "BiBo Maastricht Workshop",
+        aspect: "landscape"
+      },
+      {
+        src: "/about/journey/army_jhansi.jpg",
+        caption: "Indian Army Corps of EME officers in Jhansi testing sustainable cantonment infrastructure with BiBo.",
+        alt: "BiBo Indian Army Workshop",
+        aspect: "landscape"
       }
     ],
     premise: {

@@ -15,6 +15,7 @@ import {
   XCircle,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import KudosToBharatPlayJourney from "../components/KudosToBharatPlayJourney";
 
 const CORE_VALUES = [
   {
@@ -465,6 +466,11 @@ export default function AboutUsPage() {
             </div>
           </div>
         </section>
+
+        {/* ============================================================== */}
+        {/* THE JOURNEY: FROM KUDOS TO BHARAT PLAY (CANVA DECK SLIDES)     */}
+        {/* ============================================================== */}
+        <KudosToBharatPlayJourney />
 
         {/* ============================================================== */}
         {/* CALL TO ACTION — POLISHED & CLEAR                              */}
