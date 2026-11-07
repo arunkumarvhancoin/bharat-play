@@ -54,7 +54,7 @@ export default function FeaturedEventHero() {
     game: "CITY RUNNERS",
     venue: "The Board Room, Mylapore",
     capacity: "6 Players/Table · Age 12+",
-    price: "INR 499 / pax",
+    price: "INR 649 / pax",
     href: "/events/childrens-day-play-workshop",
   };
 

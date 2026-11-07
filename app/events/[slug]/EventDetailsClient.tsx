@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   Calendar,
@@ -24,6 +24,7 @@ import {
   Camera,
   Video as VideoIcon,
   Maximize2,
+  Utensils,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScheduledEvent } from "../../data/events";
@@ -36,8 +37,10 @@ interface EventDetailsClientProps {
 const TEST_WHATSAPP_NUMBER = "8237132553"; // Bharat Play WhatsApp: +91 82371 32553
 
 export default function EventDetailsClient({ event, otherEvents }: EventDetailsClientProps) {
+  const isNov14Event = event.id === "childrens-day-play-workshop" || event.date.includes("11-14");
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [isShareOpen, setIsShareOpen] = useState(false);
+  const [isQrZoomed, setIsQrZoomed] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState(event.slots[0] || "");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -57,6 +60,17 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
     if (mediaFilter === "videos") return item.type === "video";
     return true;
   });
+
+  // Close zoomed QR on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isQrZoomed) {
+        setIsQrZoomed(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isQrZoomed]);
 
   // Validate form
   const validate = () => {
@@ -78,6 +92,8 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
 
   // Build clean, friendly WhatsApp message
   const generateWhatsAppMessage = () => {
+    const totalPayable = isNov14Event ? attendeesCount * 649 : null;
+
     return [
       `🎲 *New Reservation · ${event.title}*`,
       `━━━━━━━━━━━━━━━━━━━━━━━━━`,
@@ -85,6 +101,11 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
       `⏰ *Slot:* ${selectedSlot}`,
       `📍 *Venue:* ${event.venue}${event.city && !event.venue.includes(event.city) ? `, ${event.city}` : ""}`,
       `💰 *Admission / Price:* ${event.price}`,
+      ...(totalPayable
+        ? [
+            `💳 *Total Payable:* ₹${totalPayable} (₹${attendeesCount * 500} workshop + ₹${attendeesCount * 149} redeemed on Food & Beverages at cafe)`,
+          ]
+        : []),
       ``,
       `👤 *Attendee Details:*`,
       `• *Name:* ${name.trim()}`,
@@ -92,7 +113,9 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
       `• *Email:* ${email.trim()}`,
       `• *Number of Members:* ${attendeesCount} ${attendeesCount === 1 ? "Person (Solo)" : `Members / Group of ${attendeesCount}`}`,
       ``,
-      `Hi Bharat Play team! We'd like to reserve our seats for this session. Please confirm our reservation! 😊`,
+      isNov14Event
+        ? `Hi Bharat Play team! We have scanned the UPI QR to pay ₹${totalPayable}. Attaching our payment screenshot below to confirm our table! 😊`
+        : `Hi Bharat Play team! We'd like to reserve our seats for this session. Please confirm our reservation! 😊`,
     ].join("\n");
   };
 
@@ -303,8 +326,8 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
               </p>
 
               {/* 4 Compact Specs Badges - Solid Matte */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 relative z-10 pt-1">
-                <div className="p-2.5 rounded-xl bg-white border-2 border-slate-200 text-center">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 relative z-10 pt-1">
+                <div className="p-2 sm:p-2.5 rounded-xl bg-white border-2 border-slate-200 text-center">
                   <span className="text-[10px] font-bold text-[#C2410C] uppercase tracking-wider block font-mono">
                     Date
                   </span>
@@ -313,7 +336,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                   </span>
                 </div>
 
-                <div className="p-2.5 rounded-xl bg-white border-2 border-slate-200 text-center">
+                <div className="p-2 sm:p-2.5 rounded-xl bg-white border-2 border-slate-200 text-center">
                   <span className="text-[10px] font-bold text-[#0C2444] uppercase tracking-wider block font-mono">
                     Duration
                   </span>
@@ -322,20 +345,32 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                   </span>
                 </div>
 
-                <div className="p-2.5 rounded-xl bg-white border-2 border-slate-200 text-center">
-                  <span className="text-[10px] font-bold text-[#15803D] uppercase tracking-wider block font-mono">
-                    Format
-                  </span>
-                  <span className="text-xs font-bold text-slate-900 block">
-                    Screen-Free
-                  </span>
-                </div>
+                {isNov14Event ? (
+                  <div className="p-2 sm:p-2.5 rounded-xl bg-white border-2 border-slate-200 text-center">
+                    <span className="text-[9.5px] sm:text-[10px] font-bold text-[#15803D] uppercase tracking-tight sm:tracking-wider block font-mono flex items-center justify-center gap-1">
+                      <Utensils className="w-3 h-3 text-[#15803D] shrink-0" />
+                      <span className="truncate">Food &amp; Beverages</span>
+                    </span>
+                    <span className="text-xs font-bold text-slate-900 block truncate">
+                      ₹149 Included
+                    </span>
+                  </div>
+                ) : (
+                  <div className="p-2 sm:p-2.5 rounded-xl bg-white border-2 border-slate-200 text-center">
+                    <span className="text-[10px] font-bold text-[#15803D] uppercase tracking-wider block font-mono">
+                      Format
+                    </span>
+                    <span className="text-xs font-bold text-slate-900 block">
+                      Screen-Free
+                    </span>
+                  </div>
+                )}
 
-                <div className="p-2.5 rounded-xl bg-white border-2 border-slate-200 text-center">
+                <div className="p-2 sm:p-2.5 rounded-xl bg-white border-2 border-slate-200 text-center">
                   <span className="text-[10px] font-bold text-[#0C2444] uppercase tracking-wider block font-mono">
                     Audience
                   </span>
-                  <span className="text-xs font-bold text-slate-900 block">
+                  <span className="text-xs font-bold text-slate-900 block truncate">
                     {event.ageGroup || "Open for All"}
                   </span>
                 </div>
@@ -778,6 +813,19 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                 </p>
               </div>
 
+              {/* Payment & Food & Beverages Info Callout for 14th Nov Event (Text only) */}
+              {isNov14Event && (
+                <div className="mt-4 p-3.5 rounded-2xl bg-amber-50 border border-amber-200 text-xs text-amber-950">
+                  <div className="flex items-center gap-1.5 font-bold mb-1 text-brand-navy">
+                    <Utensils className="w-3.5 h-3.5 text-[#15803D]" />
+                    <span className="uppercase tracking-wider font-mono text-[11px]">Pricing &amp; Food &amp; Beverages Offer:</span>
+                  </div>
+                  <p className="text-[11px] text-slate-700 leading-snug">
+                    Price is <strong>INR 649 / pax</strong> (₹500 workshop + <strong>₹149 redeemed on Food &amp; Beverages at cafe</strong>). Click <strong>&quot;BOOK YOUR SEAT&quot;</strong> above to view the UPI QR code and register!
+                  </p>
+                </div>
+              )}
+
               {/* Secondary Action Row: Share + Calendar */}
               <div className="grid grid-cols-2 gap-2 mt-4 pt-4 border-t border-slate-100">
                 <button
@@ -864,7 +912,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
       <AnimatePresence>
         {isBookingOpen && (
           <div
-            className="fixed inset-0 z-[120] flex items-center justify-center p-3 sm:p-6 overflow-y-auto"
+            className="fixed inset-0 z-[120] flex items-center justify-center p-2.5 sm:p-6 overflow-y-auto"
             data-lenis-prevent
           >
             {/* Backdrop */}
@@ -878,14 +926,13 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
               className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm cursor-pointer"
             />
 
-            {/* Modal Container: Navy Blue Outline & Hard Shadow */}
+            {/* Modal Container: Navy Blue Outline & Responsive Hard Shadow */}
             <motion.div
               initial={{ opacity: 0, scale: 0.94, y: 16 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.94, y: 12 }}
               transition={{ type: "spring", duration: 0.35, bounce: 0.15 }}
-              className="relative w-full max-w-lg bg-[#FAF8F5] border-2 border-[#0C2444] rounded-[26px] z-10 overflow-hidden"
-              style={{ boxShadow: "14px 14px 0px #0C2444" }}
+              className="relative w-full max-w-lg max-h-[92vh] overflow-y-auto bg-[#FAF8F5] border-2 border-[#0C2444] rounded-[22px] sm:rounded-[26px] z-10 shadow-xl sm:[box-shadow:12px_12px_0px_#0C2444]"
             >
               {!isSubmitted ? (
                 /* ========================================================= */
@@ -893,20 +940,20 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                 /* ========================================================= */
                 <div>
                   {/* Navy Blue Header */}
-                  <div className="px-6 py-5 bg-gradient-to-r from-[#0C2444] via-[#13335c] to-[#0C2444] text-white flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-2xl bg-white/10 backdrop-blur-sm text-sky-300 flex items-center justify-center text-xl shadow-xs border border-white/15">
+                  <div className="px-4 py-3.5 sm:px-6 sm:py-5 bg-gradient-to-r from-[#0C2444] via-[#13335c] to-[#0C2444] text-white flex items-center justify-between">
+                    <div className="flex items-center gap-2.5 sm:gap-3">
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-white/10 backdrop-blur-sm text-sky-300 flex items-center justify-center text-lg sm:text-xl shadow-xs border border-white/15 shrink-0">
                         🎲
                       </div>
                       <div>
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-sky-200 block">
+                        <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-sky-200 block">
                           {event.badge?.toLowerCase().includes("early bird")
                             ? "EARLY BIRD RESERVATION"
                             : event.price.toLowerCase().includes("free")
                             ? "FREE REGISTRATION"
                             : "SEAT RESERVATION"}
                         </span>
-                        <h3 className="font-display text-lg sm:text-xl font-bold tracking-tight text-white leading-tight">
+                        <h3 className="font-display text-base sm:text-xl font-bold tracking-tight text-white leading-tight">
                           Grab Your Spot · Join Us!
                         </h3>
                       </div>
@@ -915,7 +962,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                     <button
                       type="button"
                       onClick={() => setIsBookingOpen(false)}
-                      className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-lg transition-colors cursor-pointer"
+                      className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-lg transition-colors cursor-pointer shrink-0"
                       aria-label="Close modal"
                     >
                       &times;
@@ -923,22 +970,22 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                   </div>
 
                   {/* Event summary banner inside modal */}
-                  <div className="bg-sky-50/80 px-6 py-3 border-b border-sky-200/60 text-xs flex items-center justify-between">
-                    <div>
-                      <span className="font-bold text-slate-800 block truncate max-w-xs">
+                  <div className="bg-sky-50/80 px-4 py-2.5 sm:px-6 sm:py-3 border-b border-sky-200/60 text-xs flex items-center justify-between gap-2">
+                    <div className="min-w-0 flex-1">
+                      <span className="font-bold text-slate-800 block truncate">
                         {event.title}
                       </span>
-                      <span className="text-slate-600">
+                      <span className="text-slate-600 text-[11px] sm:text-xs block truncate">
                         {event.formattedDate} · {event.time}
                       </span>
                     </div>
-                    <span className="font-bold text-[#0C2444] bg-sky-100 border border-sky-300 px-2.5 py-0.5 rounded-full text-[11px]">
+                    <span className="font-bold text-[#0C2444] bg-sky-100 border border-sky-300 px-2 py-0.5 rounded-full text-[10px] sm:text-[11px] shrink-0 whitespace-nowrap">
                       {event.price}
                     </span>
                   </div>
 
                   {/* Form */}
-                  <form onSubmit={handleBookNow} className="p-6 space-y-4">
+                  <form onSubmit={handleBookNow} className="p-4 sm:p-6 space-y-3.5 sm:space-y-4">
                     {/* Full Name - John Doe placeholder */}
                     <div>
                       <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
@@ -1103,22 +1150,70 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                       )}
                     </div>
 
+                    {/* Pricing Breakdown & UPI Payment QR for 14th Nov Event */}
+                    {isNov14Event && (
+                      <div className="p-3.5 sm:p-4 rounded-2xl bg-[#FAFDF9] border-2 border-emerald-500/60 shadow-xs text-center space-y-2.5 sm:space-y-3">
+                        <div className="flex items-center justify-between font-bold text-slate-900 border-b border-emerald-100 pb-2">
+                          <span className="text-[11px] sm:text-xs uppercase tracking-wider font-mono text-emerald-800 font-bold">
+                            Total Payable ({attendeesCount} {attendeesCount === 1 ? "seat" : "seats"}):
+                          </span>
+                          <span className="font-display text-base sm:text-lg text-[#0C2444] font-black">
+                            ₹{attendeesCount * 649}
+                          </span>
+                        </div>
+                        <p className="text-[11px] text-slate-600 text-left leading-relaxed">
+                          ✨ ₹{attendeesCount * 500} workshop + <strong className="text-emerald-700">₹{attendeesCount * 149} redeemable on Food &amp; Beverages at cafe</strong>!
+                        </p>
+
+                        {/* UPI QR Image with Zoom on Click */}
+                        <div
+                          onClick={() => setIsQrZoomed(true)}
+                          className="group relative mx-auto w-36 sm:w-44 aspect-[9/16] bg-white rounded-xl overflow-hidden border-2 border-[#0C2444] shadow-md p-1 cursor-zoom-in transition-all hover:scale-[1.02] hover:shadow-lg"
+                          title="Click to zoom QR code"
+                        >
+                          <img
+                            src="/pay.jpeg"
+                            alt="Bharat Play UPI Payment QR - Click to zoom"
+                            className="w-full h-full object-contain"
+                          />
+                          <div className="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-white/95 text-slate-900 font-bold text-[10px] sm:text-[11px] shadow-md flex items-center gap-1">
+                              <Maximize2 className="w-3 h-3 text-[#0C2444]" />
+                              <span>Click to Zoom</span>
+                            </span>
+                          </div>
+                        </div>
+                        <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider block">
+                          🔍 Tap QR image to enlarge
+                        </span>
+
+                        <div className="bg-amber-50 border border-amber-200 rounded-xl p-2.5 text-[11px] text-amber-950 text-left space-y-1">
+                          <p className="font-bold flex items-center gap-1 text-amber-900 text-[11px]">
+                            <span>📸</span> Scan UPI QR to Pay ₹{attendeesCount * 649}:
+                          </p>
+                          <p className="text-slate-700 leading-snug">1. Scan with GPay, PhonePe, Paytm, or BHIM.</p>
+                          <p className="text-slate-700 leading-snug">2. Pay ₹{attendeesCount * 649} for {attendeesCount} {attendeesCount === 1 ? "seat" : "seats"}.</p>
+                          <p className="text-slate-700 leading-snug">3. Take a screenshot &amp; confirm below to share on WhatsApp!</p>
+                        </div>
+                      </div>
+                    )}
+
                     {/* Book Now Submit Button */}
-                    <div className="pt-3">
+                    <div className="pt-2">
                       <button
                         type="submit"
-                        className="w-full inline-flex items-center justify-center gap-2.5 bg-[#0C2444] hover:bg-[#13335c] active:scale-[0.99] text-white font-display text-base font-bold py-4 px-6 rounded-full shadow-lg shadow-[#0C2444]/25 hover:shadow-[#0C2444]/40 transition-all cursor-pointer"
+                        className="w-full inline-flex items-center justify-center gap-2 bg-[#0C2444] hover:bg-[#13335c] active:scale-[0.99] text-white font-display text-xs sm:text-base font-bold py-3.5 sm:py-4 px-4 sm:px-6 rounded-full shadow-lg shadow-[#0C2444]/25 hover:shadow-[#0C2444]/40 transition-all cursor-pointer text-center"
                       >
-                        <Ticket className="w-5 h-5 text-sky-300" />
-                        <span>
+                        <Ticket className="w-4 h-4 sm:w-5 sm:h-5 text-sky-300 shrink-0" />
+                        <span className="leading-tight">
                           {event.badge?.toLowerCase().includes("early bird")
                             ? "CONFIRM EARLY BIRD RESERVATION 🎉"
                             : event.price.toLowerCase().includes("free")
                             ? "CONFIRM FREE REGISTRATION 🎉"
-                            : `CONFIRM SEAT RESERVATION (${event.price}) 🎉`}
+                            : `CONFIRM SEAT RESERVATION (₹${isNov14Event ? attendeesCount * 649 : event.price}) 🎉`}
                         </span>
                       </button>
-                      <p className="text-xs text-center text-slate-500 mt-2.5">
+                      <p className="text-[10px] sm:text-xs text-center text-slate-500 mt-2">
                         Confirmation will be sent to WhatsApp (+91 {TEST_WHATSAPP_NUMBER})
                       </p>
                     </div>
@@ -1128,30 +1223,88 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                 /* ========================================================= */
                 /* STEP 2: CELEBRATION & WHATSAPP CONFIRMATION SCREEN        */
                 /* ========================================================= */
-                <div className="p-7 sm:p-9 text-center bg-white">
+                <div className="p-4 sm:p-8 text-center bg-white">
                   <motion.div
                     initial={{ scale: 0, rotate: -45 }}
                     animate={{ scale: 1, rotate: 0 }}
                     transition={{ type: "spring", duration: 0.5, bounce: 0.35 }}
-                    className="w-20 h-20 rounded-full bg-sky-100 text-[#0C2444] flex items-center justify-center mx-auto mb-4 border-2 border-[#0C2444] shadow-md text-3xl"
+                    className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-sky-100 text-[#0C2444] flex items-center justify-center mx-auto mb-2.5 sm:mb-3 border-2 border-[#0C2444] shadow-md text-xl sm:text-2xl"
                   >
                     🥳
                   </motion.div>
 
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#0C2444] block mb-1">
-                    YOU&apos;RE ON THE LIST!
+                  <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#0C2444] block mb-1">
+                    {isNov14Event ? "SEATS RESERVED PENDING PAYMENT!" : "YOU'RE ON THE LIST!"}
                   </span>
 
-                  <h3 className="font-display text-2xl sm:text-3xl font-black text-slate-900 mb-2">
+                  <h3 className="font-display text-xl sm:text-2xl font-black text-slate-900 mb-1">
                     Thank You, {name}! 🎉
                   </h3>
 
-                  <p className="text-sm text-slate-600 max-w-sm mx-auto mb-6 leading-relaxed">
-                    We&apos;re thrilled to have you for <strong className="text-slate-900">{event.title}</strong>!
+                  <p className="text-xs sm:text-sm text-slate-600 max-w-sm mx-auto mb-3.5 sm:mb-4 leading-relaxed">
+                    {isNov14Event
+                      ? "Complete your payment via the UPI QR code below and share the screenshot on WhatsApp to confirm your table!"
+                      : `We're thrilled to have you for ${event.title}!`}
                   </p>
 
+                  {/* UPI QR PAYMENT BOX (For 14th Nov Event) */}
+                  {isNov14Event && (
+                    <div className="bg-[#FAFDF9] border-2 border-emerald-500/50 rounded-2xl p-3.5 sm:p-5 mb-4 sm:mb-5 text-center shadow-xs">
+                      <span className="inline-block px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-emerald-100 text-emerald-900 font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-wider mb-1.5 sm:mb-2">
+                        Scan UPI QR To Pay
+                      </span>
+                      <h4 className="font-display text-lg sm:text-xl font-black text-slate-900 mb-0.5 sm:mb-1">
+                        Total Payable: ₹{attendeesCount * 649}
+                      </h4>
+                      <p className="text-[11px] sm:text-xs text-slate-600 mb-2.5 sm:mb-3">
+                        ₹{attendeesCount * 500} workshop + <strong className="text-emerald-700">₹{attendeesCount * 149} redeemed on Food &amp; Beverages at cafe</strong>
+                      </p>
+
+                      {/* QR Code Image with Zoom */}
+                      <div
+                        onClick={() => setIsQrZoomed(true)}
+                        className="group relative mx-auto w-36 sm:w-52 aspect-[9/16] bg-white rounded-xl overflow-hidden border-2 border-[#0C2444] shadow-md p-1 mb-1.5 cursor-zoom-in transition-all hover:scale-[1.02] hover:shadow-lg"
+                        title="Click to zoom QR code"
+                      >
+                        <img
+                          src="/pay.jpeg"
+                          alt="Bharat Play UPI Payment QR - Click to zoom"
+                          className="w-full h-full object-contain"
+                        />
+                        <div className="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                          <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-white/95 text-slate-900 font-bold text-[10px] sm:text-[11px] shadow-md flex items-center gap-1">
+                            <Maximize2 className="w-3 h-3 text-[#0C2444]" />
+                            <span>Click to Zoom</span>
+                          </span>
+                        </div>
+                      </div>
+                      <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider block mb-2.5 sm:mb-3">
+                        🔍 Tap QR image to enlarge
+                      </span>
+
+                      <div className="bg-amber-50 border border-amber-200 rounded-xl p-2.5 sm:p-3 text-[11px] sm:text-xs text-amber-950 text-left space-y-1 mb-3.5 sm:mb-4">
+                        <p className="font-bold flex items-center gap-1.5 text-amber-900 text-[11px]">
+                          <span>📸</span> Instructions to Confirm Your Table:
+                        </p>
+                        <p className="text-slate-700 leading-snug">1. Scan with GPay, PhonePe, Paytm, or any UPI app.</p>
+                        <p className="text-slate-700 leading-snug">2. Pay <strong>₹{attendeesCount * 649}</strong> ({attendeesCount} {attendeesCount === 1 ? "seat" : "seats"}).</p>
+                        <p className="text-slate-700 leading-snug">3. Take a screenshot of the successful payment.</p>
+                        <p className="text-slate-700 leading-snug">4. Click below to share the screenshot on WhatsApp to confirm your table.</p>
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={openWhatsAppDirect}
+                        className="w-full inline-flex items-center justify-center gap-2 py-3 px-3.5 sm:py-3.5 sm:px-5 rounded-full bg-[#15803D] hover:bg-[#166534] active:scale-[0.99] text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-md shadow-emerald-700/20 transition-all cursor-pointer text-center"
+                      >
+                        <Send className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                        <span className="leading-tight">SHARE PAYMENT SCREENSHOT ON WHATSAPP (+91 {TEST_WHATSAPP_NUMBER})</span>
+                      </button>
+                    </div>
+                  )}
+
                   {/* Ticket Receipt */}
-                  <div className="bg-[#FAFDF9] border border-sky-200/80 rounded-2xl p-4 sm:p-5 mb-6 text-left text-xs space-y-2">
+                  <div className="bg-[#FAFDF9] border border-sky-200/80 rounded-2xl p-4 mb-5 text-left text-xs space-y-2">
                     <div className="flex justify-between items-center pb-2 border-b border-sky-100">
                       <span className="text-slate-400 uppercase font-semibold text-[11px]">Event</span>
                       <span className="font-bold text-slate-900 text-right">{event.title}</span>
@@ -1169,6 +1322,15 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                       </span>
                     </div>
 
+                    {isNov14Event && (
+                      <div className="flex justify-between items-center">
+                        <span className="text-slate-400 uppercase font-semibold text-[11px]">Amount</span>
+                        <span className="font-bold text-[#0C2444] text-right">
+                          ₹{attendeesCount * 649} (₹{attendeesCount * 500} + ₹{attendeesCount * 149} Food &amp; Beverages)
+                        </span>
+                      </div>
+                    )}
+
                     <div className="flex justify-between items-center">
                       <span className="text-slate-400 uppercase font-semibold text-[11px]">Date</span>
                       <span className="font-bold text-slate-900 text-right">{event.formattedDate}</span>
@@ -1180,24 +1342,15 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                     </div>
                   </div>
 
-                  {/* Action Buttons */}
+                  {/* Secondary Action Buttons */}
                   <div className="flex flex-col sm:flex-row gap-3">
                     <button
                       type="button"
-                      onClick={openWhatsAppDirect}
-                      className="inline-flex items-center justify-center gap-2 flex-1 py-3.5 px-6 rounded-full bg-[#15803D] hover:bg-[#166534] text-white font-bold text-xs uppercase tracking-wider shadow-xs transition-all cursor-pointer"
-                    >
-                      <Send className="w-4 h-4" />
-                      <span>OPEN WHATSAPP ({TEST_WHATSAPP_NUMBER})</span>
-                    </button>
-
-                    <button
-                      type="button"
                       onClick={downloadCalendarFile}
-                      className="inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-sky-50 hover:bg-sky-100 text-[#0C2444] border border-sky-200 font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer"
+                      className="inline-flex items-center justify-center gap-2 py-3 px-6 rounded-full bg-sky-50 hover:bg-sky-100 text-[#0C2444] border border-sky-200 font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer w-full"
                     >
                       <Download className="w-4 h-4 text-[#0C2444]" />
-                      <span>CALENDAR (.ICS)</span>
+                      <span>SAVE TO CALENDAR (.ICS)</span>
                     </button>
                   </div>
 
@@ -1505,6 +1658,45 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                 </span>
               </div>
             </div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* =================================================================== */}
+      {/* UPI QR CODE LIGHTBOX ZOOM (IMAGE ONLY)                              */}
+      {/* =================================================================== */}
+      <AnimatePresence>
+        {isQrZoomed && (
+          <div
+            className="fixed inset-0 z-[150] flex items-center justify-center p-4 sm:p-6 bg-black/90 backdrop-blur-md cursor-zoom-out select-none"
+            onClick={() => setIsQrZoomed(false)}
+            data-lenis-prevent
+          >
+            {/* Close Button in top right */}
+            <button
+              type="button"
+              onClick={() => setIsQrZoomed(false)}
+              className="absolute top-4 right-4 z-20 w-11 h-11 rounded-full bg-white/15 hover:bg-white/30 text-white flex items-center justify-center text-2xl transition-colors cursor-pointer"
+              aria-label="Close zoom preview"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            {/* Pure Image Container - Centered and Enlarged */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.88 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.88 }}
+              transition={{ type: "spring", duration: 0.3, bounce: 0.15 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-h-[90vh] max-w-[92vw] sm:max-w-md w-auto flex items-center justify-center"
+            >
+              <img
+                src="/pay.jpeg"
+                alt="Bharat Play UPI Payment QR"
+                className="max-h-[88vh] w-auto max-w-full object-contain rounded-2xl shadow-2xl border-2 border-white/20 bg-white p-2"
+              />
+            </motion.div>
           </div>
         )}
       </AnimatePresence>

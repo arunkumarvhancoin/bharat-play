@@ -110,7 +110,7 @@ export const EVENTS_DATA: ScheduledEvent[] = [
   // =========================================================================
   // 2. 14th Nov : CHILDREN'S DAY PLAY WORKSHOP
   //    A The Board Room x Bharat Play Innovations
-  //    Venue: The Board Room, Mylapore. Price: INR 499/pax
+  //    Venue: The Board Room, Mylapore. Price: INR 649 / pax (₹500 workshop + ₹149 redeemed on Food & Beverages at cafe)
   // =========================================================================
   {
     id: "childrens-day-play-workshop",
@@ -124,8 +124,8 @@ export const EVENTS_DATA: ScheduledEvent[] = [
     venueAddress: "The Board Room, Mylapore, Chennai, Tamil Nadu",
     city: "Chennai",
     capacity: "6 Players Per Table · Age 12+",
-    price: "INR 499/pax",
-    badge: "Children's Day Special · ₹499/pax",
+    price: "INR 649 / pax",
+    badge: "Children's Day Special · ₹649",
     ageGroup: "12+ (parents and grandparents are encouraged to join the table)",
     duration: "3 Hours (10:00 AM – 1:00 PM)",
     language: "English & Tamil",
@@ -139,7 +139,8 @@ export const EVENTS_DATA: ScheduledEvent[] = [
       "Date : 14 Nov · Time : 10am to 1pm · Venue : The Board Room, Mylapore.",
       "Age: 12+ (parents and grandparents are encouraged to join the table).",
       "Game Title: CITY RUNNERS — Cooperative strategy game | Livable Cities | Urban Governance.",
-      "No. of Players : 6 per table · Price: INR 499/pax.",
+      "No. of Players : 6 per table · Price: INR 649/pax (₹500 workshop + ₹149 redeemed on Food & Beverages at cafe).",
+      "Payment: Scan UPI QR and share your payment screenshot on WhatsApp to confirm your seats.",
       "Bring your family and friends, and enjoy children's day like no other !"
     ],
     highlights: [
@@ -150,7 +151,8 @@ export const EVENTS_DATA: ScheduledEvent[] = [
       "Game Title: CITY RUNNERS",
       "Game Theme: Cooperative strategy game | Livable Cities | Urban Governance",
       "No. of Players: 6 per table",
-      "Price: INR 499/pax",
+      "Price: INR 649/pax (₹500 workshop + ₹149 redeemed on Food & Beverages at cafe)",
+      "Payment: Scan UPI QR & share payment screenshot on WhatsApp (+91 82371 32553)",
       "Bring your family and friends, and enjoy children's day like no other !"
     ],
     media: [
