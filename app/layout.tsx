@@ -38,6 +38,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${outfit.variable} ${dmSans.variable} ${dmMono.variable} antialiased`}>
       <head>
+        {/* Google Tag (gtag.js) / Google Tag Manager */}
+        <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-TV4C8DJS" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());`,
+          }}
+        />
         {/* Meta Pixel Code */}
         <script
           dangerouslySetInnerHTML={{
@@ -65,6 +74,15 @@ fbq('track', 'PageView');`,
         {/* End Meta Pixel Code */}
       </head>
       <body className="flex flex-col font-sans bg-white text-brand-navy selection:bg-brand-green selection:text-white w-full">
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-TV4C8DJS"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         <NavigationProgress />
         <SmoothScroll>
           <Navbar />
