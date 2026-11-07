@@ -1168,16 +1168,16 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                         {/* UPI QR Image with Zoom on Click */}
                         <div
                           onClick={() => setIsQrZoomed(true)}
-                          className="group relative mx-auto w-36 sm:w-44 aspect-[9/16] bg-white rounded-xl overflow-hidden border-2 border-[#0C2444] shadow-md p-1 cursor-zoom-in transition-all hover:scale-[1.02] hover:shadow-lg"
+                          className="group relative mx-auto w-full max-w-[280px] sm:max-w-xs rounded-xl overflow-hidden border-2 border-[#0C2444] shadow-md cursor-zoom-in transition-all hover:scale-[1.01] hover:shadow-lg bg-white"
                           title="Click to zoom QR code"
                         >
                           <img
                             src="/pay.jpeg"
                             alt="Bharat Play UPI Payment QR - Click to zoom"
-                            className="w-full h-full object-contain"
+                            className="w-full h-auto block"
                           />
                           <div className="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-white/95 text-slate-900 font-bold text-[10px] sm:text-[11px] shadow-md flex items-center gap-1">
+                            <span className="px-2.5 py-1 rounded-full bg-white/95 text-slate-900 font-bold text-[11px] shadow-md flex items-center gap-1">
                               <Maximize2 className="w-3 h-3 text-[#0C2444]" />
                               <span>Click to Zoom</span>
                             </span>
@@ -1263,16 +1263,16 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                       {/* QR Code Image with Zoom */}
                       <div
                         onClick={() => setIsQrZoomed(true)}
-                        className="group relative mx-auto w-36 sm:w-52 aspect-[9/16] bg-white rounded-xl overflow-hidden border-2 border-[#0C2444] shadow-md p-1 mb-1.5 cursor-zoom-in transition-all hover:scale-[1.02] hover:shadow-lg"
+                        className="group relative mx-auto w-full max-w-[280px] sm:max-w-xs rounded-xl overflow-hidden border-2 border-[#0C2444] shadow-md mb-2 cursor-zoom-in transition-all hover:scale-[1.01] hover:shadow-lg bg-white"
                         title="Click to zoom QR code"
                       >
                         <img
                           src="/pay.jpeg"
                           alt="Bharat Play UPI Payment QR - Click to zoom"
-                          className="w-full h-full object-contain"
+                          className="w-full h-auto block"
                         />
                         <div className="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                          <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-white/95 text-slate-900 font-bold text-[10px] sm:text-[11px] shadow-md flex items-center gap-1">
+                          <span className="px-2.5 py-1 rounded-full bg-white/95 text-slate-900 font-bold text-[11px] shadow-md flex items-center gap-1">
                             <Maximize2 className="w-3 h-3 text-[#0C2444]" />
                             <span>Click to Zoom</span>
                           </span>
@@ -1694,7 +1694,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
               <img
                 src="/pay.jpeg"
                 alt="Bharat Play UPI Payment QR"
-                className="max-h-[88vh] w-auto max-w-full object-contain rounded-2xl shadow-2xl border-2 border-white/20 bg-white p-2"
+                className="max-h-[88vh] w-auto max-w-full object-contain rounded-2xl shadow-2xl border-2 border-white/20 bg-white"
               />
             </motion.div>
           </div>
