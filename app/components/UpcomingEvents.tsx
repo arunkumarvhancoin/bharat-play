@@ -69,10 +69,31 @@ export default function UpcomingEvents() {
                   </div>
 
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div>
-                      <h4 className="font-display text-xl sm:text-2xl font-bold text-slate-900 group-hover:text-orange-600 transition-colors">
-                        {event.title}
-                      </h4>
+                    <div className="flex-1 min-w-0">
+                      {event.collaborator && (
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="w-2 h-2 rounded-full bg-[#C2410C] animate-pulse" />
+                          <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#C2410C] font-mono">
+                            In Collaboration with {event.collaborator.name}
+                          </span>
+                        </div>
+                      )}
+
+                      <div className="flex items-start justify-between gap-3 mb-1">
+                        <h4 className="font-display text-xl sm:text-2xl font-bold text-slate-900 group-hover:text-orange-600 transition-colors">
+                          {event.title}
+                        </h4>
+
+                        {event.collaborator && (
+                          <div className="shrink-0 p-1.5 sm:p-2 bg-white rounded-xl border-2 border-slate-200 shadow-2xs group-hover:border-[#C2410C] transition-colors">
+                            <img
+                              src={event.collaborator.logo}
+                              alt={event.collaborator.name}
+                              className="h-10 sm:h-12 w-auto max-w-[120px] sm:max-w-[150px] object-contain"
+                            />
+                          </div>
+                        )}
+                      </div>
                       <p className="text-xs sm:text-sm text-slate-600 mt-1 line-clamp-2">
                         {event.description}
                       </p>

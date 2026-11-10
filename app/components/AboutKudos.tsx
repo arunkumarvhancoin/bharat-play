@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { ExternalLink, CheckCircle2, Award, Landmark } from "lucide-react";
+import Image from "next/image";
+import { ExternalLink, Award, Landmark } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
@@ -53,6 +54,45 @@ const AWARDS_DATA = [
     organization: "Innovation Fund Denmark",
     color: "#15803D",
     badgeBg: "bg-[#15803D] text-white",
+  },
+];
+
+const PARTNER_INSTITUTIONS = [
+  {
+    name: "Games for Change",
+    fullName: "Games for Change — Global Movement & Non-Profit for Social Impact Games",
+    logo: "/partners/games-for-change.svg",
+    website: "https://www.gamesforchange.org/",
+  },
+  {
+    name: "Newcastle University",
+    fullName: "Newcastle University — Global Research & Higher Education (UK)",
+    logo: "/partners/newcastle-university.svg",
+    website: "https://www.ncl.ac.uk/",
+  },
+  {
+    name: "PMI",
+    fullName: "Project Management Institute (PMI) — Global Professional Association",
+    logo: "/partners/pmi.png",
+    website: "https://www.pmi.org/",
+  },
+  {
+    name: "SUSS Singapore",
+    fullName: "Singapore University of Social Sciences (SUSS)",
+    logo: "/partners/suss.svg",
+    website: "https://www.suss.edu.sg/",
+  },
+  {
+    name: "Univ. of Cambridge",
+    fullName: "University of Cambridge",
+    logo: "/partners/university-of-cambridge.png",
+    website: "https://www.cam.ac.uk/",
+  },
+  {
+    name: "Smart Building",
+    fullName: "Smart Building Collective — Cyber-Physical Spaces & Resilience",
+    logo: "/partners/smart-building-collective.png",
+    website: "https://smartbuildingcollective.com/",
   },
 ];
 
@@ -210,34 +250,58 @@ export default function AboutKudos() {
               </div>
             </div>
 
-            {/* Core Collective & Collaborators Note */}
+            {/* Core Collective & Institutional Partners Note */}
             <div 
-              className="lg:col-span-5 bg-white border-2 border-[#12352B] p-8 md:p-12 rounded-[26px] transition-all duration-300 hover:-translate-y-1"
+              className="lg:col-span-5 bg-white border-2 border-[#12352B] p-8 md:p-12 rounded-[26px] transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
               style={{ boxShadow: "10px 10px 0px #12352B" }}
             >
-              <span className="font-mono text-xs md:text-sm font-bold uppercase tracking-widest text-brand-green block mb-3">
-                COLLECTIVE & PARTNERSHIPS
-              </span>
-              <h3 className="font-display text-2xl md:text-3xl font-bold uppercase tracking-tight text-brand-navy mb-4">
-                AN INTERDISCIPLINARY ECOSYSTEM
-              </h3>
-              <p className="text-slate-700 text-base md:text-lg font-medium leading-relaxed mb-6">
-                Bharat Play collaborates with a curated network of game designers, urbanists, educators, systems engineers, and university faculty across India.
-              </p>
-              <div className="space-y-3.5 font-mono text-xs md:text-sm text-brand-navy font-semibold pt-4 border-t border-emerald-100">
-                <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-brand-green shrink-0" />
-                  <span>Academic Partnerships (FLAME, IIT BHU, GIPE)</span>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-brand-green shrink-0" />
-                  <span>Game Design & Industry Collaborators</span>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-brand-green shrink-0" />
-                  <span>Civic & Environmental Organisations</span>
+              <div>
+                <span className="font-mono text-xs md:text-sm font-bold uppercase tracking-widest text-brand-green block mb-2">
+                  GLOBAL &amp; NATIONAL ALLIANCES
+                </span>
+                <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tight text-brand-navy mb-2">
+                  INSTITUTIONAL PARTNERS
+                </h3>
+                <p className="font-mono text-xs md:text-sm font-semibold text-brand-gray uppercase tracking-wider mb-5">
+                  TRUSTED PARTNER INSTITUTIONS WORLDWIDE
+                </p>
+                <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed mb-5">
+                  Collaborating with leading universities, global professional bodies, and research institutions worldwide to advance serious games, strategic simulations, and systems thinking.
+                </p>
+
+                {/* Curated Partner Logos Showcase */}
+                <div className="pt-2">
+                  <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500 block mb-3">
+                    FEATURED INSTITUTIONAL PARTNERS
+                  </span>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-6 sm:gap-x-8 sm:gap-y-7 items-center py-2">
+                    {PARTNER_INSTITUTIONS.map((partner) => (
+                      <a 
+                        key={partner.name}
+                        href={partner.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title={partner.fullName}
+                        className="group/partner flex flex-col items-center justify-center text-center transition-all hover:opacity-90"
+                      >
+                        <div className="h-12 sm:h-14 w-full flex items-center justify-center">
+                          <Image
+                            src={partner.logo}
+                            alt={partner.name}
+                            width={160}
+                            height={60}
+                            className="max-h-12 sm:max-h-14 w-auto max-w-full object-contain transition-transform group-hover/partner:scale-105"
+                          />
+                        </div>
+                        <span className="font-mono text-[10px] sm:text-[11px] font-bold text-slate-700 group-hover/partner:text-emerald-700 leading-tight mt-2 line-clamp-1">
+                          {partner.name}
+                        </span>
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
+
               <div className="mt-8 pt-6 border-t border-emerald-100">
                 <Link 
                   href="/contact" 

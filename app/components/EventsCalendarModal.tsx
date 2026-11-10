@@ -163,16 +163,32 @@ export default function EventsCalendarModal({ isOpen, onClose }: EventsCalendarM
                           </span>
                         </div>
 
-                        {/* Info */}
+                        {/* Info with Big Partner Logo in Headline */}
                         <div className="md:col-span-7">
                           <div className="text-xs text-slate-500 flex items-center gap-2 mb-1">
                             <Clock className="w-3.5 h-3.5 text-[#C2410C] shrink-0" />
                             <span>{event.time}</span>
+                            {event.collaborator && (
+                              <span className="font-mono text-[10px] uppercase font-bold text-[#C2410C] pl-2 border-l border-slate-200">
+                                In collaboration with {event.collaborator.name}
+                              </span>
+                            )}
                           </div>
 
-                          <h3 className="font-display text-lg sm:text-xl font-bold text-slate-900 group-hover:text-[#C2410C] transition-colors mb-1.5 leading-snug">
-                            {event.title}
-                          </h3>
+                          <div className="flex items-start justify-between gap-3 mb-1.5">
+                            <h3 className="font-display text-lg sm:text-xl font-bold text-slate-900 group-hover:text-[#C2410C] transition-colors leading-snug">
+                              {event.title}
+                            </h3>
+                            {event.collaborator && (
+                              <div className="shrink-0 p-1.5 bg-white rounded-xl border-2 border-slate-200 shadow-2xs">
+                                <img
+                                  src={event.collaborator.logo}
+                                  alt={event.collaborator.name}
+                                  className="h-9 sm:h-11 w-auto max-w-[120px] object-contain"
+                                />
+                              </div>
+                            )}
+                          </div>
 
                           <p className="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-2 mb-2">
                             {event.description}

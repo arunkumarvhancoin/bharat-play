@@ -6,6 +6,13 @@ export interface EventMediaItem {
   caption?: string;
 }
 
+export interface EventCollaborator {
+  name: string;
+  logo: string;
+  url?: string;
+  label?: string;
+}
+
 export interface ScheduledEvent {
   id: string;
   date: string; // YYYY-MM-DD
@@ -32,6 +39,7 @@ export interface ScheduledEvent {
   linkedinUrl?: string;
   instagramUrl?: string;
   mapUrl?: string;
+  collaborator?: EventCollaborator;
   media?: EventMediaItem[];
   status: "upcoming" | "conducted";
 }
@@ -49,31 +57,35 @@ export const EVENTS_DATA: ScheduledEvent[] = [
     time: "5-7pm",
     title: "Saturdays4SocialGames",
     category: "Tabletop Social Play",
-    game: "Discrete / Surprise Game Theme",
+    game: "Curated Surprise Game Theme",
     venue: "Venue to be announced closer to the date",
     venueAddress: "Venue details will be shared directly with registered participants closer to the date",
     city: "Venue TBA",
-    capacity: "Limited seats to 15 · Open for all ages",
+    capacity: "Limited to 15 Seats · Open to All Ages",
     price: "₹99 / pax",
-    badge: "Limited seats to 15 · ₹99/pax",
+    badge: "Limited to 15 Seats · ₹99 / pax",
     ageGroup: "Open for all ages",
-    duration: "2 Hours (5-7pm)",
+    duration: "2 Hours (5:00 PM – 7:00 PM)",
     language: "English & Regional",
     slots: [
       "5:00 PM – 7:00 PM",
     ],
-    description: "Keep it simple. Saturdays4SocialGames. Time: 5-7pm. Create a Reservation page to book seats. Venue to be announced closer to the date. Limited seats to 15. Open for all ages. Game theme is a kept discrete/surprise. Price: 99/pax",
+    description: "Join us for Saturdays4SocialGames — an intimate, screen-free evening of thoughtful tabletop play. Open to all ages, with an exciting surprise game theme curated for the session. Limited to 15 seats. Venue details will be announced closer to the date.",
     about: [
-      "Keep it simple. Saturdays4SocialGames. Time: 5-7pm. Create a Reservation page to book seats. Venue to be announced closer to the date. Limited seats to 15. Open for all ages. Game theme is kept discrete/surprise. Price: 99/pax."
+      "Saturdays4SocialGames is Bharat Play's community play evening dedicated to screen-free social interaction, strategy, and systems thinking.",
+      "Time: 5:00 PM – 7:00 PM · Price: ₹99 per participant.",
+      "Open to all ages and experience levels — from curious beginners to seasoned tabletop enthusiasts.",
+      "The game theme is kept as an exciting surprise, revealed at the table by our facilitators.",
+      "Seats are strictly capped at 15 to ensure an engaging, personalized play experience. Venue details will be shared directly with confirmed participants closer to the date."
     ],
     highlights: [
-      "Keep it simple — Saturdays4SocialGames",
-      "Time: 5-7pm",
-      "Limited seats to 15",
-      "Open for all ages",
-      "Game theme is kept discrete/surprise",
-      "Price: 99/pax",
-      "Venue to be announced closer to the date"
+      "Saturdays4SocialGames Community Tabletop Session",
+      "Time: 5:00 PM – 7:00 PM",
+      "Capacity: Strictly limited to 15 seats",
+      "Open to all ages and experience levels",
+      "Curated surprise game theme revealed on game night",
+      "Price: ₹99 / pax",
+      "Venue details shared directly closer to the event date"
     ],
     instagramUrl: "https://www.instagram.com/p/DdE6Uigk9zS/?utm_source=ig_web_button_share_sheet&stkn=MzRlODBiNWFlZA%3D%3D&img_index=1",
     media: [
@@ -117,7 +129,7 @@ export const EVENTS_DATA: ScheduledEvent[] = [
     date: "2026-11-14",
     formattedDate: "Saturday, 14 Nov 2026",
     time: "10:00 AM – 1:00 PM",
-    title: "CHILDREN'S DAY PLAY WORKSHOP : A The Board Room x Bharat Play Innovations",
+    title: "Children's Day Play Workshop: The Board Room × Bharat Play Innovations",
     category: "Children's Day Play Workshop",
     game: "CITY RUNNERS",
     venue: "The Board Room, Mylapore",
@@ -129,31 +141,35 @@ export const EVENTS_DATA: ScheduledEvent[] = [
     ageGroup: "12+ (parents and grandparents are encouraged to join the table)",
     duration: "3 Hours (10:00 AM – 1:00 PM)",
     language: "English & Tamil",
+    collaborator: {
+      name: "The Board Room",
+      logo: "/partners/the-board-room.png",
+      url: "https://theboardroomindia.com",
+      label: "Collaborated with The Board Room",
+    },
     slots: [
       "10:00 AM – 1:00 PM",
     ],
-    description: "CHILDREN'S DAY PLAY WORKSHOP : A The Board Room x Bharat Play Innovations. Game Title: CITY RUNNERS. Cooperative strategy game | Livable Cities | Urban Governance. Bring your family and friends, and enjoy children's day like no other !",
+    description: "Celebrate Children's Day with an extraordinary, screen-free tabletop workshop at The Board Room, Mylapore. Experience CITY RUNNERS, our cooperative strategy game of livable cities and urban governance. Bring your family and friends for an unforgettable day of playful problem-solving!",
     about: [
-      "CHILDREN'S DAY PLAY WORKSHOP : A The Board Room x Bharat Play Innovations.",
-      "Celebrate Children's Day with an extraordinary, screen-free tabletop simulation where players take on interconnected civic roles.",
-      "Date : 14 Nov · Time : 10am to 1pm · Venue : The Board Room, Mylapore.",
-      "Age: 12+ (parents and grandparents are encouraged to join the table).",
-      "Game Title: CITY RUNNERS — Cooperative strategy game | Livable Cities | Urban Governance.",
-      "No. of Players : 6 per table · Price: INR 649/pax (₹500 workshop + ₹149 redeemed on Food & Beverages at cafe).",
-      "Payment: Scan UPI QR and share your payment screenshot on WhatsApp to confirm your seats.",
-      "Bring your family and friends, and enjoy children's day like no other !"
+      "Celebrate Children's Day with an extraordinary, screen-free tabletop simulation where players take on interconnected civic roles to build a thriving, resilient city.",
+      "Date: Saturday, 14 Nov 2026 · Time: 10:00 AM – 1:00 PM · Venue: The Board Room, Mylapore.",
+      "Game: CITY RUNNERS — A cooperative strategy game exploring livable cities, urban systems, and collective governance.",
+      "Age: 12+ (parents, grandparents, and youth are warmly welcomed to join the table).",
+      "Table Pods: 6 players per table for optimal collaboration and immersive play.",
+      "Price: INR 649 per participant (includes ₹500 workshop fee + ₹149 voucher redeemable on Food & Beverages at the cafe).",
+      "Payment: Scan the UPI QR code and share your payment screenshot on WhatsApp to confirm your reservation.",
+      "Bring your friends and family, and experience Children's Day like never before!"
     ],
     highlights: [
-      "Date: 14 Nov 2026",
-      "Time: 10am to 1pm",
-      "Venue: The Board Room, Mylapore",
-      "Age: 12+ (parents and grandparents are encouraged to join the table)",
-      "Game Title: CITY RUNNERS",
-      "Game Theme: Cooperative strategy game | Livable Cities | Urban Governance",
-      "No. of Players: 6 per table",
-      "Price: INR 649/pax (₹500 workshop + ₹149 redeemed on Food & Beverages at cafe)",
-      "Payment: Scan UPI QR & share payment screenshot on WhatsApp (+91 82371 32553)",
-      "Bring your family and friends, and enjoy children's day like no other !"
+      "Date: Saturday, 14 Nov 2026 · 10:00 AM – 1:00 PM",
+      "Venue: The Board Room, Mylapore, Chennai",
+      "Game: CITY RUNNERS (Cooperative Strategy · Livable Cities · Urban Governance)",
+      "Age: 12+ (parents, grandparents & youth warmly welcomed)",
+      "Small-table format: 6 players per table",
+      "Price: INR 649/pax (₹500 workshop + ₹149 F&B cafe voucher included)",
+      "Payment via UPI QR with instant WhatsApp confirmation (+91 82371 32553)",
+      "Guided facilitation and debrief by Bharat Play"
     ],
     media: [
       {
@@ -207,6 +223,12 @@ export const EVENTS_DATA: ScheduledEvent[] = [
     ageGroup: "Open for all (Students, Civic Leaders, Families & Urban Enthusiasts)",
     duration: "2 Hours per session",
     language: "English & Kannada",
+    collaborator: {
+      name: "Alliance Française de Bangalore",
+      logo: "/partners/alliance-francaise.svg",
+      url: "https://bangalore.afindia.org",
+      label: "Collaborated with Alliance Française de Bangalore",
+    },
     slots: [
       "11:00 AM – 1:00 PM",
       "4:00 PM – 6:00 PM",
@@ -286,17 +308,20 @@ export const EVENTS_DATA: ScheduledEvent[] = [
     slots: [
       "Early Bird Reservation",
     ],
-    description: "26th Nov : Special public play workshop on the occassion of NATIONAL CONSTITUTION DAY. Venue & Price to be announced soon. Pls open early bird reservations. Note: Ticketed and Priced (not free). Fee to be ascertained soon.",
+    description: "Join us on 26th November for a special public play workshop celebrating National Constitution Day. Explore civic decision-making, democratic deliberation, and constitutional governance through interactive tabletop play. Early bird reservations are open now; venue and ticket details will be announced soon.",
     about: [
-      "26th Nov : Special public play workshop on the occassion of NATIONAL CONSTITUTION DAY. Venue & Price to be announced soon. Early bird reservations are open now.",
-      "Note: This event is NOT FREE. It is ticketed and priced — fee to be ascertained soon."
+      "Mark your calendar for Thursday, 26th November 2026, for a special public play workshop on the occasion of National Constitution Day.",
+      "This experiential simulation brings constitutional principles, democratic deliberation, and collaborative civic dilemmas to the game table in a compelling, interactive format.",
+      "Early bird reservations are open now to express your interest and secure priority access.",
+      "Venue details and ticket pricing will be announced soon. This is a ticketed event with early bird seats available upon announcement."
     ],
     highlights: [
-      "26th Nov 2026",
-      "Special public play workshop on the occassion of NATIONAL CONSTITUTION DAY",
-      "Venue & Price to be announced soon",
-      "Early bird reservations open now",
-      "Ticketed and Priced (Not Free — fee to be ascertained)"
+      "Date: Thursday, 26 Nov 2026",
+      "Special public play workshop celebrating National Constitution Day",
+      "Interactive simulation exploring constitutional values and collective decision-making",
+      "Open to students, educators, policy enthusiasts, and the public",
+      "Early bird reservation window open now",
+      "Venue and ticket pricing to be announced soon"
     ],
     status: "upcoming",
   },
@@ -321,22 +346,32 @@ export const EVENTS_DATA: ScheduledEvent[] = [
     price: "Entry Free",
     badge: "Entry Free · Special Venue Discount",
     venueDiscount: "Avail special discount at the venue to buy our games",
+    collaborator: {
+      name: "TTOX",
+      logo: "/partners/ttox.png",
+      url: "https://ttox.in",
+      label: "Collaborated with TTOX",
+    },
     slots: [
       "05 Dec · Book Your Seat",
       "06 Dec · Book Your Seat",
     ],
-    description: "5-6 Dec : CITY RUNNERS Game Exhibition + Guided Play Sessions for our next new upcoming game at TTOX WINTER CONVENTION 2026. Book your seats. Entry free. Avail special discount at the venue to buy our games. Venue: Infantry Road.",
+    description: "Visit the Bharat Play pavilion at TTOX Winter Convention 2026 on 5–6 December at Infantry Road, Bengaluru. Featuring a live CITY RUNNERS game exhibition and exclusive guided play sessions for our upcoming new tabletop release. Free entry with special venue discounts available on all Bharat Play games!",
     about: [
-      "5-6 Dec : CITY RUNNERS Game Exhibition + Guided Play Sessions for our next new upcoming game at TTOX WINTER CONVENTION 2026. Book your seats. Entry free. Avail special discount at the venue to buy our games. Venue: Infantry Road."
+      "Bharat Play heads to the prestigious TTOX Winter Convention 2026 on 5–6 December 2026 at Infantry Road, Bengaluru.",
+      "Explore our full CITY RUNNERS exhibition and be among the first to experience guided play sessions for our upcoming new tabletop game.",
+      "Dates: Saturday & Sunday, 5–6 December 2026 · Venue: Infantry Road, Bengaluru.",
+      "Admission: Free Entry! Reserve your play session seats in advance to ensure table time with our game designers and facilitators.",
+      "Exclusive Convention Offer: Avail special on-venue discounts to purchase Bharat Play games and collector editions."
     ],
     highlights: [
-      "5-6 Dec 2026",
-      "CITY RUNNERS Game Exhibition",
-      "Guided Play Sessions for our next new upcoming game",
-      "TTOX WINTER CONVENTION 2026",
-      "Book your seats — Entry free",
-      "Avail special discount at the venue to buy our games",
-      "Venue: Infantry Road"
+      "Dates: Saturday & Sunday, 05–06 Dec 2026",
+      "Venue: Infantry Road, Bengaluru",
+      "In collaboration with TTOX (TableTop OdiX)",
+      "CITY RUNNERS Live Game Exhibition",
+      "Exclusive preview and guided play sessions for our upcoming new tabletop game",
+      "Admission: Free Entry (advance seat reservation recommended)",
+      "Special venue discounts available to purchase Bharat Play games"
     ],
     status: "upcoming",
   },

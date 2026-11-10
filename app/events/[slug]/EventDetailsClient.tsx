@@ -354,7 +354,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
               <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-orange-100/40 via-amber-50/20 to-transparent rounded-full blur-xl pointer-events-none" />
 
               {/* Badges Row - Matte Solid 3 Colors */}
-              <div className="flex flex-wrap items-center gap-2 mb-3.5 relative z-10">
+              <div className="flex flex-wrap items-center gap-2 mb-4 relative z-10">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#C2410C] text-white text-xs font-bold tracking-wide">
                   <span>🎲</span>
                   <span>{event.category}</span>
@@ -371,7 +371,62 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                 </span>
               </div>
 
-              {/* Title */}
+              {/* Big Partner Collaboration Header (Above title so text flows naturally below) */}
+              {event.collaborator && (
+                <div className="mb-5 pb-5 border-b border-slate-100 flex items-center gap-4 relative z-10">
+                  {event.collaborator.url ? (
+                    <a
+                      href={event.collaborator.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={`Visit ${event.collaborator.name} website`}
+                      className="group/partner-badge flex items-center gap-3.5 sm:gap-4 p-1.5 sm:p-2 -m-1.5 sm:-m-2 rounded-2xl hover:bg-slate-50/80 transition-all cursor-pointer"
+                    >
+                      <div className="p-2 sm:p-2.5 bg-white border-2 border-slate-200/90 rounded-2xl shadow-xs shrink-0 group-hover/partner-badge:border-[#C2410C] group-hover/partner-badge:shadow-sm transition-all">
+                        <img
+                          src={event.collaborator.logo}
+                          alt={event.collaborator.name}
+                          className="h-12 sm:h-16 md:h-20 w-auto max-w-[180px] sm:max-w-[240px] object-contain transition-transform group-hover/partner-badge:scale-105"
+                        />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-1.5 mb-1">
+                          <span className="w-2 h-2 rounded-full bg-[#C2410C] animate-pulse" />
+                          <span className="text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-wider text-[#C2410C]">
+                            OFFICIAL COLLABORATION
+                          </span>
+                        </div>
+                        <span className="text-sm sm:text-base md:text-lg font-black text-slate-900 group-hover/partner-badge:text-[#C2410C] transition-colors block leading-tight">
+                          In Collaboration with {event.collaborator.name} ↗
+                        </span>
+                      </div>
+                    </a>
+                  ) : (
+                    <div className="flex items-center gap-3.5 sm:gap-4">
+                      <div className="p-2 sm:p-2.5 bg-white border-2 border-slate-200/90 rounded-2xl shadow-xs shrink-0">
+                        <img
+                          src={event.collaborator.logo}
+                          alt={event.collaborator.name}
+                          className="h-12 sm:h-16 md:h-20 w-auto max-w-[180px] sm:max-w-[240px] object-contain"
+                        />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-1.5 mb-1">
+                          <span className="w-2 h-2 rounded-full bg-[#C2410C] animate-pulse" />
+                          <span className="text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-wider text-[#C2410C]">
+                            OFFICIAL COLLABORATION
+                          </span>
+                        </div>
+                        <span className="text-sm sm:text-base md:text-lg font-black text-slate-900 block leading-tight">
+                          In Collaboration with {event.collaborator.name}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Headline / Title (Full width below the logo) */}
               <h1 className="font-display text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-3 relative z-10">
                 {event.title}
               </h1>
@@ -825,6 +880,39 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                     <span className="text-slate-500 text-[11px]">Limited seats for curated gameplay</span>
                   </div>
                 </div>
+
+                {/* Collaboration Partner */}
+                {event.collaborator && (
+                  <div className="p-3 rounded-xl bg-white border border-slate-200 flex items-center justify-between gap-3 shadow-2xs">
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div className="w-9 h-9 rounded-lg bg-slate-50 border border-slate-200 p-1 flex items-center justify-center shrink-0">
+                        <img
+                          src={event.collaborator.logo}
+                          alt={event.collaborator.name}
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                      <div className="min-w-0">
+                        <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 block">
+                          Collaborated with
+                        </span>
+                        <span className="text-xs font-bold text-slate-900 block truncate">
+                          {event.collaborator.name}
+                        </span>
+                      </div>
+                    </div>
+                    {event.collaborator.url && (
+                      <a
+                        href={event.collaborator.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[11px] font-bold text-[#C2410C] hover:underline shrink-0"
+                      >
+                        Visit ↗
+                      </a>
+                    )}
+                  </div>
+                )}
               </div>
 
               {/* Available Slots Preview */}
@@ -1031,9 +1119,20 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                       <span className="font-bold text-slate-800 block truncate">
                         {event.title}
                       </span>
-                      <span className="text-slate-600 text-[11px] sm:text-xs block truncate">
-                        {event.formattedDate} · {event.time}
-                      </span>
+                      <div className="flex items-center gap-2 text-slate-600 text-[11px] sm:text-xs">
+                        <span className="truncate">{event.formattedDate} · {event.time}</span>
+                        {event.collaborator && (
+                          <span className="hidden sm:inline-flex items-center gap-1 pl-2 border-l border-sky-200 font-medium text-slate-700">
+                            <span>with</span>
+                            <img
+                              src={event.collaborator.logo}
+                              alt={event.collaborator.name}
+                              className="h-3.5 w-auto object-contain rounded-xs"
+                            />
+                            <span className="font-bold">{event.collaborator.name}</span>
+                          </span>
+                        )}
+                      </div>
                     </div>
                     <span className="font-bold text-[#0C2444] bg-sky-100 border border-sky-300 px-2 py-0.5 rounded-full text-[10px] sm:text-[11px] shrink-0 whitespace-nowrap">
                       {event.price}
@@ -1416,6 +1515,20 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                       <span className="text-slate-400 uppercase font-semibold text-[11px]">Venue</span>
                       <span className="font-bold text-slate-900 text-right truncate max-w-[200px]">{event.venue}</span>
                     </div>
+
+                    {event.collaborator && (
+                      <div className="flex justify-between items-center">
+                        <span className="text-slate-400 uppercase font-semibold text-[11px]">Collaborator</span>
+                        <span className="font-bold text-slate-900 text-right flex items-center gap-1.5">
+                          <img
+                            src={event.collaborator.logo}
+                            alt={event.collaborator.name}
+                            className="h-3.5 w-auto object-contain"
+                          />
+                          <span>{event.collaborator.name}</span>
+                        </span>
+                      </div>
+                    )}
 
                     <div className="flex justify-between items-center pt-2 border-t border-emerald-100">
                       <span className="text-slate-400 uppercase font-semibold text-[11px]">Attendee</span>

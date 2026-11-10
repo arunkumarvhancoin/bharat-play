@@ -3,7 +3,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, ChevronLeft, ChevronRight, Sparkles, Clock, MapPin, Users, Calendar as CalendarIcon } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Clock, MapPin, Users, Calendar as CalendarIcon } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
 export default function FeaturedEventHero() {
@@ -380,19 +380,19 @@ export default function FeaturedEventHero() {
                       </span>
                     </div>
 
-                    {/* Friendly Header Tag */}
-                    <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-amber-200/50 pt-1">
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0C2444] text-white text-xs font-bold tracking-wide">
-                        <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-                        The Board Room x Bharat Play
+                    {/* Top Status & Price Row */}
+                    <div className="flex items-center justify-between pb-3 mb-3 border-b border-amber-200/50 pt-1">
+                      <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-wider uppercase text-[#C2410C] flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-[#C2410C] animate-pulse" />
+                        <span>IN COLLABORATION WITH THE BOARD ROOM</span>
                       </span>
-                      <span className="text-xs font-bold text-white bg-[#15803D] px-3 py-0.5 rounded-full">
+                      <span className="text-xs font-bold text-white bg-[#15803D] px-3 py-1 rounded-full shadow-2xs">
                         {FEATURED_UPCOMING_EVENT.price}
                       </span>
                     </div>
 
-                    {/* Date Block & Title */}
-                    <div className="flex items-start gap-4 mb-4">
+                    {/* Date Block, Title & Big Partner Logo in Headline */}
+                    <div className="flex items-start gap-3.5 mb-4">
                       {/* Solid Matte Saffron Date Badge */}
                       <div className="shrink-0 flex flex-col items-center justify-center w-16 py-2 px-1.5 bg-[#C2410C] text-white rounded-2xl shadow-xs">
                         <span className="text-[10px] font-bold tracking-widest uppercase opacity-90 leading-none">
@@ -414,6 +414,15 @@ export default function FeaturedEventHero() {
                         <h3 className="font-display text-base sm:text-lg font-bold text-slate-900 leading-snug group-hover:text-brand-orange transition-colors">
                           {FEATURED_UPCOMING_EVENT.title}
                         </h3>
+                      </div>
+
+                      {/* Big Partner Logo in Headline Area */}
+                      <div className="shrink-0 p-1.5 sm:p-2 bg-white rounded-2xl border-2 border-slate-200 shadow-sm flex items-center justify-center">
+                        <img
+                          src="/partners/the-board-room.png"
+                          alt="The Board Room"
+                          className="h-12 sm:h-14 w-auto object-contain"
+                        />
                       </div>
                     </div>
 
