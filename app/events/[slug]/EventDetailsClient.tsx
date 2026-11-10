@@ -1337,11 +1337,6 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                           </>
                         )}
                       </button>
-                      <p className="text-[10px] sm:text-xs text-center text-slate-500 mt-2">
-                        {isSubmitting
-                          ? "Connecting to Bharat Play backend..."
-                          : "Instant seat reservation recorded with Bharat Play"}
-                      </p>
                     </div>
                   </form>
                 </div>
