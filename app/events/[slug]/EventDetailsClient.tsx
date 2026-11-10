@@ -37,8 +37,6 @@ interface EventDetailsClientProps {
   otherEvents: ScheduledEvent[];
 }
 
-const TEST_WHATSAPP_NUMBER = "8237132553"; // Bharat Play WhatsApp: +91 82371 32553
-
 export default function EventDetailsClient({ event, otherEvents }: EventDetailsClientProps) {
   const isNov14Event = event.id === "childrens-day-play-workshop" || event.date.includes("11-14");
   const [isBookingOpen, setIsBookingOpen] = useState(false);
