@@ -25,6 +25,9 @@ import {
   Video as VideoIcon,
   Maximize2,
   Utensils,
+  UploadCloud,
+  CheckCircle2,
+  Image as ImageIcon,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScheduledEvent } from "../../data/events";
@@ -50,6 +53,9 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [copiedLink, setCopiedLink] = useState(false);
   const [copiedAddress, setCopiedAddress] = useState(false);
+  const [paymentScreenshot, setPaymentScreenshot] = useState<string | null>(null);
+  const [screenshotFileName, setScreenshotFileName] = useState<string | null>(null);
+  const [isProcessingScreenshot, setIsProcessingScreenshot] = useState(false);
   const [activeMediaIndex, setActiveMediaIndex] = useState<number | null>(null);
   const [mediaFilter, setMediaFilter] = useState<"all" | "photos" | "videos">("all");
 
@@ -88,6 +94,60 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
     }
     setErrors(errs);
     return Object.keys(errs).length === 0;
+  };
+
+  // Handle payment screenshot selection and mobile-optimized compression
+  const handleScreenshotUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      alert("Please upload an image file (PNG, JPG, or WebP).");
+      return;
+    }
+
+    setIsProcessingScreenshot(true);
+    setScreenshotFileName(file.name);
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        let width = img.width;
+        let height = img.height;
+        const maxDim = 900;
+
+        if (width > maxDim || height > maxDim) {
+          if (width > height) {
+            height = Math.round((height * maxDim) / width);
+            width = maxDim;
+          } else {
+            width = Math.round((width * maxDim) / height);
+            height = maxDim;
+          }
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        if (ctx) {
+          ctx.drawImage(img, 0, 0, width, height);
+          const dataUrl = canvas.toDataURL("image/jpeg", 0.78);
+          setPaymentScreenshot(dataUrl);
+        } else {
+          setPaymentScreenshot(event.target?.result as string);
+        }
+        setIsProcessingScreenshot(false);
+      };
+      img.src = event.target?.result as string;
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleRemoveScreenshot = () => {
+    setPaymentScreenshot(null);
+    setScreenshotFileName(null);
   };
 
   // Build clean, friendly WhatsApp message
@@ -143,7 +203,8 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
           members: `${attendeesCount} ${attendeesCount === 1 ? "Member (Solo)" : `Members (Group of ${attendeesCount})`}`,
           slot: selectedSlot || "10:00 AM – 1:00 PM",
           totalPayable: payableAmount,
-          notes: `Event: ${event.title} | Date: ${event.formattedDate} (${event.time}) | Venue: ${event.venue}`,
+          paymentScreenshot: paymentScreenshot || null,
+          notes: `Event: ${event.title} | Date: ${event.formattedDate} (${event.time}) | Venue: ${event.venue}${paymentScreenshot ? " | Payment Screenshot Attached" : ""}`,
           source: "Bharat Play Registration Form",
         }),
         keepalive: true,
@@ -1225,6 +1286,64 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                           <p className="text-slate-700 leading-snug">1. Scan with GPay, PhonePe, Paytm, or BHIM.</p>
                           <p className="text-slate-700 leading-snug">2. Pay ₹{attendeesCount * 649} for {attendeesCount} {attendeesCount === 1 ? "seat" : "seats"}.</p>
                           <p className="text-slate-700 leading-snug">3. Take a screenshot &amp; confirm below to share on WhatsApp!</p>
+                        </div>
+
+                        {/* Payment Screenshot Upload */}
+                        <div className="pt-2 border-t border-emerald-200/60 text-left">
+                          <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-800 mb-1.5 flex items-center justify-between">
+                            <span className="flex items-center gap-1.5">
+                              <span>🧾</span> Upload Payment Screenshot
+                            </span>
+                            <span className="text-[10px] text-slate-500 font-normal normal-case">
+                              (Instant verification)
+                            </span>
+                          </label>
+
+                          {!paymentScreenshot ? (
+                            <label className="group relative flex flex-col items-center justify-center p-3.5 border-2 border-dashed border-[#0C2444]/40 hover:border-[#0C2444] rounded-xl bg-white hover:bg-sky-50/50 transition-all cursor-pointer text-center">
+                              <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleScreenshotUpload}
+                                className="sr-only"
+                              />
+                              <UploadCloud className="w-5 h-5 text-sky-600 group-hover:scale-110 transition-transform mb-1" />
+                              <span className="text-xs font-bold text-slate-800 block">
+                                {isProcessingScreenshot ? "Processing screenshot..." : "Tap to upload payment screenshot"}
+                              </span>
+                              <span className="text-[10px] text-slate-500 mt-0.5 block">
+                                GPay / PhonePe / Paytm screenshot (PNG or JPG)
+                              </span>
+                            </label>
+                          ) : (
+                            <div className="flex items-center justify-between p-2.5 bg-emerald-50 border border-emerald-300 rounded-xl">
+                              <div className="flex items-center gap-2.5 min-w-0">
+                                <div className="w-10 h-10 rounded-lg overflow-hidden border border-emerald-400 bg-white shrink-0">
+                                  <img
+                                    src={paymentScreenshot}
+                                    alt="Uploaded payment proof"
+                                    className="w-full h-full object-cover"
+                                  />
+                                </div>
+                                <div className="min-w-0">
+                                  <p className="text-xs font-bold text-emerald-900 flex items-center gap-1">
+                                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                                    <span>Screenshot Attached</span>
+                                  </p>
+                                  <p className="text-[10px] text-emerald-700 truncate max-w-[170px]">
+                                    {screenshotFileName || "payment_proof.jpg"}
+                                  </p>
+                                </div>
+                              </div>
+                              <button
+                                type="button"
+                                onClick={handleRemoveScreenshot}
+                                className="text-[10px] font-bold text-rose-600 hover:text-rose-800 bg-rose-50 hover:bg-rose-100 border border-rose-200 px-2 py-1 rounded-md transition-colors"
+                              >
+                                Remove
+                              </button>
+                            </div>
+                          )}
                         </div>
                       </div>
                     )}
