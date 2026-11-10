@@ -265,15 +265,12 @@ export default function AboutKudos() {
                 <p className="font-mono text-xs md:text-sm font-semibold text-brand-gray uppercase tracking-wider mb-5">
                   TRUSTED PARTNER INSTITUTIONS WORLDWIDE
                 </p>
-                <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed mb-5">
+                <p className="text-sm sm:text-base text-slate-700 font-medium leading-relaxed mb-6">
                   Collaborating with leading universities, global professional bodies, and research institutions worldwide to advance serious games, strategic simulations, and systems thinking.
                 </p>
 
                 {/* Curated Partner Logos Showcase */}
                 <div className="pt-2">
-                  <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500 block mb-3">
-                    FEATURED INSTITUTIONAL PARTNERS
-                  </span>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-6 sm:gap-x-8 sm:gap-y-7 items-center py-2">
                     {PARTNER_INSTITUTIONS.map((partner) => (
                       <a 
