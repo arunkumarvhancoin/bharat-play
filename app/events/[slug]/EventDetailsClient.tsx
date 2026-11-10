@@ -27,7 +27,7 @@ import {
   Utensils,
   UploadCloud,
   CheckCircle2,
-  Image as ImageIcon,
+  Loader2,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScheduledEvent } from "../../data/events";
@@ -49,6 +49,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [attendeesCount, setAttendeesCount] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [copiedLink, setCopiedLink] = useState(false);
@@ -116,7 +117,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
         const canvas = document.createElement("canvas");
         let width = img.width;
         let height = img.height;
-        const maxDim = 900;
+        const maxDim = 600;
 
         if (width > maxDim || height > maxDim) {
           if (width > height) {
@@ -133,7 +134,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
         const ctx = canvas.getContext("2d");
         if (ctx) {
           ctx.drawImage(img, 0, 0, width, height);
-          const dataUrl = canvas.toDataURL("image/jpeg", 0.78);
+          const dataUrl = canvas.toDataURL("image/jpeg", 0.65);
           setPaymentScreenshot(dataUrl);
         } else {
           setPaymentScreenshot(event.target?.result as string);
@@ -150,38 +151,11 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
     setScreenshotFileName(null);
   };
 
-  // Build clean, friendly WhatsApp message
-  const generateWhatsAppMessage = () => {
-    const totalPayable = isNov14Event ? attendeesCount * 649 : null;
-
-    return [
-      `🎲 *New Reservation · ${event.title}*`,
-      `━━━━━━━━━━━━━━━━━━━━━━━━━`,
-      `📅 *Date:* ${event.formattedDate} (${event.time})`,
-      `⏰ *Slot:* ${selectedSlot}`,
-      `📍 *Venue:* ${event.venue}${event.city && !event.venue.includes(event.city) ? `, ${event.city}` : ""}`,
-      `💰 *Admission / Price:* ${event.price}`,
-      ...(totalPayable
-        ? [
-            `💳 *Total Payable:* ₹${totalPayable} (₹${attendeesCount * 500} workshop + ₹${attendeesCount * 149} redeemed on Food & Beverages at cafe)`,
-          ]
-        : []),
-      ``,
-      `👤 *Attendee Details:*`,
-      `• *Name:* ${name.trim()}`,
-      `• *Phone:* ${phone.trim()}`,
-      `• *Email:* ${email.trim()}`,
-      `• *Number of Members:* ${attendeesCount} ${attendeesCount === 1 ? "Person (Solo)" : `Members / Group of ${attendeesCount}`}`,
-      ``,
-      isNov14Event
-        ? `Hi Bharat Play team! We have scanned the UPI QR to pay ₹${totalPayable}. Attaching our payment screenshot below to confirm our table! 😊`
-        : `Hi Bharat Play team! We'd like to reserve our seats for this session. Please confirm our reservation! 😊`,
-    ].join("\n");
-  };
-
-  const handleBookNow = (e: React.FormEvent) => {
+  const handleBookNow = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validate()) return;
+    if (!validate() || isSubmitting) return;
+
+    setIsSubmitting(true);
 
     // Send registration data to Niral CRM strictly for Bharat Play organization
     try {
@@ -193,47 +167,39 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
         process.env.NEXT_PUBLIC_CRM_API_URL ||
         "https://niral-crm.vercel.app/api/webhooks/bharat-play";
 
-      fetch(crmApiUrl, {
+      const payload = {
+        fullName: name.trim(),
+        email: email.trim(),
+        phone: phone.trim(),
+        members: `${attendeesCount} ${attendeesCount === 1 ? "Member (Solo)" : `Members (Group of ${attendeesCount})`}`,
+        slot: selectedSlot || "10:00 AM – 1:00 PM",
+        totalPayable: payableAmount,
+        paymentScreenshot: paymentScreenshot || null,
+        notes: `Event: ${event.title} | Date: ${event.formattedDate} (${event.time}) | Venue: ${event.venue}${paymentScreenshot ? " | Payment Screenshot Attached" : ""}`,
+        source: "Bharat Play Registration Form",
+      };
+
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 6000);
+
+      const res = await fetch(crmApiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fullName: name.trim(),
-          email: email.trim(),
-          phone: phone.trim(),
-          members: `${attendeesCount} ${attendeesCount === 1 ? "Member (Solo)" : `Members (Group of ${attendeesCount})`}`,
-          slot: selectedSlot || "10:00 AM – 1:00 PM",
-          totalPayable: payableAmount,
-          paymentScreenshot: paymentScreenshot || null,
-          notes: `Event: ${event.title} | Date: ${event.formattedDate} (${event.time}) | Venue: ${event.venue}${paymentScreenshot ? " | Payment Screenshot Attached" : ""}`,
-          source: "Bharat Play Registration Form",
-        }),
-        keepalive: true,
-      }).catch((err) => {
-        console.warn("CRM Lead sync error:", err);
+        signal: controller.signal,
+        body: JSON.stringify(payload),
       });
+
+      clearTimeout(timeoutId);
+
+      if (!res.ok) {
+        console.warn("CRM Lead sync response status:", res.status);
+      }
     } catch (err) {
       console.warn("CRM Lead sync error:", err);
-    }
-
-    const message = generateWhatsAppMessage();
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/91${TEST_WHATSAPP_NUMBER}?text=${encodedMessage}`;
-
-    // Show Thank You screen
-    setIsSubmitted(true);
-
-    // Open WhatsApp in new tab
-    if (typeof window !== "undefined") {
-      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
-    }
-  };
-
-  const openWhatsAppDirect = () => {
-    const message = generateWhatsAppMessage();
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/91${TEST_WHATSAPP_NUMBER}?text=${encodedMessage}`;
-    if (typeof window !== "undefined") {
-      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    } finally {
+      setIsSubmitting(false);
+      // Show Thank You screen directly once backend submission completes
+      setIsSubmitted(true);
     }
   };
 
@@ -901,7 +867,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
               {/* Sub-text reassurance */}
               <div className="mt-3.5 text-center">
                 <p className="text-[11px] text-slate-500 flex items-center justify-center gap-1.5">
-                  <span>⚡</span> Instant seat confirmation via WhatsApp (+91 {TEST_WHATSAPP_NUMBER})
+                  <span>⚡</span> Instant seat reservation confirmation
                 </p>
               </div>
 
@@ -1352,112 +1318,79 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                     <div className="pt-2">
                       <button
                         type="submit"
-                        className="w-full inline-flex items-center justify-center gap-2 bg-[#0C2444] hover:bg-[#13335c] active:scale-[0.99] text-white font-display text-xs sm:text-base font-bold py-3.5 sm:py-4 px-4 sm:px-6 rounded-full shadow-lg shadow-[#0C2444]/25 hover:shadow-[#0C2444]/40 transition-all cursor-pointer text-center"
+                        disabled={isSubmitting}
+                        className="w-full inline-flex items-center justify-center gap-2 bg-[#0C2444] hover:bg-[#13335c] active:scale-[0.99] text-white font-display text-xs sm:text-base font-bold py-3.5 sm:py-4 px-4 sm:px-6 rounded-full shadow-lg shadow-[#0C2444]/25 hover:shadow-[#0C2444]/40 transition-all cursor-pointer text-center disabled:opacity-75 disabled:cursor-not-allowed"
                       >
-                        <Ticket className="w-4 h-4 sm:w-5 sm:h-5 text-sky-300 shrink-0" />
-                        <span className="leading-tight">
-                          {event.badge?.toLowerCase().includes("early bird")
-                            ? "CONFIRM EARLY BIRD RESERVATION 🎉"
-                            : event.price.toLowerCase().includes("free")
-                            ? "CONFIRM FREE REGISTRATION 🎉"
-                            : `CONFIRM SEAT RESERVATION (₹${isNov14Event ? attendeesCount * 649 : event.price}) 🎉`}
-                        </span>
+                        {isSubmitting ? (
+                          <>
+                            <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 text-sky-300 animate-spin shrink-0" />
+                            <span className="leading-tight">CONFIRMING YOUR SEAT...</span>
+                          </>
+                        ) : (
+                          <>
+                            <Ticket className="w-4 h-4 sm:w-5 sm:h-5 text-sky-300 shrink-0" />
+                            <span className="leading-tight">
+                              {event.badge?.toLowerCase().includes("early bird")
+                                ? "CONFIRM EARLY BIRD RESERVATION 🎉"
+                                : event.price.toLowerCase().includes("free")
+                                ? "CONFIRM FREE REGISTRATION 🎉"
+                                : `CONFIRM SEAT RESERVATION (₹${isNov14Event ? attendeesCount * 649 : event.price}) 🎉`}
+                            </span>
+                          </>
+                        )}
                       </button>
                       <p className="text-[10px] sm:text-xs text-center text-slate-500 mt-2">
-                        Confirmation will be sent to WhatsApp (+91 {TEST_WHATSAPP_NUMBER})
+                        {isSubmitting
+                          ? "Connecting to Bharat Play backend..."
+                          : "Instant seat reservation recorded with Bharat Play"}
                       </p>
                     </div>
                   </form>
                 </div>
               ) : (
                 /* ========================================================= */
-                /* STEP 2: CELEBRATION & WHATSAPP CONFIRMATION SCREEN        */
+                /* STEP 2: CLEAN THANK YOU POP-UP SCREEN                     */
                 /* ========================================================= */
-                <div className="p-4 sm:p-8 text-center bg-white">
+                <div className="p-6 sm:p-8 text-center bg-white relative">
+                  {/* Top Right Close Button */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsBookingOpen(false);
+                      setIsSubmitted(false);
+                    }}
+                    className="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center text-lg transition-colors cursor-pointer"
+                    aria-label="Close thank you popup"
+                  >
+                    &times;
+                  </button>
+
                   <motion.div
-                    initial={{ scale: 0, rotate: -45 }}
+                    initial={{ scale: 0, rotate: -25 }}
                     animate={{ scale: 1, rotate: 0 }}
                     transition={{ type: "spring", duration: 0.5, bounce: 0.35 }}
-                    className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-sky-100 text-[#0C2444] flex items-center justify-center mx-auto mb-2.5 sm:mb-3 border-2 border-[#0C2444] shadow-md text-xl sm:text-2xl"
+                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-emerald-100 text-[#15803D] flex items-center justify-center mx-auto mb-3.5 border-2 border-emerald-500 shadow-md text-2xl sm:text-3xl"
                   >
-                    🥳
+                    🎉
                   </motion.div>
 
-                  <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#0C2444] block mb-1">
-                    {isNov14Event ? "SEATS RESERVED PENDING PAYMENT!" : "YOU'RE ON THE LIST!"}
+                  <span className="inline-block px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#15803D] mb-2 font-mono">
+                    SEAT RESERVATION CONFIRMED
                   </span>
 
-                  <h3 className="font-display text-xl sm:text-2xl font-black text-slate-900 mb-1">
+                  <h3 className="font-display text-2xl sm:text-3xl font-black text-slate-900 mb-2">
                     Thank You, {name}! 🎉
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-slate-600 max-w-sm mx-auto mb-3.5 sm:mb-4 leading-relaxed">
-                    {isNov14Event
-                      ? "Complete your payment via the UPI QR code below and share the screenshot on WhatsApp to confirm your table!"
-                      : `We're thrilled to have you for ${event.title}!`}
+                  <p className="text-xs sm:text-sm text-slate-600 max-w-sm mx-auto mb-5 leading-relaxed">
+                    Your reservation details have been securely recorded with our team. We look forward to hosting you for an unforgettable tabletop experience!
                   </p>
 
-                  {/* UPI QR PAYMENT BOX (For 14th Nov Event) */}
-                  {isNov14Event && (
-                    <div className="bg-[#FAFDF9] border-2 border-emerald-500/50 rounded-2xl p-3.5 sm:p-5 mb-4 sm:mb-5 text-center shadow-xs">
-                      <span className="inline-block px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-emerald-100 text-emerald-900 font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-wider mb-1.5 sm:mb-2">
-                        Scan UPI QR To Pay
-                      </span>
-                      <h4 className="font-display text-lg sm:text-xl font-black text-slate-900 mb-0.5 sm:mb-1">
-                        Total Payable: ₹{attendeesCount * 649}
-                      </h4>
-                      <p className="text-[11px] sm:text-xs text-slate-600 mb-2.5 sm:mb-3">
-                        ₹{attendeesCount * 500} workshop + <strong className="text-emerald-700">₹{attendeesCount * 149} redeemed on Food &amp; Beverages at cafe</strong>
-                      </p>
-
-                      {/* QR Code Image with Zoom */}
-                      <div
-                        onClick={() => setIsQrZoomed(true)}
-                        className="group relative mx-auto w-full max-w-[280px] sm:max-w-xs rounded-xl overflow-hidden border-2 border-[#0C2444] shadow-md mb-2 cursor-zoom-in transition-all hover:scale-[1.01] hover:shadow-lg bg-white"
-                        title="Click to zoom QR code"
-                      >
-                        <img
-                          src="/pay.jpeg"
-                          alt="Bharat Play UPI Payment QR - Click to zoom"
-                          className="w-full h-auto block"
-                        />
-                        <div className="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                          <span className="px-2.5 py-1 rounded-full bg-white/95 text-slate-900 font-bold text-[11px] shadow-md flex items-center gap-1">
-                            <Maximize2 className="w-3 h-3 text-[#0C2444]" />
-                            <span>Click to Zoom</span>
-                          </span>
-                        </div>
-                      </div>
-                      <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider block mb-2.5 sm:mb-3">
-                        🔍 Tap QR image to enlarge
-                      </span>
-
-                      <div className="bg-amber-50 border border-amber-200 rounded-xl p-2.5 sm:p-3 text-[11px] sm:text-xs text-amber-950 text-left space-y-1 mb-3.5 sm:mb-4">
-                        <p className="font-bold flex items-center gap-1.5 text-amber-900 text-[11px]">
-                          <span>📸</span> Instructions to Confirm Your Table:
-                        </p>
-                        <p className="text-slate-700 leading-snug">1. Scan with GPay, PhonePe, Paytm, or any UPI app.</p>
-                        <p className="text-slate-700 leading-snug">2. Pay <strong>₹{attendeesCount * 649}</strong> ({attendeesCount} {attendeesCount === 1 ? "seat" : "seats"}).</p>
-                        <p className="text-slate-700 leading-snug">3. Take a screenshot of the successful payment.</p>
-                        <p className="text-slate-700 leading-snug">4. Click below to share the screenshot on WhatsApp to confirm your table.</p>
-                      </div>
-
-                      <button
-                        type="button"
-                        onClick={openWhatsAppDirect}
-                        className="w-full inline-flex items-center justify-center gap-2 py-3 px-3.5 sm:py-3.5 sm:px-5 rounded-full bg-[#15803D] hover:bg-[#166534] active:scale-[0.99] text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-md shadow-emerald-700/20 transition-all cursor-pointer text-center"
-                      >
-                        <Send className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
-                        <span className="leading-tight">SHARE PAYMENT SCREENSHOT ON WHATSAPP (+91 {TEST_WHATSAPP_NUMBER})</span>
-                      </button>
-                    </div>
-                  )}
-
-                  {/* Ticket Receipt */}
-                  <div className="bg-[#FAFDF9] border border-sky-200/80 rounded-2xl p-4 mb-5 text-left text-xs space-y-2">
-                    <div className="flex justify-between items-center pb-2 border-b border-sky-100">
+                  {/* Ticket Receipt Summary */}
+                  <div className="bg-[#FAFDF9] border border-emerald-200/90 rounded-2xl p-4 sm:p-5 mb-6 text-left text-xs space-y-2.5 shadow-xs">
+                    <div className="flex justify-between items-center pb-2 border-b border-emerald-100">
                       <span className="text-slate-400 uppercase font-semibold text-[11px]">Event</span>
-                      <span className="font-bold text-slate-900 text-right">{event.title}</span>
+                      <span className="font-bold text-slate-900 text-right truncate max-w-[200px] sm:max-w-xs">{event.title}</span>
                     </div>
 
                     <div className="flex justify-between items-center">
@@ -1468,54 +1401,47 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                     <div className="flex justify-between items-center">
                       <span className="text-slate-400 uppercase font-semibold text-[11px]">Members</span>
                       <span className="font-bold text-[#0C2444] text-right">
-                        {attendeesCount} {attendeesCount === 1 ? "Member (Solo)" : "Members"}
+                        {attendeesCount} {attendeesCount === 1 ? "Member (Solo)" : `Members (Group of ${attendeesCount})`}
                       </span>
                     </div>
 
                     {isNov14Event && (
                       <div className="flex justify-between items-center">
                         <span className="text-slate-400 uppercase font-semibold text-[11px]">Amount</span>
-                        <span className="font-bold text-[#0C2444] text-right">
+                        <span className="font-bold text-[#15803D] text-right">
                           ₹{attendeesCount * 649} (₹{attendeesCount * 500} + ₹{attendeesCount * 149} Food &amp; Beverages)
                         </span>
                       </div>
                     )}
 
                     <div className="flex justify-between items-center">
-                      <span className="text-slate-400 uppercase font-semibold text-[11px]">Date</span>
-                      <span className="font-bold text-slate-900 text-right">{event.formattedDate}</span>
+                      <span className="text-slate-400 uppercase font-semibold text-[11px]">Date &amp; Time</span>
+                      <span className="font-bold text-slate-900 text-right">{event.formattedDate} ({event.time})</span>
                     </div>
 
-                    <div className="flex justify-between items-center pt-2 border-t border-sky-100">
+                    <div className="flex justify-between items-center">
+                      <span className="text-slate-400 uppercase font-semibold text-[11px]">Venue</span>
+                      <span className="font-bold text-slate-900 text-right truncate max-w-[200px]">{event.venue}</span>
+                    </div>
+
+                    <div className="flex justify-between items-center pt-2 border-t border-emerald-100">
                       <span className="text-slate-400 uppercase font-semibold text-[11px]">Attendee</span>
                       <span className="font-bold text-slate-900">{name} ({phone})</span>
                     </div>
                   </div>
 
-                  {/* Secondary Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-3">
-                    <button
-                      type="button"
-                      onClick={downloadCalendarFile}
-                      className="inline-flex items-center justify-center gap-2 py-3 px-6 rounded-full bg-sky-50 hover:bg-sky-100 text-[#0C2444] border border-sky-200 font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer w-full"
-                    >
-                      <Download className="w-4 h-4 text-[#0C2444]" />
-                      <span>SAVE TO CALENDAR (.ICS)</span>
-                    </button>
-                  </div>
-
-                  <div className="mt-5">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setIsBookingOpen(false);
-                        setIsSubmitted(false);
-                      }}
-                      className="text-xs font-semibold text-slate-400 hover:text-slate-700 transition-colors underline cursor-pointer"
-                    >
-                      Close and return to page
-                    </button>
-                  </div>
+                  {/* Clean Done Button */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsBookingOpen(false);
+                      setIsSubmitted(false);
+                    }}
+                    className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-[#0C2444] hover:bg-[#13335c] active:scale-[0.99] text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-md shadow-[#0C2444]/20 transition-all cursor-pointer"
+                  >
+                    <Check className="w-4 h-4 text-emerald-400" />
+                    <span>Done</span>
+                  </button>
                 </div>
               )}
             </motion.div>
