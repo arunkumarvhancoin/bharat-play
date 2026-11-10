@@ -123,6 +123,37 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
     e.preventDefault();
     if (!validate()) return;
 
+    // Send registration data to Niral CRM strictly for Bharat Play organization
+    try {
+      const payableAmount = isNov14Event
+        ? attendeesCount * 649
+        : parseInt(event.price.replace(/[^0-9]/g, "")) || 649;
+
+      const crmApiUrl =
+        process.env.NEXT_PUBLIC_CRM_API_URL ||
+        "https://niral-crm.vercel.app/api/webhooks/bharat-play";
+
+      fetch(crmApiUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: name.trim(),
+          email: email.trim(),
+          phone: phone.trim(),
+          members: `${attendeesCount} ${attendeesCount === 1 ? "Member (Solo)" : `Members (Group of ${attendeesCount})`}`,
+          slot: selectedSlot || "10:00 AM – 1:00 PM",
+          totalPayable: payableAmount,
+          notes: `Event: ${event.title} | Date: ${event.formattedDate} (${event.time}) | Venue: ${event.venue}`,
+          source: "Bharat Play Registration Form",
+        }),
+        keepalive: true,
+      }).catch((err) => {
+        console.warn("CRM Lead sync error:", err);
+      });
+    } catch (err) {
+      console.warn("CRM Lead sync error:", err);
+    }
+
     const message = generateWhatsAppMessage();
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/91${TEST_WHATSAPP_NUMBER}?text=${encodedMessage}`;
