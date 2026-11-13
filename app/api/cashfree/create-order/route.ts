@@ -145,8 +145,8 @@ export async function POST(request: Request) {
           phone: cleanPhone,
           members: `${attendeesCount} ${
             attendeesCount === 1 ? "Member (Solo)" : `Members (${attendeesCount})`
-          } • NOT PAID`,
-          slot: `${slot} • NOT PAID`,
+          }`,
+          slot: slot,
           totalPayable: parseFloat(amount),
           paymentScreenshot: proofBadge,
           paymentProof: proofBadge,
