@@ -123,7 +123,7 @@ export async function POST(request: Request) {
       );
     }
 
-    // Optional: Sync lead to CRM as payment initiated
+    // Sync lead to CRM as payment initiated via Cashfree
     try {
       const crmApiUrl =
         process.env.NEXT_PUBLIC_CRM_API_URL ||
@@ -141,8 +141,10 @@ export async function POST(request: Request) {
           }`,
           slot,
           totalPayable: parseFloat(amount),
-          notes: `Event: ${eventTitle} | Slot: ${slot} | Cashfree Link: ${data.link_url} | Status: Payment Initiated`,
-          source: "Bharat Play Cashfree Checkout",
+          notes: `Event: ${eventTitle} | Slot: ${slot} | Status: Payment Initiated via Cashfree | Link: ${data.link_url}`,
+          source: "Paid via Cashfree (Initiated)",
+          paymentMethod: "Cashfree",
+          paymentStatus: "INITIATED",
         }),
       });
     } catch (crmErr) {

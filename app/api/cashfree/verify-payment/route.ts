@@ -71,13 +71,13 @@ export async function GET(request: NextRequest) {
     const status = (data.link_status || data.order_status || "UNKNOWN").toUpperCase();
     const isPaid = status === "PAID" || (data.link_amount_paid && data.link_amount_paid > 0);
 
-    // If paid, notify CRM of successful payment
-    if (isPaid) {
-      try {
-        const crmApiUrl =
-          process.env.NEXT_PUBLIC_CRM_API_URL ||
-          "https://niral-crm.vercel.app/api/webhooks/bharat-play";
+    // Notify CRM with detailed status
+    try {
+      const crmApiUrl =
+        process.env.NEXT_PUBLIC_CRM_API_URL ||
+        "https://niral-crm.vercel.app/api/webhooks/bharat-play";
 
+      if (isPaid) {
         await fetch(crmApiUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -85,14 +85,33 @@ export async function GET(request: NextRequest) {
             fullName: data.customer_details?.customer_name,
             email: data.customer_details?.customer_email,
             phone: data.customer_details?.customer_phone,
-            totalPayable: data.link_amount || data.order_amount,
-            notes: `Cashfree Payment Confirmed! ID: ${targetId} | Status: ${status}`,
-            source: "Bharat Play Payment Verification",
+            members: `${data.link_notes?.attendeesCount || 1} Member(s)`,
+            slot: data.link_notes?.slot || "Standard Slot",
+            totalPayable: data.link_amount_paid || data.link_amount || data.order_amount,
+            notes: `PAID VIA CASHFREE | Event: ${data.link_notes?.eventTitle || data.link_purpose || "Bharat Play Event"} | Ref: ${targetId} | Status: PAID`,
+            source: "Paid via Cashfree",
+            paymentStatus: "PAID",
           }),
         });
-      } catch (crmErr) {
-        console.warn("CRM payment update notice:", crmErr);
+      } else {
+        await fetch(crmApiUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            fullName: data.customer_details?.customer_name,
+            email: data.customer_details?.customer_email,
+            phone: data.customer_details?.customer_phone,
+            members: `${data.link_notes?.attendeesCount || 1} Member(s)`,
+            slot: data.link_notes?.slot || "Standard Slot",
+            totalPayable: data.link_amount || data.order_amount,
+            notes: `Cashfree Payment Incomplete / Not Paid | Event: ${data.link_notes?.eventTitle || data.link_purpose || "Bharat Play Event"} | Ref: ${targetId} | Status: ${status}`,
+            source: "Cashfree Payment Incomplete",
+            paymentStatus: "PENDING",
+          }),
+        });
       }
+    } catch (crmErr) {
+      console.warn("CRM payment update notice:", crmErr);
     }
 
     return NextResponse.json({
@@ -106,6 +125,7 @@ export async function GET(request: NextRequest) {
       customer: data.customer_details,
       notes: data.link_notes || {},
       purpose: data.link_purpose || data.order_note,
+      paymentUrl: data.link_url || null,
       createdAt: data.link_created_at || data.created_at,
     });
   } catch (err: unknown) {

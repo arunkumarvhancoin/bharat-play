@@ -38,6 +38,7 @@ interface PaymentDetails {
     attendeesCount?: string;
   };
   purpose?: string;
+  paymentUrl?: string | null;
   createdAt?: string;
 }
 
@@ -324,44 +325,132 @@ export default function ReservationStatusClient() {
             </div>
           </motion.div>
         ) : (
-          /* Payment Pending or Incomplete Screen */
-          <div className="bg-white border-2 border-amber-500 rounded-[26px] overflow-hidden shadow-xl sm:[box-shadow:12px_12px_0px_#f59e0b]">
-            <div className="bg-gradient-to-r from-amber-500 to-amber-600 text-white px-6 py-8 text-center">
-              <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm border-2 border-white/40 flex items-center justify-center mx-auto mb-3">
-                <Clock className="w-8 h-8 text-white" />
+          /* Payment Incomplete / Not Paid Screen */
+          <div className="bg-white border-2 border-rose-500 rounded-[26px] overflow-hidden shadow-xl sm:[box-shadow:12px_12px_0px_#e11d48]">
+            <div className="bg-gradient-to-r from-[#C2410C] via-rose-600 to-[#C2410C] text-white px-6 py-8 text-center">
+              <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm border-2 border-white/40 flex items-center justify-center mx-auto mb-3.5 shadow-md">
+                <AlertCircle className="w-9 h-9 text-white" />
               </div>
-              <span className="font-mono text-[11px] font-bold tracking-widest uppercase text-amber-100 block mb-1">
-                TRANSACTION STATUS
+              <span className="font-mono text-[11px] font-bold tracking-widest uppercase text-rose-100 block mb-1">
+                TRANSACTION INCOMPLETE · CASHFREE
               </span>
               <h1 className="font-display text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">
-                Payment {data?.status === "ACTIVE" ? "Awaiting Payment" : data?.status}
+                Payment Has Not Been Done
               </h1>
-              <p className="text-xs sm:text-sm text-amber-50 mt-1 max-w-md mx-auto">
-                Your payment session was initiated but not completed yet.
+              <p className="text-xs sm:text-sm text-rose-50 mt-1 max-w-md mx-auto">
+                We haven&apos;t received your payment yet. Your seat is not reserved.
               </p>
             </div>
 
-            <div className="p-6 sm:p-8 space-y-5 text-center">
-              <p className="text-xs sm:text-sm text-slate-600">
-                If money was deducted from your account, Cashfree will automatically reconcile and confirm your reservation within a few minutes.
-              </p>
+            <div className="p-6 sm:p-8 space-y-6">
+              {/* Payment Summary */}
+              <div className="bg-rose-50/70 border border-rose-200 rounded-2xl p-4 sm:p-5 flex items-center justify-between gap-4 flex-wrap">
+                <div>
+                  <span className="font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-500 block">
+                    Amount Pending
+                  </span>
+                  <div className="font-display text-2xl sm:text-3xl font-black text-rose-700">
+                    ₹{data?.amount || 649}
+                  </div>
+                  <span className="font-mono text-[10px] text-rose-600 font-semibold block mt-0.5">
+                    Status: {data?.status === "ACTIVE" ? "Pending / Awaiting Payment" : data?.status}
+                  </span>
+                </div>
+                <div className="text-right">
+                  <span className="font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-500 block">
+                    Reference ID
+                  </span>
+                  <span className="font-mono text-xs font-bold text-slate-800 bg-white border border-slate-200 px-2.5 py-1 rounded-md block mt-1">
+                    {data?.linkId || linkId || orderId}
+                  </span>
+                </div>
+              </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
+              {/* Event Details Preview */}
+              {matchedEvent && (
+                <div className="border border-slate-200 rounded-2xl p-4 sm:p-5 bg-slate-50/70 space-y-2.5">
+                  <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500 block">
+                    EVENT YOU ARE BOOKING:
+                  </span>
+                  <h3 className="font-display text-base sm:text-lg font-bold text-brand-navy">
+                    {matchedEvent.title}
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700 font-medium">
+                    <div className="flex items-center gap-2">
+                      <Calendar className="w-3.5 h-3.5 text-brand-orange shrink-0" />
+                      <span>{matchedEvent.formattedDate}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <MapPin className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                      <span className="truncate">{matchedEvent.venue}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Helpful Explanation */}
+              <div className="bg-amber-50/80 border border-amber-200 rounded-2xl p-4 text-xs text-amber-950 space-y-1.5">
+                <p className="font-bold flex items-center gap-1.5 text-amber-900">
+                  <span>💡</span> What happened?
+                </p>
+                <p className="text-slate-700 leading-relaxed">
+                  • If your payment was interrupted or cancelled, you can click <strong>&quot;Try Again &amp; Pay Now&quot;</strong> below to complete it via UPI, Cards, or NetBanking.
+                </p>
+                <p className="text-slate-700 leading-relaxed">
+                  • If money was already deducted from your bank account, please click <strong>&quot;Check Status Again&quot;</strong> or ping us on WhatsApp with your payment screenshot for immediate assistance.
+                </p>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                {data?.paymentUrl ? (
+                  <a
+                    href={data.paymentUrl}
+                    className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-mono text-xs font-bold uppercase tracking-wider transition-all shadow-md hover:scale-[1.01]"
+                  >
+                    <span>Try Again &amp; Pay Now &rarr;</span>
+                  </a>
+                ) : (
+                  <Link
+                    href={matchedEvent ? `/events/${matchedEvent.id}` : "/events"}
+                    className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-mono text-xs font-bold uppercase tracking-wider transition-all shadow-md hover:scale-[1.01]"
+                  >
+                    <span>Try Again &amp; Pay Now &rarr;</span>
+                  </Link>
+                )}
+
                 <button
                   type="button"
                   onClick={fetchStatus}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#0C2444] text-white font-mono text-xs font-bold uppercase tracking-wider hover:bg-[#13335c] transition-all cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full bg-[#0C2444] text-white font-mono text-xs font-bold uppercase tracking-wider hover:bg-[#13335c] transition-all cursor-pointer"
                 >
                   <RefreshCw className="w-3.5 h-3.5" />
                   <span>Check Status Again</span>
                 </button>
+              </div>
 
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-100 text-xs">
                 <Link
                   href={matchedEvent ? `/events/${matchedEvent.id}` : "/events"}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-orange-600 hover:bg-orange-700 text-white font-mono text-xs font-bold uppercase tracking-wider transition-all"
+                  className="inline-flex items-center gap-1.5 font-bold font-mono text-slate-500 hover:text-brand-orange transition-colors uppercase tracking-wider"
                 >
-                  <span>Retry Booking</span>
+                  <ArrowRight className="w-3.5 h-3.5 rotate-180" />
+                  <span>Back to Event</span>
                 </Link>
+
+                <a
+                  href={`https://wa.me/918237132553?text=${encodeURIComponent(
+                    `Hi Bharat Play! My payment was incomplete for ${
+                      matchedEvent?.title || "your event"
+                    } (Ref: ${data?.linkId || linkId || orderId}). Could you please help me confirm my reservation?`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 font-bold font-mono text-emerald-700 hover:text-emerald-800 transition-colors uppercase tracking-wider"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  <span>Help on WhatsApp</span>
+                </a>
               </div>
             </div>
           </div>
