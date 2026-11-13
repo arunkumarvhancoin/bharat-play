@@ -412,7 +412,7 @@ export default function ReservationStatusClient() {
                   </a>
                 ) : (
                   <Link
-                    href={matchedEvent ? `/events/${matchedEvent.id}` : "/events"}
+                    href={matchedEvent ? `/events/${matchedEvent.id}?open_booking=true` : "/events"}
                     className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-mono text-xs font-bold uppercase tracking-wider transition-all shadow-md hover:scale-[1.01]"
                   >
                     <span>Try Again &amp; Pay Now &rarr;</span>

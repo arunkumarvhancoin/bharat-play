@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   Calendar,
@@ -53,6 +53,65 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
   const [activeMediaIndex, setActiveMediaIndex] = useState<number | null>(null);
   const [mediaFilter, setMediaFilter] = useState<"all" | "photos" | "videos">("all");
 
+  // On page mount: check if returning from Cashfree (link_id) or if book popup should open
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    // Restore draft details from localStorage if attendee was previously filling the form
+    try {
+      const saved = localStorage.getItem("bp_attendee_draft");
+      if (saved) {
+        const d = JSON.parse(saved);
+        if (d.name && !name) setName(d.name);
+        if (d.email && !email) setEmail(d.email);
+        if (d.phone && !phone) setPhone(d.phone);
+        if (d.slot && !selectedSlot) setSelectedSlot(d.slot);
+        if (d.attendeesCount) setAttendeesCount(d.attendeesCount);
+      }
+    } catch {}
+
+    const params = new URLSearchParams(window.location.search);
+    const linkId = params.get("link_id");
+    const orderId = params.get("order_id");
+    const shouldOpen = params.get("open_booking") === "true" || params.get("book") === "true";
+
+    if (linkId || orderId) {
+      const query = linkId
+        ? `link_id=${encodeURIComponent(linkId)}`
+        : `order_id=${encodeURIComponent(orderId || "")}`;
+
+      fetch(`/api/cashfree/verify-payment?${query}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.isPaid) {
+            // Payment successful: Show confirmed popup
+            setIsBookingOpen(true);
+            setIsSubmitted(true);
+            setSubmitError(null);
+            if (data.customer?.customer_name) setName(data.customer.customer_name);
+            if (data.customer?.customer_email) setEmail(data.customer.customer_email);
+            if (data.customer?.customer_phone) setPhone(data.customer.customer_phone);
+          } else {
+            // Payment failed or incomplete: Re-open the booking popup so user can retry immediately!
+            setIsBookingOpen(true);
+            setIsSubmitted(false);
+            setSubmitError(
+              "⚠️ Payment has not been completed or was cancelled. Your seat is not reserved yet. Please review your details and click below to try again."
+            );
+          }
+        })
+        .catch(() => {
+          setIsBookingOpen(true);
+          setIsSubmitted(false);
+          setSubmitError(
+            "⚠️ Payment has not been completed. Please check your network or try again."
+          );
+        });
+    } else if (shouldOpen) {
+      setIsBookingOpen(true);
+    }
+  }, []);
+
   const eventMedia = event.media && event.media.length > 0 ? event.media : [];
 
   const filteredMedia = eventMedia.filter((item) => {
@@ -93,6 +152,22 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
 
     // IF PAID EVENT: Call Cashfree API to initialize instant online checkout!
     if (!isFree && payableAmount > 0) {
+      // Save attendee draft so when returning from Cashfree, details are preserved
+      if (typeof window !== "undefined") {
+        try {
+          localStorage.setItem(
+            "bp_attendee_draft",
+            JSON.stringify({
+              name: name.trim(),
+              email: email.trim(),
+              phone: phone.trim(),
+              slot: selectedSlot,
+              attendeesCount,
+            })
+          );
+        } catch {}
+      }
+
       try {
         const res = await fetch("/api/cashfree/create-order", {
           method: "POST",
@@ -100,6 +175,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
           body: JSON.stringify({
             eventId: event.id,
             eventTitle: event.title,
+            eventSlug: event.id,
             name: name.trim(),
             email: email.trim(),
             phone: phone.trim(),

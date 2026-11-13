@@ -70,9 +70,8 @@ export async function POST(request: Request) {
       request.headers.get("referer") ||
       "https://bharatplay.com";
 
-    const defaultReturnUrl = `${origin.replace(/\/$/, "")}/reservation/status?link_id={link_id}&event_id=${encodeURIComponent(
-      eventId || ""
-    )}`;
+    const eventSlug = body.eventSlug || (body.eventId ? String(body.eventId) : "saturdays-4-social-games");
+    const defaultReturnUrl = `${origin.replace(/\/$/, "")}/events/${eventSlug}?link_id={link_id}`;
 
     const finalReturnUrl = returnUrl || defaultReturnUrl;
 
