@@ -206,12 +206,13 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
         paymentStatus: isFree ? "FREE" : "UNPAID",
       };
 
-      // Non-blocking quick dispatch so CRM receives details immediately upon button click
-      fetch(crmApiUrl, {
+      // Await quick dispatch with keepalive so browser navigation cannot abort the request
+      await fetch(crmApiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(crmPayload),
-      }).catch((crmErr) => console.warn("Direct CRM sync notice:", crmErr));
+        keepalive: true,
+      });
     } catch (e) {
       console.warn("CRM lead dispatch notice:", e);
     }
