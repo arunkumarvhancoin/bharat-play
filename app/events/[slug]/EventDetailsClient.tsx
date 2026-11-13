@@ -46,6 +46,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
   const [attendeesCount, setAttendeesCount] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [copiedLink, setCopiedLink] = useState(false);
   const [copiedAddress, setCopiedAddress] = useState(false);
@@ -83,6 +84,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
     if (!validate() || isSubmitting) return;
 
     setIsSubmitting(true);
+    setSubmitError(null);
 
     const isFree = event.price.toLowerCase().includes("free");
     const payableAmount = isNov14Event
@@ -114,13 +116,13 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
           window.location.href = data.paymentUrl;
           return;
         } else {
-          alert(data.error || "Unable to initiate payment gateway. Please try again.");
+          setSubmitError(data.error || "Unable to initiate payment gateway. Please try again.");
           setIsSubmitting(false);
           return;
         }
       } catch (err) {
         console.error("Cashfree checkout initiation error:", err);
-        alert("Network error connecting to payment gateway. Please try again.");
+        setSubmitError("Network error connecting to payment gateway. Please try again.");
         setIsSubmitting(false);
         return;
       }
@@ -1293,6 +1295,14 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                             Click below to complete secure payment with <strong>UPI (GPay, PhonePe, Paytm), Cards, or NetBanking</strong>. Instant receipt and reservation confirmation will be provided!
                           </p>
                         </div>
+                      </div>
+                    )}
+
+                    {/* Error Banner if Payment Fails */}
+                    {submitError && (
+                      <div className="p-3 rounded-xl bg-rose-50 border border-rose-300 text-rose-700 text-xs font-medium flex items-start gap-2">
+                        <span className="text-base leading-none shrink-0">⚠️</span>
+                        <span>{submitError}</span>
                       </div>
                     )}
 
