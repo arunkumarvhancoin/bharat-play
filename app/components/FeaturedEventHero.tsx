@@ -53,8 +53,8 @@ export default function FeaturedEventHero() {
     category: "CHILDREN'S DAY SPECIAL",
     game: "CITY RUNNERS",
     venue: "The Board Room, Mylapore",
-    capacity: "6 Players/Table · Age 12+",
-    price: "INR 649 / pax",
+    capacity: "6 Players/Table · Age 10+",
+    price: "INR 649 / pax (Pay at Venue)",
     href: "/events/childrens-day-play-workshop",
   };
 
@@ -432,14 +432,13 @@ export default function FeaturedEventHero() {
                     </p>
 
                     {/* Quick Metadata */}
-                    <div className="flex items-center justify-between text-xs text-slate-600 pb-4 mb-4 border-b border-amber-200/50 font-medium">
+                    <div className="flex items-center justify-between text-xs text-slate-600 pb-3 mb-3 border-b border-amber-200/50 font-medium flex-wrap gap-2">
                       <span className="flex items-center gap-1.5">
                         <MapPin className="w-3.5 h-3.5 text-brand-orange shrink-0" />
                         <span className="font-semibold text-slate-900">{FEATURED_UPCOMING_EVENT.venue}</span>
                       </span>
-                      <span className="flex items-center gap-1.5">
-                        <Users className="w-3.5 h-3.5 text-brand-orange shrink-0" />
-                        <span>{FEATURED_UPCOMING_EVENT.capacity}</span>
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-mono text-[10px] font-bold uppercase tracking-wider border border-emerald-300">
+                        💵 PAY AT VENUE · ₹649
                       </span>
                     </div>
 

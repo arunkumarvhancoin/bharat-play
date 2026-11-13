@@ -91,9 +91,7 @@ export async function POST(request: Request) {
       ? returnUrl.replace("{order_id}", orderId).replace("{link_id}", orderId)
       : defaultReturnUrl;
 
-    // For test payment: Cashfree strictly requires order_amount >= 1.00 INR.
-    // Set to 1.00 INR for testing without modifying frontend website pricing details.
-    const orderAmount = 1.00;
+    const orderAmount = parseFloat(amount);
 
     const payload = {
       order_id: orderId,
@@ -109,7 +107,9 @@ export async function POST(request: Request) {
         return_url: finalReturnUrl,
         notify_url: `${baseUrlForReturn}/api/cashfree/webhook`,
       },
-      order_note: `Bharat Play: ${eventTitle || "Seat Reservation"} (${attendeesCount} pax)`.slice(0, 100),
+      order_note: `Bharat Play: ${eventTitle || "Seat Reservation"}`
+        .replace(/[^\w\s:.-]/g, "")
+        .slice(0, 100),
     };
 
     const res = await fetch(`${baseUrl}/orders`, {

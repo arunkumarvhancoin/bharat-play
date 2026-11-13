@@ -26,6 +26,7 @@ import {
   Maximize2,
   Utensils,
   Loader2,
+  MessageCircle,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScheduledEvent } from "../../data/events";
@@ -64,94 +65,28 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
   const [activeMediaIndex, setActiveMediaIndex] = useState<number | null>(null);
   const [mediaFilter, setMediaFilter] = useState<"all" | "photos" | "videos">("all");
 
-  // On page mount / browser back: check if returning from Cashfree (link_id) or if checkout was pending
+  // On page mount / browser back: restore draft and check URL query
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const checkPaymentReturn = () => {
-      // Ensure submit button is always active and not stuck
-      setIsSubmitting(false);
+    setIsSubmitting(false);
 
-      // Restore draft details from localStorage if attendee was previously filling the form
-      try {
-        const saved = localStorage.getItem("bp_attendee_draft");
-        if (saved) {
-          const d = JSON.parse(saved);
-          if (d.name) setName(d.name);
-          if (d.email) setEmail(d.email);
-          if (d.phone) setPhone(d.phone);
-          if (d.slot) setSelectedSlot(d.slot);
-          if (d.attendeesCount) setAttendeesCount(d.attendeesCount);
-        }
-      } catch {}
-
-      const params = new URLSearchParams(window.location.search);
-      const linkId = params.get("link_id");
-      const orderId = params.get("order_id");
-      const shouldOpen = params.get("open_booking") === "true" || params.get("book") === "true";
-      const hasPendingCheckout = Boolean(sessionStorage.getItem("bp_pending_checkout"));
-
-      if (linkId || orderId) {
-        sessionStorage.removeItem("bp_pending_checkout");
-        const query = linkId
-          ? `link_id=${encodeURIComponent(linkId)}`
-          : `order_id=${encodeURIComponent(orderId || "")}`;
-
-        fetch(`/api/cashfree/verify-payment?${query}`)
-          .then((res) => res.json())
-          .then((data) => {
-            try {
-              window.history.replaceState({}, "", window.location.pathname);
-            } catch {}
-            setIsSubmitting(false);
-            if (data.isPaid) {
-              // Payment successful: Show confirmed popup
-              setIsBookingOpen(true);
-              setIsSubmitted(true);
-              setSubmitError(null);
-              if (data.customer?.customer_name) setName(data.customer.customer_name);
-              if (data.customer?.customer_email) setEmail(data.customer.customer_email);
-              if (data.customer?.customer_phone) setPhone(data.customer.customer_phone);
-            } else {
-              // Payment failed or incomplete: Re-open the booking popup asking to pay!
-              setIsBookingOpen(true);
-              setIsSubmitted(false);
-              setSubmitError(
-                "⚠️ Payment was not completed or was cancelled. Your seat is not reserved yet. Please review your details and click below to try again."
-              );
-            }
-          })
-          .catch(() => {
-            try {
-              window.history.replaceState({}, "", window.location.pathname);
-            } catch {}
-            setIsSubmitting(false);
-            setIsBookingOpen(true);
-            setIsSubmitted(false);
-            setSubmitError(
-              "⚠️ Payment has not been completed. Please check your network or try again."
-            );
-          });
-      } else if (hasPendingCheckout) {
-        // User went to Cashfree and came back / cancelled without query param redirect
-        sessionStorage.removeItem("bp_pending_checkout");
-        setIsSubmitting(false);
-        setIsBookingOpen(true);
-        setIsSubmitted(false);
-        setSubmitError(
-          "⚠️ Payment was cancelled. Your seat is not reserved yet. Please review your details and click below to try again."
-        );
-      } else if (shouldOpen) {
-        setIsSubmitting(false);
-        setIsBookingOpen(true);
+    try {
+      const saved = localStorage.getItem("bp_attendee_draft");
+      if (saved) {
+        const d = JSON.parse(saved);
+        if (d.name) setName(d.name);
+        if (d.email) setEmail(d.email);
+        if (d.phone) setPhone(d.phone);
+        if (d.slot) setSelectedSlot(d.slot);
+        if (d.attendeesCount) setAttendeesCount(d.attendeesCount);
       }
-    };
+    } catch {}
 
-    checkPaymentReturn();
-    window.addEventListener("pageshow", checkPaymentReturn);
-    return () => {
-      window.removeEventListener("pageshow", checkPaymentReturn);
-    };
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("open_booking") === "true" || params.get("book") === "true") {
+      setIsBookingOpen(true);
+    }
   }, []);
 
   const eventMedia = event.media && event.media.length > 0 ? event.media : [];
@@ -183,228 +118,57 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
     return Object.keys(errs).length === 0;
   };
 
-  const handleBookNow = async (e: React.FormEvent) => {
+  // Build clean, friendly WhatsApp reservation message
+  const generateWhatsAppMessage = () => {
+    const isFree = event.price.toLowerCase().includes("free");
+    const perPax = parseInt(event.price.replace(/[^0-9]/g, "")) || 649;
+    const totalPayable = isNov14Event
+      ? attendeesCount * 649
+      : isFree ? 0 : attendeesCount * perPax;
+
+    return [
+      `🎲 *New Reservation Request · Bharat Play*`,
+      `━━━━━━━━━━━━━━━━━━━━━━━━━`,
+      `🎯 *Event:* ${event.title}`,
+      `📅 *Date:* ${event.formattedDate} (${event.time})`,
+      `⏰ *Slot:* ${selectedSlot || "Standard Slot"}`,
+      `📍 *Venue:* ${event.venue}${event.city && !event.venue.includes(event.city) ? `, ${event.city}` : ""}`,
+      `💰 *Admission:* ${event.price}`,
+      `💵 *Payment Mode:* Pay at the Venue upon arrival`,
+      ...(totalPayable > 0
+        ? [
+            `💳 *Total Payable at Venue:* ₹${totalPayable} (${attendeesCount} ${attendeesCount === 1 ? "seat" : "seats"})`,
+            ...(isNov14Event ? [`✨ (Includes ₹${attendeesCount * 500} workshop + ₹${attendeesCount * 149} cafe food & beverage voucher)`] : []),
+          ]
+        : []),
+      ``,
+      `👤 *Attendee Details:*`,
+      `• *Name:* ${name.trim()}`,
+      `• *Phone:* ${phone.trim()}`,
+      `• *Email:* ${email.trim()}`,
+      `• *Members:* ${attendeesCount} ${attendeesCount === 1 ? "Person (Solo)" : `Members (Group of ${attendeesCount})`}`,
+      ``,
+      `Hi Bharat Play team! I have submitted my details to reserve ${attendeesCount} ${attendeesCount === 1 ? "seat" : "seats"} for ${event.title}. Please confirm our reservation! 😊`,
+    ].join("\n");
+  };
+
+  const handleBookNow = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate() || isSubmitting) return;
 
     setIsSubmitting(true);
     setSubmitError(null);
 
-    const isFree = event.price.toLowerCase().includes("free");
-    const perPax = parseInt(event.price.replace(/[^0-9]/g, "")) || 649;
-    const payableAmount = isNov14Event
-      ? attendeesCount * 649
-      : isFree ? 0 : attendeesCount * perPax;
+    // Open WhatsApp directly with prefilled reservation details (no CRM / database calls)
+    const waText = generateWhatsAppMessage();
+    const waUrl = `https://wa.me/918237132553?text=${encodeURIComponent(waText)}`;
 
-    // 1. Instantly collect attendee details directly into Supabase (same-origin, guaranteed delivery)
-    try {
-      const regPayload = {
-        fullName: name.trim(),
-        email: email.trim(),
-        phone: phone.trim(),
-        members: `${attendeesCount} ${
-          attendeesCount === 1 ? "Member (Solo)" : `Members (Group of ${attendeesCount})`
-        }`,
-        slot: selectedSlot || "Standard Slot",
-        totalPayable: payableAmount,
-        notes: `Event: ${event.title} | Date: ${event.formattedDate} (${event.time}) | Slot: ${selectedSlot} | Registration initiated`,
-        source: isFree ? "Bharat Play Free Registration Form" : "Bharat Play Checkout",
-        paymentStatus: isFree ? "PAID" : "NOT PAID",
-        eventTitle: event.title,
-      };
-
-      // Same-origin dispatch with keepalive ensures backend writes directly to Supabase
-      await fetch("/api/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(regPayload),
-        keepalive: true,
-      });
-    } catch (e) {
-      console.warn("Direct registration dispatch notice:", e);
+    if (typeof window !== "undefined") {
+      window.open(waUrl, "_blank");
     }
 
-    // IF PAID EVENT: Call Cashfree API to initialize instant online checkout!
-    if (!isFree && payableAmount > 0) {
-      // Save attendee draft so when returning from Cashfree, details are preserved
-      if (typeof window !== "undefined") {
-        try {
-          localStorage.setItem(
-            "bp_attendee_draft",
-            JSON.stringify({
-              name: name.trim(),
-              email: email.trim(),
-              phone: phone.trim(),
-              slot: selectedSlot,
-              attendeesCount,
-            })
-          );
-        } catch {}
-      }
-
-      try {
-        const exactReturnUrl =
-          typeof window !== "undefined"
-            ? `${window.location.origin}${window.location.pathname}?order_id={order_id}`
-            : undefined;
-
-        const res = await fetch("/api/cashfree/create-order", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            eventId: event.id,
-            eventTitle: event.title,
-            eventSlug: event.id,
-            name: name.trim(),
-            email: email.trim(),
-            phone: phone.trim(),
-            attendeesCount,
-            slot: selectedSlot,
-            amount: payableAmount,
-            returnUrl: exactReturnUrl,
-          }),
-        });
-
-        const data = await res.json();
-
-        if (res.ok && (data.paymentSessionId || data.paymentUrl)) {
-          // If Cashfree SDK is available on window, open in seamless modal popup
-          let cashfreeFactory = typeof window !== "undefined" ? (window as any).Cashfree : null;
-          if (!cashfreeFactory && typeof window !== "undefined") {
-            cashfreeFactory = await new Promise((resolve) => {
-              const existing = document.querySelector('script[src*="cashfree.js"]');
-              if (existing) {
-                existing.addEventListener("load", () => resolve((window as any).Cashfree));
-                setTimeout(() => resolve((window as any).Cashfree), 1500);
-                return;
-              }
-              const s = document.createElement("script");
-              s.src = "https://sdk.cashfree.com/js/v3/cashfree.js";
-              s.onload = () => resolve((window as any).Cashfree);
-              s.onerror = () => resolve(null);
-              document.head.appendChild(s);
-            });
-          }
-
-          if (data.paymentSessionId && cashfreeFactory) {
-            try {
-              const cashfree = cashfreeFactory({
-                mode: data.cashfreeEnv === "production" ? "production" : "sandbox",
-              });
-
-              cashfree
-                .checkout({
-                  paymentSessionId: data.paymentSessionId,
-                  redirectTarget: "_modal",
-                })
-                .then(async (result: any) => {
-                  setIsSubmitting(false);
-
-                  if (result?.error) {
-                    // User closed or cancelled checkout modal
-                    setIsBookingOpen(true);
-                    setIsSubmitted(false);
-                    setSubmitError(
-                      "⚠️ Payment was not completed or was cancelled. Your seat is not reserved yet. Please review your details and click below to try again."
-                    );
-                  } else {
-                    // Payment finished or modal completed: verify status
-                    try {
-                      const vRes = await fetch(
-                        `/api/cashfree/verify-payment?order_id=${encodeURIComponent(data.orderId)}`
-                      );
-                      const vData = await vRes.json();
-                      if (vData.isPaid) {
-                        setIsBookingOpen(true);
-                        setIsSubmitted(true);
-                        setSubmitError(null);
-                      } else {
-                        setIsBookingOpen(true);
-                        setIsSubmitted(false);
-                        setSubmitError(
-                          "⚠️ Payment was not completed or was cancelled. Your seat is not reserved yet. Please review your details and click below to try again."
-                        );
-                      }
-                    } catch {
-                      setIsBookingOpen(true);
-                      setIsSubmitted(false);
-                      setSubmitError(
-                        "⚠️ Payment verification in progress. Please check your network or try again."
-                      );
-                    }
-                  }
-                })
-                .catch(() => {
-                  setIsSubmitting(false);
-                  setIsBookingOpen(true);
-                  setIsSubmitted(false);
-                  setSubmitError(
-                    "⚠️ Payment was cancelled. Your seat is not reserved yet. Please review your details and click below to try again."
-                  );
-                });
-              return;
-            } catch (sdkErr) {
-              console.warn("Cashfree SDK modal launch notice:", sdkErr);
-            }
-          }
-
-          // Fallback if SDK modal is not available: redirect via paymentUrl or standard redirect
-          if (data.paymentUrl) {
-            if (typeof window !== "undefined") {
-              try {
-                sessionStorage.setItem("bp_pending_checkout", Date.now().toString());
-              } catch {}
-            }
-            window.location.href = data.paymentUrl;
-            return;
-          }
-        }
-
-        setSubmitError(data.error || "Unable to initiate payment gateway. Please try again.");
-        setIsSubmitting(false);
-        return;
-      } catch (err) {
-        console.error("Cashfree checkout initiation error:", err);
-        setSubmitError("Network error connecting to payment gateway. Please try again.");
-        setIsSubmitting(false);
-        return;
-      }
-    }
-
-    // IF FREE EVENT: Send registration data to Niral CRM and show Thank You screen
-    try {
-      const crmApiUrl =
-        process.env.NEXT_PUBLIC_CRM_API_URL ||
-        "https://niral-crm.vercel.app/api/webhooks/bharat-play";
-
-      const payload = {
-        fullName: name.trim(),
-        email: email.trim(),
-        phone: phone.trim(),
-        members: `${attendeesCount} ${attendeesCount === 1 ? "Member (Solo)" : `Members (Group of ${attendeesCount})`}`,
-        slot: selectedSlot || "Standard Slot",
-        totalPayable: 0,
-        notes: `Free Event Registration: ${event.title} | Date: ${event.formattedDate} (${event.time}) | Venue: ${event.venue}`,
-        source: "Bharat Play Free Registration Form",
-      };
-
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 6000);
-
-      await fetch(crmApiUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        signal: controller.signal,
-        body: JSON.stringify(payload),
-      });
-
-      clearTimeout(timeoutId);
-    } catch (err) {
-      console.warn("CRM Lead sync error:", err);
-    } finally {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-    }
+    setIsSubmitting(false);
+    setIsSubmitted(true);
   };
 
   const downloadCalendarFile = () => {
@@ -1051,6 +815,12 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                       {event.badge || "Live Sessions"}
                     </span>
                   </div>
+                  <div className="mt-2.5">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 border-2 border-emerald-500 text-emerald-950 font-mono text-[11px] font-black uppercase tracking-wider shadow-2xs">
+                      <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
+                      <span>💵 PAY AT THE VENUE</span>
+                    </span>
+                  </div>
                 </div>
 
                 <div className="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-200 flex items-center justify-center text-2xl shadow-2xs shrink-0">
@@ -1149,32 +919,31 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                 className="w-full inline-flex items-center justify-center gap-2.5 py-4 px-6 rounded-full bg-[#C2410C] hover:bg-[#a3360a] text-white font-display text-base font-bold shadow-xs hover:scale-[1.01] active:scale-[0.98] transition-all cursor-pointer"
               >
                 <Ticket className="w-5 h-5 text-white" />
-                <span>
-                  {event.badge?.toLowerCase().includes("early bird")
-                    ? "RESERVE EARLY BIRD SPOT"
-                    : event.price.toLowerCase().includes("free")
-                    ? "BOOK FREE SEATS NOW"
-                    : `BOOK YOUR SEAT (${event.price})`}
-                </span>
+                <span>RESERVE YOUR SEAT</span>
                 <span>🎉</span>
               </button>
 
               {/* Sub-text reassurance */}
               <div className="mt-3.5 text-center">
                 <p className="text-[11px] text-slate-500 flex items-center justify-center gap-1.5">
-                  <span>⚡</span> Instant seat reservation confirmation
+                  <span>⚡</span> Instant seat reservation confirmation via WhatsApp
                 </p>
               </div>
 
               {/* Payment & Food & Beverages Info Callout for 14th Nov Event (Text only) */}
               {isNov14Event && (
                 <div className="mt-4 p-3.5 rounded-2xl bg-amber-50 border border-amber-200 text-xs text-amber-950">
-                  <div className="flex items-center gap-1.5 font-bold mb-1 text-brand-navy">
-                    <Utensils className="w-3.5 h-3.5 text-[#15803D]" />
-                    <span className="uppercase tracking-wider font-mono text-[11px]">Pricing &amp; Food &amp; Beverages Offer:</span>
+                  <div className="flex items-center justify-between gap-1.5 font-bold mb-1.5 text-brand-navy">
+                    <div className="flex items-center gap-1.5">
+                      <Utensils className="w-3.5 h-3.5 text-[#15803D]" />
+                      <span className="uppercase tracking-wider font-mono text-[11px]">Pricing &amp; Payment:</span>
+                    </div>
+                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-600 text-white font-mono text-[10px] font-black uppercase tracking-wider">
+                      💵 PAY AT VENUE
+                    </span>
                   </div>
                   <p className="text-[11px] text-slate-700 leading-snug">
-                    Price is <strong>INR 649 / pax</strong> (₹500 workshop + <strong>₹149 redeemed on Food &amp; Beverages at cafe</strong>). Click <strong>&quot;BOOK YOUR SEAT&quot;</strong> above to checkout securely (UPI, Cards, NetBanking)!
+                    Price is <strong>INR 649 / pax</strong> (₹500 workshop + <strong>₹149 redeemed on Food &amp; Beverages at cafe</strong>). <strong>Pay at the venue upon arrival</strong> (UPI, Cards, Cash accepted at cafe). Click <strong>&quot;RESERVE YOUR SEAT&quot;</strong> above to confirm directly via WhatsApp!
                   </p>
                 </div>
               )}
@@ -1488,27 +1257,42 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                       )}
                     </div>
 
-                    {/* Pricing Breakdown & Cashfree Online Payment Callout */}
+                    {/* Pricing Breakdown & WhatsApp Callout */}
                     {(isNov14Event || (!event.price.toLowerCase().includes("free") && parseInt(event.price.replace(/[^0-9]/g, "")) > 0)) && (
-                      <div className="p-4 rounded-2xl bg-[#FAFDF9] border-2 border-emerald-500/70 shadow-xs space-y-3">
+                      <div className="p-4 rounded-2xl bg-[#FAFDF9] border-2 border-emerald-500/70 shadow-xs space-y-2.5">
                         <div className="flex items-center justify-between font-bold text-slate-900 border-b border-emerald-100 pb-2">
                           <span className="text-[11px] sm:text-xs uppercase tracking-wider font-mono text-emerald-800 font-bold">
                             Total Payable ({attendeesCount} {attendeesCount === 1 ? "seat" : "seats"}):
                           </span>
-                          <span className="font-display text-lg sm:text-xl text-[#0C2444] font-black">
-                            ₹{isNov14Event ? attendeesCount * 649 : attendeesCount * (parseInt(event.price.replace(/[^0-9]/g, "")) || 649)}
-                          </span>
+                          <div className="flex items-center gap-2">
+                            <span className="font-display text-lg sm:text-xl text-[#0C2444] font-black">
+                              ₹{isNov14Event ? attendeesCount * 649 : attendeesCount * (parseInt(event.price.replace(/[^0-9]/g, "")) || 649)}
+                            </span>
+                            <span className="px-2 py-0.5 rounded-md bg-emerald-600 text-white font-mono text-[10px] font-black uppercase tracking-wider">
+                              PAY AT VENUE
+                            </span>
+                          </div>
                         </div>
+
+                        <p className="text-[11px] text-emerald-900 font-semibold flex items-center gap-1.5">
+                          <span>💵</span>
+                          <span>No advance payment needed — pay directly at the venue cafe upon arrival.</span>
+                        </p>
 
                         {isNov14Event && (
                           <p className="text-[11px] text-slate-600 leading-relaxed">
                             ✨ ₹{attendeesCount * 500} workshop + <strong className="text-emerald-700">₹{attendeesCount * 149} redeemable on Food &amp; Beverages at cafe</strong>!
                           </p>
                         )}
+
+                        <p className="text-[11px] text-emerald-700 flex items-center gap-1.5 pt-0.5">
+                          <MessageCircle className="w-3.5 h-3.5 text-[#25D366] shrink-0" />
+                          <span>Details will be sent directly to our team via WhatsApp to confirm your table.</span>
+                        </p>
                       </div>
                     )}
 
-                    {/* Error Banner if Payment Fails */}
+                    {/* Error Banner if Any */}
                     {submitError && (
                       <div className="p-3 rounded-xl bg-rose-50 border border-rose-300 text-rose-700 text-xs font-medium flex items-start gap-2">
                         <span className="text-base leading-none shrink-0">⚠️</span>
@@ -1521,27 +1305,17 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full inline-flex items-center justify-center gap-2 bg-[#0C2444] hover:bg-[#13335c] active:scale-[0.99] text-white font-display text-xs sm:text-base font-bold py-3.5 sm:py-4 px-4 sm:px-6 rounded-full shadow-lg shadow-[#0C2444]/25 hover:shadow-[#0C2444]/40 transition-all cursor-pointer text-center disabled:opacity-75 disabled:cursor-not-allowed"
+                        className="w-full inline-flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#20ba59] active:scale-[0.99] text-white font-display text-sm sm:text-base font-bold py-3.5 sm:py-4 px-4 sm:px-6 rounded-full shadow-lg shadow-[#25D366]/25 hover:shadow-[#25D366]/40 transition-all cursor-pointer text-center disabled:opacity-75 disabled:cursor-not-allowed"
                       >
                         {isSubmitting ? (
                           <>
-                            <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 text-sky-300 animate-spin shrink-0" />
-                            <span className="leading-tight">CONNECTING TO PAYMENT GATEWAY...</span>
+                            <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 text-white animate-spin shrink-0" />
+                            <span className="leading-tight">CONNECTING TO WHATSAPP...</span>
                           </>
                         ) : (
                           <>
-                            <Ticket className="w-4 h-4 sm:w-5 sm:h-5 text-sky-300 shrink-0" />
-                            <span className="leading-tight">
-                              {event.badge?.toLowerCase().includes("early bird")
-                                ? "CONFIRM EARLY BIRD RESERVATION 🎉"
-                                : event.price.toLowerCase().includes("free")
-                                ? "CONFIRM FREE REGISTRATION 🎉"
-                                : `PAY NOW (₹${
-                                    isNov14Event
-                                      ? attendeesCount * 649
-                                      : attendeesCount * (parseInt(event.price.replace(/[^0-9]/g, "")) || 649)
-                                  }) 💳`}
-                            </span>
+                            <MessageCircle className="w-5 h-5 text-white shrink-0" />
+                            <span className="leading-tight">RESERVE YOUR SEAT</span>
                           </>
                         )}
                       </button>
@@ -1645,7 +1419,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                     </div>
                   </div>
 
-                  {/* Clean Done Button */}
+                  {/* Close Button Only */}
                   <button
                     type="button"
                     onClick={() => {
@@ -1654,8 +1428,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                     }}
                     className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-[#0C2444] hover:bg-[#13335c] active:scale-[0.99] text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-md shadow-[#0C2444]/20 transition-all cursor-pointer"
                   >
-                    <Check className="w-4 h-4 text-emerald-400" />
-                    <span>Done</span>
+                    <span>Close</span>
                   </button>
                 </div>
               )}
@@ -1985,7 +1758,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
             className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#0C2444] hover:bg-[#13335c] text-white font-bold text-xs shadow-md transition-all cursor-pointer"
           >
             <Ticket className="w-4 h-4 text-sky-300" />
-            <span>BOOK SPOT</span>
+            <span>RESERVE YOUR SEAT</span>
           </button>
         </div>
       </div>
