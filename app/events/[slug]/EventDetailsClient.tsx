@@ -69,6 +69,9 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
     if (typeof window === "undefined") return;
 
     const checkPaymentReturn = () => {
+      // Ensure submit button is always active and not stuck
+      setIsSubmitting(false);
+
       // Restore draft details from localStorage if attendee was previously filling the form
       try {
         const saved = localStorage.getItem("bp_attendee_draft");
@@ -100,6 +103,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
             try {
               window.history.replaceState({}, "", window.location.pathname);
             } catch {}
+            setIsSubmitting(false);
             if (data.isPaid) {
               // Payment successful: Show confirmed popup
               setIsBookingOpen(true);
@@ -109,11 +113,11 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
               if (data.customer?.customer_email) setEmail(data.customer.customer_email);
               if (data.customer?.customer_phone) setPhone(data.customer.customer_phone);
             } else {
-              // Payment failed or incomplete: Re-open the booking popup so user can retry immediately!
+              // Payment failed or incomplete: Re-open the booking popup asking to pay!
               setIsBookingOpen(true);
               setIsSubmitted(false);
               setSubmitError(
-                "⚠️ Payment has not been completed or was cancelled. Your seat is not reserved yet. Please review your details and click below to try again."
+                "⚠️ Payment was not completed or was cancelled. Your seat is not reserved yet. Please review your details and click below to try again."
               );
             }
           })
@@ -121,6 +125,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
             try {
               window.history.replaceState({}, "", window.location.pathname);
             } catch {}
+            setIsSubmitting(false);
             setIsBookingOpen(true);
             setIsSubmitted(false);
             setSubmitError(
@@ -130,12 +135,14 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
       } else if (hasPendingCheckout) {
         // User went to Cashfree and came back / cancelled without query param redirect
         sessionStorage.removeItem("bp_pending_checkout");
+        setIsSubmitting(false);
         setIsBookingOpen(true);
         setIsSubmitted(false);
         setSubmitError(
-          "⚠️ Payment was cancelled or not completed. Your seat is not reserved yet. Please review your details and click below to try again."
+          "⚠️ Payment was cancelled. Your seat is not reserved yet. Please review your details and click below to try again."
         );
       } else if (shouldOpen) {
+        setIsSubmitting(false);
         setIsBookingOpen(true);
       }
     };
@@ -166,8 +173,11 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
     if (!cleanPhone || cleanPhone.length < 10) {
       errs.phone = "Please enter a valid 10-digit mobile number";
     }
-    if (!selectedSlot) {
+    const activeSlot = selectedSlot || event.slots[0] || "Standard Slot";
+    if (!activeSlot) {
       errs.slot = "Please select your preferred slot";
+    } else if (!selectedSlot) {
+      setSelectedSlot(activeSlot);
     }
     setErrors(errs);
     return Object.keys(errs).length === 0;
@@ -1050,7 +1060,10 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
               {/* Primary Action Button - Solid Matte Saffron */}
               <button
                 type="button"
-                onClick={() => setIsBookingOpen(true)}
+                onClick={() => {
+                  setIsSubmitting(false);
+                  setIsBookingOpen(true);
+                }}
                 className="w-full inline-flex items-center justify-center gap-2.5 py-4 px-6 rounded-full bg-[#C2410C] hover:bg-[#a3360a] text-white font-display text-base font-bold shadow-xs hover:scale-[1.01] active:scale-[0.98] transition-all cursor-pointer"
               >
                 <Ticket className="w-5 h-5 text-white" />
@@ -1883,7 +1896,10 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
 
           <button
             type="button"
-            onClick={() => setIsBookingOpen(true)}
+            onClick={() => {
+              setIsSubmitting(false);
+              setIsBookingOpen(true);
+            }}
             className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#0C2444] hover:bg-[#13335c] text-white font-bold text-xs shadow-md transition-all cursor-pointer"
           >
             <Ticket className="w-4 h-4 text-sky-300" />
