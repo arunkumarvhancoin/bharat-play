@@ -86,9 +86,11 @@ export async function POST(request: Request) {
     }
 
     const eventSlug = body.eventSlug || (body.eventId ? String(body.eventId) : "saturdays-4-social-games");
-    const defaultReturnUrl = `${baseUrlForReturn}/events/${eventSlug}?link_id={link_id}`;
+    const defaultReturnUrl = `${baseUrlForReturn}/events/${eventSlug}?link_id=${linkId}`;
 
-    const finalReturnUrl = returnUrl || defaultReturnUrl;
+    const finalReturnUrl = returnUrl
+      ? returnUrl.replace("{link_id}", linkId)
+      : defaultReturnUrl;
 
     const payload = {
       link_id: linkId,

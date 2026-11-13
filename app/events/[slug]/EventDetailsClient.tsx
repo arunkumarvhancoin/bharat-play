@@ -181,9 +181,40 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
     setSubmitError(null);
 
     const isFree = event.price.toLowerCase().includes("free");
+    const perPax = parseInt(event.price.replace(/[^0-9]/g, "")) || 649;
     const payableAmount = isNov14Event
       ? attendeesCount * 649
-      : parseInt(event.price.replace(/[^0-9]/g, "")) || 0;
+      : isFree ? 0 : attendeesCount * perPax;
+
+    // 1. Instantly collect attendee details into Niral CRM as UNPAID (just like before payment integration!)
+    try {
+      const crmApiUrl =
+        process.env.NEXT_PUBLIC_CRM_API_URL ||
+        "https://niral-crm.vercel.app/api/webhooks/bharat-play";
+
+      const crmPayload = {
+        fullName: name.trim(),
+        email: email.trim(),
+        phone: phone.trim(),
+        members: `${attendeesCount} ${
+          attendeesCount === 1 ? "Member (Solo)" : `Members (Group of ${attendeesCount})`
+        }`,
+        slot: selectedSlot || "Standard Slot",
+        totalPayable: payableAmount,
+        notes: `Event: ${event.title} | Date: ${event.formattedDate} (${event.time}) | Slot: ${selectedSlot} | Registration initiated`,
+        source: isFree ? "Bharat Play Free Registration Form" : "Bharat Play Checkout",
+        paymentStatus: isFree ? "FREE" : "UNPAID",
+      };
+
+      // Non-blocking quick dispatch so CRM receives details immediately upon button click
+      fetch(crmApiUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(crmPayload),
+      }).catch((crmErr) => console.warn("Direct CRM sync notice:", crmErr));
+    } catch (e) {
+      console.warn("CRM lead dispatch notice:", e);
+    }
 
     // IF PAID EVENT: Call Cashfree API to initialize instant online checkout!
     if (!isFree && payableAmount > 0) {
@@ -204,6 +235,11 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
       }
 
       try {
+        const exactReturnUrl =
+          typeof window !== "undefined"
+            ? `${window.location.origin}${window.location.pathname}?link_id={link_id}`
+            : undefined;
+
         const res = await fetch("/api/cashfree/create-order", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -217,6 +253,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
             attendeesCount,
             slot: selectedSlot,
             amount: payableAmount,
+            returnUrl: exactReturnUrl,
           }),
         });
 
