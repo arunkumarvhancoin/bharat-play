@@ -123,7 +123,7 @@ export async function POST(request: Request) {
       );
     }
 
-    // Sync lead to CRM as payment initiated via Cashfree
+    // Sync lead to CRM with clear "Cashfree - Not Paid" status (checkout initiated)
     try {
       const crmApiUrl =
         process.env.NEXT_PUBLIC_CRM_API_URL ||
@@ -141,10 +141,10 @@ export async function POST(request: Request) {
           }`,
           slot,
           totalPayable: parseFloat(amount),
-          notes: `Event: ${eventTitle} | Slot: ${slot} | Status: Payment Initiated via Cashfree | Link: ${data.link_url}`,
-          source: "Paid via Cashfree (Initiated)",
+          notes: `PAYMENT STATUS: NOT PAID (Initiated on Cashfree, awaiting completion) | Event: ${eventTitle} | Slot: ${slot} | Link: ${data.link_url}`,
+          source: "Cashfree - Not Paid",
           paymentMethod: "Cashfree",
-          paymentStatus: "INITIATED",
+          paymentStatus: "UNPAID",
         }),
       });
     } catch (crmErr) {

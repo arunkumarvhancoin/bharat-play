@@ -88,8 +88,9 @@ export async function GET(request: NextRequest) {
             members: `${data.link_notes?.attendeesCount || 1} Member(s)`,
             slot: data.link_notes?.slot || "Standard Slot",
             totalPayable: data.link_amount_paid || data.link_amount || data.order_amount,
-            notes: `PAID VIA CASHFREE | Event: ${data.link_notes?.eventTitle || data.link_purpose || "Bharat Play Event"} | Ref: ${targetId} | Status: PAID`,
+            notes: `PAYMENT STATUS: PAID (Verified via Cashfree) | Event: ${data.link_notes?.eventTitle || data.link_purpose || "Bharat Play Event"} | Amount Paid: ₹${data.link_amount_paid || data.link_amount} | Ref: ${targetId} | Status: PAID`,
             source: "Paid via Cashfree",
+            paymentMethod: "Cashfree",
             paymentStatus: "PAID",
           }),
         });
@@ -104,9 +105,10 @@ export async function GET(request: NextRequest) {
             members: `${data.link_notes?.attendeesCount || 1} Member(s)`,
             slot: data.link_notes?.slot || "Standard Slot",
             totalPayable: data.link_amount || data.order_amount,
-            notes: `Cashfree Payment Incomplete / Not Paid | Event: ${data.link_notes?.eventTitle || data.link_purpose || "Bharat Play Event"} | Ref: ${targetId} | Status: ${status}`,
-            source: "Cashfree Payment Incomplete",
-            paymentStatus: "PENDING",
+            notes: `PAYMENT STATUS: NOT PAID (Incomplete / Cancelled via Cashfree) | Event: ${data.link_notes?.eventTitle || data.link_purpose || "Bharat Play Event"} | Amount Pending: ₹${data.link_amount} | Ref: ${targetId} | Status: ${status}`,
+            source: "Cashfree - Not Paid",
+            paymentMethod: "Cashfree",
+            paymentStatus: "UNPAID",
           }),
         });
       }

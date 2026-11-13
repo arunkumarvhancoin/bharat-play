@@ -20,16 +20,16 @@ export async function POST(request: Request) {
       data?.order?.order_status === "PAID" ||
       data?.link_status === "PAID";
 
+    const customer = data?.customer_details || data?.order?.customer_details;
+    const payment = data?.payment;
+    const order = data?.order;
+    const linkNotes = data?.link_notes || {};
+
     if (isSuccess) {
       try {
         const crmApiUrl =
           process.env.NEXT_PUBLIC_CRM_API_URL ||
           "https://niral-crm.vercel.app/api/webhooks/bharat-play";
-
-        const customer = data?.customer_details || data?.order?.customer_details;
-        const payment = data?.payment;
-        const order = data?.order;
-        const linkNotes = data?.link_notes || {};
 
         await fetch(crmApiUrl, {
           method: "POST",
@@ -41,10 +41,35 @@ export async function POST(request: Request) {
             members: `${linkNotes.attendeesCount || 1} Member(s)`,
             slot: linkNotes.slot || "Standard Slot",
             totalPayable: payment?.payment_amount || order?.order_amount || data?.link_amount,
-            notes: `PAID VIA CASHFREE WEBHOOK | Event: ${linkNotes.eventTitle || data?.link_purpose || "Bharat Play Event"} | Ref ID: ${order?.order_id || data?.link_id} | Status: PAID`,
+            notes: `PAYMENT STATUS: PAID (Captured via Cashfree Webhook) | Event: ${linkNotes.eventTitle || data?.link_purpose || "Bharat Play Event"} | Ref ID: ${order?.order_id || data?.link_id} | Status: PAID`,
             source: "Paid via Cashfree",
             paymentMethod: payment?.payment_group || "Cashfree",
             paymentStatus: "PAID",
+          }),
+        });
+      } catch (crmErr) {
+        console.warn("CRM webhook notification error:", crmErr);
+      }
+    } else {
+      try {
+        const crmApiUrl =
+          process.env.NEXT_PUBLIC_CRM_API_URL ||
+          "https://niral-crm.vercel.app/api/webhooks/bharat-play";
+
+        await fetch(crmApiUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            fullName: customer?.customer_name,
+            email: customer?.customer_email,
+            phone: customer?.customer_phone,
+            members: `${linkNotes.attendeesCount || 1} Member(s)`,
+            slot: linkNotes.slot || "Standard Slot",
+            totalPayable: payment?.payment_amount || order?.order_amount || data?.link_amount,
+            notes: `PAYMENT STATUS: NOT PAID (Cashfree Webhook Event: ${eventType}) | Ref ID: ${order?.order_id || data?.link_id}`,
+            source: "Cashfree - Not Paid",
+            paymentMethod: payment?.payment_group || "Cashfree",
+            paymentStatus: "UNPAID",
           }),
         });
       } catch (crmErr) {
