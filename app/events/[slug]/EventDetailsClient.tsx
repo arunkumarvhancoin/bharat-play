@@ -97,6 +97,9 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
         fetch(`/api/cashfree/verify-payment?${query}`)
           .then((res) => res.json())
           .then((data) => {
+            try {
+              window.history.replaceState({}, "", window.location.pathname);
+            } catch {}
             if (data.isPaid) {
               // Payment successful: Show confirmed popup
               setIsBookingOpen(true);
@@ -115,6 +118,9 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
             }
           })
           .catch(() => {
+            try {
+              window.history.replaceState({}, "", window.location.pathname);
+            } catch {}
             setIsBookingOpen(true);
             setIsSubmitted(false);
             setSubmitError(
