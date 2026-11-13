@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import {
   Calendar,
@@ -25,8 +25,6 @@ import {
   Video as VideoIcon,
   Maximize2,
   Utensils,
-  UploadCloud,
-  CheckCircle2,
   Loader2,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -41,7 +39,6 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
   const isNov14Event = event.id === "childrens-day-play-workshop" || event.date.includes("11-14");
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [isShareOpen, setIsShareOpen] = useState(false);
-  const [isQrZoomed, setIsQrZoomed] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState(event.slots[0] || "");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -52,9 +49,6 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [copiedLink, setCopiedLink] = useState(false);
   const [copiedAddress, setCopiedAddress] = useState(false);
-  const [paymentScreenshot, setPaymentScreenshot] = useState<string | null>(null);
-  const [screenshotFileName, setScreenshotFileName] = useState<string | null>(null);
-  const [isProcessingScreenshot, setIsProcessingScreenshot] = useState(false);
   const [activeMediaIndex, setActiveMediaIndex] = useState<number | null>(null);
   const [mediaFilter, setMediaFilter] = useState<"all" | "photos" | "videos">("all");
 
@@ -65,17 +59,6 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
     if (mediaFilter === "videos") return item.type === "video";
     return true;
   });
-
-  // Close zoomed QR on Escape key
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isQrZoomed) {
-        setIsQrZoomed(false);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isQrZoomed]);
 
   // Validate form
   const validate = () => {
@@ -95,72 +78,56 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
     return Object.keys(errs).length === 0;
   };
 
-  // Handle payment screenshot selection and mobile-optimized compression
-  const handleScreenshotUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    if (!file.type.startsWith("image/")) {
-      alert("Please upload an image file (PNG, JPG, or WebP).");
-      return;
-    }
-
-    setIsProcessingScreenshot(true);
-    setScreenshotFileName(file.name);
-
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const img = new Image();
-      img.onload = () => {
-        const canvas = document.createElement("canvas");
-        let width = img.width;
-        let height = img.height;
-        const maxDim = 600;
-
-        if (width > maxDim || height > maxDim) {
-          if (width > height) {
-            height = Math.round((height * maxDim) / width);
-            width = maxDim;
-          } else {
-            width = Math.round((width * maxDim) / height);
-            height = maxDim;
-          }
-        }
-
-        canvas.width = width;
-        canvas.height = height;
-        const ctx = canvas.getContext("2d");
-        if (ctx) {
-          ctx.drawImage(img, 0, 0, width, height);
-          const dataUrl = canvas.toDataURL("image/jpeg", 0.65);
-          setPaymentScreenshot(dataUrl);
-        } else {
-          setPaymentScreenshot(event.target?.result as string);
-        }
-        setIsProcessingScreenshot(false);
-      };
-      img.src = event.target?.result as string;
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const handleRemoveScreenshot = () => {
-    setPaymentScreenshot(null);
-    setScreenshotFileName(null);
-  };
-
   const handleBookNow = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate() || isSubmitting) return;
 
     setIsSubmitting(true);
 
-    // Send registration data to Niral CRM strictly for Bharat Play organization
-    try {
-      const payableAmount = isNov14Event
-        ? attendeesCount * 649
-        : parseInt(event.price.replace(/[^0-9]/g, "")) || 649;
+    const isFree = event.price.toLowerCase().includes("free");
+    const payableAmount = isNov14Event
+      ? attendeesCount * 649
+      : parseInt(event.price.replace(/[^0-9]/g, "")) || 0;
 
+    // IF PAID EVENT: Call Cashfree API to initialize instant online checkout!
+    if (!isFree && payableAmount > 0) {
+      try {
+        const res = await fetch("/api/cashfree/create-order", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            eventId: event.id,
+            eventTitle: event.title,
+            name: name.trim(),
+            email: email.trim(),
+            phone: phone.trim(),
+            attendeesCount,
+            slot: selectedSlot,
+            amount: payableAmount,
+          }),
+        });
+
+        const data = await res.json();
+
+        if (res.ok && data.paymentUrl) {
+          // Seamlessly redirect user to Cashfree checkout page
+          window.location.href = data.paymentUrl;
+          return;
+        } else {
+          alert(data.error || "Unable to initiate payment gateway. Please try again.");
+          setIsSubmitting(false);
+          return;
+        }
+      } catch (err) {
+        console.error("Cashfree checkout initiation error:", err);
+        alert("Network error connecting to payment gateway. Please try again.");
+        setIsSubmitting(false);
+        return;
+      }
+    }
+
+    // IF FREE EVENT: Send registration data to Niral CRM and show Thank You screen
+    try {
       const crmApiUrl =
         process.env.NEXT_PUBLIC_CRM_API_URL ||
         "https://niral-crm.vercel.app/api/webhooks/bharat-play";
@@ -170,17 +137,16 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
         email: email.trim(),
         phone: phone.trim(),
         members: `${attendeesCount} ${attendeesCount === 1 ? "Member (Solo)" : `Members (Group of ${attendeesCount})`}`,
-        slot: selectedSlot || "10:00 AM – 1:00 PM",
-        totalPayable: payableAmount,
-        paymentScreenshot: paymentScreenshot || null,
-        notes: `Event: ${event.title} | Date: ${event.formattedDate} (${event.time}) | Venue: ${event.venue}${paymentScreenshot ? " | Payment Screenshot Attached" : ""}`,
-        source: "Bharat Play Registration Form",
+        slot: selectedSlot || "Standard Slot",
+        totalPayable: 0,
+        notes: `Free Event Registration: ${event.title} | Date: ${event.formattedDate} (${event.time}) | Venue: ${event.venue}`,
+        source: "Bharat Play Free Registration Form",
       };
 
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 6000);
 
-      const res = await fetch(crmApiUrl, {
+      await fetch(crmApiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         signal: controller.signal,
@@ -188,15 +154,10 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
       });
 
       clearTimeout(timeoutId);
-
-      if (!res.ok) {
-        console.warn("CRM Lead sync response status:", res.status);
-      }
     } catch (err) {
       console.warn("CRM Lead sync error:", err);
     } finally {
       setIsSubmitting(false);
-      // Show Thank You screen directly once backend submission completes
       setIsSubmitted(true);
     }
   };
@@ -965,7 +926,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                     <span className="uppercase tracking-wider font-mono text-[11px]">Pricing &amp; Food &amp; Beverages Offer:</span>
                   </div>
                   <p className="text-[11px] text-slate-700 leading-snug">
-                    Price is <strong>INR 649 / pax</strong> (₹500 workshop + <strong>₹149 redeemed on Food &amp; Beverages at cafe</strong>). Click <strong>&quot;BOOK YOUR SEAT&quot;</strong> above to view the UPI QR code and register!
+                    Price is <strong>INR 649 / pax</strong> (₹500 workshop + <strong>₹149 redeemed on Food &amp; Beverages at cafe</strong>). Click <strong>&quot;BOOK YOUR SEAT&quot;</strong> above to checkout securely via Cashfree (UPI, Cards, NetBanking)!
                   </p>
                 </div>
               )}
@@ -1305,108 +1266,32 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                       )}
                     </div>
 
-                    {/* Pricing Breakdown & UPI Payment QR for 14th Nov Event */}
-                    {isNov14Event && (
-                      <div className="p-3.5 sm:p-4 rounded-2xl bg-[#FAFDF9] border-2 border-emerald-500/60 shadow-xs text-center space-y-2.5 sm:space-y-3">
+                    {/* Pricing Breakdown & Cashfree Online Payment Callout */}
+                    {(isNov14Event || (!event.price.toLowerCase().includes("free") && parseInt(event.price.replace(/[^0-9]/g, "")) > 0)) && (
+                      <div className="p-4 rounded-2xl bg-[#FAFDF9] border-2 border-emerald-500/70 shadow-xs space-y-3">
                         <div className="flex items-center justify-between font-bold text-slate-900 border-b border-emerald-100 pb-2">
                           <span className="text-[11px] sm:text-xs uppercase tracking-wider font-mono text-emerald-800 font-bold">
                             Total Payable ({attendeesCount} {attendeesCount === 1 ? "seat" : "seats"}):
                           </span>
-                          <span className="font-display text-base sm:text-lg text-[#0C2444] font-black">
-                            ₹{attendeesCount * 649}
+                          <span className="font-display text-lg sm:text-xl text-[#0C2444] font-black">
+                            ₹{isNov14Event ? attendeesCount * 649 : attendeesCount * (parseInt(event.price.replace(/[^0-9]/g, "")) || 649)}
                           </span>
                         </div>
-                        <p className="text-[11px] text-slate-600 text-left leading-relaxed">
-                          ✨ ₹{attendeesCount * 500} workshop + <strong className="text-emerald-700">₹{attendeesCount * 149} redeemable on Food &amp; Beverages at cafe</strong>!
-                        </p>
 
-                        {/* UPI QR Image with Zoom on Click */}
-                        <div
-                          onClick={() => setIsQrZoomed(true)}
-                          className="group relative mx-auto w-full max-w-[280px] sm:max-w-xs rounded-xl overflow-hidden border-2 border-[#0C2444] shadow-md cursor-zoom-in transition-all hover:scale-[1.01] hover:shadow-lg bg-white"
-                          title="Click to zoom QR code"
-                        >
-                          <img
-                            src="/pay.jpeg"
-                            alt="Bharat Play UPI Payment QR - Click to zoom"
-                            className="w-full h-auto block"
-                          />
-                          <div className="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <span className="px-2.5 py-1 rounded-full bg-white/95 text-slate-900 font-bold text-[11px] shadow-md flex items-center gap-1">
-                              <Maximize2 className="w-3 h-3 text-[#0C2444]" />
-                              <span>Click to Zoom</span>
-                            </span>
-                          </div>
-                        </div>
-                        <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider block">
-                          🔍 Tap QR image to enlarge
-                        </span>
-
-                        <div className="bg-amber-50 border border-amber-200 rounded-xl p-2.5 text-[11px] text-amber-950 text-left space-y-1">
-                          <p className="font-bold flex items-center gap-1 text-amber-900 text-[11px]">
-                            <span>📸</span> Scan UPI QR to Pay ₹{attendeesCount * 649}:
+                        {isNov14Event && (
+                          <p className="text-[11px] text-slate-600 leading-relaxed">
+                            ✨ ₹{attendeesCount * 500} workshop + <strong className="text-emerald-700">₹{attendeesCount * 149} redeemable on Food &amp; Beverages at cafe</strong>!
                           </p>
-                          <p className="text-slate-700 leading-snug">1. Scan with GPay, PhonePe, Paytm, or BHIM.</p>
-                          <p className="text-slate-700 leading-snug">2. Pay ₹{attendeesCount * 649} for {attendeesCount} {attendeesCount === 1 ? "seat" : "seats"}.</p>
-                          <p className="text-slate-700 leading-snug">3. Take a screenshot &amp; confirm below to share on WhatsApp!</p>
-                        </div>
+                        )}
 
-                        {/* Payment Screenshot Upload */}
-                        <div className="pt-2 border-t border-emerald-200/60 text-left">
-                          <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-800 mb-1.5 flex items-center justify-between">
-                            <span className="flex items-center gap-1.5">
-                              <span>🧾</span> Upload Payment Screenshot
-                            </span>
-                            <span className="text-[10px] text-slate-500 font-normal normal-case">
-                              (Instant verification)
-                            </span>
-                          </label>
-
-                          {!paymentScreenshot ? (
-                            <label className="group relative flex flex-col items-center justify-center p-3.5 border-2 border-dashed border-[#0C2444]/40 hover:border-[#0C2444] rounded-xl bg-white hover:bg-sky-50/50 transition-all cursor-pointer text-center">
-                              <input
-                                type="file"
-                                accept="image/*"
-                                onChange={handleScreenshotUpload}
-                                className="sr-only"
-                              />
-                              <UploadCloud className="w-5 h-5 text-sky-600 group-hover:scale-110 transition-transform mb-1" />
-                              <span className="text-xs font-bold text-slate-800 block">
-                                {isProcessingScreenshot ? "Processing screenshot..." : "Tap to upload payment screenshot"}
-                              </span>
-                              <span className="text-[10px] text-slate-500 mt-0.5 block">
-                                GPay / PhonePe / Paytm screenshot (PNG or JPG)
-                              </span>
-                            </label>
-                          ) : (
-                            <div className="flex items-center justify-between p-2.5 bg-emerald-50 border border-emerald-300 rounded-xl">
-                              <div className="flex items-center gap-2.5 min-w-0">
-                                <div className="w-10 h-10 rounded-lg overflow-hidden border border-emerald-400 bg-white shrink-0">
-                                  <img
-                                    src={paymentScreenshot}
-                                    alt="Uploaded payment proof"
-                                    className="w-full h-full object-cover"
-                                  />
-                                </div>
-                                <div className="min-w-0">
-                                  <p className="text-xs font-bold text-emerald-900 flex items-center gap-1">
-                                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                                    <span>Screenshot Attached</span>
-                                  </p>
-                                  <p className="text-[10px] text-emerald-700 truncate max-w-[170px]">
-                                    {screenshotFileName || "payment_proof.jpg"}
-                                  </p>
-                                </div>
-                              </div>
-                              <button
-                                type="button"
-                                onClick={handleRemoveScreenshot}
-                                className="text-[10px] font-bold text-rose-600 hover:text-rose-800 bg-rose-50 hover:bg-rose-100 border border-rose-200 px-2 py-1 rounded-md transition-colors"
-                              >
-                                Remove
-                              </button>
-                            </div>
-                          )}
+                        <div className="bg-sky-50/90 border border-sky-200/80 rounded-xl p-3 text-left space-y-1">
+                          <div className="flex items-center gap-1.5 text-xs font-bold text-[#0C2444]">
+                            <Sparkles className="w-4 h-4 text-sky-600 shrink-0" />
+                            <span>Instant Online Checkout via Cashfree</span>
+                          </div>
+                          <p className="text-[11px] text-slate-600 leading-snug">
+                            Click below to complete secure payment with <strong>UPI (GPay, PhonePe, Paytm), Cards, or NetBanking</strong>. Instant receipt and reservation confirmation will be provided!
+                          </p>
                         </div>
                       </div>
                     )}
@@ -1421,7 +1306,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                         {isSubmitting ? (
                           <>
                             <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 text-sky-300 animate-spin shrink-0" />
-                            <span className="leading-tight">CONFIRMING YOUR SEAT...</span>
+                            <span className="leading-tight">CONNECTING TO CASHFREE GATEWAY...</span>
                           </>
                         ) : (
                           <>
@@ -1431,7 +1316,11 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                                 ? "CONFIRM EARLY BIRD RESERVATION 🎉"
                                 : event.price.toLowerCase().includes("free")
                                 ? "CONFIRM FREE REGISTRATION 🎉"
-                                : `CONFIRM SEAT RESERVATION (₹${isNov14Event ? attendeesCount * 649 : event.price}) 🎉`}
+                                : `PAY VIA CASHFREE (₹${
+                                    isNov14Event
+                                      ? attendeesCount * 649
+                                      : attendeesCount * (parseInt(event.price.replace(/[^0-9]/g, "")) || 649)
+                                  }) 💳`}
                             </span>
                           </>
                         )}
@@ -1844,44 +1733,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
         )}
       </AnimatePresence>
 
-      {/* =================================================================== */}
-      {/* UPI QR CODE LIGHTBOX ZOOM (IMAGE ONLY)                              */}
-      {/* =================================================================== */}
-      <AnimatePresence>
-        {isQrZoomed && (
-          <div
-            className="fixed inset-0 z-[150] flex items-center justify-center p-4 sm:p-6 bg-black/90 backdrop-blur-md cursor-zoom-out select-none"
-            onClick={() => setIsQrZoomed(false)}
-            data-lenis-prevent
-          >
-            {/* Close Button in top right */}
-            <button
-              type="button"
-              onClick={() => setIsQrZoomed(false)}
-              className="absolute top-4 right-4 z-20 w-11 h-11 rounded-full bg-white/15 hover:bg-white/30 text-white flex items-center justify-center text-2xl transition-colors cursor-pointer"
-              aria-label="Close zoom preview"
-            >
-              <X className="w-6 h-6" />
-            </button>
 
-            {/* Pure Image Container - Centered and Enlarged */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.88 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.88 }}
-              transition={{ type: "spring", duration: 0.3, bounce: 0.15 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative max-h-[90vh] max-w-[92vw] sm:max-w-md w-auto flex items-center justify-center"
-            >
-              <img
-                src="/pay.jpeg"
-                alt="Bharat Play UPI Payment QR"
-                className="max-h-[88vh] w-auto max-w-full object-contain rounded-2xl shadow-2xl border-2 border-white/20 bg-white"
-              />
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
 
       {/* Floating Bottom Sticky Bar on Mobile */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 p-3.5 flex items-center justify-between shadow-2xl">

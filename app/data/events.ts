@@ -158,7 +158,7 @@ export const EVENTS_DATA: ScheduledEvent[] = [
       "Age: 12+ (parents, grandparents, and youth are warmly welcomed to join the table).",
       "Table Pods: 6 players per table for optimal collaboration and immersive play.",
       "Price: INR 649 per participant (includes ₹500 workshop fee + ₹149 voucher redeemable on Food & Beverages at the cafe).",
-      "Payment: Scan the UPI QR code and share your payment screenshot on WhatsApp to confirm your reservation.",
+      "Payment: Instant online checkout via Cashfree (UPI, PhonePe, GPay, Paytm, Cards & NetBanking) with immediate digital reservation confirmation.",
       "Bring your friends and family, and experience Children's Day like never before!"
     ],
     highlights: [
@@ -168,7 +168,7 @@ export const EVENTS_DATA: ScheduledEvent[] = [
       "Age: 12+ (parents, grandparents & youth warmly welcomed)",
       "Small-table format: 6 players per table",
       "Price: INR 649/pax (₹500 workshop + ₹149 F&B cafe voucher included)",
-      "Payment via UPI QR with instant WhatsApp confirmation (+91 82371 32553)",
+      "Instant online payment via Cashfree with confirmed e-receipt (+91 82371 32553)",
       "Guided facilitation and debrief by Bharat Play"
     ],
     media: [
