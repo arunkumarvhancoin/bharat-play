@@ -203,7 +203,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
         totalPayable: payableAmount,
         notes: `Event: ${event.title} | Date: ${event.formattedDate} (${event.time}) | Slot: ${selectedSlot} | Registration initiated`,
         source: isFree ? "Bharat Play Free Registration Form" : "Bharat Play Checkout",
-        paymentStatus: isFree ? "FREE" : "UNPAID",
+        paymentStatus: isFree ? "PAID" : "NOT PAID",
       };
 
       // Await quick dispatch with keepalive so browser navigation cannot abort the request

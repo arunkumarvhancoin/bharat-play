@@ -131,7 +131,7 @@ export async function GET(request: NextRequest) {
             notes: `PAYMENT STATUS: NOT PAID (Incomplete / Cancelled via Cashfree) | Event: ${eventTitle} | Amount Pending: ₹${targetAmount} | Ref: ${targetId} | Status: ${status}`,
             source: "Cashfree - Not Paid",
             paymentMethod: "Cashfree",
-            paymentStatus: "UNPAID",
+            paymentStatus: "NOT PAID",
           }),
         });
       }

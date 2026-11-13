@@ -170,7 +170,7 @@ export async function POST(request: Request) {
           notes: `PAYMENT STATUS: NOT PAID (Initiated on Cashfree, awaiting completion) | Event: ${eventTitle} | Slot: ${slot} | Link: ${data.link_url}`,
           source: "Cashfree - Not Paid",
           paymentMethod: "Cashfree",
-          paymentStatus: "UNPAID",
+          paymentStatus: "NOT PAID",
         }),
       });
     } catch (crmErr) {
