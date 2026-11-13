@@ -245,7 +245,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
       try {
         const exactReturnUrl =
           typeof window !== "undefined"
-            ? `${window.location.origin}${window.location.pathname}?link_id={link_id}`
+            ? `${window.location.origin}${window.location.pathname}?order_id={order_id}`
             : undefined;
 
         const res = await fetch("/api/cashfree/create-order", {
@@ -267,20 +267,102 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
 
         const data = await res.json();
 
-        if (res.ok && data.paymentUrl) {
-          if (typeof window !== "undefined") {
-            try {
-              sessionStorage.setItem("bp_pending_checkout", Date.now().toString());
-            } catch {}
+        if (res.ok && (data.paymentSessionId || data.paymentUrl)) {
+          // If Cashfree SDK is available on window, open in seamless modal popup
+          let cashfreeFactory = typeof window !== "undefined" ? (window as any).Cashfree : null;
+          if (!cashfreeFactory && typeof window !== "undefined") {
+            cashfreeFactory = await new Promise((resolve) => {
+              const existing = document.querySelector('script[src*="cashfree.js"]');
+              if (existing) {
+                existing.addEventListener("load", () => resolve((window as any).Cashfree));
+                setTimeout(() => resolve((window as any).Cashfree), 1500);
+                return;
+              }
+              const s = document.createElement("script");
+              s.src = "https://sdk.cashfree.com/js/v3/cashfree.js";
+              s.onload = () => resolve((window as any).Cashfree);
+              s.onerror = () => resolve(null);
+              document.head.appendChild(s);
+            });
           }
-          // Seamlessly redirect user to Cashfree checkout page
-          window.location.href = data.paymentUrl;
-          return;
-        } else {
-          setSubmitError(data.error || "Unable to initiate payment gateway. Please try again.");
-          setIsSubmitting(false);
-          return;
+
+          if (data.paymentSessionId && cashfreeFactory) {
+            try {
+              const cashfree = cashfreeFactory({
+                mode: data.cashfreeEnv === "production" ? "production" : "sandbox",
+              });
+
+              cashfree
+                .checkout({
+                  paymentSessionId: data.paymentSessionId,
+                  redirectTarget: "_modal",
+                })
+                .then(async (result: any) => {
+                  setIsSubmitting(false);
+
+                  if (result?.error) {
+                    // User closed or cancelled checkout modal
+                    setIsBookingOpen(true);
+                    setIsSubmitted(false);
+                    setSubmitError(
+                      "⚠️ Payment was not completed or was cancelled. Your seat is not reserved yet. Please review your details and click below to try again."
+                    );
+                  } else {
+                    // Payment finished or modal completed: verify status
+                    try {
+                      const vRes = await fetch(
+                        `/api/cashfree/verify-payment?order_id=${encodeURIComponent(data.orderId)}`
+                      );
+                      const vData = await vRes.json();
+                      if (vData.isPaid) {
+                        setIsBookingOpen(true);
+                        setIsSubmitted(true);
+                        setSubmitError(null);
+                      } else {
+                        setIsBookingOpen(true);
+                        setIsSubmitted(false);
+                        setSubmitError(
+                          "⚠️ Payment was not completed or was cancelled. Your seat is not reserved yet. Please review your details and click below to try again."
+                        );
+                      }
+                    } catch {
+                      setIsBookingOpen(true);
+                      setIsSubmitted(false);
+                      setSubmitError(
+                        "⚠️ Payment verification in progress. Please check your network or try again."
+                      );
+                    }
+                  }
+                })
+                .catch(() => {
+                  setIsSubmitting(false);
+                  setIsBookingOpen(true);
+                  setIsSubmitted(false);
+                  setSubmitError(
+                    "⚠️ Payment was cancelled. Your seat is not reserved yet. Please review your details and click below to try again."
+                  );
+                });
+              return;
+            } catch (sdkErr) {
+              console.warn("Cashfree SDK modal launch notice:", sdkErr);
+            }
+          }
+
+          // Fallback if SDK modal is not available: redirect via paymentUrl or standard redirect
+          if (data.paymentUrl) {
+            if (typeof window !== "undefined") {
+              try {
+                sessionStorage.setItem("bp_pending_checkout", Date.now().toString());
+              } catch {}
+            }
+            window.location.href = data.paymentUrl;
+            return;
+          }
         }
+
+        setSubmitError(data.error || "Unable to initiate payment gateway. Please try again.");
+        setIsSubmitting(false);
+        return;
       } catch (err) {
         console.error("Cashfree checkout initiation error:", err);
         setSubmitError("Network error connecting to payment gateway. Please try again.");

@@ -61,7 +61,7 @@ export async function POST(request: Request) {
         : "https://sandbox.cashfree.com/pg";
 
     const uniqueId = `bp_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
-    const linkId = uniqueId;
+    const orderId = uniqueId;
 
     // Determine the return URL for the user after payment completion
     let baseUrlForReturn = "https://bharatplay.com";
@@ -85,38 +85,34 @@ export async function POST(request: Request) {
     }
 
     const eventSlug = body.eventSlug || (body.eventId ? String(body.eventId) : "saturdays-4-social-games");
-    const defaultReturnUrl = `${baseUrlForReturn}/events/${eventSlug}?link_id=${linkId}`;
+    const defaultReturnUrl = `${baseUrlForReturn}/events/${eventSlug}?order_id=${orderId}`;
 
     const finalReturnUrl = returnUrl
-      ? returnUrl.replace("{link_id}", linkId)
+      ? returnUrl.replace("{order_id}", orderId).replace("{link_id}", orderId)
       : defaultReturnUrl;
 
+    // For test payment: Cashfree strictly requires order_amount >= 1.00 INR.
+    // Set to 1.00 INR for testing without modifying frontend website pricing details.
+    const orderAmount = 1.00;
+
     const payload = {
-      link_id: linkId,
-      link_amount: parseFloat(amount),
-      link_currency: "INR",
-      link_purpose: `Bharat Play: ${eventTitle || "Seat Reservation"} (${attendeesCount} pax)`.slice(0, 100),
+      order_id: orderId,
+      order_amount: orderAmount,
+      order_currency: "INR",
       customer_details: {
+        customer_id: `cust_${cleanPhone}`,
         customer_name: name.trim(),
         customer_email: email.trim().toLowerCase(),
         customer_phone: cleanPhone,
       },
-      link_meta: {
+      order_meta: {
         return_url: finalReturnUrl,
+        notify_url: `${baseUrlForReturn}/api/cashfree/webhook`,
       },
-      link_notes: {
-        eventId: eventId || "general",
-        eventTitle: eventTitle || "Bharat Play Event",
-        slot: slot || "General",
-        attendeesCount: String(attendeesCount),
-      },
-      link_notify: {
-        send_sms: false,
-        send_email: false,
-      },
+      order_note: `Bharat Play: ${eventTitle || "Seat Reservation"} (${attendeesCount} pax)`.slice(0, 100),
     };
 
-    const res = await fetch(`${baseUrl}/links`, {
+    const res = await fetch(`${baseUrl}/orders`, {
       method: "POST",
       headers: {
         "x-client-id": appId,
@@ -130,7 +126,7 @@ export async function POST(request: Request) {
     const data = await res.json();
 
     if (!res.ok) {
-      console.error("Cashfree link creation failed:", data);
+      console.error("Cashfree order creation failed:", data);
       return NextResponse.json(
         {
           error: data.message || "Failed to initialize payment gateway",
@@ -150,9 +146,9 @@ export async function POST(request: Request) {
           attendeesCount === 1 ? "Member (Solo)" : `Members (${attendeesCount})`
         }`,
         slot: slot,
-        totalPayable: parseFloat(amount),
+        totalPayable: orderAmount,
         paymentStatus: "NOT PAID",
-        orderId: data.link_id,
+        orderId: data.order_id,
         eventTitle,
         source: "Cashfree - Not Paid",
       });
@@ -162,9 +158,10 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       success: true,
-      paymentUrl: data.link_url,
-      linkId: data.link_id,
-      amount: data.link_amount,
+      orderId: data.order_id,
+      paymentSessionId: data.payment_session_id,
+      amount: data.order_amount,
+      cashfreeEnv: env,
     });
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : "Internal Server Error";

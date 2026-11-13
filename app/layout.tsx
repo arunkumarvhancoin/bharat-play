@@ -72,6 +72,8 @@ fbq('track', 'PageView');`,
           />
         </noscript>
         {/* End Meta Pixel Code */}
+        {/* Cashfree Payment Gateway SDK v3 */}
+        <script src="https://sdk.cashfree.com/js/v3/cashfree.js" defer />
       </head>
       <body className="flex flex-col font-sans bg-white text-brand-navy selection:bg-brand-green selection:text-white w-full">
         {/* Google Tag Manager (noscript) */}
