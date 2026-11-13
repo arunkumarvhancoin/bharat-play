@@ -1,6 +1,7 @@
 import crypto from "crypto";
 import { NextResponse } from "next/server";
 import { generatePaymentBadgeSvg } from "@/app/lib/cashfreeBadge";
+import { updatePaymentStatusInSupabase } from "@/app/lib/supabaseRegistration";
 
 export async function POST(request: Request) {
   try {
@@ -67,6 +68,17 @@ export async function POST(request: Request) {
       refId,
       eventTitle,
     });
+
+    if (isSuccess) {
+      await updatePaymentStatusInSupabase(
+        {
+          phone: customer?.customer_phone,
+          email: customer?.customer_email,
+          orderId: refId,
+        },
+        true
+      );
+    }
 
     try {
       await fetch(crmApiUrl, {

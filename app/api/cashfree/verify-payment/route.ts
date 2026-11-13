@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse, connection } from "next/server";
-
 import { generatePaymentBadgeSvg } from "@/app/lib/cashfreeBadge";
+import { updatePaymentStatusInSupabase } from "@/app/lib/supabaseRegistration";
 
 export async function GET(request: NextRequest) {
   await connection();
@@ -85,6 +85,15 @@ export async function GET(request: NextRequest) {
       const eventTitle = data.link_notes?.eventTitle || data.link_purpose || "Bharat Play Event";
 
       if (isPaid) {
+        await updatePaymentStatusInSupabase(
+          {
+            phone: data.customer_details?.customer_phone,
+            email: data.customer_details?.customer_email,
+            orderId: targetId,
+          },
+          true
+        );
+
         const paidBadge = generatePaymentBadgeSvg("PAID", {
           amount: targetAmount,
           refId: targetId,

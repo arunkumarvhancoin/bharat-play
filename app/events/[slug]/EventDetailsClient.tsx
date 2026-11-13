@@ -186,13 +186,9 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
       ? attendeesCount * 649
       : isFree ? 0 : attendeesCount * perPax;
 
-    // 1. Instantly collect attendee details into Niral CRM as UNPAID (just like before payment integration!)
+    // 1. Instantly collect attendee details directly into Supabase (same-origin, guaranteed delivery)
     try {
-      const crmApiUrl =
-        process.env.NEXT_PUBLIC_CRM_API_URL ||
-        "https://niral-crm.vercel.app/api/webhooks/bharat-play";
-
-      const crmPayload = {
+      const regPayload = {
         fullName: name.trim(),
         email: email.trim(),
         phone: phone.trim(),
@@ -204,17 +200,18 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
         notes: `Event: ${event.title} | Date: ${event.formattedDate} (${event.time}) | Slot: ${selectedSlot} | Registration initiated`,
         source: isFree ? "Bharat Play Free Registration Form" : "Bharat Play Checkout",
         paymentStatus: isFree ? "PAID" : "NOT PAID",
+        eventTitle: event.title,
       };
 
-      // Await quick dispatch with keepalive so browser navigation cannot abort the request
-      await fetch(crmApiUrl, {
+      // Same-origin dispatch with keepalive ensures backend writes directly to Supabase
+      await fetch("/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(crmPayload),
+        body: JSON.stringify(regPayload),
         keepalive: true,
       });
     } catch (e) {
-      console.warn("CRM lead dispatch notice:", e);
+      console.warn("Direct registration dispatch notice:", e);
     }
 
     // IF PAID EVENT: Call Cashfree API to initialize instant online checkout!

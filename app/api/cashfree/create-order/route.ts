@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-
-import { generatePaymentBadgeSvg } from "@/app/lib/cashfreeBadge";
+import { saveRegistrationToSupabase } from "@/app/lib/supabaseRegistration";
 
 export async function POST(request: Request) {
   try {
@@ -141,37 +140,21 @@ export async function POST(request: Request) {
       );
     }
 
-    // Sync lead to CRM with clear "Cashfree - Not Paid" status (checkout initiated)
+    // Persist registration directly into Supabase with initial "NOT PAID" status
     try {
-      const crmApiUrl =
-        process.env.NEXT_PUBLIC_CRM_API_URL ||
-        "https://niral-crm.vercel.app/api/webhooks/bharat-play";
-
-      const proofBadge = generatePaymentBadgeSvg("UNPAID", {
-        amount,
-        refId: data.link_id,
+      await saveRegistrationToSupabase({
+        fullName: name.trim(),
+        email: email.trim(),
+        phone: cleanPhone,
+        members: `${attendeesCount} ${
+          attendeesCount === 1 ? "Member (Solo)" : `Members (${attendeesCount})`
+        }`,
+        slot: slot,
+        totalPayable: parseFloat(amount),
+        paymentStatus: "NOT PAID",
+        orderId: data.link_id,
         eventTitle,
-      });
-
-      await fetch(crmApiUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fullName: name.trim(),
-          email: email.trim(),
-          phone: cleanPhone,
-          members: `${attendeesCount} ${
-            attendeesCount === 1 ? "Member (Solo)" : `Members (${attendeesCount})`
-          }`,
-          slot: slot,
-          totalPayable: parseFloat(amount),
-          paymentScreenshot: proofBadge,
-          paymentProof: proofBadge,
-          notes: `PAYMENT STATUS: NOT PAID (Initiated on Cashfree, awaiting completion) | Event: ${eventTitle} | Slot: ${slot} | Link: ${data.link_url}`,
-          source: "Cashfree - Not Paid",
-          paymentMethod: "Cashfree",
-          paymentStatus: "NOT PAID",
-        }),
+        source: "Cashfree - Not Paid",
       });
     } catch (crmErr) {
       console.warn("Background CRM lead sync notice:", crmErr);
