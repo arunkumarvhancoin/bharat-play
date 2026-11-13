@@ -65,13 +65,28 @@ export async function POST(request: Request) {
     const linkId = uniqueId;
 
     // Determine the return URL for the user after payment completion
-    const origin =
-      request.headers.get("origin") ||
-      request.headers.get("referer") ||
-      "https://bharatplay.com";
+    let baseUrlForReturn = "https://bharatplay.com";
+    const rawOrigin = request.headers.get("origin");
+    const rawReferer = request.headers.get("referer");
+    const hostHeader = request.headers.get("x-forwarded-host") || request.headers.get("host");
+    const protoHeader =
+      request.headers.get("x-forwarded-proto") ||
+      (hostHeader?.includes("localhost") ? "http" : "https");
+
+    if (rawOrigin) {
+      baseUrlForReturn = rawOrigin.replace(/\/$/, "");
+    } else if (rawReferer) {
+      try {
+        baseUrlForReturn = new URL(rawReferer).origin;
+      } catch {
+        baseUrlForReturn = rawReferer.split("/events")[0].replace(/\/$/, "");
+      }
+    } else if (hostHeader) {
+      baseUrlForReturn = `${protoHeader}://${hostHeader}`;
+    }
 
     const eventSlug = body.eventSlug || (body.eventId ? String(body.eventId) : "saturdays-4-social-games");
-    const defaultReturnUrl = `${origin.replace(/\/$/, "")}/events/${eventSlug}?link_id={link_id}`;
+    const defaultReturnUrl = `${baseUrlForReturn}/events/${eventSlug}?link_id={link_id}`;
 
     const finalReturnUrl = returnUrl || defaultReturnUrl;
 

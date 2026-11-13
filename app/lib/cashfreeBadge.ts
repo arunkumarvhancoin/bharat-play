@@ -14,9 +14,9 @@ export function generatePaymentBadgeSvg(
   const title = isPaid ? "ONLINE PAYMENT CONFIRMED" : "PAYMENT INCOMPLETE / NOT PAID";
   const icon = isPaid ? "✓" : "✕";
   const iconColor = isPaid ? "#34d399" : "#f87171";
-  const statusLabel = isPaid ? "PAID VIA CASHFREE" : "UNPAID / CANCELLED";
+  const statusLabel = isPaid ? "ONLINE PAYMENT CONFIRMED" : "UNPAID / CANCELLED";
   const note = isPaid
-    ? "Verified instantly by Cashfree Payment Gateway"
+    ? "Verified instantly via secure payment gateway"
     : "Checkout was initiated but payment was not completed";
 
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="360" viewBox="0 0 600 360">

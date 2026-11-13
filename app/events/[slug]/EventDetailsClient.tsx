@@ -37,6 +37,17 @@ interface EventDetailsClientProps {
 
 export default function EventDetailsClient({ event, otherEvents }: EventDetailsClientProps) {
   const isNov14Event = event.id === "childrens-day-play-workshop" || event.date.includes("11-14");
+  const cleanEventTitle = (() => {
+    let t = event.title;
+    if (t.includes(":")) {
+      t = t.split(":")[0];
+    } else if (t.includes("·")) {
+      t = t.split("·")[0];
+    } else if (t.includes("×")) {
+      t = t.split("×")[0];
+    }
+    return t.trim();
+  })();
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState(event.slots[0] || "");
@@ -53,63 +64,81 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
   const [activeMediaIndex, setActiveMediaIndex] = useState<number | null>(null);
   const [mediaFilter, setMediaFilter] = useState<"all" | "photos" | "videos">("all");
 
-  // On page mount: check if returning from Cashfree (link_id) or if book popup should open
+  // On page mount / browser back: check if returning from Cashfree (link_id) or if checkout was pending
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // Restore draft details from localStorage if attendee was previously filling the form
-    try {
-      const saved = localStorage.getItem("bp_attendee_draft");
-      if (saved) {
-        const d = JSON.parse(saved);
-        if (d.name && !name) setName(d.name);
-        if (d.email && !email) setEmail(d.email);
-        if (d.phone && !phone) setPhone(d.phone);
-        if (d.slot && !selectedSlot) setSelectedSlot(d.slot);
-        if (d.attendeesCount) setAttendeesCount(d.attendeesCount);
-      }
-    } catch {}
+    const checkPaymentReturn = () => {
+      // Restore draft details from localStorage if attendee was previously filling the form
+      try {
+        const saved = localStorage.getItem("bp_attendee_draft");
+        if (saved) {
+          const d = JSON.parse(saved);
+          if (d.name) setName(d.name);
+          if (d.email) setEmail(d.email);
+          if (d.phone) setPhone(d.phone);
+          if (d.slot) setSelectedSlot(d.slot);
+          if (d.attendeesCount) setAttendeesCount(d.attendeesCount);
+        }
+      } catch {}
 
-    const params = new URLSearchParams(window.location.search);
-    const linkId = params.get("link_id");
-    const orderId = params.get("order_id");
-    const shouldOpen = params.get("open_booking") === "true" || params.get("book") === "true";
+      const params = new URLSearchParams(window.location.search);
+      const linkId = params.get("link_id");
+      const orderId = params.get("order_id");
+      const shouldOpen = params.get("open_booking") === "true" || params.get("book") === "true";
+      const hasPendingCheckout = Boolean(sessionStorage.getItem("bp_pending_checkout"));
 
-    if (linkId || orderId) {
-      const query = linkId
-        ? `link_id=${encodeURIComponent(linkId)}`
-        : `order_id=${encodeURIComponent(orderId || "")}`;
+      if (linkId || orderId) {
+        sessionStorage.removeItem("bp_pending_checkout");
+        const query = linkId
+          ? `link_id=${encodeURIComponent(linkId)}`
+          : `order_id=${encodeURIComponent(orderId || "")}`;
 
-      fetch(`/api/cashfree/verify-payment?${query}`)
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.isPaid) {
-            // Payment successful: Show confirmed popup
-            setIsBookingOpen(true);
-            setIsSubmitted(true);
-            setSubmitError(null);
-            if (data.customer?.customer_name) setName(data.customer.customer_name);
-            if (data.customer?.customer_email) setEmail(data.customer.customer_email);
-            if (data.customer?.customer_phone) setPhone(data.customer.customer_phone);
-          } else {
-            // Payment failed or incomplete: Re-open the booking popup so user can retry immediately!
+        fetch(`/api/cashfree/verify-payment?${query}`)
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.isPaid) {
+              // Payment successful: Show confirmed popup
+              setIsBookingOpen(true);
+              setIsSubmitted(true);
+              setSubmitError(null);
+              if (data.customer?.customer_name) setName(data.customer.customer_name);
+              if (data.customer?.customer_email) setEmail(data.customer.customer_email);
+              if (data.customer?.customer_phone) setPhone(data.customer.customer_phone);
+            } else {
+              // Payment failed or incomplete: Re-open the booking popup so user can retry immediately!
+              setIsBookingOpen(true);
+              setIsSubmitted(false);
+              setSubmitError(
+                "⚠️ Payment has not been completed or was cancelled. Your seat is not reserved yet. Please review your details and click below to try again."
+              );
+            }
+          })
+          .catch(() => {
             setIsBookingOpen(true);
             setIsSubmitted(false);
             setSubmitError(
-              "⚠️ Payment has not been completed or was cancelled. Your seat is not reserved yet. Please review your details and click below to try again."
+              "⚠️ Payment has not been completed. Please check your network or try again."
             );
-          }
-        })
-        .catch(() => {
-          setIsBookingOpen(true);
-          setIsSubmitted(false);
-          setSubmitError(
-            "⚠️ Payment has not been completed. Please check your network or try again."
-          );
-        });
-    } else if (shouldOpen) {
-      setIsBookingOpen(true);
-    }
+          });
+      } else if (hasPendingCheckout) {
+        // User went to Cashfree and came back / cancelled without query param redirect
+        sessionStorage.removeItem("bp_pending_checkout");
+        setIsBookingOpen(true);
+        setIsSubmitted(false);
+        setSubmitError(
+          "⚠️ Payment was cancelled or not completed. Your seat is not reserved yet. Please review your details and click below to try again."
+        );
+      } else if (shouldOpen) {
+        setIsBookingOpen(true);
+      }
+    };
+
+    checkPaymentReturn();
+    window.addEventListener("pageshow", checkPaymentReturn);
+    return () => {
+      window.removeEventListener("pageshow", checkPaymentReturn);
+    };
   }, []);
 
   const eventMedia = event.media && event.media.length > 0 ? event.media : [];
@@ -188,6 +217,11 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
         const data = await res.json();
 
         if (res.ok && data.paymentUrl) {
+          if (typeof window !== "undefined") {
+            try {
+              sessionStorage.setItem("bp_pending_checkout", Date.now().toString());
+            } catch {}
+          }
           // Seamlessly redirect user to Cashfree checkout page
           window.location.href = data.paymentUrl;
           return;
@@ -1004,7 +1038,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                     <span className="uppercase tracking-wider font-mono text-[11px]">Pricing &amp; Food &amp; Beverages Offer:</span>
                   </div>
                   <p className="text-[11px] text-slate-700 leading-snug">
-                    Price is <strong>INR 649 / pax</strong> (₹500 workshop + <strong>₹149 redeemed on Food &amp; Beverages at cafe</strong>). Click <strong>&quot;BOOK YOUR SEAT&quot;</strong> above to checkout securely via Cashfree (UPI, Cards, NetBanking)!
+                    Price is <strong>INR 649 / pax</strong> (₹500 workshop + <strong>₹149 redeemed on Food &amp; Beverages at cafe</strong>). Click <strong>&quot;BOOK YOUR SEAT&quot;</strong> above to checkout securely (UPI, Cards, NetBanking)!
                   </p>
                 </div>
               )}
@@ -1123,12 +1157,12 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                 /* ========================================================= */
                 <div>
                   {/* Navy Blue Header */}
-                  <div className="px-4 py-3.5 sm:px-6 sm:py-5 bg-gradient-to-r from-[#0C2444] via-[#13335c] to-[#0C2444] text-white flex items-center justify-between">
-                    <div className="flex items-center gap-2.5 sm:gap-3">
+                  <div className="px-4 py-3.5 sm:px-6 sm:py-4 bg-gradient-to-r from-[#0C2444] via-[#13335c] to-[#0C2444] text-white flex items-center justify-between">
+                    <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 pr-3">
                       <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-white/10 backdrop-blur-sm text-sky-300 flex items-center justify-center text-lg sm:text-xl shadow-xs border border-white/15 shrink-0">
                         🎲
                       </div>
-                      <div>
+                      <div className="min-w-0">
                         <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-sky-200 block">
                           {event.badge?.toLowerCase().includes("early bird")
                             ? "EARLY BIRD RESERVATION"
@@ -1136,8 +1170,8 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                             ? "FREE REGISTRATION"
                             : "SEAT RESERVATION"}
                         </span>
-                        <h3 className="font-display text-base sm:text-xl font-bold tracking-tight text-white leading-tight">
-                          Grab Your Spot · Join Us!
+                        <h3 className="font-display text-base sm:text-xl font-bold tracking-tight text-white leading-tight truncate">
+                          {cleanEventTitle}
                         </h3>
                       </div>
                     </div>
@@ -1150,32 +1184,6 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                     >
                       &times;
                     </button>
-                  </div>
-
-                  {/* Event summary banner inside modal */}
-                  <div className="bg-sky-50/80 px-4 py-2.5 sm:px-6 sm:py-3 border-b border-sky-200/60 text-xs flex items-center justify-between gap-2">
-                    <div className="min-w-0 flex-1">
-                      <span className="font-bold text-slate-800 block truncate">
-                        {event.title}
-                      </span>
-                      <div className="flex items-center gap-2 text-slate-600 text-[11px] sm:text-xs">
-                        <span className="truncate">{event.formattedDate} · {event.time}</span>
-                        {event.collaborator && (
-                          <span className="hidden sm:inline-flex items-center gap-1 pl-2 border-l border-sky-200 font-medium text-slate-700">
-                            <span>with</span>
-                            <img
-                              src={event.collaborator.logo}
-                              alt={event.collaborator.name}
-                              className="h-3.5 w-auto object-contain rounded-xs"
-                            />
-                            <span className="font-bold">{event.collaborator.name}</span>
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                    <span className="font-bold text-[#0C2444] bg-sky-100 border border-sky-300 px-2 py-0.5 rounded-full text-[10px] sm:text-[11px] shrink-0 whitespace-nowrap">
-                      {event.price}
-                    </span>
                   </div>
 
                   {/* Form */}
@@ -1361,16 +1369,6 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                             ✨ ₹{attendeesCount * 500} workshop + <strong className="text-emerald-700">₹{attendeesCount * 149} redeemable on Food &amp; Beverages at cafe</strong>!
                           </p>
                         )}
-
-                        <div className="bg-sky-50/90 border border-sky-200/80 rounded-xl p-3 text-left space-y-1">
-                          <div className="flex items-center gap-1.5 text-xs font-bold text-[#0C2444]">
-                            <Sparkles className="w-4 h-4 text-sky-600 shrink-0" />
-                            <span>Instant Online Checkout via Cashfree</span>
-                          </div>
-                          <p className="text-[11px] text-slate-600 leading-snug">
-                            Click below to complete secure payment with <strong>UPI (GPay, PhonePe, Paytm), Cards, or NetBanking</strong>. Instant receipt and reservation confirmation will be provided!
-                          </p>
-                        </div>
                       </div>
                     )}
 
@@ -1392,7 +1390,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                         {isSubmitting ? (
                           <>
                             <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 text-sky-300 animate-spin shrink-0" />
-                            <span className="leading-tight">CONNECTING TO CASHFREE GATEWAY...</span>
+                            <span className="leading-tight">CONNECTING TO PAYMENT GATEWAY...</span>
                           </>
                         ) : (
                           <>
@@ -1402,7 +1400,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                                 ? "CONFIRM EARLY BIRD RESERVATION 🎉"
                                 : event.price.toLowerCase().includes("free")
                                 ? "CONFIRM FREE REGISTRATION 🎉"
-                                : `PAY VIA CASHFREE (₹${
+                                : `PAY NOW (₹${
                                     isNov14Event
                                       ? attendeesCount * 649
                                       : attendeesCount * (parseInt(event.price.replace(/[^0-9]/g, "")) || 649)
@@ -1457,7 +1455,7 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                   <div className="bg-[#FAFDF9] border border-emerald-200/90 rounded-2xl p-4 sm:p-5 mb-6 text-left text-xs space-y-2.5 shadow-xs">
                     <div className="flex justify-between items-center pb-2 border-b border-emerald-100">
                       <span className="text-slate-400 uppercase font-semibold text-[11px]">Event</span>
-                      <span className="font-bold text-slate-900 text-right truncate max-w-[200px] sm:max-w-xs">{event.title}</span>
+                      <span className="font-bold text-slate-900 text-right truncate max-w-[200px] sm:max-w-xs">{cleanEventTitle}</span>
                     </div>
 
                     <div className="flex justify-between items-center">

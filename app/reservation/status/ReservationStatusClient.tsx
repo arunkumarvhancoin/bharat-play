@@ -158,7 +158,7 @@ export default function ReservationStatusClient() {
           <div className="bg-white border-2 border-[#0C2444] rounded-[24px] p-8 sm:p-12 text-center shadow-lg sm:[box-shadow:10px_10px_0px_#0C2444]">
             <div className="w-12 h-12 border-4 border-[#0C2444] border-t-transparent rounded-full animate-spin mx-auto mb-5" />
             <h2 className="font-display text-xl sm:text-2xl font-bold text-brand-navy mb-2">
-              Verifying Payment with Cashfree...
+              Verifying Payment...
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 font-medium">
               Please wait while we confirm your transaction and reserve your seats.
@@ -202,7 +202,7 @@ export default function ReservationStatusClient() {
                 <CheckCircle2 className="w-9 h-9 text-white" />
               </div>
               <span className="font-mono text-[11px] font-bold tracking-widest uppercase text-emerald-100 block mb-1">
-                ONLINE PAYMENT CONFIRMED · CASHFREE
+                ONLINE PAYMENT CONFIRMED
               </span>
               <h1 className="font-display text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">
                 Seat Reservation Confirmed! 🎉
@@ -224,7 +224,7 @@ export default function ReservationStatusClient() {
                     ₹{data?.amountPaid || data?.amount}
                   </div>
                   <span className="font-mono text-[10px] text-emerald-700 font-semibold">
-                    ✓ Verified via Cashfree Sandbox
+                    ✓ Verified &amp; Secure
                   </span>
                 </div>
                 <div className="text-right">
@@ -300,7 +300,7 @@ export default function ReservationStatusClient() {
 
                 <a
                   href={`https://wa.me/918237132553?text=${encodeURIComponent(
-                    `Hi Bharat Play! I just completed my online reservation via Cashfree for ${
+                    `Hi Bharat Play! I just completed my online reservation for ${
                       matchedEvent?.title || "your event"
                     } (Ref: ${data?.linkId}). Looking forward to joining!`
                   )}`}
@@ -332,7 +332,7 @@ export default function ReservationStatusClient() {
                 <AlertCircle className="w-9 h-9 text-white" />
               </div>
               <span className="font-mono text-[11px] font-bold tracking-widest uppercase text-rose-100 block mb-1">
-                TRANSACTION INCOMPLETE · CASHFREE
+                TRANSACTION INCOMPLETE
               </span>
               <h1 className="font-display text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">
                 Payment Has Not Been Done
