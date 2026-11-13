@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+import { generatePaymentBadgeSvg } from "@/app/lib/cashfreeBadge";
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -129,6 +131,12 @@ export async function POST(request: Request) {
         process.env.NEXT_PUBLIC_CRM_API_URL ||
         "https://niral-crm.vercel.app/api/webhooks/bharat-play";
 
+      const proofBadge = generatePaymentBadgeSvg("UNPAID", {
+        amount,
+        refId: data.link_id,
+        eventTitle,
+      });
+
       await fetch(crmApiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -138,9 +146,11 @@ export async function POST(request: Request) {
           phone: cleanPhone,
           members: `${attendeesCount} ${
             attendeesCount === 1 ? "Member (Solo)" : `Members (${attendeesCount})`
-          }`,
-          slot,
+          } • NOT PAID`,
+          slot: `${slot} • NOT PAID`,
           totalPayable: parseFloat(amount),
+          paymentScreenshot: proofBadge,
+          paymentProof: proofBadge,
           notes: `PAYMENT STATUS: NOT PAID (Initiated on Cashfree, awaiting completion) | Event: ${eventTitle} | Slot: ${slot} | Link: ${data.link_url}`,
           source: "Cashfree - Not Paid",
           paymentMethod: "Cashfree",

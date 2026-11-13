@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse, connection } from "next/server";
 
+import { generatePaymentBadgeSvg } from "@/app/lib/cashfreeBadge";
+
 export async function GET(request: NextRequest) {
   await connection();
   try {
@@ -77,7 +79,18 @@ export async function GET(request: NextRequest) {
         process.env.NEXT_PUBLIC_CRM_API_URL ||
         "https://niral-crm.vercel.app/api/webhooks/bharat-play";
 
+      const targetAmount = data.link_amount_paid || data.link_amount || data.order_amount;
+      const baseSlot = data.link_notes?.slot || "Standard Slot";
+      const baseMembers = `${data.link_notes?.attendeesCount || 1} Member(s)`;
+      const eventTitle = data.link_notes?.eventTitle || data.link_purpose || "Bharat Play Event";
+
       if (isPaid) {
+        const paidBadge = generatePaymentBadgeSvg("PAID", {
+          amount: targetAmount,
+          refId: targetId,
+          eventTitle,
+        });
+
         await fetch(crmApiUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -85,16 +98,24 @@ export async function GET(request: NextRequest) {
             fullName: data.customer_details?.customer_name,
             email: data.customer_details?.customer_email,
             phone: data.customer_details?.customer_phone,
-            members: `${data.link_notes?.attendeesCount || 1} Member(s)`,
-            slot: data.link_notes?.slot || "Standard Slot",
-            totalPayable: data.link_amount_paid || data.link_amount || data.order_amount,
-            notes: `PAYMENT STATUS: PAID (Verified via Cashfree) | Event: ${data.link_notes?.eventTitle || data.link_purpose || "Bharat Play Event"} | Amount Paid: ₹${data.link_amount_paid || data.link_amount} | Ref: ${targetId} | Status: PAID`,
+            members: `${baseMembers} • PAID`,
+            slot: `${baseSlot} • PAID (Cashfree)`,
+            totalPayable: targetAmount,
+            paymentScreenshot: paidBadge,
+            paymentProof: paidBadge,
+            notes: `PAYMENT STATUS: PAID (Verified via Cashfree) | Event: ${eventTitle} | Amount Paid: ₹${targetAmount} | Ref: ${targetId} | Status: PAID`,
             source: "Paid via Cashfree",
             paymentMethod: "Cashfree",
             paymentStatus: "PAID",
           }),
         });
       } else {
+        const unpaidBadge = generatePaymentBadgeSvg("UNPAID", {
+          amount: targetAmount,
+          refId: targetId,
+          eventTitle,
+        });
+
         await fetch(crmApiUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -102,10 +123,12 @@ export async function GET(request: NextRequest) {
             fullName: data.customer_details?.customer_name,
             email: data.customer_details?.customer_email,
             phone: data.customer_details?.customer_phone,
-            members: `${data.link_notes?.attendeesCount || 1} Member(s)`,
-            slot: data.link_notes?.slot || "Standard Slot",
-            totalPayable: data.link_amount || data.order_amount,
-            notes: `PAYMENT STATUS: NOT PAID (Incomplete / Cancelled via Cashfree) | Event: ${data.link_notes?.eventTitle || data.link_purpose || "Bharat Play Event"} | Amount Pending: ₹${data.link_amount} | Ref: ${targetId} | Status: ${status}`,
+            members: `${baseMembers} • NOT PAID`,
+            slot: `${baseSlot} • NOT PAID`,
+            totalPayable: targetAmount,
+            paymentScreenshot: unpaidBadge,
+            paymentProof: unpaidBadge,
+            notes: `PAYMENT STATUS: NOT PAID (Incomplete / Cancelled via Cashfree) | Event: ${eventTitle} | Amount Pending: ₹${targetAmount} | Ref: ${targetId} | Status: ${status}`,
             source: "Cashfree - Not Paid",
             paymentMethod: "Cashfree",
             paymentStatus: "UNPAID",
