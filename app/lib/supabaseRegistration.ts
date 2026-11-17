@@ -47,6 +47,7 @@ export async function saveRegistrationToSupabase(payload: RegistrationPayload) {
 
   const detailsNotes = [
     `Bharat Play Reservation Details:`,
+    eventTitle ? `• Event: ${eventTitle}` : null,
     `• Members: ${members}`,
     `• Chosen Slot: ${slot}`,
     `• Total Amount: ₹${totalPayable}`,

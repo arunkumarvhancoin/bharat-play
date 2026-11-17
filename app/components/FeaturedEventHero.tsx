@@ -3,7 +3,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, ChevronLeft, ChevronRight, Clock, MapPin, Users, Calendar as CalendarIcon } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Clock, MapPin, Calendar as CalendarIcon } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
 export default function FeaturedEventHero() {

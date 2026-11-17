@@ -1,4 +1,5 @@
 import FeaturedEventHero from "./components/FeaturedEventHero";
+import NewsUpdatesRollingAd from "./components/NewsUpdatesRollingAd";
 import Stories from "./components/Stories";
 import AboutKudos from "./components/AboutKudos";
 import GamesCarousel from "./components/GamesCarousel";
@@ -12,6 +13,9 @@ export default function Home() {
       {/* 01 — HERO */}
       <FeaturedEventHero />
       {/* <UpcomingEvents /> */}
+
+      {/* 02 — NEWS & UPDATES (ROLLING AD) */}
+      <NewsUpdatesRollingAd />
       
       {/* 03 — ONE VIEW (ABOUT) */}
       <AboutKudos />

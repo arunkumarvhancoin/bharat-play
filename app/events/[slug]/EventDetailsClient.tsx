@@ -69,24 +69,26 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    setIsSubmitting(false);
+    const timer = setTimeout(() => {
+      try {
+        const saved = localStorage.getItem("bp_attendee_draft");
+        if (saved) {
+          const d = JSON.parse(saved);
+          if (d.name) setName(d.name);
+          if (d.email) setEmail(d.email);
+          if (d.phone) setPhone(d.phone);
+          if (d.slot) setSelectedSlot(d.slot);
+          if (d.attendeesCount) setAttendeesCount(d.attendeesCount);
+        }
+      } catch {}
 
-    try {
-      const saved = localStorage.getItem("bp_attendee_draft");
-      if (saved) {
-        const d = JSON.parse(saved);
-        if (d.name) setName(d.name);
-        if (d.email) setEmail(d.email);
-        if (d.phone) setPhone(d.phone);
-        if (d.slot) setSelectedSlot(d.slot);
-        if (d.attendeesCount) setAttendeesCount(d.attendeesCount);
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("open_booking") === "true" || params.get("book") === "true") {
+        setIsBookingOpen(true);
       }
-    } catch {}
+    }, 0);
 
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("open_booking") === "true" || params.get("book") === "true") {
-      setIsBookingOpen(true);
-    }
+    return () => clearTimeout(timer);
   }, []);
 
   const eventMedia = event.media && event.media.length > 0 ? event.media : [];

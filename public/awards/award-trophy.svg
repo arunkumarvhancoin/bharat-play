@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <!-- Outer Glow / Background Container with Bharat Play shadow styling -->
+  <rect x="4" y="4" width="112" height="112" rx="26" fill="#FFFBEB" stroke="#F59E0B" stroke-width="3"/>
+  <rect x="10" y="10" width="100" height="100" rx="20" fill="#FEF3C7" opacity="0.4"/>
+
+  <!-- Laurel Wreath Left -->
+  <path d="M28 72C24 62 26 48 34 38C35 44 32 50 30 56C36 50 42 46 44 48C40 54 36 62 32 68" fill="#D97706" opacity="0.85"/>
+  <path d="M22 54C22 46 26 38 32 32C31 38 29 44 26 50" fill="#D97706" opacity="0.75"/>
+
+  <!-- Laurel Wreath Right -->
+  <path d="M92 72C96 62 94 48 86 38C85 44 88 50 90 56C84 50 78 46 76 48C80 54 84 62 88 68" fill="#D97706" opacity="0.85"/>
+  <path d="M98 54C98 46 94 38 88 32C89 38 91 44 94 50" fill="#D97706" opacity="0.75"/>
+
+  <!-- Trophy Handles -->
+  <path d="M38 36C25 36 23 54 38 58" stroke="#D97706" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+  <path d="M82 36C95 36 97 54 82 58" stroke="#D97706" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+
+  <!-- Trophy Cup Body -->
+  <path d="M36 28H84V46C84 60 74 70 60 70C46 70 36 60 36 46V28Z" fill="url(#gold-grad)" stroke="#B45309" stroke-width="3" stroke-linejoin="round"/>
+
+  <!-- Trophy Lip Rim -->
+  <rect x="33" y="25" width="54" height="7" rx="3.5" fill="#FDE047" stroke="#B45309" stroke-width="2.5"/>
+
+  <!-- Cup Highlight -->
+  <path d="M42 34V46C42 54 46 60 52 63C47 60 44 54 44 46V34H42Z" fill="#FEF08A" opacity="0.85"/>
+
+  <!-- Center Star on Cup -->
+  <path d="M60 38L62.4 43.8L68.5 44.3L63.8 48.3L65.3 54.2L60 51L54.7 54.2L56.2 48.3L51.5 44.3L57.6 43.8L60 38Z" fill="#FFFFFF" stroke="#B45309" stroke-width="1.2"/>
+
+  <!-- Trophy Stem / Neck -->
+  <path d="M54 70H66V78C66 80 64 82 62 82H58C56 82 54 80 54 78V70Z" fill="#F59E0B" stroke="#B45309" stroke-width="2.5"/>
+
+  <!-- Trophy Base Upper Tier -->
+  <path d="M48 82H72L75 88H45L48 82Z" fill="#D97706" stroke="#B45309" stroke-width="2.5" stroke-linejoin="round"/>
+
+  <!-- Trophy Base Pedestal -->
+  <rect x="38" y="88" width="44" height="13" rx="3" fill="#0C2444" stroke="#0C2444" stroke-width="2"/>
+  <rect x="46" y="91.5" width="28" height="6" rx="1.5" fill="#F59E0B"/>
+
+  <!-- Red Ribbon Tails -->
+  <path d="M38 93L26 103L34 104L37 97" fill="#DC2626" stroke="#991B1B" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M82 93L94 103L86 104L83 97" fill="#DC2626" stroke="#991B1B" stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- Sparkles -->
+  <path d="M80 18L81.5 22.5L86 24L81.5 25.5L80 30L78.5 25.5L74 24L78.5 22.5L80 18Z" fill="#F59E0B"/>
+  <path d="M36 17L37.2 20.2L40.5 21L37.2 21.8L36 25L34.8 21.8L31.5 21L34.8 20.2L36 17Z" fill="#F59E0B"/>
+
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="gold-grad" x1="36" y1="28" x2="84" y2="70" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FDE047"/>
+      <stop offset="40%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+  </defs>
+</svg>
