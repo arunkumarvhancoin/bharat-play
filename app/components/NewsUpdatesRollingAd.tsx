@@ -38,7 +38,8 @@ interface NewsSlide {
 }
 
 const NEWS_SLIDES: NewsSlide[] = [
-  // 0. CHENNAI@2050 INNOVATION CHALLENGE
+  /* 
+  // 0. CHENNAI@2050 INNOVATION CHALLENGE (COMMENTED OUT FOR NOW)
   {
     id: "chennai-2050-innovation-challenge",
     tag: "INTER-SCHOOL CHAMPIONSHIP",
@@ -62,6 +63,7 @@ const NEWS_SLIDES: NewsSlide[] = [
       src: "/logo.png",
     },
   },
+  */
   // 1. Institutional Sale: Schools, Colleges & Universities
   {
     id: "educational-institutional-sale",
