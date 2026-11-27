@@ -27,6 +27,8 @@ import {
   Utensils,
   Loader2,
   MessageCircle,
+  CheckCircle2,
+  ArrowRight,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScheduledEvent } from "../../data/events";
@@ -332,10 +334,17 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
                   <span>{event.category}</span>
                 </span>
 
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0C2444] text-white text-xs font-bold tracking-wide">
-                  <Sparkles className="w-3 h-3 text-amber-300" />
-                  <span>{event.badge || "Filling Fast"}</span>
-                </span>
+                {event.status === "conducted" ? (
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800 text-white text-xs font-bold tracking-wide">
+                    <CheckCircle2 className="w-3 h-3 text-slate-300" />
+                    <span>Concluded Session</span>
+                  </span>
+                ) : (
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0C2444] text-white text-xs font-bold tracking-wide">
+                    <Sparkles className="w-3 h-3 text-amber-300" />
+                    <span>{event.badge || "Filling Fast"}</span>
+                  </span>
+                )}
 
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#15803D] text-white text-xs font-bold">
                   <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
@@ -912,25 +921,43 @@ export default function EventDetailsClient({ event, otherEvents }: EventDetailsC
               </div>
 
               {/* Primary Action Button - Solid Matte Saffron */}
-              <button
-                type="button"
-                onClick={() => {
-                  setIsSubmitting(false);
-                  setIsBookingOpen(true);
-                }}
-                className="w-full inline-flex items-center justify-center gap-2.5 py-4 px-6 rounded-full bg-[#C2410C] hover:bg-[#a3360a] text-white font-display text-base font-bold shadow-xs hover:scale-[1.01] active:scale-[0.98] transition-all cursor-pointer"
-              >
-                <Ticket className="w-5 h-5 text-white" />
-                <span>RESERVE YOUR SEAT</span>
-                <span>🎉</span>
-              </button>
+              {event.status === "conducted" ? (
+                <div className="space-y-3">
+                  <div className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-slate-100 border border-slate-300 text-slate-600 font-display text-sm font-bold uppercase tracking-wider">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                    <span>THIS EVENT HAS CONCLUDED</span>
+                  </div>
+                  <Link
+                    href="/checkout?game=city-runners"
+                    className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-[#C2410C] hover:bg-[#a3360a] text-white font-mono text-xs font-bold uppercase tracking-wider transition-all shadow-xs"
+                  >
+                    <span>BUY CITY RUNNERS BOARD GAME</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              ) : (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsSubmitting(false);
+                      setIsBookingOpen(true);
+                    }}
+                    className="w-full inline-flex items-center justify-center gap-2.5 py-4 px-6 rounded-full bg-[#C2410C] hover:bg-[#a3360a] text-white font-display text-base font-bold shadow-xs hover:scale-[1.01] active:scale-[0.98] transition-all cursor-pointer"
+                  >
+                    <Ticket className="w-5 h-5 text-white" />
+                    <span>RESERVE YOUR SEAT</span>
+                    <span>🎉</span>
+                  </button>
 
-              {/* Sub-text reassurance */}
-              <div className="mt-3.5 text-center">
-                <p className="text-[11px] text-slate-500 flex items-center justify-center gap-1.5">
-                  <span>⚡</span> Instant seat reservation confirmation via WhatsApp
-                </p>
-              </div>
+                  {/* Sub-text reassurance */}
+                  <div className="mt-3.5 text-center">
+                    <p className="text-[11px] text-slate-500 flex items-center justify-center gap-1.5">
+                      <span>⚡</span> Instant seat reservation confirmation via WhatsApp
+                    </p>
+                  </div>
+                </>
+              )}
 
               {/* Payment & Food & Beverages Info Callout for 14th Nov Event (Text only) */}
               {isNov14Event && (

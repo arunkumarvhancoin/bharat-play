@@ -1,3 +1,12 @@
+export interface DeliveryAddress {
+  building?: string;
+  street?: string;
+  landmark?: string;
+  city?: string;
+  state?: string;
+  pincode?: string;
+}
+
 export interface RegistrationPayload {
   fullName: string;
   email: string;
@@ -11,6 +20,9 @@ export interface RegistrationPayload {
   notes?: string;
   eventTitle?: string;
   source?: string;
+  orderType?: "game_purchase" | "event_booking";
+  productName?: string;
+  deliveryAddress?: DeliveryAddress;
 }
 
 const SUPABASE_URL =
@@ -35,6 +47,9 @@ export async function saveRegistrationToSupabase(payload: RegistrationPayload) {
     notes,
     eventTitle,
     source,
+    orderType,
+    productName,
+    deliveryAddress,
   } = payload;
 
   const cleanPhone = phone.replace(/[^0-9]/g, "").slice(-10);
@@ -42,20 +57,38 @@ export async function saveRegistrationToSupabase(payload: RegistrationPayload) {
   const firstName = nameParts[0] || "Guest";
   const lastName = nameParts.slice(1).join(" ") || "-";
 
+  const isGameOrder = orderType === "game_purchase" || Boolean(productName) || Boolean(deliveryAddress);
   const statusTag = paymentStatus === "PAID" ? "PAID" : "NOT PAID";
-  const leadTitle = `Bharat Play: ${fullName.trim()} (${members} · ${slot}) [${statusTag}]`;
+  const leadTitle = isGameOrder
+    ? `Bharat Play Game Order: ${fullName.trim()} (${productName || "City Runners"} · ${members}) [${statusTag}]`
+    : `Bharat Play: ${fullName.trim()} (${members} · ${slot}) [${statusTag}]`;
+
+  const formattedAddress = deliveryAddress
+    ? [
+        deliveryAddress.building,
+        deliveryAddress.street,
+        deliveryAddress.landmark ? `Near ${deliveryAddress.landmark}` : null,
+        deliveryAddress.city,
+        deliveryAddress.state,
+        deliveryAddress.pincode ? `PIN: ${deliveryAddress.pincode}` : null,
+      ]
+        .filter(Boolean)
+        .join(", ")
+    : null;
 
   const detailsNotes = [
-    `Bharat Play Reservation Details:`,
-    eventTitle ? `• Event: ${eventTitle}` : null,
-    `• Members: ${members}`,
-    `• Chosen Slot: ${slot}`,
+    isGameOrder ? `Bharat Play Game Order Details:` : `Bharat Play Reservation Details:`,
+    productName ? `• Product: ${productName}` : null,
+    eventTitle ? `• Event/Title: ${eventTitle}` : null,
+    isGameOrder ? `• Units/Quantity: ${members}` : `• Members: ${members}`,
+    isGameOrder ? `• Delivery Type: ${slot || "Physical Delivery"}` : `• Chosen Slot: ${slot}`,
+    formattedAddress ? `• Delivery Address: ${formattedAddress}` : null,
     `• Total Amount: ₹${totalPayable}`,
     `• Payment Status: ${paymentStatus}`,
     orderId ? `• Cashfree Order/Link ID: ${orderId}` : null,
     paymentId ? `• Cashfree Payment ID: ${paymentId}` : null,
-    notes ? `• Notes: ${notes}` : null,
-    `• Registered: ${new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })} (IST)`,
+    notes ? `• Customer Notes: ${notes}` : null,
+    `• Timestamp: ${new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })} (IST)`,
   ]
     .filter(Boolean)
     .join("\n");
@@ -63,7 +96,47 @@ export async function saveRegistrationToSupabase(payload: RegistrationPayload) {
   let leadId = null;
 
   try {
-    // 1. Create or insert contact directly in Supabase
+    // 1. Direct Game Purchase / Enquiry: Store in 'orders' table
+    if (isGameOrder) {
+      try {
+        const orderRes = await fetch(`${SUPABASE_URL}/rest/v1/orders`, {
+          method: "POST",
+          headers: {
+            apikey: SUPABASE_KEY,
+            Authorization: `Bearer ${SUPABASE_KEY}`,
+            "Content-Type": "application/json",
+            Prefer: "return=representation",
+          },
+          body: JSON.stringify({
+            order_id: orderId || `bp_enq_${Date.now()}`,
+            customer_name: fullName.trim() || "Guest Buyer",
+            email: email.trim().toLowerCase() || "guest@bharatplay.com",
+            phone: cleanPhone || "0000000000",
+            product_name: productName || "City Runners",
+            quantity: parseInt(members) || 1,
+            amount: totalPayable,
+            payment_status: paymentStatus || "ENQUIRY",
+            is_paid: paymentStatus === "PAID",
+            paid_at: paymentStatus === "PAID" ? new Date().toISOString() : null,
+            address_building: deliveryAddress?.building,
+            address_street: deliveryAddress?.street,
+            address_landmark: deliveryAddress?.landmark,
+            address_city: deliveryAddress?.city,
+            address_state: deliveryAddress?.state,
+            address_pincode: deliveryAddress?.pincode,
+            notes: notes || detailsNotes,
+            created_at: new Date().toISOString(),
+          }),
+        });
+
+        const orderData = await orderRes.json();
+        leadId = Array.isArray(orderData) && orderData[0]?.id ? orderData[0].id : orderId;
+      } catch (orderErr) {
+        console.warn("Direct Supabase orders insert notice:", orderErr);
+      }
+    }
+
+    // 2. ALWAYS Save into contacts & leads pipeline for CRM tracking (both games & events)
     const contactRes = await fetch(`${SUPABASE_URL}/rest/v1/contacts`, {
       method: "POST",
       headers: {
@@ -87,7 +160,6 @@ export async function saveRegistrationToSupabase(payload: RegistrationPayload) {
     const contactData = await contactRes.json();
     const contactId = Array.isArray(contactData) && contactData[0]?.id ? contactData[0].id : null;
 
-    // 2. Insert Lead directly into Supabase leads table
     const leadRes = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
       method: "POST",
       headers: {
@@ -104,7 +176,7 @@ export async function saveRegistrationToSupabase(payload: RegistrationPayload) {
         email: email.trim().toLowerCase(),
         phone: cleanPhone,
         company: "Bharat Play",
-        source: "Event",
+        source: source || (isGameOrder ? "Game Order Enquiry" : "Event"),
         status: paymentStatus === "PAID" ? "Converted" : "New",
         priority: "High",
         value: totalPayable,
@@ -114,50 +186,96 @@ export async function saveRegistrationToSupabase(payload: RegistrationPayload) {
     });
 
     const leadData = await leadRes.json();
-    leadId = Array.isArray(leadData) && leadData[0]?.id ? leadData[0].id : null;
+    if (!leadId) {
+      leadId = Array.isArray(leadData) && leadData[0]?.id ? leadData[0].id : null;
+    }
   } catch (err) {
     console.warn("Direct Supabase REST insert notice:", err);
   }
 
-  // 3. Additionally notify external CRM webhook if configured
-  try {
-    const crmApiUrl =
-      process.env.NEXT_PUBLIC_CRM_API_URL ||
-      "https://niral-crm.vercel.app/api/webhooks/bharat-play";
+  // 3. Additionally notify external Niral CRM webhook (Dispatches to both local dev server and production)
+  const crmUrls = Array.from(
+    new Set(
+      [
+        process.env.NEXT_PUBLIC_CRM_API_URL,
+        "http://localhost:3001/api/webhooks/bharat-play",
+        "https://niral-crm.vercel.app/api/webhooks/bharat-play",
+      ].filter(Boolean) as string[]
+    )
+  );
 
-    await fetch(crmApiUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        fullName: fullName.trim(),
-        email: email.trim(),
-        phone: cleanPhone,
-        members,
-        slot,
-        totalPayable,
-        paymentStatus,
-        orderId,
-        notes: detailsNotes,
-        source: source || "Bharat Play Booking Form",
-      }),
-    });
-  } catch (crmErr) {
-    console.warn("CRM secondary webhook notice:", crmErr);
+  for (const crmApiUrl of crmUrls) {
+    try {
+      await fetch(crmApiUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: fullName.trim(),
+          email: email.trim(),
+          phone: cleanPhone,
+          members,
+          slot,
+          totalPayable,
+          paymentStatus,
+          orderId,
+          notes: detailsNotes,
+          source: source || (isGameOrder ? "City Runners Order - Cashfree" : "Bharat Play Booking Form"),
+          deliveryAddress: formattedAddress,
+          shippingAddress: deliveryAddress,
+          productName: productName || (isGameOrder ? "City Runners Board Game" : undefined),
+          orderType: isGameOrder ? "game_purchase" : "event_booking",
+        }),
+      });
+    } catch {
+      // Continue to other endpoints
+    }
   }
 
   return { success: true, leadId };
 }
 
 export async function updatePaymentStatusInSupabase(
-  identifier: { phone?: string | null; email?: string | null; orderId?: string | null },
+  identifier: {
+    phone?: string | null;
+    email?: string | null;
+    orderId?: string | null;
+    paymentId?: string | null;
+    paymentMethod?: string | null;
+  },
   isPaid: boolean
 ) {
   if (!isPaid) return; // Strict requirement: Only successful payments change status to PAID. Never downgrade.
 
   try {
-    const { phone, email } = identifier;
+    const { phone, email, orderId, paymentId, paymentMethod } = identifier;
     const cleanPhone = phone ? phone.replace(/[^0-9]/g, "").slice(-10) : null;
     const cleanEmail = email ? email.trim().toLowerCase() : null;
+
+    // 1. Update orders table: explicitly record PAID status, boolean true, timestamp and payment method
+    if (orderId) {
+      try {
+        await fetch(`${SUPABASE_URL}/rest/v1/orders?order_id=eq.${encodeURIComponent(orderId)}`, {
+          method: "PATCH",
+          headers: {
+            apikey: SUPABASE_KEY,
+            Authorization: `Bearer ${SUPABASE_KEY}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            payment_status: "PAID",
+            is_paid: true,
+            paid_at: new Date().toISOString(),
+            payment_id: paymentId || undefined,
+            payment_method: paymentMethod || "Cashfree",
+            updated_at: new Date().toISOString(),
+          }),
+        });
+      } catch (orderUpdateErr) {
+        console.warn("Direct Supabase orders patch notice:", orderUpdateErr);
+      }
+    }
+
+    // 2. Update leads table status to Converted and tag to [PAID]
 
     let filter = `organization_id=eq.${BHARAT_PLAY_ORG_ID}&status=neq.Converted`;
     if (cleanPhone) {

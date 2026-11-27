@@ -1,6 +1,5 @@
 import crypto from "crypto";
 import { NextResponse } from "next/server";
-import { generatePaymentBadgeSvg } from "@/app/lib/cashfreeBadge";
 import { updatePaymentStatusInSupabase } from "@/app/lib/supabaseRegistration";
 
 export async function POST(request: Request) {
@@ -12,7 +11,7 @@ export async function POST(request: Request) {
     const secretKey =
       process.env.CASHFREE_SECRET_KEY ||
       Buffer.from(
-        "Y2Zza19tYV90ZXN0XzZlMzlkMzFhMDExNTEyOGUyOTcyZDNhODlkYzk3ZjFhXzZmYzk5YzM0",
+        "Y2Zza19tYV9wcm9kXzdlNzk3NDE4ZWIzNzQ0NDQ3N2Y5OWVjY2QxOGJmZTRkXzJiMjYxYmE0",
         "base64"
       ).toString("utf8");
 
@@ -52,22 +51,28 @@ export async function POST(request: Request) {
     const linkNotes = data?.link_notes || {};
 
     const targetAmount = payment?.payment_amount || order?.order_amount || data?.link_amount;
-    const baseSlot = linkNotes.slot || "Standard Slot";
-    const baseMembers = `${linkNotes.attendeesCount || 1} Member(s)`;
-    const eventTitle = linkNotes.eventTitle || data?.link_purpose || "Bharat Play Event";
+    const isGame =
+      Boolean(order?.order_note?.toLowerCase().includes("game")) ||
+      Boolean(order?.order_note?.toLowerCase().includes("city runners")) ||
+      linkNotes.orderType === "game_purchase";
+    const baseSlot = linkNotes.slot || (isGame ? "Physical Board Game Delivery" : "Standard Slot");
+    const baseMembers = isGame
+      ? `${linkNotes.attendeesCount || 1} Unit(s)`
+      : `${linkNotes.attendeesCount || 1} Member(s)`;
+    const eventTitle = linkNotes.eventTitle || order?.order_note || data?.link_purpose || "Bharat Play Order";
     const refId = order?.order_id || data?.link_id;
 
     const paymentStatus = isSuccess ? "PAID" : "NOT PAID";
 
-    const crmApiUrl =
-      process.env.NEXT_PUBLIC_CRM_API_URL ||
-      "https://niral-crm.vercel.app/api/webhooks/bharat-play";
-
-    const proofBadge = generatePaymentBadgeSvg(isSuccess ? "PAID" : "UNPAID", {
-      amount: targetAmount,
-      refId,
-      eventTitle,
-    });
+    const crmUrls = Array.from(
+      new Set(
+        [
+          process.env.NEXT_PUBLIC_CRM_API_URL,
+          "http://localhost:3001/api/webhooks/bharat-play",
+          "https://niral-crm.vercel.app/api/webhooks/bharat-play",
+        ].filter(Boolean) as string[]
+      )
+    );
 
     if (isSuccess) {
       await updatePaymentStatusInSupabase(
@@ -75,32 +80,39 @@ export async function POST(request: Request) {
           phone: customer?.customer_phone,
           email: customer?.customer_email,
           orderId: refId,
+          paymentId: payment?.cf_payment_id || payment?.payment_id,
+          paymentMethod: payment?.payment_group || "Cashfree",
         },
         true
       );
     }
 
-    try {
-      await fetch(crmApiUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fullName: customer?.customer_name,
-          email: customer?.customer_email,
-          phone: customer?.customer_phone,
-          members: baseMembers,
-          slot: baseSlot,
-          totalPayable: targetAmount,
-          paymentScreenshot: proofBadge,
-          paymentProof: proofBadge,
-          notes: `PAYMENT STATUS: ${paymentStatus} (Cashfree Webhook: ${eventType}) | Event: ${eventTitle} | Ref: ${refId}`,
-          source: isSuccess ? "Paid via Cashfree" : "Cashfree - Not Paid",
-          paymentMethod: payment?.payment_group || "Cashfree",
-          paymentStatus: paymentStatus,
-        }),
-      });
-    } catch (crmErr) {
-      console.warn("CRM webhook notification notice:", crmErr);
+    for (const crmApiUrl of crmUrls) {
+      try {
+        await fetch(crmApiUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            fullName: customer?.customer_name,
+            email: customer?.customer_email,
+            phone: customer?.customer_phone,
+            members: baseMembers,
+            slot: baseSlot,
+            totalPayable: targetAmount,
+            notes: `PAYMENT STATUS: ${paymentStatus} (Cashfree Webhook: ${eventType}) | ${isGame ? "Game Order" : "Event"}: ${eventTitle} | Ref: ${refId}`,
+            source: isGame
+              ? (isSuccess ? "City Runners Order - Paid" : "City Runners Order - Cashfree")
+              : (isSuccess ? "Paid via Cashfree" : "Cashfree - Not Paid"),
+            paymentMethod: payment?.payment_group || "Cashfree",
+            paymentStatus: paymentStatus,
+            orderId: refId,
+            orderType: isGame ? "game_purchase" : "event_booking",
+            productName: isGame ? "City Runners Board Game" : undefined,
+          }),
+        });
+      } catch {
+        // Continue to other endpoints
+      }
     }
 
     return NextResponse.json({ received: true });

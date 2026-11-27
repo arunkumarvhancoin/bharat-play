@@ -2,7 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, ShoppingBag, Sparkles, Truck, ShieldCheck, GraduationCap } from "lucide-react";
 import { GameItem } from "../../data/games";
 
 interface GameExperienceClientProps {
@@ -84,6 +84,16 @@ export default function GameExperienceClient({ game, otherGames }: GameExperienc
 
             {/* ACTIONS */}
             <div className="pt-2 flex flex-wrap items-center gap-4">
+              {game.forSale && (
+                <Link
+                  href={`/checkout?game=${game.id}`}
+                  className="inline-flex items-center gap-2 bg-[#C2410C] hover:bg-[#9a3412] text-white px-7 py-3.5 rounded-full font-mono text-xs font-bold uppercase tracking-wider transition-all shadow-md shadow-orange-500/25 hover:scale-[1.02]"
+                >
+                  <ShoppingBag className="w-4 h-4" />
+                  <span>BUY THIS GAME (₹{game.price?.toLocaleString("en-IN")})</span>
+                </Link>
+              )}
+
               <a
                 href={`https://wa.me/918237132553?text=${encodeURIComponent(`Hi Bharat Play, I would like to book a session for ${game.name}.`)}`}
                 target="_blank"
@@ -98,7 +108,7 @@ export default function GameExperienceClient({ game, otherGames }: GameExperienc
                 href="#what-you-do"
                 className="font-mono text-xs font-bold uppercase text-brand-navy hover:text-brand-orange transition-colors px-4 py-3 rounded-full border border-amber-200/70 bg-white shadow-xs"
               >
-                DETAILS & LEARNING ↓
+                DETAILS &amp; LEARNING ↓
               </a>
             </div>
           </div>
@@ -109,6 +119,11 @@ export default function GameExperienceClient({ game, otherGames }: GameExperienc
               className="relative aspect-[4/3] w-full bg-brand-navy rounded-[26px] overflow-hidden border-2 border-[#0C2444]"
               style={{ boxShadow: "10px 10px 0px #0C2444" }}
             >
+              {game.forSale && (
+                <div className="absolute top-4 right-4 px-3.5 py-1.5 rounded-full bg-[#C2410C] text-white font-mono text-xs font-bold uppercase tracking-wider shadow-lg flex items-center gap-1.5 z-10">
+                  <Sparkles className="w-3.5 h-3.5" /> FOR SALE · ₹{game.price?.toLocaleString("en-IN")}
+                </div>
+              )}
               {game.image ? (
                 <img 
                   src={game.image} 
@@ -354,6 +369,88 @@ export default function GameExperienceClient({ game, otherGames }: GameExperienc
             </div>
           </div>
         </div>
+
+        {/* PHYSICAL BOARD GAME PURCHASE BOX */}
+        {game.forSale && (
+          <div 
+            className="mt-8 bg-white border-2 border-[#C2410C] rounded-3xl p-6 sm:p-8 flex flex-col gap-6"
+            style={{ boxShadow: "6px 6px 0px #C2410C" }}
+          >
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-6 border-b border-gray-100">
+              <div>
+                <span className="font-mono text-xs font-bold uppercase text-brand-orange flex items-center gap-1.5 mb-1">
+                  <Sparkles className="w-3.5 h-3.5" /> PHYSICAL BOARD GAME EDITION &amp; INSTITUTIONAL SALE
+                </span>
+                <h3 className="font-display text-2xl sm:text-3xl font-bold uppercase text-brand-navy">
+                  OWN {game.name} FOR YOUR CAMPUS, LIBRARY OR COHORT
+                </h3>
+                <p className="text-sm text-slate-600 mt-1 max-w-2xl">
+                  Get the official tabletop simulation set: quad-fold ward board, 150+ crisis and policy cards, custom wooden tokens, budget dashboards, and full facilitator debrief manual.
+                </p>
+                <div className="flex flex-wrap items-center gap-4 mt-3 text-xs font-mono text-slate-600">
+                  <span className="flex items-center gap-1 text-emerald-700 font-bold">
+                    ✓ In Stock · Ready to Dispatch
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Truck className="w-3.5 h-3.5 text-brand-orange" /> Pan-India Direct Shipping
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <ShieldCheck className="w-3.5 h-3.5 text-blue-700" /> 100% Secure Payment Gateway
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex flex-col items-start md:items-end gap-2 shrink-0 w-full md:w-auto">
+                <div className="text-left md:text-right">
+                  <div className="text-xs font-mono uppercase text-slate-400">Library / Single Unit</div>
+                  <div className="font-mono text-2xl font-black text-brand-navy">
+                    ₹5,000 <span className="text-xs font-normal text-slate-500">Standard</span> · ₹10,000 <span className="text-xs font-normal text-slate-500">Premium</span>
+                  </div>
+                </div>
+                <Link
+                  href={`/checkout?game=${game.id}`}
+                  className="w-full sm:w-auto px-7 py-3 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-mono text-xs font-bold uppercase tracking-wider transition-all shadow-md shadow-orange-500/20 hover:scale-[1.02] flex items-center justify-center gap-2"
+                >
+                  <ShoppingBag className="w-4 h-4" />
+                  <span>BUY 1 UNIT (FROM ₹5K)</span>
+                </Link>
+              </div>
+            </div>
+
+            {/* Educational Class of 60 Banner */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-amber-50/70 border border-amber-200/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div>
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-brand-orange text-white text-[10px] font-mono font-bold uppercase mb-1.5">
+                  <GraduationCap className="w-3 h-3" /> SCHOOLS · COLLEGES · UNIVERSITIES
+                </div>
+                <h4 className="font-display text-base sm:text-lg font-bold uppercase text-brand-navy">
+                  Class of 60 Educational Package (10 Units @ 45K Standard &amp; 90K Premium)
+                </h4>
+                <p className="text-xs text-slate-600 mt-0.5">
+                  Includes live teacher training, modular lesson plans, quiz &amp; assessment rubrics, student research publication, and internship opportunities.
+                </p>
+                <div className="text-[11px] font-mono text-amber-900 mt-1">
+                  * Excludes shipping charges and VAT / statutory taxes as applicable.
+                </div>
+              </div>
+
+              <div className="shrink-0 flex items-center gap-2 w-full sm:w-auto">
+                <Link
+                  href={`/checkout?game=${game.id}&tier=standard-edu`}
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-brand-navy hover:bg-brand-orange text-white font-mono text-xs font-bold uppercase tracking-wider transition-colors text-center"
+                >
+                  ORDER 10-UNIT COHORT
+                </Link>
+                <Link
+                  href="/games"
+                  className="hidden md:inline-flex px-4 py-2.5 rounded-xl bg-white border border-gray-300 hover:border-brand-navy text-brand-navy font-mono text-xs font-bold uppercase tracking-wider transition-colors"
+                >
+                  VIEW ALL GAMES
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* OTHER GAMES SELECTOR */}

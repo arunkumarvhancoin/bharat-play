@@ -38,6 +38,48 @@ interface NewsSlide {
 }
 
 const NEWS_SLIDES: NewsSlide[] = [
+  // 0. CHENNAI@2050 INNOVATION CHALLENGE
+  {
+    id: "chennai-2050-innovation-challenge",
+    tag: "INTER-SCHOOL CHAMPIONSHIP",
+    statusBadge: "REGISTRATION OPEN",
+    statusColor: "bg-orange-50 text-orange-700 border-orange-300",
+    headline: "INNOVATION CHALLENGE: CHENNAI@2050 — 1-Day Applied Game Championship",
+    dates: "26 Jan 2026 (Republic Day) · Alt: Tamil New Year Day",
+    venue: "Victoria Hall, Central",
+    city: "Chennai",
+    description:
+      "School children (aged 10+) from across Chennai unite in teams to tackle urban governance, clean energy, and flood resilience competing across 3 Applied Games: City Runners, Energetic, and Master of Disaster (MoD). ₹30,000 cash prizes conferred by GCC leadership.",
+    ctaText: "Register School Team",
+    ctaLink: "/events/chennai-2050-innovation-challenge",
+    type: "collab-logos",
+    collabLogoLeft: {
+      name: "TTOX WITS",
+      src: "/partners/ttox.png",
+    },
+    collabLogoRight: {
+      name: "Bharat Play",
+      src: "/logo.png",
+    },
+  },
+  // 1. Institutional Sale: Schools, Colleges & Universities
+  {
+    id: "educational-institutional-sale",
+    tag: "INSTITUTIONAL ADOPTION SALE",
+    statusBadge: "SPECIAL PRICING LIVE",
+    statusColor: "bg-orange-50 text-orange-700 border-orange-300",
+    headline: "Equip Your Library & Classrooms: City Runners Educational Packages",
+    dates: "Academic Year 2026-27 Adoption",
+    venue: "Schools, Colleges & Universities",
+    city: "Pan-India Campus Dispatch",
+    description:
+      "Bharat Play announces official institutional pricing for libraries & classrooms. Class of 60 package with 10 units @ 45K (Standard) & 90K (Premium). Includes certified faculty training, modular lesson plans, rubrics, student article publications, and research fellowship opportunities.",
+    ctaText: "Order Classroom Package",
+    ctaLink: "/checkout?game=city-runners&tier=standard-edu",
+    type: "instagram-image",
+    imageSrc: "/cr.webp",
+    imageAlt: "City Runners Educational Tabletop Simulation for Schools & Universities",
+  },
   // 1. Goa Festival of Future Cities at Sunaparanta
   {
     id: "goa-festival-future-cities",

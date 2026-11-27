@@ -2,17 +2,26 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Layers, ExternalLink } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Layers,
+  ExternalLink,
+  ShoppingBag,
+  Sparkles,
+  Truck,
+  CheckCircle2,
+} from "lucide-react";
 import { GAMES } from "../data/games";
 
 export default function GamesPage() {
   return (
     <main className="min-h-screen bg-brand-offwhite pt-28 pb-24 selection:bg-brand-orange selection:text-white">
-      
+
       {/* BREADCRUMB */}
       <div className="max-w-[1200px] mx-auto w-full px-4 md:px-6 mb-8">
-        <Link 
-          href="/" 
+        <Link
+          href="/"
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-amber-200/60 shadow-xs text-brand-orange hover:text-brand-navy font-mono text-xs uppercase tracking-wider transition-colors font-bold"
         >
           <ArrowLeft className="w-4 h-4" /> BACK TO HOME
@@ -34,6 +43,56 @@ export default function GamesPage() {
         </div>
       </section>
 
+      {/* STORE LAUNCH BANNER: NOW SELLING GAMES */}
+      <section className="max-w-[1200px] mx-auto w-full px-4 md:px-6 mb-12">
+        <div
+          className="bg-gradient-to-r from-[#0C2444] via-[#163864] to-[#0C2444] rounded-[26px] p-6 sm:p-8 text-white border-2 border-orange-500/40 relative overflow-hidden"
+          style={{ boxShadow: "8px 8px 0px #C2410C" }}
+        >
+          <div className="absolute -right-12 -bottom-12 w-64 h-64 rounded-full bg-orange-500/10 blur-3xl pointer-events-none" />
+
+          <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="max-w-2xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/20 border border-orange-400/40 text-orange-300 font-mono text-xs font-bold uppercase tracking-wider mb-3">
+                <Sparkles className="w-3.5 h-3.5" /> OFFICIAL PHYSICAL EDITION
+              </div>
+              <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight text-white mb-2 leading-tight">
+                OWN THE OFFICIAL TABLETOP EDITION OF <span className="text-brand-orange">CITY RUNNERS</span>
+              </h2>
+              <p className="text-sm sm:text-base text-slate-300 font-medium leading-relaxed">
+                Bring India&apos;s flagship urban governance tabletop simulation into your classroom, policy lab, or living room. Complete with quad-fold ward board, crisis decks, custom tokens, and facilitation handbook.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-4 mt-4 text-xs font-mono text-amber-200">
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Complete Physical Edition
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Truck className="w-4 h-4 text-orange-400" /> Free Pan-India Delivery
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="text-emerald-400 font-bold">₹</span> Instant Secure Payment (UPI &amp; Cards)
+                </span>
+              </div>
+            </div>
+
+            <div className="shrink-0 flex flex-col items-center sm:items-end gap-2.5 w-full md:w-auto">
+              <div className="text-right hidden sm:block">
+                <div className="text-xs font-mono uppercase text-slate-400">Official Box Edition</div>
+                <div className="text-2xl font-mono font-black text-white">₹5,000</div>
+              </div>
+              <Link
+                href="/checkout?game=city-runners"
+                className="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-mono text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-lg shadow-orange-500/30 hover:scale-105 flex items-center justify-center gap-2"
+              >
+                <ShoppingBag className="w-4 h-4" />
+                <span>ENQUIRE / ORDER NOW</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* GAMES LIST: SMALL CONTENT, READABLE FONT */}
       <section className="max-w-[1200px] mx-auto w-full px-4 md:px-6 mb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -46,77 +105,113 @@ export default function GamesPage() {
             const currentTheme = cardThemes[idx % cardThemes.length];
 
             return (
-              <article 
-                key={game.id} 
+              <article
+                key={game.id}
                 className={`bg-white border-2 ${currentTheme.border} rounded-[24px] p-6 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between group overflow-hidden`}
                 style={{ boxShadow: `8px 8px 0px ${currentTheme.shadow}` }}
               >
-              <div>
-                {/* Game Thumbnail Image */}
-                {game.image && (
-                  <div className="relative aspect-[16/10] w-full bg-brand-navy/5 rounded-2xl overflow-hidden mb-4 border border-gray-100">
-                    <img 
-                      src={game.image} 
-                      alt={game.name} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
+                <div>
+                  {/* Game Thumbnail Image */}
+                  {game.image && (
+                    <div className="relative aspect-[16/10] w-full bg-brand-navy/5 rounded-2xl overflow-hidden mb-4 border border-gray-100">
+                      <img
+                        src={game.image}
+                        alt={game.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      {game.forSale && (
+                        <div className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-[#C2410C] text-white font-mono text-[10px] font-bold uppercase tracking-wider shadow-md flex items-center gap-1 z-10">
+                          <Sparkles className="w-3 h-3" /> FOR SALE · ₹{game.price?.toLocaleString("en-IN")}
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Number & Difficulty */}
+                  <div className="flex items-center justify-between text-xs font-mono font-bold mb-3">
+                    <span className="text-brand-orange">GAME #{game.displayNumber}</span>
+                    <span className="px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-900 border border-amber-200/50">
+                      {game.difficulty}
+                    </span>
                   </div>
-                )}
 
-                {/* Number & Difficulty */}
-                <div className="flex items-center justify-between text-xs font-mono font-bold mb-3">
-                  <span className="text-brand-orange">GAME #{game.displayNumber}</span>
-                  <span className="px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-900 border border-amber-200/50">
-                    {game.difficulty}
-                  </span>
+                  {/* Name & Subtitle */}
+                  <h2 className="font-display text-2xl font-bold uppercase text-brand-navy group-hover:text-brand-orange transition-colors">
+                    <Link href={`/games/${game.id}`}>
+                      {game.name}
+                    </Link>
+                  </h2>
+                  <p className="font-mono text-xs uppercase font-bold text-brand-green mt-1">
+                    {game.subtitle}
+                  </p>
+
+                  {/* AUTHENTIC TAGLINE / SUMMARY */}
+                  <p className="text-sm sm:text-base text-brand-navy/85 font-medium leading-relaxed mt-3">
+                    {game.tagline}
+                  </p>
+
+                  {/* SPECS IN NORMAL, READABLE TEXT */}
+                  <div className="pt-4 mt-4 border-t border-gray-100 flex flex-wrap items-center gap-3 text-xs font-mono text-brand-gray font-semibold">
+                    <span>👥 {game.players.label} players</span>
+                    <span>·</span>
+                    <span>⏱️ {game.duration.label}</span>
+                    <span>·</span>
+                    <span>🎯 Age {game.age}</span>
+                  </div>
+
+                  {/* For Sale Price Callout */}
+                  {game.forSale && (
+                    <div className="mt-3 p-2.5 rounded-xl bg-orange-50/80 border border-orange-200/80 flex items-center justify-between text-xs font-mono">
+                      <div>
+                        <span className="text-[10px] text-orange-950 font-bold uppercase tracking-wider block">
+                          PHYSICAL BOX EDITION
+                        </span>
+                        <div className="flex items-baseline gap-1.5">
+                          <span className="font-bold text-brand-navy text-sm">
+                            ₹{game.price?.toLocaleString("en-IN")}
+                          </span>
+                        </div>
+                      </div>
+                      <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-200">
+                        FREE DELIVERY
+                      </span>
+                    </div>
+                  )}
                 </div>
 
-                {/* Name & Subtitle */}
-                <h2 className="font-display text-2xl font-bold uppercase text-brand-navy group-hover:text-brand-orange transition-colors">
-                  <Link href={`/games/${game.id}`}>
-                    {game.name}
-                  </Link>
-                </h2>
-                <p className="font-mono text-xs uppercase font-bold text-brand-green mt-1">
-                  {game.subtitle}
-                </p>
+                {/* ACTIONS */}
+                <div className="pt-4 mt-4 border-t border-gray-100">
+                  {game.forSale && (
+                    <Link
+                      href={`/checkout?game=${game.id}`}
+                      className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-mono text-xs font-bold uppercase tracking-wider transition-all shadow-md shadow-orange-500/20 hover:scale-[1.02] flex items-center justify-center gap-1.5 mb-3"
+                    >
+                      <ShoppingBag className="w-3.5 h-3.5" />
+                      <span>ENQUIRE NOW</span>
+                    </Link>
+                  )}
 
-                {/* AUTHENTIC TAGLINE / SUMMARY */}
-                <p className="text-sm sm:text-base text-brand-navy/85 font-medium leading-relaxed mt-3">
-                  {game.tagline}
-                </p>
+                  <div className="flex items-center justify-between">
+                    <Link
+                      href={`/games/${game.id}`}
+                      className="font-mono text-xs font-bold uppercase text-brand-navy hover:text-brand-orange transition-colors inline-flex items-center gap-1.5"
+                    >
+                      <span>VIEW DETAILS</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
 
-                {/* SPECS IN NORMAL, READABLE TEXT */}
-                <div className="pt-4 mt-4 border-t border-gray-100 flex flex-wrap items-center gap-3 text-xs font-mono text-brand-gray font-semibold">
-                  <span>👥 {game.players.label} players</span>
-                  <span>·</span>
-                  <span>⏱️ {game.duration.label}</span>
-                  <span>·</span>
-                  <span>🎯 Age {game.age}</span>
+                    <a
+                      href={`https://wa.me/918237132553?text=${encodeURIComponent(`Hi Bharat Play, I would like to book a session of ${game.name}.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-mono text-xs font-bold uppercase text-brand-orange hover:text-brand-navy transition-colors inline-flex items-center gap-1"
+                    >
+                      <span>BOOK SESSION</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
                 </div>
-              </div>
-
-              {/* ACTIONS */}
-              <div className="pt-5 mt-5 border-t border-gray-100 flex items-center justify-between">
-                <Link
-                  href={`/games/${game.id}`}
-                  className="font-mono text-xs font-bold uppercase text-brand-navy hover:text-brand-orange transition-colors inline-flex items-center gap-1.5"
-                >
-                  <span>VIEW DETAILS</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-
-                <a
-                  href={`https://wa.me/918237132553?text=${encodeURIComponent(`Hi Bharat Play, I would like to book a session of ${game.name}.`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-mono text-xs font-bold uppercase text-brand-orange hover:text-brand-navy transition-colors inline-flex items-center gap-1"
-                >
-                  <span>BOOK SESSION</span>
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              </div>
-            </article>
+              </article>
             );
           })}
         </div>
@@ -124,7 +219,7 @@ export default function GamesPage() {
 
       {/* PEDIGREE OF OUR GAMES & INSTITUTIONAL DEPLOYMENTS */}
       <section className="max-w-[1200px] mx-auto w-full px-4 md:px-6 mb-16">
-        <div 
+        <div
           className="bg-white border-2 border-[#C2410C] rounded-[26px] p-6 sm:p-10 relative overflow-hidden"
           style={{ boxShadow: "10px 10px 0px #C2410C" }}
         >
@@ -144,7 +239,7 @@ export default function GamesPage() {
           {/* 4 Pedigree Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
             {/* 1. BiBo Simulation */}
-            <div 
+            <div
               className="p-6 rounded-2xl bg-[#FFFDF9] border-2 border-[#0C2444] flex flex-col justify-between"
               style={{ boxShadow: "4px 4px 0px #0C2444" }}
             >
@@ -177,7 +272,7 @@ export default function GamesPage() {
             </div>
 
             {/* 2. City Runners Simulation */}
-            <div 
+            <div
               className="p-6 rounded-2xl bg-[#FFFDF9] border-2 border-[#12352B] flex flex-col justify-between"
               style={{ boxShadow: "4px 4px 0px #12352B" }}
             >
@@ -214,7 +309,7 @@ export default function GamesPage() {
             </div>
 
             {/* 3. Prospera & BiBo Simulations */}
-            <div 
+            <div
               className="p-6 rounded-2xl bg-[#FFFDF9] border-2 border-[#C2410C] flex flex-col justify-between"
               style={{ boxShadow: "4px 4px 0px #C2410C" }}
             >
@@ -247,7 +342,7 @@ export default function GamesPage() {
             </div>
 
             {/* 4. Cascade Simulation */}
-            <div 
+            <div
               className="p-6 rounded-2xl bg-[#FFFDF9] border-2 border-[#0C2444] flex flex-col justify-between"
               style={{ boxShadow: "4px 4px 0px #0C2444" }}
             >
@@ -303,14 +398,14 @@ export default function GamesPage() {
 
       {/* QUICK COMPARISON: PHYSICAL OFFSET CARD */}
       <section className="max-w-[1200px] mx-auto w-full px-4 md:px-6 mb-16">
-        <div 
+        <div
           className="bg-white border-2 border-[#0C2444] rounded-[24px] p-6 sm:p-8"
           style={{ boxShadow: "10px 10px 0px #0C2444" }}
         >
           <h2 className="font-display text-xl font-bold uppercase text-brand-navy mb-4">
             AT A GLANCE
           </h2>
-          
+
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
@@ -368,7 +463,7 @@ export default function GamesPage() {
               We bring game components and certified facilitators directly to your campus or office.
             </p>
           </div>
-          
+
           <a
             href="https://wa.me/918237132553?text=Hi%20Bharat%20Play,%20we%20want%20to%20host%20a%20game%20session%20for%20our%20team."
             target="_blank"

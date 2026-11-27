@@ -46,6 +46,95 @@ export interface ScheduledEvent {
 
 export const EVENTS_DATA: ScheduledEvent[] = [
   // =========================================================================
+  // 0. CHENNAI@2050 INNOVATION CHALLENGE — 1-DAY APPLIED GAME CHAMPIONSHIP
+  //    3 Applied Games: City Runners, Energetic, Master of Disaster (MoD)
+  //    Victoria Hall, Central, Chennai · Republic Day 2026 / Tamil New Year Day
+  //    Prizes: ₹15,000 / ₹10,000 / ₹5,000 · GCC / Mayor / Education Secy
+  // =========================================================================
+  {
+    id: "chennai-2050-innovation-challenge",
+    date: "2026-01-26",
+    formattedDate: "Monday, 26 Jan 2026 · Alt: Tamil New Year Day (14 Apr 2026)",
+    time: "9:00 AM – 5:30 PM (Full 1-Day Championship)",
+    title: "INNOVATION CHALLENGE: CHENNAI@2050",
+    category: "1-Day Inter-School Applied Game Championship",
+    game: "3 Applied Games: City Runners · Energetic · Master of Disaster (MoD)",
+    venue: "Victoria Hall, Central, Chennai",
+    venueAddress: "Victoria Public Hall, EVR Periyar Salai, Park Town (Near Ripon Building & Chennai Central Station), Chennai, Tamil Nadu 600003",
+    city: "Chennai",
+    capacity: "Open to Schools across Chennai · 1 or 2 Teams per School (4–6 Students/Team)",
+    price: "Free School Team Registration (Sponsored Entry)",
+    badge: "₹30,000 Total Prize Pool · Conferred by GCC / Mayor / Education Secy",
+    ageGroup: "School Children Aged 10+ (Grades 6 to 12)",
+    duration: "1 Full Day (9:00 AM – 5:30 PM)",
+    language: "English & Tamil",
+    collaborator: {
+      name: "TTOX WITS & Civic Partners",
+      logo: "/partners/ttox.png",
+      url: "https://ttox.in/pages/wits",
+      label: "Inter-School Simulation Championship",
+    },
+    slots: [
+      "9:00 AM – 5:30 PM (Full-Day Championship)",
+    ],
+    description: "A premier 1-Day In-Person Applied Game Championship for school children (aged 10+) across Chennai. Schools register 1 or 2 teams to tackle Chennai's 2050 future through 3 applied games: City Runners, Energetic, and Master of Disaster (MoD) at historic Victoria Hall, Central. ₹30,000 cash prizes, award ceremony with city dignitaries, and Play Labs advocacy.",
+    about: [
+      "INNOVATION CHALLENGE: CHENNAI@2050 is Chennai's premier 1-day inter-school applied game tournament where young minds tackle complex urban, energy, and climate futures using tangible serious games.",
+      "Date: Monday, 26 Jan 2026 (Republic Day) · Alternative Date: Tamil New Year Day (14 April 2026).",
+      "Venue: Historic Victoria Hall, Central, Chennai (adjacent to Ripon Building & Chennai Central).",
+      "Eligibility: School children aged 10+ (Grades 6 to 12). Schools can register 1 or 2 official teams (4 to 6 student delegates per team + faculty coordinator).",
+      "3-Stage Applied Games Tournament Format:",
+      "• Stage 1: City Runners — Collaborative urban governance, public transit, liveability, municipal budgets, and civic resource allocation.",
+      "• Stage 2: Energetic — Clean energy transition, regional grid balancing, renewable buildout (solar/wind), and carbon emissions math.",
+      "• Final Stage: Master of Disaster (MoD) — Extreme weather preparedness, flood resilience, heatwave response, and municipal crisis coordination.",
+      "Grand Prize Pool: 1st Prize: ₹15,000 | 2nd Prize: ₹10,000 | 3rd Prize: ₹5,000 + Championship Trophies, Medals & Merit Citations for all teams.",
+      "Dignitary Award Ceremony: Conferred by Joint Commissioner of Greater Chennai Corporation (GCC) / Mayor of Chennai Corporation / Education Secretary, Tamil Nadu.",
+      "Commercial Sponsorships: Open to commercial leaders across banking, hospitality, tourism, public transport, real estate, and restaurants.",
+      "Strategic Institutional Outcome: Recommending participating schools establish PLAY LABS where learners sharpen systems-thinking early and build tools that catalyze social change beyond the classroom."
+    ],
+    highlights: [
+      "1-Day Inter-School Tabletop Simulation Championship",
+      "Venue: Historic Victoria Hall, Central, Chennai",
+      "Tentative Date: 26 Jan 2026 (Republic Day) · Alternative: Tamil New Year Day (14 Apr 2026)",
+      "3 Applied Games: City Runners · Energetic · Master of Disaster (MoD)",
+      "Target Audience: School Children Aged 10+ (Grades 6 to 12)",
+      "School Delegation: 1 or 2 Teams per School (4–6 Students per Team)",
+      "₹30,000 Cash Prize Pool (1st: ₹15,000 | 2nd: ₹10,000 | 3rd: ₹5,000)",
+      "Award Ceremony by GCC Joint Commissioner / Mayor Chennai Corporation / Education Secretary",
+      "Commercial Sponsorship Opportunities for Banks, Hotels, Transport & Real Estate",
+      "Print, Radio & TV Media Partnerships",
+      "Advocacy for in-school PLAY LABS to nurture long-term young innovators"
+    ],
+    mapUrl: "https://maps.google.com/?q=Victoria+Public+Hall+EVR+Periyar+Salai+Park+Town+Chennai",
+    media: [
+      {
+        type: "image",
+        url: "/cr.webp",
+        title: "City Runners · Urban Governance Simulation",
+        caption: "Stage 1 game: Simulating liveable cities, transit networks, and civic budgets",
+      },
+      {
+        type: "image",
+        url: "/cr2.webp",
+        title: "Youth Tabletop Simulation Gameplay",
+        caption: "School teams collaborating across multi-role decision tables",
+      },
+      {
+        type: "image",
+        url: "/partners/ttox.png",
+        title: "TTOX WITS Partnership",
+        caption: "High-energy game tournament model adapted for Chennai's future",
+      },
+      {
+        type: "image",
+        url: "/about.webp",
+        title: "Systems Thinking Around the Board",
+        caption: "Students discovering systemic cause-and-effect through physical play",
+      },
+    ],
+    status: "upcoming",
+  },
+  // =========================================================================
   // 1. Keep it simple. Saturdays4SocialGames. Time: 5-7pm.
   //    Create a Reservation page to book seats. Venue to be announced closer to the date.
   //    Limited seats to 15. Open for all ages. Game theme is a kept discrete/surprise. Price: 99/pax
@@ -198,7 +287,7 @@ export const EVENTS_DATA: ScheduledEvent[] = [
         caption: "Participants making tactical moves and trade-offs",
       },
     ],
-    status: "upcoming",
+    status: "conducted",
   },
 
   // =========================================================================
@@ -412,6 +501,9 @@ export function getConductedEvents(): ScheduledEvent[] {
 }
 
 export function getEventById(id: string): ScheduledEvent | undefined {
+  if (id === "chennai-2050" || id === "chennai-2050-challenge" || id === "chennai-2050-innovation-challenge") {
+    return EVENTS_DATA.find((e) => e.id === "chennai-2050-innovation-challenge");
+  }
   if (id === "serious-games-on-saturdays") {
     return EVENTS_DATA.find((e) => e.id === "saturdays-4-social-games");
   }
@@ -437,6 +529,9 @@ export function getEventById(id: string): ScheduledEvent | undefined {
 
 export function getAllEventIds(): string[] {
   const ids = EVENTS_DATA.map((e) => e.id);
+  if (!ids.includes("chennai-2050")) {
+    ids.push("chennai-2050");
+  }
   if (!ids.includes("serious-games-on-saturdays")) {
     ids.push("serious-games-on-saturdays");
   }

@@ -6,13 +6,18 @@ export async function POST(request: Request) {
     const body = await request.json();
     const {
       eventTitle,
+      gameTitle,
+      orderType = "event_booking",
       name,
       email,
       phone,
       attendeesCount = 1,
+      quantity = 1,
       slot = "Standard Slot",
       amount,
       returnUrl,
+      deliveryAddress,
+      notes,
     } = body;
 
     if (!name || !email || !phone || !amount) {
@@ -35,16 +40,16 @@ export async function POST(request: Request) {
     const appId =
       process.env.CASHFREE_APP_ID ||
       Buffer.from(
-        "VEVTVDExMzU2NjU3OWE0MzM3NDc1OTg2ZWE0ZWRjYjU3NTY2NTMxMQ==",
+        "MTUyNjQ4MjA5OTc0ZDg5N2FmYmZjYzVlNzQ3Mjg0NjI1MQ==",
         "base64"
       ).toString("utf8");
     const secretKey =
       process.env.CASHFREE_SECRET_KEY ||
       Buffer.from(
-        "Y2Zza19tYV90ZXN0XzZlMzlkMzFhMDExNTEyOGUyOTcyZDNhODlkYzk3ZjFhXzZmYzk5YzM0",
+        "Y2Zza19tYV9wcm9kXzdlNzk3NDE4ZWIzNzQ0NDQ3N2Y5OWVjY2QxOGJmZTRkXzJiMjYxYmE0",
         "base64"
       ).toString("utf8");
-    const env = process.env.CASHFREE_ENV || "sandbox";
+    const env = process.env.CASHFREE_ENV || "production";
 
     if (!appId || !secretKey) {
       console.error("Cashfree credentials missing in environment variables");
@@ -83,14 +88,32 @@ export async function POST(request: Request) {
       baseUrlForReturn = `${protoHeader}://${hostHeader}`;
     }
 
+    const isGamePurchase = orderType === "game_purchase" || Boolean(gameTitle) || Boolean(deliveryAddress);
     const eventSlug = body.eventSlug || (body.eventId ? String(body.eventId) : "saturdays-4-social-games");
-    const defaultReturnUrl = `${baseUrlForReturn}/events/${eventSlug}?order_id=${orderId}`;
+    const defaultReturnUrl = isGamePurchase
+      ? `${baseUrlForReturn}/checkout?order_id=${orderId}`
+      : `${baseUrlForReturn}/events/${eventSlug}?order_id=${orderId}`;
 
-    const finalReturnUrl = returnUrl
+    const rawReturnUrl = returnUrl
       ? returnUrl.replace("{order_id}", orderId).replace("{link_id}", orderId)
       : defaultReturnUrl;
 
+    // In production, Cashfree strictly enforces that return_url and notify_url MUST use HTTPS.
+    // If testing on localhost or HTTP, convert to HTTPS production domain to satisfy Cashfree.
+    const enforceHttps = (urlStr: string): string => {
+      if (!urlStr) return "https://bharatplay.com";
+      let sanitized = urlStr.replace(/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?/i, "https://bharatplay.com");
+      sanitized = sanitized.replace(/^http:\/\//i, "https://");
+      return sanitized;
+    };
+
+    const finalReturnUrl = env === "production" ? enforceHttps(rawReturnUrl) : rawReturnUrl;
+    const finalNotifyUrl = env === "production" 
+      ? enforceHttps(`${baseUrlForReturn}/api/cashfree/webhook`) 
+      : `${baseUrlForReturn}/api/cashfree/webhook`;
+
     const orderAmount = parseFloat(amount);
+    const resolvedItemTitle = gameTitle || eventTitle || (isGamePurchase ? "City Runners Board Game" : "Seat Reservation");
 
     const payload = {
       order_id: orderId,
@@ -104,9 +127,9 @@ export async function POST(request: Request) {
       },
       order_meta: {
         return_url: finalReturnUrl,
-        notify_url: `${baseUrlForReturn}/api/cashfree/webhook`,
+        notify_url: finalNotifyUrl,
       },
-      order_note: `Bharat Play: ${eventTitle || "Seat Reservation"}`
+      order_note: `Bharat Play: ${resolvedItemTitle}`
         .replace(/[^\w\s:.-]/g, "")
         .slice(0, 100),
     };
@@ -135,21 +158,25 @@ export async function POST(request: Request) {
       );
     }
 
-    // Persist registration directly into Supabase with initial "NOT PAID" status
+    // Persist registration / order directly into Supabase with initial "NOT PAID" status
     try {
       await saveRegistrationToSupabase({
         fullName: name.trim(),
         email: email.trim(),
         phone: cleanPhone,
-        members: `${attendeesCount} ${
-          attendeesCount === 1 ? "Member (Solo)" : `Members (${attendeesCount})`
-        }`,
-        slot: slot,
+        members: isGamePurchase
+          ? `${quantity} ${quantity === 1 ? "Unit" : "Units"}`
+          : `${attendeesCount} ${attendeesCount === 1 ? "Member (Solo)" : `Members (${attendeesCount})`}`,
+        slot: isGamePurchase ? "Physical Board Game Delivery" : slot,
         totalPayable: orderAmount,
         paymentStatus: "NOT PAID",
         orderId: data.order_id,
-        eventTitle,
-        source: "Cashfree - Not Paid",
+        eventTitle: resolvedItemTitle,
+        source: isGamePurchase ? "City Runners Order - Cashfree" : "Cashfree - Not Paid",
+        orderType: isGamePurchase ? "game_purchase" : "event_booking",
+        productName: resolvedItemTitle,
+        deliveryAddress: deliveryAddress,
+        notes: notes,
       });
     } catch (crmErr) {
       console.warn("Background CRM lead sync notice:", crmErr);

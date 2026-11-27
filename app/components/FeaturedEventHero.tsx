@@ -45,17 +45,17 @@ export default function FeaturedEventHero() {
   };
 
   const FEATURED_UPCOMING_EVENT = {
-    date: "14",
-    month: "NOV",
-    day: "SATURDAY",
-    time: "10:00 AM – 1:00 PM",
-    title: "Children's Day Play Workshop",
-    category: "CHILDREN'S DAY SPECIAL",
+    date: "05",
+    month: "DEC",
+    day: "SAT-SUN",
+    time: "5–6 Dec 2026",
+    title: "TTOX Winter Convention 2026",
+    category: "WINTER CONVENTION 2026",
     game: "CITY RUNNERS",
-    venue: "The Board Room, Mylapore",
-    capacity: "6 Players/Table · Age 10+",
-    price: "INR 649 / pax (Pay at Venue)",
-    href: "/events/childrens-day-play-workshop",
+    venue: "Infantry Road, Bengaluru",
+    capacity: "Open Entry · Registration Recommended",
+    price: "Entry Free",
+    href: "/events/ttox-winter-convention-2026",
   };
 
   const INSTITUTIONS = [
@@ -376,7 +376,7 @@ export default function FeaturedEventHero() {
                     {/* Playful pill tape badge on top - Solid Matte Saffron */}
                     <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 bg-[#C2410C] text-white border-2 border-white shadow-xs rounded-full rotate-[-1deg] z-20 pointer-events-none whitespace-nowrap flex items-center justify-center">
                       <span className="text-xs font-bold tracking-wider uppercase font-mono">
-                        ✦ CHILDREN&apos;S DAY SPECIAL ✦
+                        ✦ UPCOMING CONVENTION ✦
                       </span>
                     </div>
 
@@ -384,7 +384,7 @@ export default function FeaturedEventHero() {
                     <div className="flex items-center justify-between pb-3 mb-3 border-b border-amber-200/50 pt-1">
                       <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-wider uppercase text-[#C2410C] flex items-center gap-1.5">
                         <span className="w-2 h-2 rounded-full bg-[#C2410C] animate-pulse" />
-                        <span>IN COLLABORATION WITH THE BOARD ROOM</span>
+                        <span>IN COLLABORATION WITH TTOX</span>
                       </span>
                       <span className="text-xs font-bold text-white bg-[#15803D] px-3 py-1 rounded-full shadow-2xs">
                         {FEATURED_UPCOMING_EVENT.price}
@@ -419,8 +419,8 @@ export default function FeaturedEventHero() {
                       {/* Big Partner Logo in Headline Area */}
                       <div className="shrink-0 p-1.5 sm:p-2 bg-white rounded-2xl border-2 border-slate-200 shadow-sm flex items-center justify-center">
                         <img
-                          src="/partners/the-board-room.png"
-                          alt="The Board Room"
+                          src="/partners/ttox.png"
+                          alt="TTOX"
                           className="h-12 sm:h-14 w-auto object-contain"
                         />
                       </div>
@@ -428,7 +428,7 @@ export default function FeaturedEventHero() {
 
                     {/* Friendly Note */}
                     <p className="text-xs sm:text-[13px] text-slate-700 leading-relaxed mb-4 bg-amber-50/80 p-3 rounded-2xl border border-amber-200/60 font-medium">
-                      🎲 Play <span className="font-bold text-slate-900">City Runners</span> — a cooperative strategy game on Livable Cities &amp; Urban Governance. Bring your family &amp; friends!
+                      🎲 Live <span className="font-bold text-slate-900">City Runners</span> exhibition &amp; guided play sessions for our next upcoming tabletop release. Avail special venue discounts!
                     </p>
 
                     {/* Quick Metadata */}
@@ -438,7 +438,7 @@ export default function FeaturedEventHero() {
                         <span className="font-semibold text-slate-900">{FEATURED_UPCOMING_EVENT.venue}</span>
                       </span>
                       <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-mono text-[10px] font-bold uppercase tracking-wider border border-emerald-300">
-                        💵 PAY AT VENUE · ₹649
+                        🎟️ ENTRY FREE · BOOK SEATS
                       </span>
                     </div>
 

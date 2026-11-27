@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse, connection } from "next/server";
-import { generatePaymentBadgeSvg } from "@/app/lib/cashfreeBadge";
 import { updatePaymentStatusInSupabase } from "@/app/lib/supabaseRegistration";
 
 export async function GET(request: NextRequest) {
@@ -21,16 +20,16 @@ export async function GET(request: NextRequest) {
     const appId =
       process.env.CASHFREE_APP_ID ||
       Buffer.from(
-        "VEVTVDExMzU2NjU3OWE0MzM3NDc1OTg2ZWE0ZWRjYjU3NTY2NTMxMQ==",
+        "MTUyNjQ4MjA5OTc0ZDg5N2FmYmZjYzVlNzQ3Mjg0NjI1MQ==",
         "base64"
       ).toString("utf8");
     const secretKey =
       process.env.CASHFREE_SECRET_KEY ||
       Buffer.from(
-        "Y2Zza19tYV90ZXN0XzZlMzlkMzFhMDExNTEyOGUyOTcyZDNhODlkYzk3ZjFhXzZmYzk5YzM0",
+        "Y2Zza19tYV9wcm9kXzdlNzk3NDE4ZWIzNzQ0NDQ3N2Y5OWVjY2QxOGJmZTRkXzJiMjYxYmE0",
         "base64"
       ).toString("utf8");
-    const env = process.env.CASHFREE_ENV || "sandbox";
+    const env = process.env.CASHFREE_ENV || "production";
 
     if (!appId || !secretKey) {
       return NextResponse.json(
@@ -75,14 +74,26 @@ export async function GET(request: NextRequest) {
 
     // Notify CRM with detailed status
     try {
-      const crmApiUrl =
-        process.env.NEXT_PUBLIC_CRM_API_URL ||
-        "https://niral-crm.vercel.app/api/webhooks/bharat-play";
+      const crmUrls = Array.from(
+        new Set(
+          [
+            process.env.NEXT_PUBLIC_CRM_API_URL,
+            "http://localhost:3001/api/webhooks/bharat-play",
+            "https://niral-crm.vercel.app/api/webhooks/bharat-play",
+          ].filter(Boolean) as string[]
+        )
+      );
 
       const targetAmount = data.link_amount_paid || data.link_amount || data.order_amount;
-      const baseSlot = data.link_notes?.slot || "Standard Slot";
-      const baseMembers = `${data.link_notes?.attendeesCount || 1} Member(s)`;
-      const eventTitle = data.link_notes?.eventTitle || data.link_purpose || "Bharat Play Event";
+      const isGame =
+        Boolean(data.order_note?.toLowerCase().includes("game")) ||
+        Boolean(data.order_note?.toLowerCase().includes("city runners")) ||
+        data.link_notes?.orderType === "game_purchase";
+      const baseSlot = data.link_notes?.slot || (isGame ? "Physical Board Game Delivery" : "Standard Slot");
+      const baseMembers = isGame
+        ? `${data.link_notes?.attendeesCount || 1} Unit(s)`
+        : `${data.link_notes?.attendeesCount || 1} Member(s)`;
+      const eventTitle = data.link_notes?.eventTitle || data.order_note || data.link_purpose || "Bharat Play Order";
 
       if (isPaid) {
         await updatePaymentStatusInSupabase(
@@ -90,59 +101,63 @@ export async function GET(request: NextRequest) {
             phone: data.customer_details?.customer_phone,
             email: data.customer_details?.customer_email,
             orderId: targetId,
+            paymentId: data.cf_payment_id || data.payment_id || targetId,
+            paymentMethod: data.payment_group || "Cashfree",
           },
           true
         );
 
-        const paidBadge = generatePaymentBadgeSvg("PAID", {
-          amount: targetAmount,
-          refId: targetId,
-          eventTitle,
-        });
-
-        await fetch(crmApiUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            fullName: data.customer_details?.customer_name,
-            email: data.customer_details?.customer_email,
-            phone: data.customer_details?.customer_phone,
-            members: baseMembers,
-            slot: baseSlot,
-            totalPayable: targetAmount,
-            paymentScreenshot: paidBadge,
-            paymentProof: paidBadge,
-            notes: `PAYMENT STATUS: PAID (Verified via Cashfree) | Event: ${eventTitle} | Amount Paid: ₹${targetAmount} | Ref: ${targetId} | Status: PAID`,
-            source: "Paid via Cashfree",
-            paymentMethod: "Cashfree",
-            paymentStatus: "PAID",
-          }),
-        });
+        for (const crmApiUrl of crmUrls) {
+          try {
+            await fetch(crmApiUrl, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                fullName: data.customer_details?.customer_name,
+                email: data.customer_details?.customer_email,
+                phone: data.customer_details?.customer_phone,
+                members: baseMembers,
+                slot: baseSlot,
+                totalPayable: targetAmount,
+                notes: `PAYMENT STATUS: PAID (Verified via Cashfree) | ${isGame ? "Game Order" : "Event"}: ${eventTitle} | Amount Paid: ₹${targetAmount} | Ref: ${targetId} | Status: PAID`,
+                source: isGame ? "City Runners Order - Cashfree" : "Paid via Cashfree",
+                paymentMethod: "Cashfree",
+                paymentStatus: "PAID",
+                orderId: targetId,
+                orderType: isGame ? "game_purchase" : "event_booking",
+                productName: isGame ? "City Runners Board Game" : undefined,
+              }),
+            });
+          } catch {
+            // Continue
+          }
+        }
       } else {
-        const unpaidBadge = generatePaymentBadgeSvg("UNPAID", {
-          amount: targetAmount,
-          refId: targetId,
-          eventTitle,
-        });
-
-        await fetch(crmApiUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            fullName: data.customer_details?.customer_name,
-            email: data.customer_details?.customer_email,
-            phone: data.customer_details?.customer_phone,
-            members: baseMembers,
-            slot: baseSlot,
-            totalPayable: targetAmount,
-            paymentScreenshot: unpaidBadge,
-            paymentProof: unpaidBadge,
-            notes: `PAYMENT STATUS: NOT PAID (Incomplete / Cancelled via Cashfree) | Event: ${eventTitle} | Amount Pending: ₹${targetAmount} | Ref: ${targetId} | Status: ${status}`,
-            source: "Cashfree - Not Paid",
-            paymentMethod: "Cashfree",
-            paymentStatus: "NOT PAID",
-          }),
-        });
+        for (const crmApiUrl of crmUrls) {
+          try {
+            await fetch(crmApiUrl, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                fullName: data.customer_details?.customer_name,
+                email: data.customer_details?.customer_email,
+                phone: data.customer_details?.customer_phone,
+                members: baseMembers,
+                slot: baseSlot,
+                totalPayable: targetAmount,
+                notes: `PAYMENT STATUS: NOT PAID (Incomplete / Cancelled via Cashfree) | ${isGame ? "Game Order" : "Event"}: ${eventTitle} | Amount Pending: ₹${targetAmount} | Ref: ${targetId} | Status: ${status}`,
+                source: isGame ? "City Runners Order - Cashfree" : "Cashfree - Not Paid",
+                paymentMethod: "Cashfree",
+                paymentStatus: "NOT PAID",
+                orderId: targetId,
+                orderType: isGame ? "game_purchase" : "event_booking",
+                productName: isGame ? "City Runners Board Game" : undefined,
+              }),
+            });
+          } catch {
+            // Continue
+          }
+        }
       }
     } catch (crmErr) {
       console.warn("CRM payment update notice:", crmErr);

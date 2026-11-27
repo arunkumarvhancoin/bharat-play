@@ -5,11 +5,15 @@ import AboutKudos from "./components/AboutKudos";
 import GamesCarousel from "./components/GamesCarousel";
 import ProgramsShowcase from "./components/ProgramsShowcase";
 import FinalCTA from "./components/FinalCTA";
+import Chennai2050PopupModal from "./components/Chennai2050PopupModal";
 // import WhatWePlayWith from "./components/WhatWePlayWith";
 
 export default function Home() {
   return (
     <>
+      {/* CHENNAI@2050 ANNOUNCEMENT POPUP MODAL */}
+      <Chennai2050PopupModal />
+
       {/* 01 — HERO */}
       <FeaturedEventHero />
       {/* <UpcomingEvents /> */}

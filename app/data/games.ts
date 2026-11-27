@@ -79,6 +79,20 @@ export interface GameItem {
     secondary: string;
   };
   validation?: string;
+  forSale?: boolean;
+  price?: number;
+  originalPrice?: number;
+  editionName?: string;
+  inStock?: boolean;
+  educationalPricing?: {
+    standardUnit: number;
+    premiumUnit: number;
+    standardPackage10Units: number;
+    premiumPackage10Units: number;
+    classCapacity: number;
+    inclusions: string[];
+    exclusions: string[];
+  };
 }
 
 export const GAMES: GameItem[] = [
@@ -87,6 +101,28 @@ export const GAMES: GameItem[] = [
     gameNumber: 1,
     displayNumber: "01",
     name: "City Runners",
+    forSale: true,
+    price: 5000,
+    editionName: "Official Tabletop Board Game Edition",
+    inStock: true,
+    educationalPricing: {
+      standardUnit: 5000,
+      premiumUnit: 10000,
+      standardPackage10Units: 45000,
+      premiumPackage10Units: 90000,
+      classCapacity: 60,
+      inclusions: [
+        "Teacher training session (Live certified facilitation workshop)",
+        "Curated set of modular lesson plans",
+        "Quiz and assessment plans (Diagnostic evaluation rubrics)",
+        "Student articles publication opportunities on Bharat Play research platforms",
+        "Direct student internship and fellowship opportunities with Bharat Play Innovations",
+      ],
+      exclusions: [
+        "Shipping charges",
+        "VAT / statutory taxes as applicable",
+      ],
+    },
     subtitle: "THE FLAGSHIP INDIAN URBAN GOVERNANCE BOARD GAME",
     theme: "Urban Livability, Quality of Life, Participatory Governance",
     themes: [
