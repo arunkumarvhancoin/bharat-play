@@ -96,7 +96,7 @@ export default function GamesPage() {
                         <Users className="w-3.5 h-3.5 text-brand-orange" /> CAPACITY
                       </div>
                       <div className="text-xs sm:text-sm font-bold text-white">
-                        6 – 12 Players · Ages 12+
+                        6 – 12 Players · Ages 10+
                       </div>
                     </div>
 

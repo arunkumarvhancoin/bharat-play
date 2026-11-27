@@ -133,7 +133,7 @@ export const GAMES: GameItem[] = [
       "Climate Deluge Response"
     ],
     difficulty: "Medium to High",
-    age: "12+",
+    age: "10+",
     format: "Board Game / Urban Governance Simulation",
     players: {
       min: 6,

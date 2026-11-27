@@ -55,7 +55,7 @@ export default function ProgramExperienceClient({ program }: ProgramExperienceCl
         details: [
           { label: "THEME", value: "Urban Livability, Quality of Life, Participatory Governance" },
           { label: "DIFFICULTY", value: "Medium to High" },
-          { label: "AGE", value: "12+" },
+          { label: "AGE", value: "10+" },
           { label: "PLAYERS", value: "6 – 12" },
           { label: "DURATION", value: "2 (play) + 1 (reflection) hrs" },
           { label: "FORMAT", value: "Board Game / Urban Governance Simulation" },
