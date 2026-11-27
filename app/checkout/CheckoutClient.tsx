@@ -159,11 +159,6 @@ export default function CheckoutClient() {
   // Checkout form states
   const [quantity, setQuantity] = useState<number>(1);
   const [showMobileSummary, setShowMobileSummary] = useState<boolean>(false);
-  const [isTestMode, setIsTestMode] = useState<boolean>(() => {
-    const testParam = searchParams.get("test");
-    if (testParam === "false") return false;
-    return true; // Active by default for payment & refund testing
-  });
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -345,7 +340,7 @@ export default function CheckoutClient() {
     setIsSubmitting(true);
 
     try {
-      const totalAmount = isTestMode ? 5 : unitPrice * quantity;
+      const totalAmount = unitPrice * quantity;
       const cleanPhone = formData.phone.replace(/[^0-9]/g, "").slice(-10);
       const totalUnits = activeTier.unitsCount * quantity;
       const tierTitle = `${selectedGame.name} - ${activeTier.title}`;
@@ -356,7 +351,6 @@ export default function CheckoutClient() {
           : undefined;
 
       const combinedNotes = [
-        isTestMode ? "[TEST MODE: ₹5 GATEWAY & REFUND VERIFICATION]" : "",
         `Package: ${activeTier.title} (${totalUnits} Units)`,
         formData.notes.trim(),
       ]
@@ -494,7 +488,6 @@ export default function CheckoutClient() {
   */
 
   const totalPrice = unitPrice * quantity;
-  const finalPayable = isTestMode ? 5 : totalPrice;
 
   // -------------------------------------------------------------
   // SUCCESS / CONFIRMED SCREEN
@@ -720,10 +713,10 @@ export default function CheckoutClient() {
           <div className="flex items-center gap-2 shrink-0">
             <div className="text-right">
               <div className="font-mono text-base font-black text-brand-green leading-none">
-                ₹{finalPayable.toLocaleString("en-IN")}
+                ₹{totalPrice.toLocaleString("en-IN")}
               </div>
               <div className="text-[10px] font-mono text-slate-400 mt-0.5">
-                {isTestMode ? "₹5 Test Mode" : showMobileSummary ? "Hide" : "Details"}
+                {showMobileSummary ? "Hide" : "Details"}
               </div>
             </div>
             {showMobileSummary ? (
@@ -736,31 +729,6 @@ export default function CheckoutClient() {
 
         {showMobileSummary && (
           <div className="mt-4 pt-4 border-t border-gray-100 space-y-3 text-xs font-mono">
-            {/* Mobile Test Mode Switch */}
-            <div className="p-3 rounded-xl bg-amber-50 border border-amber-300 flex items-center justify-between gap-2">
-              <div className="flex items-center gap-2 min-w-0">
-                <span className="text-base shrink-0">🧪</span>
-                <div className="min-w-0">
-                  <div className="text-xs font-mono font-bold text-amber-950 flex items-center gap-1">
-                    <span>{isTestMode ? "₹5 TEST MODE ACTIVE" : "STANDARD PRICING"}</span>
-                    <span className="text-[9px] bg-amber-200 text-amber-900 px-1.5 py-0.5 rounded font-black uppercase">
-                      {isTestMode ? "₹5" : "₹5k"}
-                    </span>
-                  </div>
-                  <div className="text-[10px] text-amber-800">
-                    {isTestMode ? "Charges ₹5 to test Cashfree & refunds" : "Standard amount"}
-                  </div>
-                </div>
-              </div>
-              <button
-                type="button"
-                onClick={() => setIsTestMode(!isTestMode)}
-                className="shrink-0 px-2.5 py-1 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-[10px] font-bold uppercase transition-all shadow-sm cursor-pointer"
-              >
-                {isTestMode ? "Use ₹5k" : "Test ₹5"}
-              </button>
-            </div>
-
             <div className="flex justify-between items-center text-slate-600">
               <span>Quantity:</span>
               <div className="flex items-center border border-gray-200 rounded-lg bg-[#FFFDF9] overflow-hidden">
@@ -793,16 +761,7 @@ export default function CheckoutClient() {
 
             <div className="flex justify-between font-bold text-brand-navy pt-2 border-t border-dashed border-gray-200">
               <span>Total Payable:</span>
-              <div className="text-right">
-                {isTestMode ? (
-                  <div className="flex items-baseline gap-1.5">
-                    <span className="text-xs line-through text-slate-400">₹{totalPrice.toLocaleString("en-IN")}</span>
-                    <span className="text-brand-green text-sm font-black">₹5 (Test)</span>
-                  </div>
-                ) : (
-                  <span className="text-brand-green text-sm">₹{totalPrice.toLocaleString("en-IN")}</span>
-                )}
-              </div>
+              <span className="text-brand-green text-sm font-black">₹{totalPrice.toLocaleString("en-IN")}</span>
             </div>
 
             <div className="text-[11px] font-sans text-emerald-800 bg-emerald-50 p-2.5 rounded-lg border border-emerald-200/80 flex items-center gap-2">
@@ -1182,7 +1141,7 @@ export default function CheckoutClient() {
                 ) : (
                   <>
                     <Lock className="w-4 h-4" />
-                    <span>{isTestMode ? "PAY ₹5 (TEST PAYMENT)" : `PAY ₹${totalPrice.toLocaleString("en-IN")}`}</span>
+                    <span>PAY ₹{totalPrice.toLocaleString("en-IN")}</span>
                   </>
                 )}
               </button>
@@ -1311,37 +1270,6 @@ export default function CheckoutClient() {
               )}
             </div>
 
-            {/* Test Mode Selector Card */}
-            <div className="mt-4 p-3.5 rounded-2xl bg-amber-50/90 border border-amber-300 flex items-center justify-between gap-3">
-              <div className="flex items-center gap-2.5 min-w-0">
-                <span className="text-base shrink-0">🧪</span>
-                <div className="min-w-0">
-                  <div className="text-xs font-mono font-bold text-amber-950 flex items-center gap-1.5 flex-wrap">
-                    <span>{isTestMode ? "₹5 TEST MODE ACTIVE" : "STANDARD ORDER"}</span>
-                    <span className="text-[9px] px-1.5 py-0.5 rounded font-mono font-black uppercase tracking-wider bg-amber-200 text-amber-900">
-                      {isTestMode ? "₹5 Active" : "Full Price"}
-                    </span>
-                  </div>
-                  <div className="text-[10px] text-amber-800">
-                    {isTestMode
-                      ? "Charges ₹5 to test Cashfree UPI/Card & refunds"
-                      : "Charges standard package amount"}
-                  </div>
-                </div>
-              </div>
-              <button
-                type="button"
-                onClick={() => setIsTestMode(!isTestMode)}
-                className={`shrink-0 px-3 py-1.5 rounded-xl text-[10px] font-mono font-bold uppercase transition-all shadow-sm cursor-pointer ${
-                  isTestMode
-                    ? "bg-amber-600 text-white hover:bg-amber-700"
-                    : "bg-white text-slate-700 border border-slate-300 hover:bg-slate-100"
-                }`}
-              >
-                {isTestMode ? "Switch to ₹5k" : "Enable ₹5 Test"}
-              </button>
-            </div>
-
             {/* Price Calculations */}
             <div className="py-4 border-b border-gray-100 space-y-2 text-xs font-mono">
               <div className="flex justify-between text-slate-600">
@@ -1362,25 +1290,9 @@ export default function CheckoutClient() {
 
               <div className="pt-2 border-t border-dashed border-gray-200 flex justify-between items-baseline text-sm sm:text-base font-bold text-brand-navy">
                 <span className="font-display uppercase tracking-wide">TOTAL PAYABLE:</span>
-                <div className="text-right">
-                  {isTestMode ? (
-                    <div className="flex items-baseline gap-2">
-                      <span className="font-mono text-xs line-through text-slate-400">
-                        ₹{totalPrice.toLocaleString("en-IN")}
-                      </span>
-                      <span className="font-mono text-xl sm:text-2xl font-black text-brand-green">
-                        ₹5
-                      </span>
-                      <span className="text-[9px] font-mono font-bold text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded border border-amber-300 uppercase">
-                        TEST
-                      </span>
-                    </div>
-                  ) : (
-                    <span className="font-mono text-xl sm:text-2xl font-black text-brand-green">
-                      ₹{totalPrice.toLocaleString("en-IN")}
-                    </span>
-                  )}
-                </div>
+                <span className="font-mono text-xl sm:text-2xl font-black text-brand-green">
+                  ₹{totalPrice.toLocaleString("en-IN")}
+                </span>
               </div>
             </div>
 
@@ -1400,7 +1312,7 @@ export default function CheckoutClient() {
                 ) : (
                   <>
                     <Lock className="w-4 h-4" />
-                    <span>{isTestMode ? "PAY ₹5 (TEST PAYMENT)" : "PROCEED TO SECURE PAYMENT"}</span>
+                    <span>PROCEED TO SECURE PAYMENT</span>
                   </>
                 )}
               </button>
@@ -1425,10 +1337,10 @@ export default function CheckoutClient() {
         <div className="max-w-[1180px] mx-auto flex items-center justify-between gap-4">
           <div className="min-w-0">
             <span className="text-[10px] font-mono font-bold uppercase text-slate-500 block leading-tight">
-              TOTAL PAYABLE {isTestMode && <span className="text-amber-600">(TEST)</span>}
+              TOTAL PAYABLE
             </span>
             <span className="font-mono text-xl font-black text-brand-green leading-none">
-              ₹{finalPayable.toLocaleString("en-IN")}
+              ₹{totalPrice.toLocaleString("en-IN")}
             </span>
           </div>
 
@@ -1446,7 +1358,7 @@ export default function CheckoutClient() {
             ) : (
               <>
                 <Lock className="w-3.5 h-3.5" />
-                <span>{isTestMode ? "PAY ₹5 TEST" : "PAY NOW"}</span>
+                <span>PAY NOW</span>
               </>
             )}
           </button>
