@@ -156,9 +156,8 @@ export default function CheckoutClient() {
 
   // Checkout form states
   const [quantity, setQuantity] = useState<number>(1);
-  const [testMode, setTestMode] = useState(
-    () => searchParams.get("test_amount") === "5" || searchParams.get("test") === "1"
-  );
+  // Default to test mode (₹5 charge on Cashfree) for live testing
+  const [testMode, setTestMode] = useState<boolean>(true);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -1055,7 +1054,7 @@ export default function CheckoutClient() {
                 ) : (
                   <>
                     <Lock className="w-4 h-4" />
-                    <span>PAY ₹{totalPrice.toLocaleString("en-IN")}</span>
+                    <span>{testMode ? "PROCEED TO PAY ₹5 (LIVE TEST)" : `PAY ₹${totalPrice.toLocaleString("en-IN")}`}</span>
                   </>
                 )}
               </button>
@@ -1228,7 +1227,7 @@ export default function CheckoutClient() {
                 ) : (
                   <>
                     <Lock className="w-4 h-4" />
-                    <span>PROCEED TO SECURE PAYMENT</span>
+                    <span>{testMode ? "PROCEED TO SECURE PAYMENT (TEST: ₹5 CHARGE)" : "PROCEED TO SECURE PAYMENT"}</span>
                   </>
                 )}
               </button>
