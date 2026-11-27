@@ -135,6 +135,7 @@ export async function POST(request: Request) {
         .slice(0, 100),
       order_tags: {
         order_type: isGamePurchase ? "game_purchase" : "event_booking",
+        ...(orderAmount === 5 ? { test_order: "true" } : {}),
       },
     };
 
