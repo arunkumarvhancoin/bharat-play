@@ -156,8 +156,6 @@ export default function CheckoutClient() {
 
   // Checkout form states
   const [quantity, setQuantity] = useState<number>(1);
-  // Default to test mode (₹5 charge on Cashfree) for live testing
-  const [testMode, setTestMode] = useState<boolean>(true);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -340,21 +338,17 @@ export default function CheckoutClient() {
 
     try {
       const totalAmount = unitPrice * quantity;
-      const chargedAmount = testMode ? 5 : totalAmount;
       const cleanPhone = formData.phone.replace(/[^0-9]/g, "").slice(-10);
       const totalUnits = activeTier.unitsCount * quantity;
       const tierTitle = `${selectedGame.name} - ${activeTier.title}`;
 
       const exactReturnUrl =
         typeof window !== "undefined"
-          ? `${window.location.origin}/checkout?game=${selectedGame.id}&tier=${selectedTier}&order_id={order_id}${
-              testMode ? "&test_amount=5" : ""
-            }`
+          ? `${window.location.origin}/checkout?game=${selectedGame.id}&tier=${selectedTier}&order_id={order_id}`
           : undefined;
 
       const combinedNotes = [
         `Package: ${activeTier.title} (${totalUnits} Units)`,
-        testMode ? "[LIVE PAYMENT GATEWAY TEST: ₹5 CHARGE]" : null,
         formData.notes.trim(),
       ]
         .filter(Boolean)
@@ -368,7 +362,7 @@ export default function CheckoutClient() {
         email: formData.email.trim().toLowerCase(),
         phone: cleanPhone,
         quantity: totalUnits,
-        amount: chargedAmount,
+        amount: totalAmount,
         deliveryAddress: {
           building: formData.building.trim(),
           street: formData.street.trim(),
@@ -426,7 +420,7 @@ export default function CheckoutClient() {
                     setIsPaid(true);
                     setConfirmedOrder({
                       orderId: orderId,
-                      amountPaid: chargedAmount,
+                      amountPaid: totalAmount,
                       customerName: formData.fullName.trim(),
                       customerPhone: cleanPhone,
                       customerEmail: formData.email.trim(),
@@ -1054,7 +1048,7 @@ export default function CheckoutClient() {
                 ) : (
                   <>
                     <Lock className="w-4 h-4" />
-                    <span>{testMode ? "PROCEED TO PAY ₹5 (LIVE TEST)" : `PAY ₹${totalPrice.toLocaleString("en-IN")}`}</span>
+                    <span>PAY ₹{totalPrice.toLocaleString("en-IN")}</span>
                   </>
                 )}
               </button>
@@ -1227,7 +1221,7 @@ export default function CheckoutClient() {
                 ) : (
                   <>
                     <Lock className="w-4 h-4" />
-                    <span>{testMode ? "PROCEED TO SECURE PAYMENT (TEST: ₹5 CHARGE)" : "PROCEED TO SECURE PAYMENT"}</span>
+                    <span>PROCEED TO SECURE PAYMENT</span>
                   </>
                 )}
               </button>
@@ -1241,27 +1235,6 @@ export default function CheckoutClient() {
                   <Clock className="w-3.5 h-3.5 text-brand-orange shrink-0" />
                   <span>Our dispatch team will connect to confirm invoice &amp; delivery</span>
                 </div>
-              </div>
-
-              {/* Discreet live test trigger */}
-              <div className="mt-3 pt-2.5 border-t border-dashed border-gray-200 flex items-center justify-between">
-                <button
-                  type="button"
-                  onClick={() => setTestMode((prev) => !prev)}
-                  className={`text-[10px] font-mono px-2.5 py-1 rounded-full border transition-all cursor-pointer ${
-                    testMode
-                      ? "bg-amber-100 text-amber-900 border-amber-300 font-bold"
-                      : "text-slate-400 border-transparent hover:text-slate-600 hover:border-gray-200"
-                  }`}
-                  title="Toggle live gateway test mode"
-                >
-                  {testMode ? "⚡ Test Mode Active (₹5 Charge)" : "• Test ₹5 Charge"}
-                </button>
-                {testMode && (
-                  <span className="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 font-medium">
-                    Charges ₹5 on Cashfree
-                  </span>
-                )}
               </div>
             </div>
           </div>
