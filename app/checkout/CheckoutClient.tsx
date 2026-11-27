@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import {
@@ -17,7 +17,7 @@ import {
   Sparkles,
   ShoppingBag,
   ExternalLink,
-  Send,
+  Lock,
 } from "lucide-react";
 import { GAMES, GameItem } from "../data/games";
 
@@ -86,8 +86,7 @@ const EDUCATIONAL_INCLUSIONS = [
   "Direct Student Internship & Fellowship Opportunities with Bharat Play",
 ];
 
-// Cashfree SDK Type helper (COMMENTED OUT FOR NOW)
-/*
+// Cashfree SDK Type helper
 type CashfreeCheckout = (config: { mode: "sandbox" | "production" }) => {
   checkout: (options: {
     paymentSessionId: string;
@@ -100,7 +99,6 @@ declare global {
     Cashfree?: CashfreeCheckout;
   }
 }
-*/
 
 const INDIAN_STATES = [
   "Andhra Pradesh",
@@ -177,7 +175,7 @@ export default function CheckoutClient() {
 
   // Completed order verification state
   const [isPaid, setIsPaid] = useState(false);
-  const [isVerifying] = useState(false);
+  const [isVerifying, setIsVerifying] = useState(() => Boolean(searchParams.get("order_id")));
   const [confirmedOrder, setConfirmedOrder] = useState<{
     orderId: string;
     amountPaid: number;
@@ -189,10 +187,9 @@ export default function CheckoutClient() {
     date: string;
   } | null>(null);
 
-  /* =========================================================================
-     CASHFREE PAYMENT GATEWAY INTEGRATION (COMMENTED OUT FOR NOW)
-     To re-enable: uncomment this block and switch submission handler back.
-     =========================================================================
+  const orderIdParam = searchParams.get("order_id");
+
+  // Cashfree Payment Gateway SDK loader
   const loadCashfreeSdk = useCallback(async (): Promise<CashfreeCheckout | null> => {
     if (typeof window === "undefined") return null;
     if (window.Cashfree) return window.Cashfree;
@@ -228,7 +225,6 @@ export default function CheckoutClient() {
     if (!orderIdParam) return;
 
     let isMounted = true;
-    setIsVerifying(true);
 
     fetch(`/api/cashfree/verify-payment?order_id=${encodeURIComponent(orderIdParam)}`)
       .then((res) => res.json())
@@ -268,8 +264,7 @@ export default function CheckoutClient() {
     return () => {
       isMounted = false;
     };
-  }, [orderIdParam, selectedGame.name, unitPrice]);
-  ========================================================================= */
+  }, [orderIdParam, selectedGame.name, unitPrice, activeTier.title]);
 
   // Form field change handler
   const handleInputChange = (
@@ -329,8 +324,7 @@ export default function CheckoutClient() {
     return Object.keys(errors).length === 0;
   };
 
-  /* =========================================================================
-     CASHFREE PAYMENT FLOW (COMMENTED OUT FOR NOW)
+  // Cashfree Payment Flow
   const handleProceedToPayment = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitError(null);
@@ -483,127 +477,12 @@ export default function CheckoutClient() {
       );
     }
   };
-  ========================================================================= */
 
-  // ENQUIRE NOW: Submit details & show confirmed enquiry
+  /* Optional Enquiry Fallback Handler:
   const handleEnquireNow = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitError(null);
-
-    if (!validateForm()) {
-      window.scrollTo({ top: 120, behavior: "smooth" });
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    try {
-      const totalAmount = unitPrice * quantity;
-      const cleanPhone = formData.phone.replace(/[^0-9]/g, "").slice(-10);
-      const totalUnits = activeTier.unitsCount * quantity;
-      const tierTitle = `${selectedGame.name} - ${activeTier.title}`;
-
-      const combinedNotes = [
-        `Package: ${activeTier.title} (${totalUnits} Units)`,
-        formData.notes.trim(),
-      ]
-        .filter(Boolean)
-        .join(" | ");
-
-      const fullAddr = `${formData.building}, ${formData.street}, ${
-        formData.landmark ? formData.landmark + ", " : ""
-      }${formData.city}, ${formData.state} - ${formData.pincode}`;
-
-      const enquiryPayload = {
-        fullName: formData.fullName.trim(),
-        email: formData.email.trim().toLowerCase(),
-        phone: cleanPhone,
-        gameId: selectedGame.id,
-        gameTitle: tierTitle,
-        packageTitle: activeTier.title,
-        quantity: totalUnits,
-        totalAmount: totalAmount,
-        deliveryAddress: {
-          building: formData.building.trim(),
-          street: formData.street.trim(),
-          landmark: formData.landmark.trim(),
-          city: formData.city.trim(),
-          state: formData.state.trim(),
-          pincode: formData.pincode.trim(),
-        },
-        notes: combinedNotes,
-        source: "City Runners Order Enquiry - Enquire Now",
-      };
-
-      const res = await fetch("/api/enquiry", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(enquiryPayload),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok || !data.success) {
-        throw new Error(
-          data.error ||
-            "Failed to submit your enquiry. Please try again or connect via WhatsApp."
-        );
-      }
-
-      const generatedOrderId = data.orderId || `bp_enq_${Date.now()}`;
-
-      // Set confirmed state
-      setIsPaid(true);
-      setConfirmedOrder({
-        orderId: generatedOrderId,
-        amountPaid: totalAmount,
-        customerName: formData.fullName.trim(),
-        customerPhone: cleanPhone,
-        customerEmail: formData.email.trim(),
-        productTitle: tierTitle,
-        deliveryAddress: fullAddr,
-        date: new Date().toLocaleDateString("en-IN", {
-          day: "numeric",
-          month: "short",
-          year: "numeric",
-        }),
-      });
-
-      // Construct WhatsApp message and open directly for seamless customer confirmation
-      try {
-        const waMsg = [
-          `🎲 *NEW ORDER ENQUIRY · BHARAT PLAY*`,
-          `━━━━━━━━━━━━━━━━━━━━━━━━━`,
-          `📦 *Product:* ${tierTitle}`,
-          `📊 *Quantity:* ${totalUnits} Units (${quantity} ${quantity === 1 ? "Package" : "Packages"})`,
-          `💰 *Estimated Value:* ₹${totalAmount.toLocaleString("en-IN")}`,
-          `📍 *Shipping To:* ${fullAddr}`,
-          ``,
-          `👤 *Customer Details:*`,
-          `• Name: ${formData.fullName.trim()}`,
-          `• Phone: +91 ${cleanPhone}`,
-          `• Email: ${formData.email.trim()}`,
-          ...(formData.notes.trim() ? [`• Notes: ${formData.notes.trim()}`] : []),
-          ``,
-          `Ref ID: ${generatedOrderId}`,
-          `Hi Bharat Play team! I have submitted my order enquiry for ${tierTitle}. Please confirm invoice and delivery timeline! 😊`,
-        ].join("\n");
-
-        const waUrl = `https://wa.me/918237132553?text=${encodeURIComponent(waMsg)}`;
-        window.open(waUrl, "_blank");
-      } catch {}
-    } catch (err: unknown) {
-      console.error("Enquiry submit error:", err);
-      setIsSubmitting(false);
-      setSubmitError(
-        err instanceof Error
-          ? err.message
-          : "An unexpected error occurred while submitting your enquiry. Please try again."
-      );
-    } finally {
-      setIsSubmitting(false);
-    }
+    ...
   };
+  */
 
   const totalPrice = unitPrice * quantity;
 
@@ -621,15 +500,16 @@ export default function CheckoutClient() {
           <div className="flex items-center gap-3 text-emerald-700 bg-emerald-50 px-4 py-2.5 rounded-full border border-emerald-200/80 w-fit mb-6">
             <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
             <span className="font-mono text-xs font-bold uppercase tracking-wider">
-              ORDER ENQUIRY RECEIVED · CONFIRMATION SENT
+              ORDER CONFIRMED · PAYMENT SUCCESSFUL
             </span>
           </div>
 
           <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-brand-navy leading-none mb-3">
-            THANK YOU, YOUR ORDER ENQUIRY IS <span className="text-brand-orange">RECEIVED!</span>
+            THANK YOU, YOUR ORDER IS <span className="text-brand-orange">CONFIRMED!</span>
           </h1>
           <p className="text-base sm:text-lg text-slate-700 font-medium mb-8">
-            Thank you for your interest in <strong>{confirmedOrder.productTitle}</strong>. We have received your order enquiry and shipping destination. Our dispatch team will contact you via WhatsApp &amp; Phone to confirm the invoice and dispatch timeline.
+            Thank you for purchasing <strong>{confirmedOrder.productTitle}</strong>. Your payment of{" "}
+            <strong>₹{confirmedOrder.amountPaid.toLocaleString("en-IN")}</strong> has been received and your dispatch reference is registered.
           </p>
 
           {/* Order Details Bento Box */}
@@ -804,7 +684,7 @@ export default function CheckoutClient() {
         
         {/* LEFT COLUMN: DELIVERY ADDRESS & CONTACT FORM (7 cols) */}
         <div className="lg:col-span-7 space-y-6">
-          <form onSubmit={handleEnquireNow} className="space-y-6">
+          <form onSubmit={handleProceedToPayment} className="space-y-6">
             
             {/* Step 0: Select Pricing Tier / Educational Package */}
             <div
@@ -904,10 +784,7 @@ export default function CheckoutClient() {
                 </div>
               )}
 
-              {/* Statutory Exclusions Note */}
-              <div className="mt-3 p-3 rounded-xl bg-amber-50/90 border border-amber-200 text-[11px] font-mono text-amber-950">
-                <span className="font-bold text-amber-900">⚠️ STATUTORY NOTE:</span> Excludes shipping charges and VAT / statutory taxes as applicable.
-              </div>
+
             </div>
 
             {/* Step 2: Contact Details */}
@@ -1166,12 +1043,12 @@ export default function CheckoutClient() {
                 {isSubmitting ? (
                   <>
                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    <span>SUBMITTING YOUR ENQUIRY...</span>
+                    <span>INITIALIZING PAYMENT...</span>
                   </>
                 ) : (
                   <>
-                    <Send className="w-4 h-4" />
-                    <span>ENQUIRE NOW</span>
+                    <Lock className="w-4 h-4" />
+                    <span>PAY ₹{totalPrice.toLocaleString("en-IN")}</span>
                   </>
                 )}
               </button>
@@ -1325,28 +1202,26 @@ export default function CheckoutClient() {
                 </span>
               </div>
 
-              <div className="text-[11px] font-mono text-amber-900 bg-amber-50/80 p-2 rounded-lg border border-amber-200/70 mt-2">
-                * Note: Excludes shipping charges and VAT / statutory taxes as applicable.
-              </div>
+
             </div>
 
-            {/* Desktop / Primary Enquiry Button */}
+            {/* Desktop / Primary Payment Button */}
             <div className="pt-4">
               <button
                 type="button"
-                onClick={handleEnquireNow}
+                onClick={handleProceedToPayment}
                 disabled={isSubmitting}
                 className="w-full py-4 rounded-full bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white font-mono text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-lg shadow-orange-500/25 flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-[0.99] disabled:opacity-50 cursor-pointer"
               >
                 {isSubmitting ? (
                   <>
                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    <span>SUBMITTING YOUR ENQUIRY...</span>
+                    <span>INITIALIZING PAYMENT GATEWAY...</span>
                   </>
                 ) : (
                   <>
-                    <Send className="w-4 h-4" />
-                    <span>ENQUIRE NOW</span>
+                    <Lock className="w-4 h-4" />
+                    <span>PROCEED TO SECURE PAYMENT</span>
                   </>
                 )}
               </button>

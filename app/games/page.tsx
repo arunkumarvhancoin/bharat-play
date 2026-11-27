@@ -86,7 +86,7 @@ export default function GamesPage() {
                 className="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-mono text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-lg shadow-orange-500/30 hover:scale-105 flex items-center justify-center gap-2"
               >
                 <ShoppingBag className="w-4 h-4" />
-                <span>ENQUIRE / ORDER NOW</span>
+                <span>BUY THIS GAME NOW</span>
               </Link>
             </div>
           </div>
@@ -187,7 +187,7 @@ export default function GamesPage() {
                       className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-mono text-xs font-bold uppercase tracking-wider transition-all shadow-md shadow-orange-500/20 hover:scale-[1.02] flex items-center justify-center gap-1.5 mb-3"
                     >
                       <ShoppingBag className="w-3.5 h-3.5" />
-                      <span>ENQUIRE NOW</span>
+                      <span>BUY NOW</span>
                     </Link>
                   )}
 

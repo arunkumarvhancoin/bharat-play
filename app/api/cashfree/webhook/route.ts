@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import { NextResponse } from "next/server";
-import { updatePaymentStatusInSupabase } from "@/app/lib/supabaseRegistration";
+import { updatePaymentStatusInSupabase, getCrmEndpoints } from "@/app/lib/supabaseRegistration";
 
 export async function POST(request: Request) {
   try {
@@ -64,15 +64,7 @@ export async function POST(request: Request) {
 
     const paymentStatus = isSuccess ? "PAID" : "NOT PAID";
 
-    const crmUrls = Array.from(
-      new Set(
-        [
-          process.env.NEXT_PUBLIC_CRM_API_URL,
-          "http://localhost:3001/api/webhooks/bharat-play",
-          "https://niral-crm.vercel.app/api/webhooks/bharat-play",
-        ].filter(Boolean) as string[]
-      )
-    );
+    const crmUrls = getCrmEndpoints();
 
     if (isSuccess) {
       await updatePaymentStatusInSupabase(

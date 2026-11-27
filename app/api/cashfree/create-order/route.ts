@@ -68,7 +68,8 @@ export async function POST(request: Request) {
     const orderId = uniqueId;
 
     // Determine the return URL for the user after payment completion
-    let baseUrlForReturn = "https://bharatplay.com";
+    const productionDomain = process.env.NEXT_PUBLIC_APP_URL || "https://thebharatplay.com";
+    let baseUrlForReturn = productionDomain;
     const rawOrigin = request.headers.get("origin");
     const rawReferer = request.headers.get("referer");
     const hostHeader = request.headers.get("x-forwarded-host") || request.headers.get("host");
@@ -101,8 +102,8 @@ export async function POST(request: Request) {
     // In production, Cashfree strictly enforces that return_url and notify_url MUST use HTTPS.
     // If testing on localhost or HTTP, convert to HTTPS production domain to satisfy Cashfree.
     const enforceHttps = (urlStr: string): string => {
-      if (!urlStr) return "https://bharatplay.com";
-      let sanitized = urlStr.replace(/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?/i, "https://bharatplay.com");
+      if (!urlStr) return productionDomain;
+      let sanitized = urlStr.replace(/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?/i, productionDomain);
       sanitized = sanitized.replace(/^http:\/\//i, "https://");
       return sanitized;
     };

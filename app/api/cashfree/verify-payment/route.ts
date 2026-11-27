@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse, connection } from "next/server";
-import { updatePaymentStatusInSupabase } from "@/app/lib/supabaseRegistration";
+import { updatePaymentStatusInSupabase, getCrmEndpoints } from "@/app/lib/supabaseRegistration";
 
 export async function GET(request: NextRequest) {
   await connection();
@@ -74,15 +74,7 @@ export async function GET(request: NextRequest) {
 
     // Notify CRM with detailed status
     try {
-      const crmUrls = Array.from(
-        new Set(
-          [
-            process.env.NEXT_PUBLIC_CRM_API_URL,
-            "http://localhost:3001/api/webhooks/bharat-play",
-            "https://niral-crm.vercel.app/api/webhooks/bharat-play",
-          ].filter(Boolean) as string[]
-        )
-      );
+      const crmUrls = getCrmEndpoints();
 
       const targetAmount = data.link_amount_paid || data.link_amount || data.order_amount;
       const isGame =

@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { getEventById, getAllEventIds, getUpcomingEvents } from "../../data/events";
 import EventDetailsClient from "./EventDetailsClient";
-import Chennai2050ChallengeView from "./Chennai2050ChallengeView";
+// import Chennai2050ChallengeView from "./Chennai2050ChallengeView";
 
 export function generateStaticParams() {
   return getAllEventIds().map((slug) => ({ slug }));
@@ -32,6 +32,7 @@ async function EventDetailsServer({ params }: { params: Promise<{ slug: string }
 
   const otherEvents = getUpcomingEvents().filter((e) => e.id !== event.id);
 
+  /*
   if (
     event.id === "chennai-2050-innovation-challenge" ||
     event.id === "chennai-2050" ||
@@ -39,6 +40,7 @@ async function EventDetailsServer({ params }: { params: Promise<{ slug: string }
   ) {
     return <Chennai2050ChallengeView event={event} otherEvents={otherEvents} />;
   }
+  */
 
   return <EventDetailsClient event={event} otherEvents={otherEvents} />;
 }

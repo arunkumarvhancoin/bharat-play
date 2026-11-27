@@ -45,8 +45,9 @@ export interface ScheduledEvent {
 }
 
 export const EVENTS_DATA: ScheduledEvent[] = [
+  /*
   // =========================================================================
-  // 0. CHENNAI@2050 INNOVATION CHALLENGE — 1-DAY APPLIED GAME CHAMPIONSHIP
+  // 0. CHENNAI@2050 INNOVATION CHALLENGE — 1-DAY APPLIED GAME CHAMPIONSHIP (COMMENTED OUT)
   //    3 Applied Games: City Runners, Energetic, Master of Disaster (MoD)
   //    Victoria Hall, Central, Chennai · Republic Day 2026 / Tamil New Year Day
   //    Prizes: ₹15,000 / ₹10,000 / ₹5,000 · GCC / Mayor / Education Secy
@@ -134,6 +135,7 @@ export const EVENTS_DATA: ScheduledEvent[] = [
     ],
     status: "upcoming",
   },
+  */
   // =========================================================================
   // 1. Keep it simple. Saturdays4SocialGames. Time: 5-7pm.
   //    Create a Reservation page to book seats. Venue to be announced closer to the date.
@@ -501,9 +503,11 @@ export function getConductedEvents(): ScheduledEvent[] {
 }
 
 export function getEventById(id: string): ScheduledEvent | undefined {
+  /*
   if (id === "chennai-2050" || id === "chennai-2050-challenge" || id === "chennai-2050-innovation-challenge") {
     return EVENTS_DATA.find((e) => e.id === "chennai-2050-innovation-challenge");
   }
+  */
   if (id === "serious-games-on-saturdays") {
     return EVENTS_DATA.find((e) => e.id === "saturdays-4-social-games");
   }
@@ -529,9 +533,11 @@ export function getEventById(id: string): ScheduledEvent | undefined {
 
 export function getAllEventIds(): string[] {
   const ids = EVENTS_DATA.map((e) => e.id);
+  /*
   if (!ids.includes("chennai-2050")) {
     ids.push("chennai-2050");
   }
+  */
   if (!ids.includes("serious-games-on-saturdays")) {
     ids.push("serious-games-on-saturdays");
   }
