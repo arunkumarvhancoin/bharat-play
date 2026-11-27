@@ -5,12 +5,17 @@ import Link from "next/link";
 import {
   ArrowLeft,
   ArrowRight,
+  ArrowUpRight,
   Layers,
   ExternalLink,
   ShoppingBag,
   Sparkles,
   Truck,
-  CheckCircle2,
+  Users,
+  Clock,
+  Box,
+  ShieldCheck,
+  Lock,
 } from "lucide-react";
 import { GAMES } from "../data/games";
 
@@ -43,51 +48,161 @@ export default function GamesPage() {
         </div>
       </section>
 
-      {/* STORE LAUNCH BANNER: NOW SELLING GAMES */}
-      <section className="max-w-[1200px] mx-auto w-full px-4 md:px-6 mb-12">
-        <div
-          className="bg-gradient-to-r from-[#0C2444] via-[#163864] to-[#0C2444] rounded-[26px] p-6 sm:p-8 text-white border-2 border-orange-500/40 relative overflow-hidden"
-          style={{ boxShadow: "8px 8px 0px #C2410C" }}
-        >
-          <div className="absolute -right-12 -bottom-12 w-64 h-64 rounded-full bg-orange-500/10 blur-3xl pointer-events-none" />
+      {/* STORE LAUNCH HERO: OFFICIAL PHYSICAL EDITION */}
+      <section className="max-w-[1200px] mx-auto w-full px-4 md:px-6 mb-16">
+        <div className="relative rounded-[32px] p-2 bg-[#0C2444] border-2 border-[#0C2444] shadow-[8px_8px_0px_#C2410C] overflow-hidden">
+          {/* Subtle blueprint grid overlay */}
+          <div
+            className="absolute inset-0 opacity-[0.07] pointer-events-none"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)",
+              backgroundSize: "28px 28px",
+            }}
+          />
 
-          <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/20 border border-orange-400/40 text-orange-300 font-mono text-xs font-bold uppercase tracking-wider mb-3">
-                <Sparkles className="w-3.5 h-3.5" /> OFFICIAL PHYSICAL EDITION
-              </div>
-              <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight text-white mb-2 leading-tight">
-                OWN THE OFFICIAL TABLETOP EDITION OF <span className="text-brand-orange">CITY RUNNERS</span>
-              </h2>
-              <p className="text-sm sm:text-base text-slate-300 font-medium leading-relaxed">
-                Bring India&apos;s flagship urban governance tabletop simulation into your classroom, policy lab, or living room. Complete with quad-fold ward board, crisis decks, custom tokens, and facilitation handbook.
-              </p>
+          <div className="relative z-10 bg-[#08172C] rounded-[24px] p-6 sm:p-10 lg:p-12 text-white">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              
+              {/* LEFT: Craft Narrative & Specification Grid (7 cols) */}
+              <div className="lg:col-span-7 flex flex-col justify-between">
+                <div>
+                  {/* Eyebrow status pill */}
+                  <div className="flex items-center gap-2.5 flex-wrap mb-4">
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-orange-400 bg-orange-500/10 border border-orange-500/30 px-3 py-1 rounded-full flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse" />
+                      OFFICIAL PHYSICAL EDITION
+                    </span>
+                    <span className="font-mono text-[11px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1 rounded-full flex items-center gap-1.5 font-bold">
+                      ✓ IN STOCK · READY FOR DISPATCH
+                    </span>
+                  </div>
 
-              <div className="flex flex-wrap items-center gap-4 mt-4 text-xs font-mono text-amber-200">
-                <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Complete Physical Edition
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <Truck className="w-4 h-4 text-orange-400" /> Free Pan-India Delivery
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <span className="text-emerald-400 font-bold">₹</span> Instant Secure Payment (UPI &amp; Cards)
-                </span>
-              </div>
-            </div>
+                  {/* Headline */}
+                  <h2 className="font-display text-2xl sm:text-4xl lg:text-[42px] font-black uppercase tracking-tight text-white leading-[1.08] mb-4">
+                    OWN THE TABLETOP EDITION OF{" "}
+                    <span className="text-brand-orange">CITY RUNNERS.</span>
+                  </h2>
 
-            <div className="shrink-0 flex flex-col items-center sm:items-end gap-2.5 w-full md:w-auto">
-              <div className="text-right hidden sm:block">
-                <div className="text-xs font-mono uppercase text-slate-400">Official Box Edition</div>
-                <div className="text-2xl font-mono font-black text-white">₹5,000</div>
+                  {/* Narrative copy */}
+                  <p className="text-sm sm:text-base text-slate-300 font-medium leading-relaxed mb-6 max-w-xl">
+                    Bring India&apos;s flagship urban governance simulation into your classroom, policy lab, or living room. A complete, tactile physical set designed for universities, think tanks, municipal leaders, and tabletop strategists.
+                  </p>
+
+                  {/* 4-Item Tactile Spec Grid */}
+                  <div className="grid grid-cols-2 gap-3 mb-6 font-mono">
+                    <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 flex flex-col justify-between">
+                      <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                        <Users className="w-3.5 h-3.5 text-brand-orange" /> CAPACITY
+                      </div>
+                      <div className="text-xs sm:text-sm font-bold text-white">
+                        6 – 12 Players · Ages 12+
+                      </div>
+                    </div>
+
+                    <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 flex flex-col justify-between">
+                      <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5 text-brand-orange" /> SESSION
+                      </div>
+                      <div className="text-xs sm:text-sm font-bold text-white">
+                        90 – 120 Mins Simulation
+                      </div>
+                    </div>
+
+                    <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 flex flex-col justify-between">
+                      <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                        <Box className="w-3.5 h-3.5 text-brand-orange" /> BOARD
+                      </div>
+                      <div className="text-xs sm:text-sm font-bold text-white">
+                        Quad-Fold Ward Map
+                      </div>
+                    </div>
+
+                    <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 flex flex-col justify-between">
+                      <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                        <Layers className="w-3.5 h-3.5 text-brand-orange" /> COMPONENTS
+                      </div>
+                      <div className="text-xs sm:text-sm font-bold text-white">
+                        150+ Cards &amp; Wood Tokens
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Trust bar */}
+                <div className="pt-4 border-t border-white/10 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-mono text-slate-400">
+                  <span className="flex items-center gap-1.5 text-slate-300">
+                    <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" /> 100% Original Box Edition
+                  </span>
+                  <span className="flex items-center gap-1.5 text-slate-300">
+                    <Truck className="w-4 h-4 text-orange-400 shrink-0" /> Pan-India Courier Delivery
+                  </span>
+                  <span className="flex items-center gap-1.5 text-slate-300">
+                    <Lock className="w-4 h-4 text-emerald-400 shrink-0" /> Verified Secure Checkout
+                  </span>
+                </div>
               </div>
-              <Link
-                href="/checkout?game=city-runners"
-                className="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-mono text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-lg shadow-orange-500/30 hover:scale-105 flex items-center justify-center gap-2"
-              >
-                <ShoppingBag className="w-4 h-4" />
-                <span>BUY THIS GAME NOW</span>
-              </Link>
+
+              {/* RIGHT: High-Impact Physical Box Showcase & Purchase Action (5 cols) */}
+              <div className="lg:col-span-5 flex flex-col items-center">
+                <div className="w-full bg-[#0D2038] border border-white/15 rounded-2xl p-5 sm:p-6 flex flex-col items-center shadow-xl relative group">
+                  {/* Sealed Edition Stamp */}
+                  <div className="absolute top-4 right-4 z-10 bg-amber-500/20 text-amber-300 border border-amber-400/40 font-mono text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full">
+                    BOX #01 · SEALED
+                  </div>
+
+                  {/* Physical Box Image with subtle depth & shine */}
+                  <div className="w-full aspect-[4/3] rounded-xl overflow-hidden bg-black/30 border border-white/10 mb-5 relative flex items-center justify-center p-3">
+                    <img
+                      src="/cr.webp"
+                      alt="City Runners Official Box Set"
+                      className="w-full h-full object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.5)] group-hover:scale-105 transition-transform duration-500 ease-out"
+                    />
+                  </div>
+
+                  {/* Pricing Display */}
+                  <div className="w-full flex items-baseline justify-between mb-4 pb-3 border-b border-white/10 font-mono">
+                    <div>
+                      <div className="text-[11px] uppercase tracking-wider text-slate-400">
+                        STANDARD PHYSICAL BOX
+                      </div>
+                      <div className="text-[10px] text-emerald-400">
+                        Includes Full Facilitator Manual
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-2xl sm:text-3xl font-black text-white leading-none">
+                        ₹5,000
+                      </div>
+                      <div className="text-[10px] text-slate-400 uppercase mt-0.5">
+                        ALL TAXES INCLUDED
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Primary Purchase Button */}
+                  <Link
+                    href="/checkout?game=city-runners"
+                    className="w-full py-4 px-6 rounded-full bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 hover:from-orange-600 hover:to-amber-600 text-white font-mono text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-lg shadow-orange-500/30 hover:scale-[1.02] active:scale-[0.99] flex items-center justify-center gap-2 group/btn"
+                  >
+                    <ShoppingBag className="w-4 h-4" />
+                    <span>ORDER PHYSICAL BOX NOW</span>
+                    <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                  </Link>
+
+                  {/* Secondary Details Link */}
+                  <div className="mt-3 text-center">
+                    <Link
+                      href="/games/city-runners"
+                      className="text-[11px] font-mono font-bold uppercase text-slate-400 hover:text-white transition-colors inline-flex items-center gap-1"
+                    >
+                      <span>Explore game mechanics &amp; rules</span>
+                      <ArrowRight className="w-3 h-3" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

@@ -130,9 +130,12 @@ export async function POST(request: Request) {
         return_url: finalReturnUrl,
         notify_url: finalNotifyUrl,
       },
-      order_note: `Bharat Play: ${resolvedItemTitle}`
+      order_note: (isGamePurchase ? `Bharat Play Game: ${resolvedItemTitle}` : `Bharat Play: ${resolvedItemTitle}`)
         .replace(/[^\w\s:.-]/g, "")
         .slice(0, 100),
+      order_tags: {
+        order_type: isGamePurchase ? "game_purchase" : "event_booking",
+      },
     };
 
     const res = await fetch(`${baseUrl}/orders`, {

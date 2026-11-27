@@ -52,9 +52,13 @@ export async function POST(request: Request) {
 
     const targetAmount = payment?.payment_amount || order?.order_amount || data?.link_amount;
     const isGame =
+      Boolean(order?.order_tags?.order_type === "game_purchase") ||
       Boolean(order?.order_note?.toLowerCase().includes("game")) ||
       Boolean(order?.order_note?.toLowerCase().includes("city runners")) ||
-      linkNotes.orderType === "game_purchase";
+      Boolean(order?.order_note?.toLowerCase().includes("edition")) ||
+      Boolean(order?.order_note?.toLowerCase().includes("unit")) ||
+      linkNotes.orderType === "game_purchase" ||
+      (!linkNotes?.eventId && !order?.order_note?.toLowerCase().includes("workshop"));
     const baseSlot = linkNotes.slot || (isGame ? "Physical Board Game Delivery" : "Standard Slot");
     const baseMembers = isGame
       ? `${linkNotes.attendeesCount || 1} Unit(s)`

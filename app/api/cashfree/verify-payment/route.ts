@@ -78,9 +78,13 @@ export async function GET(request: NextRequest) {
 
       const targetAmount = data.link_amount_paid || data.link_amount || data.order_amount;
       const isGame =
+        Boolean(data.order_tags?.order_type === "game_purchase") ||
         Boolean(data.order_note?.toLowerCase().includes("game")) ||
         Boolean(data.order_note?.toLowerCase().includes("city runners")) ||
-        data.link_notes?.orderType === "game_purchase";
+        Boolean(data.order_note?.toLowerCase().includes("edition")) ||
+        Boolean(data.order_note?.toLowerCase().includes("unit")) ||
+        data.link_notes?.orderType === "game_purchase" ||
+        (!data.link_notes?.eventId && !data.order_note?.toLowerCase().includes("workshop"));
       const baseSlot = data.link_notes?.slot || (isGame ? "Physical Board Game Delivery" : "Standard Slot");
       const baseMembers = isGame
         ? `${data.link_notes?.attendeesCount || 1} Unit(s)`

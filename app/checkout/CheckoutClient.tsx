@@ -18,6 +18,8 @@ import {
   ShoppingBag,
   ExternalLink,
   Lock,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import { GAMES, GameItem } from "../data/games";
 
@@ -156,6 +158,7 @@ export default function CheckoutClient() {
 
   // Checkout form states
   const [quantity, setQuantity] = useState<number>(1);
+  const [showMobileSummary, setShowMobileSummary] = useState<boolean>(false);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -516,7 +519,7 @@ export default function CheckoutClient() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
             <div className="p-5 rounded-2xl bg-[#FFFDF9] border border-amber-200/80">
               <span className="text-xs font-mono font-bold uppercase text-slate-500 block mb-1">
-                ENQUIRY REFERENCE ID
+                ORDER REFERENCE ID
               </span>
               <p className="font-mono text-base font-bold text-brand-navy break-all">
                 {confirmedOrder.orderId}
@@ -525,7 +528,7 @@ export default function CheckoutClient() {
 
             <div className="p-5 rounded-2xl bg-[#FFFDF9] border border-amber-200/80">
               <span className="text-xs font-mono font-bold uppercase text-slate-500 block mb-1">
-                TOTAL ESTIMATED ORDER VALUE
+                TOTAL AMOUNT PAID
               </span>
               <p className="font-mono text-2xl font-black text-brand-green">
                 ₹{confirmedOrder.amountPaid.toLocaleString("en-IN")}
@@ -546,7 +549,7 @@ export default function CheckoutClient() {
                 </span>
               </div>
               <p className="text-xs text-slate-600 mt-1">
-                Pan-India Express Surface Delivery with real-time SMS &amp; WhatsApp tracking updates.
+                Pan-India courier delivery directly to your provided shipping destination.
               </p>
             </div>
 
@@ -585,10 +588,10 @@ export default function CheckoutClient() {
             <h3 className="font-mono text-xs font-bold uppercase text-brand-navy tracking-wider mb-2 flex items-center gap-2">
               <Package className="w-4 h-4 text-brand-orange" /> WHAT HAPPENS NEXT?
             </h3>
-            <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700">
-              <li>• Your order enquiry has been received and assigned to our sales &amp; dispatch desk.</li>
-              <li>• Our team contacts you on WhatsApp/Phone to finalize payment preferences (UPI/Card/NEFT) and answer any questions.</li>
-              <li>• Physical tabletop units ship via express courier with live tracking.</li>
+            <ul className="space-y-2 text-xs sm:text-sm text-slate-700 font-medium">
+              <li>• Payment received &amp; confirmed. Your order has been registered with reference <strong>{confirmedOrder.orderId}</strong>.</li>
+              <li>• Our team will reach out via WhatsApp/Phone with your official invoice and confirm your dispatch schedule.</li>
+              <li>• Your physical tabletop game box will be packaged securely and dispatched directly to your address.</li>
             </ul>
           </div>
 
@@ -596,7 +599,7 @@ export default function CheckoutClient() {
           <div className="flex flex-wrap items-center gap-4 pt-2">
             <a
               href={`https://wa.me/918237132553?text=${encodeURIComponent(
-                `Hi Bharat Play, I just submitted an order enquiry for ${confirmedOrder.productTitle} with Reference ID ${confirmedOrder.orderId}.`
+                `Hi Bharat Play, I just placed an order for ${confirmedOrder.productTitle} with Reference ID ${confirmedOrder.orderId}.`
               )}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -657,21 +660,21 @@ export default function CheckoutClient() {
       </div>
 
       {/* Page Title */}
-      <div className="pb-6 mb-8 border-b border-gray-200">
+      <div className="pb-6 mb-6 sm:mb-8 border-b border-gray-200">
         <div className="font-mono text-xs font-bold uppercase tracking-widest text-brand-orange mb-1 flex items-center gap-2">
           <Sparkles className="w-4 h-4 text-brand-orange" /> BHARAT PLAY SIMULATIONS STORE
         </div>
-        <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-brand-navy">
-          CHECKOUT &amp; <span className="text-brand-orange">ENQUIRY.</span>
+        <h1 className="font-display text-2xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-brand-navy">
+          CHECKOUT &amp; <span className="text-brand-orange">DISPATCH.</span>
         </h1>
-        <p className="text-sm sm:text-base text-slate-600 font-medium mt-1">
-          Complete your delivery details to enquire. Our team will connect with you to confirm invoice &amp; dispatch schedule.
+        <p className="text-xs sm:text-base text-slate-600 font-medium mt-1">
+          Complete your delivery details to purchase official game boxes. Express Pan-India dispatch with instant order confirmation.
         </p>
       </div>
 
       {/* Error Banner */}
       {submitError && (
-        <div className="mb-8 p-4 rounded-2xl bg-red-50 border-2 border-red-300 text-red-800 flex items-start gap-3">
+        <div className="mb-6 p-4 rounded-2xl bg-red-50 border-2 border-red-300 text-red-800 flex items-start gap-3">
           <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
           <div className="text-xs sm:text-sm font-medium leading-relaxed">
             {submitError}
@@ -679,8 +682,98 @@ export default function CheckoutClient() {
         </div>
       )}
 
+      {/* Mobile Top Order Summary Drawer (Compact & Collapsible) */}
+      <div className="lg:hidden mb-6 bg-white border-2 border-[#12352B] rounded-2xl p-4 shadow-sm">
+        <button
+          type="button"
+          onClick={() => setShowMobileSummary((v) => !v)}
+          className="w-full flex items-center justify-between gap-3 text-left cursor-pointer"
+        >
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="w-12 h-12 rounded-xl overflow-hidden bg-brand-navy/5 border border-gray-200 shrink-0">
+              <img
+                src={selectedGame.image || "/cr.webp"}
+                alt={selectedGame.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="min-w-0">
+              <div className="font-mono text-[10px] font-bold uppercase text-brand-orange truncate">
+                {selectedGame.name} · {activeTier.badge}
+              </div>
+              <h3 className="font-display text-sm font-bold uppercase text-brand-navy truncate">
+                {activeTier.title}
+              </h3>
+              <p className="text-[11px] font-mono text-slate-500">
+                Qty: {quantity} ({activeTier.unitsCount * quantity} Units)
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 shrink-0">
+            <div className="text-right">
+              <div className="font-mono text-base font-black text-brand-green leading-none">
+                ₹{totalPrice.toLocaleString("en-IN")}
+              </div>
+              <div className="text-[10px] font-mono text-slate-400 mt-0.5">
+                {showMobileSummary ? "Hide" : "Details"}
+              </div>
+            </div>
+            {showMobileSummary ? (
+              <ChevronUp className="w-4 h-4 text-brand-navy" />
+            ) : (
+              <ChevronDown className="w-4 h-4 text-brand-navy" />
+            )}
+          </div>
+        </button>
+
+        {showMobileSummary && (
+          <div className="mt-4 pt-4 border-t border-gray-100 space-y-3 text-xs font-mono">
+            <div className="flex justify-between items-center text-slate-600">
+              <span>Quantity:</span>
+              <div className="flex items-center border border-gray-200 rounded-lg bg-[#FFFDF9] overflow-hidden">
+                <button
+                  type="button"
+                  onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                  disabled={quantity <= 1 || isSubmitting}
+                  className="px-2.5 py-1 text-slate-600 hover:bg-gray-100 disabled:opacity-40"
+                >
+                  <Minus className="w-3.5 h-3.5" />
+                </button>
+                <span className="px-3 py-1 font-mono text-xs font-bold text-brand-navy">
+                  {quantity}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setQuantity((q) => Math.min(10, q + 1))}
+                  disabled={quantity >= 10 || isSubmitting}
+                  className="px-2.5 py-1 text-slate-600 hover:bg-gray-100 disabled:opacity-40"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+
+            <div className="flex justify-between text-slate-600">
+              <span>Unit Price:</span>
+              <span className="font-bold text-brand-navy">₹{unitPrice.toLocaleString("en-IN")}</span>
+            </div>
+
+            <div className="flex justify-between font-bold text-brand-navy pt-2 border-t border-dashed border-gray-200">
+              <span>Total Payable:</span>
+              <span className="text-brand-green text-sm">₹{totalPrice.toLocaleString("en-IN")}</span>
+            </div>
+
+            <div className="text-[11px] font-sans text-emerald-800 bg-emerald-50 p-2.5 rounded-lg border border-emerald-200/80 flex items-center gap-2">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+              <span>Includes 100% Original Box Edition, Facilitator Guide &amp; Express Delivery</span>
+            </div>
+          </div>
+        )}
+      </div>
+
       {/* Main Checkout Layout: 2 Columns */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-28 lg:mb-16">
         
         {/* LEFT COLUMN: DELIVERY ADDRESS & CONTACT FORM (7 cols) */}
         <div className="lg:col-span-7 space-y-6">
@@ -814,7 +907,7 @@ export default function CheckoutClient() {
                     placeholder="e.g. Priya Sharma / Academic Coordinator"
                     className={`w-full px-4 py-3 rounded-xl border ${
                       formErrors.fullName ? "border-red-500 bg-red-50/30" : "border-gray-200 bg-[#FFFDF9]"
-                    } text-sm text-brand-navy focus:outline-none focus:border-brand-orange transition-colors`}
+                    } text-base sm:text-sm text-brand-navy min-h-[46px] focus:outline-none focus:border-brand-orange transition-colors`}
                   />
                   {formErrors.fullName && (
                     <span className="text-[11px] font-mono text-red-600 font-semibold mt-1 block">
@@ -836,7 +929,7 @@ export default function CheckoutClient() {
                       placeholder="name@example.com"
                       className={`w-full px-4 py-3 rounded-xl border ${
                         formErrors.email ? "border-red-500 bg-red-50/30" : "border-gray-200 bg-[#FFFDF9]"
-                      } text-sm text-brand-navy focus:outline-none focus:border-brand-orange transition-colors`}
+                      } text-base sm:text-sm text-brand-navy min-h-[46px] focus:outline-none focus:border-brand-orange transition-colors`}
                     />
                     {formErrors.email && (
                       <span className="text-[11px] font-mono text-red-600 font-semibold mt-1 block">
@@ -862,7 +955,7 @@ export default function CheckoutClient() {
                         placeholder="9876543210"
                         className={`w-full pl-12 pr-4 py-3 rounded-xl border ${
                           formErrors.phone ? "border-red-500 bg-red-50/30" : "border-gray-200 bg-[#FFFDF9]"
-                        } text-sm font-mono text-brand-navy focus:outline-none focus:border-brand-orange transition-colors`}
+                        } text-base sm:text-sm font-mono text-brand-navy min-h-[46px] focus:outline-none focus:border-brand-orange transition-colors`}
                       />
                     </div>
                     {formErrors.phone && (
@@ -908,7 +1001,7 @@ export default function CheckoutClient() {
                     placeholder="e.g. Flat 302, Palm Heights / Door No. 12"
                     className={`w-full px-4 py-3 rounded-xl border ${
                       formErrors.building ? "border-red-500 bg-red-50/30" : "border-gray-200 bg-[#FFFDF9]"
-                    } text-sm text-brand-navy focus:outline-none focus:border-brand-orange transition-colors`}
+                    } text-base sm:text-sm text-brand-navy min-h-[46px] focus:outline-none focus:border-brand-orange transition-colors`}
                   />
                   {formErrors.building && (
                     <span className="text-[11px] font-mono text-red-600 font-semibold mt-1 block">
@@ -929,7 +1022,7 @@ export default function CheckoutClient() {
                     placeholder="e.g. 14th Cross, 4th Block, Koramangala"
                     className={`w-full px-4 py-3 rounded-xl border ${
                       formErrors.street ? "border-red-500 bg-red-50/30" : "border-gray-200 bg-[#FFFDF9]"
-                    } text-sm text-brand-navy focus:outline-none focus:border-brand-orange transition-colors`}
+                    } text-base sm:text-sm text-brand-navy min-h-[46px] focus:outline-none focus:border-brand-orange transition-colors`}
                   />
                   {formErrors.street && (
                     <span className="text-[11px] font-mono text-red-600 font-semibold mt-1 block">
@@ -949,7 +1042,7 @@ export default function CheckoutClient() {
                       value={formData.landmark}
                       onChange={handleInputChange}
                       placeholder="e.g. Near Sony Signal / Opp Metro Station"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-[#FFFDF9] text-sm text-brand-navy focus:outline-none focus:border-brand-orange transition-colors"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-[#FFFDF9] text-base sm:text-sm text-brand-navy min-h-[46px] focus:outline-none focus:border-brand-orange transition-colors"
                     />
                   </div>
 
@@ -965,7 +1058,7 @@ export default function CheckoutClient() {
                       placeholder="e.g. Bengaluru / Chennai / Mumbai"
                       className={`w-full px-4 py-3 rounded-xl border ${
                         formErrors.city ? "border-red-500 bg-red-50/30" : "border-gray-200 bg-[#FFFDF9]"
-                      } text-sm text-brand-navy focus:outline-none focus:border-brand-orange transition-colors`}
+                      } text-base sm:text-sm text-brand-navy min-h-[46px] focus:outline-none focus:border-brand-orange transition-colors`}
                     />
                     {formErrors.city && (
                       <span className="text-[11px] font-mono text-red-600 font-semibold mt-1 block">
@@ -984,7 +1077,7 @@ export default function CheckoutClient() {
                       name="state"
                       value={formData.state}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-[#FFFDF9] text-sm text-brand-navy focus:outline-none focus:border-brand-orange transition-colors"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-[#FFFDF9] text-base sm:text-sm text-brand-navy min-h-[46px] focus:outline-none focus:border-brand-orange transition-colors"
                     >
                       {INDIAN_STATES.map((st) => (
                         <option key={st} value={st}>
@@ -1007,7 +1100,7 @@ export default function CheckoutClient() {
                       placeholder="560034"
                       className={`w-full px-4 py-3 rounded-xl border ${
                         formErrors.pincode ? "border-red-500 bg-red-50/30" : "border-gray-200 bg-[#FFFDF9]"
-                      } text-sm font-mono text-brand-navy focus:outline-none focus:border-brand-orange transition-colors`}
+                      } text-base sm:text-sm font-mono text-brand-navy min-h-[46px] focus:outline-none focus:border-brand-orange transition-colors`}
                     />
                     {formErrors.pincode && (
                       <span className="text-[11px] font-mono text-red-600 font-semibold mt-1 block">
@@ -1027,7 +1120,7 @@ export default function CheckoutClient() {
                     value={formData.notes}
                     onChange={handleInputChange}
                     placeholder="e.g. Leave with building security if unavailable / Call before delivery"
-                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-[#FFFDF9] text-sm text-brand-navy focus:outline-none focus:border-brand-orange transition-colors resize-none"
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-[#FFFDF9] text-base sm:text-sm text-brand-navy focus:outline-none focus:border-brand-orange transition-colors resize-none"
                   />
                 </div>
               </div>
@@ -1238,6 +1331,39 @@ export default function CheckoutClient() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Mobile Floating Sticky Checkout Bar */}
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-gray-200 px-4 py-3 shadow-[0_-8px_24px_rgba(0,0,0,0.12)]">
+        <div className="max-w-[1180px] mx-auto flex items-center justify-between gap-4">
+          <div className="min-w-0">
+            <span className="text-[10px] font-mono font-bold uppercase text-slate-500 block leading-tight">
+              TOTAL PAYABLE
+            </span>
+            <span className="font-mono text-xl font-black text-brand-green leading-none">
+              ₹{totalPrice.toLocaleString("en-IN")}
+            </span>
+          </div>
+
+          <button
+            type="button"
+            onClick={handleProceedToPayment}
+            disabled={isSubmitting}
+            className="flex-1 max-w-[240px] py-3.5 px-4 rounded-full bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white font-mono text-xs font-bold uppercase tracking-wider shadow-md shadow-orange-500/25 flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer active:scale-98 transition-all"
+          >
+            {isSubmitting ? (
+              <>
+                <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                <span>PROCESSING...</span>
+              </>
+            ) : (
+              <>
+                <Lock className="w-3.5 h-3.5" />
+                <span>PAY NOW</span>
+              </>
+            )}
+          </button>
         </div>
       </div>
     </div>
